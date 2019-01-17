@@ -3,6 +3,8 @@ package datastore
 import (
 	"database/sql"
 	"fmt"
+
+	"github.com/anabiozz/store-engine/models"
 )
 
 const (
@@ -30,8 +32,14 @@ func NewPostgresDatastore() (*PostgresDatastore, error) {
 	}, nil
 }
 
-// GetAllProducts ..
-func (p *PostgresDatastore) GetAllProducts() {
+// GetProducts ..
+func (p *PostgresDatastore) GetProducts() ([]*models.Product, error) {
+	
+	return
+}
+
+// GetProductByID ..
+func (p *PostgresDatastore) GetProductByID() (*models.Product, error) {
 
 }
 

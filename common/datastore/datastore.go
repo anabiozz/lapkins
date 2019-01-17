@@ -4,7 +4,8 @@ import "errors"
 
 // Datastore ...
 type Datastore interface {
-	GetAllProducts()
+	GetProducts()
+	GetProductByID()
 	CloseDB()
 }
 
