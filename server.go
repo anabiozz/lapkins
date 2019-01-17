@@ -6,6 +6,7 @@ import (
 	"time"
 
 	"github.com/anabiozz/logger"
+	"github.com/anabiozz/store-engine/api"
 	"github.com/anabiozz/store-engine/common"
 	"github.com/anabiozz/store-engine/common/datastore"
 	"github.com/anabiozz/store-engine/handlers"
@@ -35,7 +36,8 @@ func main() {
 	router.Handle("/", handlers.Index())
 
 	// API
-	router.Handle("/api/get-all-products", api.GetAllProducts(&env))
+	router.Handle("/api/get-products", api.GetProducts(&env))
+	router.Handle("/api/get-product-by-id", api.GetProductByID(&env))
 
 	srv := &http.Server{
 		Handler:      router,
