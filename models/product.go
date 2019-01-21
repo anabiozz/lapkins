@@ -1,9 +1,10 @@
 package models
 
-type Postcard struct {
+// Product ..
+type Product struct {
 	ProductID   uint32
 	ArtistName  string
-	Currency    models.currency
+	Currency    string
 	Description string
 	Price       string
 	Size        string
