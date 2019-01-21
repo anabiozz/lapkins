@@ -11,11 +11,13 @@ import (
 	"github.com/anabiozz/store-engine/common/datastore"
 	"github.com/anabiozz/store-engine/handlers"
 	"github.com/gorilla/mux"
+
+	_ "github.com/lib/pq"
 )
 
 const (
 	// URL ...
-	URL = "0.0.0.0:8080"
+	URL = "0.0.0.0:8090"
 )
 
 func main() {

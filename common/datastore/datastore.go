@@ -1,11 +1,15 @@
 package datastore
 
-import "errors"
+import (
+	"errors"
+
+	"github.com/anabiozz/store-engine/models"
+)
 
 // Datastore ...
 type Datastore interface {
-	GetProducts()
-	GetProductByID()
+	GetProducts(productsID string) (products []models.Product, err error)
+	GetProductByID(productID string) (product *models.Product, err error)
 	CloseDB()
 }
 
