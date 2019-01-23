@@ -1,7 +1,28 @@
-CREATE SCHEMA Cartichka;
+CREATE SCHEMA cartichka;
 
-CREATE TABLE Cartichka.products (
-  product_id INTEGER PRIMARY KEY,
+CREATE TABLE currencies (
+  currency_id SERIAL PRIMARY KEY,
+  currency TEXT
+);
+
+CREATE TABLE sizes (
+  size_id SERIAL PRIMARY KEY,
+  width TEXT,
+  hight TEXT
+);
+
+CREATE TABLE families (
+  family_id SERIAL PRIMARY KEY,
+  family TEXT
+);
+
+CREATE TABLE products_types (
+  products_type_id SERIAL PRIMARY KEY,
+  products_type TEXT
+);
+
+CREATE TABLE products (
+  product_id SERIAL PRIMARY KEY,
   artist_name TEXT,
   categories JSONB,
   currency INTEGER REFERENCES currencies (currency_id),
@@ -9,27 +30,8 @@ CREATE TABLE Cartichka.products (
   price INTEGER,
   size INTEGER REFERENCES sizes (size_id),
   family_id INTEGER REFERENCES families (family_id),
-  is_available BIT,
-);
-
-CREATE TABLE Cartichka.currencies (
-  currency_id INTEGER PRIMARY KEY,
-  currency TEXT
-);
-
-CREATE TABLE Cartichka.sizes (
-  size_id INTEGER PRIMARY KEY,
-  size TEXT
-);
-
-CREATE TABLE Cartichka.families (
-  family_id INTEGER PRIMARY KEY,
-  family TEXT
-);
-
-CREATE TABLE Cartichka.products_types (
-  products_type_id INTEGER PRIMARY KEY,
-  products_type TEXT
+  products_type INTEGER REFERENCES products_types (products_type_id)
+  is_available BIT
 );
 
 CREATE OR REPLACE FUNCTION cartichka.get_products(INT)

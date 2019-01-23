@@ -3,6 +3,7 @@ package datastore
 import (
 	"database/sql"
 	"fmt"
+	"strconv"
 
 	"github.com/anabiozz/store-engine/models"
 )
@@ -34,7 +35,8 @@ func NewPostgresDatastore() (*PostgresDatastore, error) {
 
 // GetProducts ..
 func (p *PostgresDatastore) GetProducts(productsID string) (products []models.Product, err error) {
-	query := fmt.Sprintf(`SELECT * FROM cartichka.get_products(%s);`, productsID)
+	id, err := strconv.Atoi(productsID)
+	query := fmt.Sprintf(`SELECT * FROM cartichka.get_products(%d);`, id)
 	rows, err := p.Query(query)
 	if err != nil {
 		return nil, err
@@ -61,7 +63,9 @@ func (p *PostgresDatastore) GetProducts(productsID string) (products []models.Pr
 
 		products = append(products, product)
 	}
-	return
+
+	fmt.Println(products)
+	return products, nil
 }
 
 // GetProductByID ..

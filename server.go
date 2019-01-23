@@ -10,6 +10,7 @@ import (
 	"github.com/anabiozz/store-engine/common"
 	"github.com/anabiozz/store-engine/common/datastore"
 	"github.com/anabiozz/store-engine/handlers"
+	"github.com/anabiozz/store-engine/middleware"
 	"github.com/gorilla/mux"
 
 	_ "github.com/lib/pq"
@@ -17,7 +18,7 @@ import (
 
 const (
 	// URL ...
-	URL = "0.0.0.0:8090"
+	URL = "0.0.0.0:9000"
 )
 
 func main() {
@@ -38,8 +39,8 @@ func main() {
 	router.Handle("/", handlers.Index())
 
 	// API
-	router.Handle("/api/get-products", api.GetProducts(&env))
-	router.Handle("/api/get-product-by-id", api.GetProductByID(&env))
+	router.Handle("/api/get-products", middleware.Cors(api.GetProducts(&env)))
+	router.Handle("/api/get-product-by-id", middleware.Cors(api.GetProductByID(&env)))
 
 	srv := &http.Server{
 		Handler:      router,
