@@ -2,6 +2,7 @@ package middleware
 
 import "net/http"
 
+// Cors ..
 func Cors(next http.HandlerFunc) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 

@@ -64,7 +64,6 @@ func (p *PostgresDatastore) GetProducts(productsID string) (products []models.Pr
 		products = append(products, product)
 	}
 
-	fmt.Println(products)
 	return products, nil
 }
 
