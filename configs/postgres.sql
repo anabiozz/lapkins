@@ -38,7 +38,7 @@ CREATE TABLE authors (
   author_id SERIAL PRIMARY KEY,
   author TEXT
 );
-INSERT INTO cartichka.products_types (author)
+INSERT INTO cartichka.authors (author)
 VALUES ('Анастасия Кондратьева');
 
 -- products
