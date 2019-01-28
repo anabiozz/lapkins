@@ -32,6 +32,8 @@ CREATE TABLE products_types (
 );
 INSERT INTO cartichka.products_types (products_type)
 VALUES ('открытки');
+INSERT INTO cartichka.products_types (products_type)
+VALUES ('плакаты');
 
 -- authors
 CREATE TABLE authors (
