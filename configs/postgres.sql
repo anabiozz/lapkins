@@ -11,13 +11,13 @@ VALUES ('RU');
 -- sizes
 CREATE TABLE sizes (
   size_id SERIAL PRIMARY KEY,
-  width TEXT,
-  hight TEXT
+  product_type INTEGER REFERENCES products_types (products_type_id),
+  proportions TEXT
 );
-INSERT INTO cartichka.sizes (width, hight)
-VALUES ('105', '148');
-INSERT INTO cartichka.sizes (width, hight)
-VALUES ('148', '210');
+INSERT INTO cartichka.sizes (product_type, proportions)
+VALUES (1, '105x148');
+INSERT INTO cartichka.sizes (product_type, proportions)
+VALUES (1, '148x210');
 
 -- families
 CREATE TABLE families (
@@ -46,13 +46,13 @@ VALUES ('Анастасия Кондратьева');
 -- products
 CREATE TABLE products (
   product_id SERIAL PRIMARY KEY,
-  name UUID,
+  name UUID UNIQUE,
   categories JSONB,
   currency INTEGER REFERENCES currencies (currency_id),
   description TEXT,
   price INTEGER,
   products_type INTEGER REFERENCES products_types (products_type_id),
-  is_available BIT
+  is_available BOOLEAN
 );
 
 -- get_products
@@ -81,3 +81,20 @@ AS $$
 	 	RETURN QUERY SELECT * FROM cartichka.products_types;
 	END;
 $$ LANGUAGE plpgsql;
+
+-- get_sizes
+CREATE OR REPLACE FUNCTION cartichka.get_sizes(INT)
+RETURNS TABLE  (
+	size_id int,
+	proportions text
+)
+AS $func$
+	BEGIN
+		RETURN QUERY 
+ 		SELECT sizes.size_id, sizes.proportions FROM (
+	      SELECT sizes.size_id, sizes.proportions 
+	      FROM   cartichka.sizes
+	      WHERE product_type = $1
+     	) sizes;
+	END;
+$func$ LANGUAGE plpgsql;
