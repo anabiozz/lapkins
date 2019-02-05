@@ -3,12 +3,12 @@ package datastore
 import (
 	"errors"
 
-	"github.com/anabiozz/courty/store-engine/models"
+	"github.com/anabiozz/lapkin-project/lapkin/backend/models"
 )
 
 // Datastore ...
 type Datastore interface {
-	GetProducts(productsID string) (products []models.Product, err error)
+	GetProducts(productsID string, paths models.Paths) (products []models.Product, err error)
 	GetProductByID(productID string) (product *models.Product, err error)
 	CloseDB()
 }

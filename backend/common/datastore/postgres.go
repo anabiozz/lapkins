@@ -3,10 +3,9 @@ package datastore
 import (
 	"database/sql"
 	"fmt"
-	"path/filepath"
 	"strconv"
 
-	"github.com/anabiozz/courty/store-engine/models"
+	"github.com/anabiozz/lapkin-project/lapkin/backend/models"
 )
 
 const (
@@ -35,7 +34,7 @@ func NewPostgresDatastore() (*PostgresDatastore, error) {
 }
 
 // GetProducts ..
-func (p *PostgresDatastore) GetProducts(productsID string) (products []models.Product, err error) {
+func (p *PostgresDatastore) GetProducts(productsID string, paths models.Paths) (products []models.Product, err error) {
 	id, err := strconv.Atoi(productsID)
 	query := fmt.Sprintf(`SELECT * FROM cartichka.get_products(%d);`, id)
 	rows, err := p.Query(query)
@@ -60,9 +59,7 @@ func (p *PostgresDatastore) GetProducts(productsID string) (products []models.Pr
 			return nil, err
 		}
 
-		imagesPath, _ := filepath.Abs("../images/")
-
-		product.PreviewImagePath = imagesPath + "/preview/"
+		product.PreviewImagePath = paths.PreviewPath + product.Name + "_thumb.jpg"
 
 		products = append(products, product)
 	}
