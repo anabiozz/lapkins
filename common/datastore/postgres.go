@@ -3,9 +3,10 @@ package datastore
 import (
 	"database/sql"
 	"fmt"
+	"path/filepath"
 	"strconv"
 
-	"github.com/anabiozz/store-engine/models"
+	"github.com/anabiozz/courty/store-engine/models"
 )
 
 const (
@@ -13,7 +14,7 @@ const (
 	dbPort     = 5432
 	dbUser     = "postgres"
 	dbPassword = "postgres"
-	dbName     = "art"
+	dbName     = "cartichka"
 )
 
 // PostgresDatastore ..
@@ -48,18 +49,20 @@ func (p *PostgresDatastore) GetProducts(productsID string) (products []models.Pr
 
 		err = rows.Scan(
 			&product.ProductID,
-			&product.ArtistName,
+			&product.Name,
 			&product.Categories,
 			&product.Currency,
 			&product.Description,
 			&product.Price,
-			&product.Size,
-			&product.FamilyID,
 			&product.IsAvailable,
-			&product.ProductType)
+			&product.ProductsType)
 		if err != nil {
 			return nil, err
 		}
+
+		imagesPath, _ := filepath.Abs("../images/")
+
+		product.PreviewImagePath = imagesPath + "/preview/"
 
 		products = append(products, product)
 	}

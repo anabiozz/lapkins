@@ -4,14 +4,14 @@ import "encoding/json"
 
 // Product ..
 type Product struct {
-	ProductID   uint32
-	ArtistName  string
-	Categories  json.RawMessage
-	Currency    string
-	Description string
-	Price       uint32
-	Size        string
-	FamilyID    uint32
-	ProductType uint32
-	IsAvailable bool
+	ProductID        int             `json:"product_id"`
+	Name             string          `json:"name"`
+	Categories       json.RawMessage `json:"categories"`
+	Currency         string          `json:"currency"`
+	Description      string          `json:"decription"`
+	Price            string          `json:"price"`
+	ProductsType     string          `json:"products_type"`
+	IsAvailable      bool            `json:"is_available"`
+	FullImagePath    string          `json:"full_image_path"`
+	PreviewImagePath string          `json:"preview_image_path"`
 }

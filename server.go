@@ -1,16 +1,17 @@
 package main
 
 import (
+	"fmt"
 	"net/http"
 	"os"
+	"path/filepath"
 	"time"
 
+	"github.com/anabiozz/courty/store-engine/api"
+	"github.com/anabiozz/courty/store-engine/common"
+	"github.com/anabiozz/courty/store-engine/common/datastore"
+	"github.com/anabiozz/courty/store-engine/middleware"
 	"github.com/anabiozz/logger"
-	"github.com/anabiozz/store-engine/api"
-	"github.com/anabiozz/store-engine/common"
-	"github.com/anabiozz/store-engine/common/datastore"
-	"github.com/anabiozz/store-engine/handlers"
-	"github.com/anabiozz/store-engine/middleware"
 	"github.com/gorilla/mux"
 
 	_ "github.com/lib/pq"
@@ -18,7 +19,7 @@ import (
 
 const (
 	// URL ...
-	URL = "0.0.0.0:9000"
+	URL = "localhost:9000"
 )
 
 func main() {
@@ -36,11 +37,17 @@ func main() {
 	router := mux.NewRouter()
 
 	// Handlers
-	router.Handle("/", handlers.Index())
+	// router.Handle("/", handlers.Index())
+
+	imagesPath, err := filepath.Abs("../images")
+
+	fmt.Println(imagesPath)
 
 	// API
 	router.Handle("/api/get-products", middleware.Cors(api.GetProducts(&env)))
 	router.Handle("/api/get-product-by-id", middleware.Cors(api.GetProductByID(&env)))
+
+	router.PathPrefix(imagesPath + "/").Handler(http.StripPrefix(imagesPath+"/", http.FileServer(http.Dir(imagesPath))))
 
 	srv := &http.Server{
 		Handler:      router,

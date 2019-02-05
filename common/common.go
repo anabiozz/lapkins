@@ -1,6 +1,6 @@
 package common
 
-import "github.com/anabiozz/store-engine/common/datastore"
+import "github.com/anabiozz/courty/store-engine/common/datastore"
 
 type Env struct {
 	DB datastore.Datastore

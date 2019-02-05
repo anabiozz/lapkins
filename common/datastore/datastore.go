@@ -3,7 +3,7 @@ package datastore
 import (
 	"errors"
 
-	"github.com/anabiozz/store-engine/models"
+	"github.com/anabiozz/courty/store-engine/models"
 )
 
 // Datastore ...
