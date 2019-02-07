@@ -9,7 +9,11 @@ export class Product extends Component {
 
     return (
       <div className='product'>
-          <Link to={'/postcard/' + product_id}><img src={this.props.url} alt=''/></Link>
+          <Link to={'/postcard/' + product_id}>
+            <figure className='figure_item'>
+              <img src={this.props.url} alt=''/>
+            </figure>
+          </Link>
           <div className='categories'>
             {
               Object.keys(this.props.product.categories).map((key, index) => {

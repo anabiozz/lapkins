@@ -1,4 +1,5 @@
 const path = require('path');
+const ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 module.exports = {
 	mode: 'development',
@@ -12,6 +13,7 @@ module.exports = {
 			{
 				test: /\.(js|jsx)$/,
 				exclude: /node_modules/,
+				include: [path.join(__dirname, './src')],
 				use: {
 					loader: 'babel-loader',
 					options: {
@@ -20,8 +22,8 @@ module.exports = {
 				}
 			},
 			{
-				test: /\.css$/,
-				use: ['style-loader', 'css-loader']
+				test:/\.(s*)css$/,
+				use:['style-loader','css-loader', 'sass-loader']
 			},
 			{
 				test: /\.html$/,

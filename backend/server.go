@@ -1,6 +1,8 @@
 package main
 
 import (
+	"io"
+	"log"
 	"net/http"
 	"os"
 	"path/filepath"
@@ -52,6 +54,19 @@ func main() {
 	// API
 	router.Handle("/api/get-products", middleware.Cors(api.GetProducts(&env, paths)))
 	router.Handle("/api/get-product-by-id", middleware.Cors(api.GetProductByID(&env)))
+
+	ReloadProxy := func(w http.ResponseWriter, r *http.Request) {
+		log.Println("Debug, Hot reload", r.Host)
+		resp, err := http.Get("http://localhost:3500" + r.RequestURI)
+		if err != nil {
+			http.Error(w, err.Error(), 500)
+			return
+		}
+		defer resp.Body.Close()
+		io.Copy(w, resp.Body)
+	}
+	router.HandleFunc("/-/:rand(.*).hot-update.:ext(.*)", ReloadProxy)
+	router.HandleFunc("/-/bundle.js", ReloadProxy)
 
 	router.PathPrefix("/static/").Handler(http.StripPrefix("/static/", http.FileServer(http.Dir("./static"))))
 	router.PathPrefix(imagesPath + "/").Handler(http.StripPrefix(imagesPath+"/", http.FileServer(http.Dir(imagesPath))))

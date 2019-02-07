@@ -13,15 +13,15 @@ class App extends Component {
     return (
       <Provider store={store}>
         <Router>
-          <div className='app'>
+          <div className='wrapper'>
           <Navbar />
-            <div className='container'>
             <Route exact path='/' render={ () => (
               <React.Fragment>
-                <Products/>
+              <main className="content">
+               <Products/>
+              </main>
               </React.Fragment>
             )} />
-            </div>
           </div>
         </Router>
       </Provider>
