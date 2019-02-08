@@ -5,11 +5,13 @@
   flex: 0 0 auto;
   height: 70px;
   width: 100%;
-  background-color:  #fff;
+  background-color: #9cabae;
+  -webkit-box-shadow: 0 3px 5px rgba(57, 63, 72, 0.3);
+  -moz-box-shadow: 0 3px 5px rgba(57, 63, 72, 0.3);
+  box-shadow: 0 3px 5px rgba(57, 63, 72, 0.3);
 }
 
 .cartichka_nav_inner {
-  background-color: #ffffff;
   padding: 0 40px;
   display: -webkit-box;
   display: -webkit-flex;
@@ -41,7 +43,6 @@
 }
 
 .cartichka_nav_header a {
-  color: #052a4e;
   text-decoration: none;
 }
 
@@ -50,12 +51,11 @@
 }
 
 .cartichka_nav_header a>span {
-  color: #052a4e;
+  color: #fff;
   font-size: 2rem;
-  font-weight: bold;
   margin-left: .6em;
   vertical-align: middle;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Julius Sans One', sans-serif;
 }
 
 // /* END HEADER */

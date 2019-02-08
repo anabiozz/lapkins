@@ -1,8 +1,6 @@
 package main
 
 import (
-	"io"
-	"log"
 	"net/http"
 	"os"
 	"path/filepath"
@@ -36,10 +34,7 @@ func main() {
 
 	env := common.Env{DB: db}
 
-	router := mux.NewRouter()
-
 	// Handlers
-
 	paths := models.Paths{}
 
 	imagesPath, err := filepath.Abs("../../images")
@@ -47,29 +42,25 @@ func main() {
 	paths.FullPath = imagesPath + "/full/"
 	paths.PreviewPath = imagesPath + "/preview/"
 
-	// Handlers
-	router.Handle("/", http.FileServer(http.Dir("static")))
-	router.Handle("/", http.FileServer(http.Dir(imagesPath)))
-
-	// API
-	router.Handle("/api/get-products", middleware.Cors(api.GetProducts(&env, paths)))
-	router.Handle("/api/get-product-by-id", middleware.Cors(api.GetProductByID(&env)))
-
-	ReloadProxy := func(w http.ResponseWriter, r *http.Request) {
-		log.Println("Debug, Hot reload", r.Host)
-		resp, err := http.Get("http://localhost:3500" + r.RequestURI)
-		if err != nil {
-			http.Error(w, err.Error(), 500)
-			return
-		}
-		defer resp.Body.Close()
-		io.Copy(w, resp.Body)
-	}
-	router.HandleFunc("/-/:rand(.*).hot-update.:ext(.*)", ReloadProxy)
-	router.HandleFunc("/-/bundle.js", ReloadProxy)
-
+	// Create router
+	router := mux.NewRouter()
+	// subrouter for api
+	apiRouter := router.PathPrefix("/api/").Subrouter()
+	// subrouter for images
+	imagesRouter := router.PathPrefix(imagesPath).Subrouter()
+	// subrouter for postcards
+	postcardRouter := router.PathPrefix("/postcard/").Subrouter()
+	// Images handler
+	imagesRouter.PathPrefix("/").Handler(http.StripPrefix(imagesPath+"/", http.FileServer(http.Dir(imagesPath))))
+	// Static handlers
 	router.PathPrefix("/static/").Handler(http.StripPrefix("/static/", http.FileServer(http.Dir("./static"))))
-	router.PathPrefix(imagesPath + "/").Handler(http.StripPrefix(imagesPath+"/", http.FileServer(http.Dir(imagesPath))))
+	postcardRouter.PathPrefix("/static").Handler(http.StripPrefix("/postcard/static/", http.FileServer(http.Dir("./static"))))
+	// Index.html handler
+	router.PathPrefix("/").HandlerFunc(IndexHandler())
+
+	// API handlers
+	apiRouter.Handle("/get-products", middleware.Cors(api.GetProducts(&env, paths)))
+	apiRouter.Handle("/get-product-by-id", middleware.Cors(api.GetProductByID(&env)))
 
 	srv := &http.Server{
 		Handler:      router,
@@ -80,4 +71,12 @@ func main() {
 
 	logger.Infof("Server was started on http://%s", URL)
 	logger.Fatal(srv.ListenAndServe())
+}
+
+// IndexHandler ..
+func IndexHandler() func(w http.ResponseWriter, r *http.Request) {
+	fn := func(w http.ResponseWriter, r *http.Request) {
+		http.ServeFile(w, r, "./static/index.html")
+	}
+	return http.HandlerFunc(fn)
 }
