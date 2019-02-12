@@ -15,13 +15,12 @@ body {
   background-color: #fff;
 }
 
-.wrapper {
+.main {
   display: flex;
   flex-direction: column;
   padding: 0;
-  height: 100vh;
 
-  .content {
+  .wrapper {
     flex: 1 1 auto;
     position: relative;
     overflow-y: auto;
