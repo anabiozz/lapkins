@@ -11,7 +11,7 @@ VALUES ('RU');
 -- sizes
 CREATE TABLE sizes (
   size_id SERIAL PRIMARY KEY,
-  product_type INTEGER REFERENCES products_types (products_type_id),
+  product_type INTEGER REFERENCES product_types (product_type_id),
   proportions TEXT
 );
 INSERT INTO cartichka.sizes (product_type, proportions)
@@ -25,14 +25,14 @@ CREATE TABLE families (
   family TEXT
 );
 
--- products_types
-CREATE TABLE products_types (
-  products_type_id SERIAL PRIMARY KEY,
-  products_type TEXT
+-- product_types
+CREATE TABLE product_types (
+  product_type_id SERIAL PRIMARY KEY,
+  product_type TEXT
 );
-INSERT INTO cartichka.products_types (products_type)
+INSERT INTO cartichka.product_types (products_type)
 VALUES ('открытки');
-INSERT INTO cartichka.products_types (products_type)
+INSERT INTO cartichka.product_types (products_type)
 VALUES ('плакаты');
 
 -- authors
@@ -42,6 +42,8 @@ CREATE TABLE authors (
 );
 INSERT INTO cartichka.authors (author)
 VALUES ('Анастасия Кондратьева');
+INSERT INTO cartichka.authors (author)
+VALUES ('Lolka Lolkina');
 
 -- products
 CREATE TABLE products (
@@ -51,7 +53,7 @@ CREATE TABLE products (
   currency INTEGER REFERENCES currencies (currency_id),
   description TEXT,
   price INTEGER,
-  products_type INTEGER REFERENCES products_types (products_type_id),
+  product_type INTEGER REFERENCES product_types (product_type_id),
   is_available BOOLEAN
 );
 
@@ -60,7 +62,7 @@ CREATE OR REPLACE FUNCTION cartichka.get_products(INT)
 RETURNS SETOF cartichka.products
 AS $$
 	BEGIN
-	 	RETURN QUERY SELECT * FROM cartichka.products WHERE products_type = $1;
+	 	RETURN QUERY SELECT * FROM cartichka.products WHERE product_type = $1;
 	END;
 $$ LANGUAGE plpgsql;
 
@@ -73,12 +75,12 @@ AS $$
 	END;
 $$ LANGUAGE plpgsql;
 
--- get_products_types
-CREATE OR REPLACE FUNCTION cartichka.get_products_types()
-RETURNS SETOF cartichka.products_types
+-- get_product_types
+CREATE OR REPLACE FUNCTION cartichka.get_product_types()
+RETURNS SETOF cartichka.product_types
 AS $$
 	BEGIN
-	 	RETURN QUERY SELECT * FROM cartichka.products_types;
+	 	RETURN QUERY SELECT * FROM cartichka.product_types;
 	END;
 $$ LANGUAGE plpgsql;
 
