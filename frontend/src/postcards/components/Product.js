@@ -5,14 +5,16 @@ export class Product extends Component {
 
   render() {
 
-    const {product_id} = this.props.product;
+    const {product, url} = this.props;
 
+    console.log(url);
+    
     return (
       <div className='product'>
           <div className='image'>
             <div className='inner'>
-              <Link to={'/postcard/' + product_id}>
-                <img src={this.props.url} alt=''/>
+              <Link to={'/postcard/' + product.product_id}>
+                <img src={url} alt=''/>
               </Link>
             </div>
           </div>

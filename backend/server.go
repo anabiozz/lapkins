@@ -3,6 +3,7 @@ package main
 import (
 	"net/http"
 	"os"
+	"os/user"
 	"path/filepath"
 	"time"
 
@@ -37,7 +38,17 @@ func main() {
 	// Handlers
 	paths := models.Paths{}
 
-	imagesPath, err := filepath.Abs("../../images")
+	// Getting user home directory
+	usr, err := user.Current()
+	if err != nil {
+		logger.Error(err)
+	}
+
+	// Images directory path
+	imagesPath, err := filepath.Abs(usr.HomeDir + "/images")
+	if err != nil {
+		logger.Error(err)
+	}
 
 	paths.FullPath = imagesPath + "/full/"
 	paths.PreviewPath = imagesPath + "/preview/"

@@ -54,12 +54,11 @@ func (p *PostgresDatastore) GetProducts(productsID string, paths models.Paths) (
 			&product.Description,
 			&product.Price,
 			&product.IsAvailable,
-			&product.ProductsType)
+			&product.ProductsType,
+			&product.Ext)
 		if err != nil {
 			return nil, err
 		}
-
-		product.PreviewImagePath = paths.PreviewPath + product.Name + "_thumb.jpg"
 
 		products = append(products, product)
 	}

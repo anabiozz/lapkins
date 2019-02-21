@@ -3,7 +3,8 @@ import React, { Component } from 'react'
 import Product from '../components/Product' 
 import PropTypes from 'prop-types'; 
 import { connect } from 'react-redux'; 
-import { fetchProducts } from '../actions/productActions' 
+import { fetchProducts } from '../actions/productActions';
+import config from '../../config'; 
  
 class Products extends Component { 
  
@@ -12,12 +13,13 @@ class Products extends Component {
   } 
  
   render() { 
-
+    console.log(this.props.products);
+    
     return ( 
       <div className="products"> 
         { 
-          this.props.products.map((product) => ( 
-            <Product key={product.product_id} url={product.preview_image_path} product={product} /> 
+          this.props.products.map((product) => (
+            <Product key={product.product_id} url={`${config.PATH.preview}${product.name}_thumb${product.ext}`} product={product} /> 
           )) 
         } 
       </div> 
