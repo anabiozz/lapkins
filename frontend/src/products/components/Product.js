@@ -7,13 +7,11 @@ export class Product extends Component {
 
     const {product, url} = this.props;
 
-    console.log(url);
-    
     return (
       <div className='product'>
           <div className='image'>
             <div className='inner'>
-              <Link to={'/postcard/' + product.product_id}>
+              <Link to={`/postcards/${product.id}`}>
                 <img src={url} alt=''/>
               </Link>
             </div>

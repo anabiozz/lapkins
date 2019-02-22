@@ -4,7 +4,7 @@ import "encoding/json"
 
 // Product ..
 type Product struct {
-	ProductID    int             `json:"product_id"`
+	ID           int             `json:"id"`
 	Name         string          `json:"name"`
 	Categories   json.RawMessage `json:"categories"`
 	Currency     string          `json:"currency"`

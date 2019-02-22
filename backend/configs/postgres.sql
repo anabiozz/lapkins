@@ -47,7 +47,7 @@ VALUES ('Lolka Lolkina');
 
 -- products
 CREATE TABLE products (
-  product_id SERIAL PRIMARY KEY,
+  id SERIAL PRIMARY KEY,
   name UUID UNIQUE,
   categories JSONB,
   currency INTEGER REFERENCES currencies (currency_id),

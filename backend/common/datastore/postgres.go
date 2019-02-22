@@ -47,7 +47,7 @@ func (p *PostgresDatastore) GetProducts(productsID string, paths models.Paths) (
 	for rows.Next() {
 
 		err = rows.Scan(
-			&product.ProductID,
+			&product.ID,
 			&product.Name,
 			&product.Categories,
 			&product.Currency,
@@ -68,8 +68,21 @@ func (p *PostgresDatastore) GetProducts(productsID string, paths models.Paths) (
 
 // GetProductByID ..
 func (p *PostgresDatastore) GetProductByID(productID string) (product *models.Product, err error) {
-	query := fmt.Sprintf(`Cartichka.GetProductByID @product_id="%s";`, productID)
-	err = p.QueryRow(query).Scan(product)
+	id, err := strconv.Atoi(productID)
+	query := fmt.Sprintf(`SELECT * FROM cartichka.get_product_by_id(%d);`, id)
+
+	product = &models.Product{}
+
+	err = p.QueryRow(query).Scan(
+		&product.ID,
+		&product.Name,
+		&product.Categories,
+		&product.Currency,
+		&product.Description,
+		&product.Price,
+		&product.IsAvailable,
+		&product.ProductsType,
+		&product.Ext)
 	if err != nil {
 		return nil, err
 	}

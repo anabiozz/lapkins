@@ -13,13 +13,11 @@ class Products extends Component {
   } 
  
   render() { 
-    console.log(this.props.products);
-    
     return ( 
       <div className="products"> 
         { 
           this.props.products.map((product) => (
-            <Product key={product.product_id} url={`${config.PATH.preview}${product.name}_thumb${product.ext}`} product={product} /> 
+            <Product key={product.id} url={`${config.PATH.preview}${product.name}_thumb${product.ext}`} product={product} /> 
           )) 
         } 
       </div> 
@@ -35,9 +33,5 @@ Products.propTypes = {
 const mapStateToProps = state => ({ 
   products: state.products.items 
 }) 
- 
-Products.propTypes = { 
-  products: PropTypes.array.isRequired 
-} 
  
 export default connect(mapStateToProps, { fetchProducts })(Products) 

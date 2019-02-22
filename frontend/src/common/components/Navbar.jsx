@@ -4,16 +4,20 @@ import { Link } from 'react-router-dom'
 export class Navbar extends Component {
   render() {
     return (
-    <header className='cartichka_nav_fixed'>
-      <div className='cartichka_nav_inner'>
-        <div className='cartichka_nav_group cartichka_nav_header'>
+    <header className='nav'>
+      <div className='nav_section_container'>
+        <div className="nav_branding">
           <Link to='/' className='logo'>
-            <span>
-                Lapkin
-                design
-            </span></Link>
+            <div>
+              Lapkin
+            </div>
+            <div>
+              Design
+            </div>
+          </Link>
         </div>
       </div>
+      <div className='nav_quicklist'></div>
     </header>
     )
   }
