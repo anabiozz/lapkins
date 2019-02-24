@@ -36,12 +36,12 @@ body {
         display: grid;
         grid-template-columns: 1fr 1fr 1fr 1fr;
         grid-gap: 20px;
-        align-items: stretch;
-        justify-items: center;
         margin: 20px auto;
-        
 
         .product {
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
           width: 100%;
 
           .image {
@@ -51,12 +51,12 @@ body {
 
               img {
                 max-width: 100%;
-                object-fit: cover;
+                object-fit: contain;
               }
             }
           }
 
-          .categories {
+          .prev_desc {
             text-align: left;
             margin: 10px 0;
           }

@@ -16,7 +16,8 @@ func GetProductByID(env *common.Env) http.HandlerFunc {
 		product, err := env.DB.GetProductByID(r.URL.Query().Get("product_id"))
 		if err != nil {
 			logger.Info(err)
-			return
+			w.WriteHeader(http.StatusNotFound)
+			json.NewEncoder(w).Encode(err)
 		}
 
 		json.NewEncoder(w).Encode(product)

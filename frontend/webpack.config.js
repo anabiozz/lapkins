@@ -1,5 +1,6 @@
 const path = require('path');
 const webpack = require('webpack');
+const core_url = process.env.CORE_URL ? process.env.CORE_URL : '/';
 
 module.exports = {
 	mode: 'development',
@@ -36,7 +37,8 @@ module.exports = {
 	plugins: [
 		new webpack.DefinePlugin({
 			'process.env': {
-				'HOME': JSON.stringify(process.env.HOME),
+				HOME: JSON.stringify(process.env.HOME),
+				CORE_URL: JSON.stringify(core_url),
 			}
 		})
 	]

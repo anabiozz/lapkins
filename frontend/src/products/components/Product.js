@@ -16,12 +16,17 @@ export class Product extends Component {
               </Link>
             </div>
           </div>
-          <div className='categories'>
-            {
+          <div className='prev_desc'>
+            <div>{product.decription}</div>
+            <div>{product.categories.authors}</div>
+            <div>{product.price} руб.</div>
+           
+            
+            {/* {
               Object.keys(this.props.product.categories).map((key, index) => {
                 return  <div key={index}>{this.props.product.categories[key]}</div>
               })
-            }
+            } */}
           </div>
       </div>
     )

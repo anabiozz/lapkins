@@ -17,7 +17,8 @@ func GetProducts(env *common.Env, paths models.Paths) http.HandlerFunc {
 		products, err := env.DB.GetProducts(r.URL.Query().Get("products_type"), paths)
 		if err != nil {
 			logger.Info(err)
-			return
+			w.WriteHeader(http.StatusNotFound)
+			json.NewEncoder(w).Encode(err)
 		}
 
 		json.NewEncoder(w).Encode(products)
