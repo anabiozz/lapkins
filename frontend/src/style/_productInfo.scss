@@ -1,0 +1,42 @@
+.product_info {
+  display: flex;
+  justify-content: start;
+
+  .image {
+
+    margin-right: 50px;
+
+    img {
+      height: 70vh;
+      width: 100%;
+      max-width: 486px;
+      object-fit: fill;
+    }
+  }
+
+  .information {
+    font-family: $primary_font;
+
+    .categories {
+      font-size: 16px;
+
+      tbody {
+        tr {
+          td:first-child {
+            font-weight: 600;
+            width: 100px;
+            padding: 5px 10px 5px 0px;
+          }
+        }
+      }
+    }
+
+    .description {
+      font-size: 28px;
+    }
+
+    .price {
+      font-size: 20px;
+    }
+  }
+}
