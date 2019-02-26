@@ -65,6 +65,7 @@ func main() {
 	imagesRouter.PathPrefix("/").Handler(http.StripPrefix(imagesPath+"/", http.FileServer(http.Dir(imagesPath))))
 	// Static handlers
 	router.PathPrefix("/static/").Handler(http.StripPrefix("/static/", http.FileServer(http.Dir("./static"))))
+	router.PathPrefix("/images/").Handler(http.StripPrefix("/images/", http.FileServer(http.Dir("./static/images"))))
 	postcardRouter.PathPrefix("/static").Handler(http.StripPrefix("/postcards/static/", http.FileServer(http.Dir("./static"))))
 	// Index.html handler
 	router.PathPrefix("/").HandlerFunc(IndexHandler())

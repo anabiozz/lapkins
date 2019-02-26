@@ -20,7 +20,6 @@ export class Product extends Component {
             <div>{product.decription}</div>
             <div>{product.categories.authors}</div>
             <div>{product.price} руб.</div>
-           
             
             {/* {
               Object.keys(this.props.product.categories).map((key, index) => {

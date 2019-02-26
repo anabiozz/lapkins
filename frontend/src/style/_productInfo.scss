@@ -1,6 +1,12 @@
 .product_info {
   display: flex;
   justify-content: start;
+  margin: 20px auto;
+
+  svg {
+    height: 100%;
+    width: 100%;
+  }
 
   .image {
 
@@ -18,7 +24,7 @@
     font-family: $primary_font;
 
     .categories {
-      font-size: 16px;
+      font-size: 15px;
 
       tbody {
         tr {

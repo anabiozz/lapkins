@@ -57,3 +57,7 @@ export function dismissError() {
 		})
 	}
 }
+
+export const addToCart = () => dispatch => {
+  
+}

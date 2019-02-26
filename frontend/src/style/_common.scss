@@ -13,17 +13,20 @@ body {
   margin: 0;
   font-family: $primary_font;
   background-color: #fff;
+  // REMOVE IT
+  overflow: scroll;
 }
 
 #root {
   margin: 0 auto;
   width: 70%;
-  max-width: 1300px;
+  max-width: 1000px;
 
   .main {
     display: flex;
     flex-direction: column;
     padding: 0;
+   
 
     .wrapper {
       flex: 1 1 auto;
