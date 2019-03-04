@@ -1,18 +1,41 @@
-import React from "react";
+import React from 'react'
+import PropTypes from 'prop-types'
 
-const TextArea = props => (
-  <div className="form-group">
-    <label className="form-label">{props.title}</label>
-    <textarea
-      className="form-control"
-      name={props.name}
-      rows={props.rows}
-      cols={props.cols}
-      value={props.value}
-      onChange={props.handleChange}
-      placeholder={props.placeholder}
-    />
-  </div>
-);
+const TextArea = (props) => {
+  const {
+    title,
+    name,
+    rows,
+    cols,
+    value,
+    handleChange,
+    placeholder,
+  } = props
 
-export default TextArea;
+  return (
+    <div className="form-group">
+      <label htmlFor={name} className="form-label">{title}</label>
+      <textarea
+        className="form-control"
+        name={name}
+        rows={rows}
+        cols={cols}
+        value={value}
+        onChange={handleChange}
+        placeholder={placeholder}
+      />
+    </div>
+  )
+}
+
+TextArea.propTypes = {
+  title: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  rows: PropTypes.string.isRequired,
+  cols: PropTypes.string.isRequired,
+  value: PropTypes.string.isRequired,
+  handleChange: PropTypes.string.isRequired,
+  placeholder: PropTypes.string.isRequired,
+}
+
+export default TextArea

@@ -1,30 +1,41 @@
-import React from "react";
+import React from 'react'
+import PropTypes from 'prop-types'
 
-const CheckBox = props => {
-  return (
+const CheckBox = (props) => {
+  const {
+    name,
+    handleChange,
+    selectedOptions,
+  } = props
+
+  retutn(
     <div className="form-group">
-      <label for={props.name} className="form-label">
-        {props.title}
+      <label htmlFor={name} className="form-label">
+        {title}
       </label>
       <div className="checkbox">
-        {props.options.map(option => {
-          return (
-            <label key={option} className="checkbox-inline">
-              <input
-                id={props.name}
-                name={props.name}
-                onChange={props.handleChange}
-                value={option}
-                checked={props.selectedOptions.indexOf(option) > -1}
-                type="checkbox"
-              />
-              {option}
-            </label>
-          );
-        })}
+        {options.map(option => (
+          <label htmlFor={name} key={option} className="checkbox-inline">
+            <input
+              id={name}
+              name={name}
+              onChange={handleChange}
+              value={option}
+              checked={selectedOptions.indexOf(option) > -1}
+              type="checkbox"
+            />
+            {option}
+          </label>
+        ))}
       </div>
-    </div>
-  );
-};
+    </div>,
+  )
+}
 
-export default CheckBox;
+CheckBox.propTypes = {
+  name: PropTypes.string.isRequired,
+  handleChange: PropTypes.string.isRequired,
+  selectedOptions: PropTypes.string.isRequired,
+}
+
+export default CheckBox

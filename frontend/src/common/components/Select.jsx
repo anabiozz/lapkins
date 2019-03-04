@@ -1,29 +1,46 @@
-import React from "react";
+import React from 'react'
+import PropTypes from 'prop-types'
 
-const Select = props => {
+const Select = (props) => {
+  const {
+    title,
+    name,
+    value,
+    handleChange,
+    placeholder,
+    options,
+  } = props
+
   return (
     <div className="form-group">
-      <label for={props.name}> {props.title} </label>
+      <label htmlFor={name}>{title}</label>
       <select
-        id={props.name}
-        name={props.name}
-        value={props.value}
-        onChange={props.handleChange}
+        id={name}
+        name={name}
+        value={value}
+        onChange={handleChange}
         className="form-control"
       >
         <option value="" disabled>
-          {props.placeholder}
+          {placeholder}
         </option>
-        {props.options.map(option => {
-          return (
-            <option key={option} value={option} label={option}>
-              {option}
-            </option>
-          );
-        })}
+        {options.map(option => (
+          <option key={option} value={option} label={option}>
+            {option}
+          </option>
+        ))}
       </select>
     </div>
-  );
-};
+  )
+}
 
-export default Select;
+Select.propTypes = {
+  name: PropTypes.string.isRequired,
+  handleChange: PropTypes.string.isRequired,
+  value: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  placeholder: PropTypes.string.isRequired,
+  options: PropTypes.string.isRequired,
+}
+
+export default Select
