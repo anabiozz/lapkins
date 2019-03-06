@@ -2,11 +2,12 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
 
+import {
+  productProp,
+} from '../../utils/props'
+
 const Product = (props) => {
-  const {
-    product,
-    url,
-  } = props
+  const { product, url } = props
 
   return (
     <div className="product">
@@ -24,19 +25,13 @@ const Product = (props) => {
           {product.price}
           {' руб.'}
         </div>
-
-        {/* {
-            Object.keys(this.props.product.categories).map((key, index) => {
-              return  <div key={index}>{this.props.product.categories[key]}</div>
-            })
-          } */}
       </div>
     </div>
   )
 }
 
 Product.propTypes = {
-  product: PropTypes.objectOf.isRequired,
+  product: PropTypes.shape(productProp).isRequired,
   url: PropTypes.string.isRequired,
 }
 

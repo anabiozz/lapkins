@@ -1,7 +1,10 @@
-export class Locale {
+export default class Locale {
+  constructor(locale) {
+    this.locale = locale
+  }
 
-  getLocale(locale) {
-    switch (locale) {
+  get = () => {
+    switch (this.locale) {
       case 'RU':
         return new Map([
           ['sizes', 'Размер'],
@@ -9,7 +12,8 @@ export class Locale {
           ['materials', 'Материалы'],
           ['print_type', 'Тип печати'],
         ])
+      default:
+        return null
     }
   }
-
 }

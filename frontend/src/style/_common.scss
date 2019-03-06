@@ -14,28 +14,42 @@ body {
   font-family: $primary_font;
   background-color: #fff;
   // REMOVE IT
-  overflow: scroll;
+  // overflow: scroll;
 }
 
-#root {
-  margin: 0 auto;
-  width: 70%;
-  max-width: 1000px;
+::placeholder {
+	color:#cbd0d5;
+}
 
-  .main {
-    display: flex;
-    flex-direction: column;
-    padding: 0;
-   
+html::after {
+	content:'';
+	background: linear-gradient(to right, #30CFD0 0%, #330867 100%);
+	height:3px;
+	width:100%;
+	position:absolute;
+	left:0;
+	top:0;
+}
 
-    .wrapper {
-      flex: 1 1 auto;
-      position: relative;
-      overflow-y: auto;
-      width: 100%;
-    }
+.main {
+  padding: 0;
+  width: 80%;
+  max-width: 1170px;
+  margin: auto;
+
+  .wrapper {
+    overflow-y: auto;
+    width: 100%;
   }
 }
+
+// @media (min-width: 1200px) {
+//   .main {
+//     padding-left: 32px;
+//     padding-right: 32px;
+//   }
+// }
+
 
 // img:hover {
 //   -moz-transform: scale(1.1) rotate(0.01deg);

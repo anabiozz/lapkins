@@ -8,7 +8,7 @@ import config from '../../config'
 const receiveSuccess = response => ({ type: GET_PRODUCTS_SUCCESS, response })
 const receiveFail = error => ({ type: GET_PRODUCTS_ERROR, error })
 
-export const getProducts = () => (dispatch, getState) => {
+export const getProducts = () => (dispatch) => {
   dispatch({
     type: GET_PRODUCTS_REQUEST,
   })
@@ -20,7 +20,7 @@ export const getProducts = () => (dispatch, getState) => {
 
   return fetch(`${domain}api/get-products?products_type=1`)
     .then((response) => {
-      if (response.status == 200) {
+      if (response.status === 200) {
         return response
       }
       throw new Error(`Cannot load data from server. Response status ${response.status}`)
