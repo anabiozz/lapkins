@@ -7,6 +7,7 @@
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+  color: $main_black_color;
 }
 
 body {
@@ -23,7 +24,7 @@ body {
 
 html::after {
 	content:'';
-	background: linear-gradient(to right, #30CFD0 0%, #330867 100%);
+	background: linear-gradient(21deg, #10abff, #1beabd);
 	height:3px;
 	width:100%;
 	position:absolute;
