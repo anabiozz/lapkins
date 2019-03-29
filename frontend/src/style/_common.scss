@@ -1,36 +1,29 @@
-//#d0eaee;
-
-
 *,
 *:before,
 *:after {
-  padding: 0;
-  margin: 0;
   box-sizing: border-box;
-  color: $main_black_color;
 }
 
 body {
-  margin: 0;
+  margin: 0 !important;
+  padding: 0 !important;
   font-family: $primary_font;
   background-color: #fff;
-  // REMOVE IT
-  // overflow: scroll;
 }
 
 ::placeholder {
 	color:#cbd0d5;
 }
 
-html::after {
-	content:'';
-	background: linear-gradient(21deg, #10abff, #1beabd);
-	height:3px;
-	width:100%;
-	position:absolute;
-	left:0;
-	top:0;
-}
+// html::after {
+// 	content:'';
+// 	background: linear-gradient(21deg, #10abff, #1beabd);
+// 	height:3px;
+// 	width:100%;
+// 	position:absolute;
+// 	left:0;
+// 	top:0;
+// }
 
 .main {
   padding: 0;
@@ -43,25 +36,3 @@ html::after {
     width: 100%;
   }
 }
-
-// @media (min-width: 1200px) {
-//   .main {
-//     padding-left: 32px;
-//     padding-right: 32px;
-//   }
-// }
-
-
-// img:hover {
-//   -moz-transform: scale(1.1) rotate(0.01deg);
-//   -webkit-transform: scale(1.1) rotate(0.01deg);
-//   -o-transform: scale(1.1) rotate(0.01deg);
-//   -ms-transform: scale(1.1) rotate(0.01deg);
-//   -webkit-transform: scale(1.1) rotate(0.01deg);
-//   transform: scale(1.1) rotate(0.01deg);
-
-//   transition: transform 0.4s ease-in-out;
-//   -webkit-transition: transform 0.4s ease-in-out;
-//   -moz-transition: transform 0.4s ease-in-out;
-//   -ms-transition: transform 0.4s ease-in-out;
-// }
