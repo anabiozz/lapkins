@@ -9,13 +9,11 @@ const coreURL = process.env.CORE_URL ? process.env.CORE_URL : '/'
 const Main = () => (
   
   <main className="main">
-    <div className="wrapper">
-      <Switch>
-        <Route exact path={coreURL} component={Home} />
-        <Route exact path={coreURL + ":productType"} component={Products} />
-        <Route exact path="/:productType/:productID" component={ProductInfo} />
-      </Switch>
-    </div>
+    <Switch>
+      <Route exact path={coreURL} component={Home} />
+      <Route exact path={coreURL + ":productType"} component={Products} />
+      <Route exact path="/:productType/:productID" component={ProductInfo} />
+    </Switch>
   </main>
 )
 

@@ -8,7 +8,7 @@ import {
 
 const Product = (props) => {
   const { product, url } = props
-
+  
   return (
     <div className="product">
       <div className="image">

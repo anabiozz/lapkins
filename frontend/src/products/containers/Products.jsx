@@ -22,28 +22,36 @@ class Products extends Component {
     console.log('RENDER <Products>')
 
     return (
-      <div className="products">
-        {
-          fetching && (
-          <div style={{ marginTop: '200px' }}>
-            <strong>FETCHING</strong>
+      <div className="container">
+        <div className="row">
+          <div className="col-12">
+            <div className="products">
+              {
+                fetching && (
+                <div style={{ marginTop: '200px' }}>
+                  <strong>FETCHING</strong>
+                </div>
+                )
+              }
+              {
+                errors && (
+                <div style={{ marginTop: '200px' }}>
+                  <strong>ERROR: </strong>
+                  {errors.message}
+                </div>
+                )
+              }
+              {
+                data && data.length > 0 && data.map(product => (
+                  <Product key={product.id} url={`${config.imagePath.preview}${product.name}_thumb${product.ext}`} product={product} />
+                ))
+              }
+            </div>
           </div>
-          )
-        }
-        {
-          errors && (
-          <div style={{ marginTop: '200px' }}>
-            <strong>ERROR: </strong>
-            {errors.message}
-          </div>
-          )
-        }
-        {
-          data && data.length > 0 && data.map(product => (
-            <Product key={product.id} url={`${config.imagePath.preview}${product.name}_thumb${product.ext}`} product={product} />
-          ))
-        }
+        </div>
       </div>
+
+   
     )
   }
 }

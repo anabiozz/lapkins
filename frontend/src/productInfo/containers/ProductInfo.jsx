@@ -98,8 +98,14 @@ export class ProductInfo extends Component {
     const { data, errors, fetching } = this.props
 
     return (
-      <div className="product_info">
-        { this.switchElement(data, errors, fetching) }
+      <div className="container">
+        <div className="row">
+          <div className="col-12">
+            <div className="product_info">
+              { this.switchElement(data, errors, fetching) }
+            </div>
+          </div>
+        </div>
       </div>
     )
   }
