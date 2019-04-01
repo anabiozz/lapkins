@@ -8,15 +8,15 @@ const Home = () => (
         <div className="gallery">
 
           <Link to="wallart" className="gallery__item gallery__item--1">
-            <img className="gallery__img" src="http://localhost:9000/images/3.jpg" alt=""/>
+            <img className="gallery__img" src="https://rndr.juniqe-production.juniqe.com/media/cms/Homepage/March_2019/homepage_herotile_desktop_02.jpg" alt=""/>
           </Link>
 
           <Link to="wallart" className="gallery__item gallery__item--2">
-            <img className="gallery__img" src="http://localhost:9000/images/2.jpg" alt=""/>
+            <img className="gallery__img" src="https://rndr.juniqe-production.juniqe.com/media/cms/Homepage/March_2019/Boho_HPD_Tile3.jpg" alt=""/>
           </Link>
 
           <Link to="wallart" className="gallery__item gallery__item--3">
-            <img className="gallery__img" src="http://localhost:9000/images/1.jpg" alt=""/>
+            <img className="gallery__img" src="https://rndr.juniqe-production.juniqe.com/media/cms/Homepage/Jan_2019/homepage_herotile_desktop_05.jpg" alt=""/>
           </Link>
 
         </div>

@@ -1,8 +1,12 @@
-$primary_font: 'Montserrat', sans-serif;
-$logo_font: 'Staatliches', cursive;
+$primary_font: 'Open Sans Condensed', sans-serif;
+$nav_links_font: 'Open Sans Condensed', sans-serif;
+$logo_font: 'Josefin Sans', sans-serif;
 $product_background_color: #ece8da;
 
 $main_black_color: #3d3d3d;
+$nav_links_color: #3d3d3d;
+$main_color: #464646;
+$logo_color: #333;
 
 @import "common.scss";
 @import "nav.scss";
