@@ -51,7 +51,3 @@ export function dismissError() {
     type: DISMISS_GET_PRODUCT_BY_ID_ERROR,
   })
 }
-
-export const addToCart = () => (dispatch) => {
-  console.log(dispatch)
-}
