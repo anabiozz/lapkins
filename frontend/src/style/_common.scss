@@ -104,7 +104,7 @@ html {
 body {
   font-family: $primary_font;
   background-color: #fff;
-  font-size: 100%;
+  font-size: 16px;
   color: $main_color;
   font-weight: 400;
   font-size: 14px;
@@ -213,6 +213,12 @@ body {
 }
 
 @media all and (min-width: 1200px) {
+  .container {
+    width: 1200px;
+  }
+}
+
+@media all and (min-width: 1366px) {
   .container {
     width: 1200px;
   }

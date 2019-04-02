@@ -16,14 +16,7 @@ export default() => (
 
         <div className="col-6 nav-quicklist">
           <ul >
-            <li className="drop">
-              <Link to="/wallart">Принты</Link>
-              <ul className="dropdown">
-                <li><Link to="/">Home 1</Link></li>
-                <li><Link to="/">Home 2</Link></li>
-                <li><Link to="/">Home 3</Link></li>
-              </ul>
-            </li>
+            <li className="drop"><Link to="/wallart">Принты</Link></li>
             <li><Link to="/stationary">Канцелярия</Link></li>
             <li><Link to="/gifts">Подарки</Link></li>
             <li><Link to="/wraps">Обертка</Link></li>
