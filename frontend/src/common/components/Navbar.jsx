@@ -26,7 +26,7 @@ export default() => (
             </li>
             <li><Link to="/stationary">Канцелярия</Link></li>
             <li><Link to="/gifts">Подарки</Link></li>
-            <li><Link to="/gifts">Обертка</Link></li>
+            <li><Link to="/wraps">Обертка</Link></li>
           </ul>
         </div>
 

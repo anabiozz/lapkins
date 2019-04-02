@@ -5,13 +5,17 @@
   width: 100%;
   position: relative;
   z-index: 99;
+  // -webkit-box-shadow: 0 6px 4px -2px gray;
+  // -moz-box-shadow: 0 6px 4px -2px gray;
+  // box-shadow: 0 6px 4px -2px gray;
+  // margin-bottom: 50px;
 
   .logo {
     align-items: center;
     justify-content: start;
     display: flex;
     height: 134px;
-   
+
     a {
       line-height: 1;
       font-size: 45px;
