@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import ContentLoader from 'react-content-loader'
 import config from '../../config'
 import * as actions from '../actions/productInfoActions'
+import { addProductToCart } from '../../cart/actions/cartActions'
 
 import Locale from '../../utils/locale'
 
@@ -83,7 +84,7 @@ export class ProductInfo extends Component {
               </div>
 
               <div className="add_to_cart">
-                <button type="button">Добавить</button>
+                <button type="button" onClick={() => addProductToCart({})}>Добавить</button>
               </div>
             </div>
 
@@ -118,6 +119,7 @@ ProductInfo.propTypes = {
   getProductByID: PropTypes.func.isRequired,
   reset: PropTypes.func.isRequired,
   match: PropTypes.shape(matchProp).isRequired,
+  addProductToCart: PropTypes.func.isRequired
 }
 
 const mapStateToProps = state => ({
@@ -127,4 +129,4 @@ const mapStateToProps = state => ({
 })
 
 
-export default connect(mapStateToProps, { ...actions })(ProductInfo)
+export default connect(mapStateToProps, { ...actions, addProductToCart })(ProductInfo)
