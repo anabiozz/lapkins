@@ -8,7 +8,7 @@ import config from '../../config'
 const receiveSuccess = response => ({ type: GET_PRODUCTS_SUCCESS, response })
 const receiveFail = error => ({ type: GET_PRODUCTS_ERROR, error })
 
-export const getProducts = () => (dispatch) => {
+export const getProducts = (type = 1) => (dispatch) => {
   dispatch({
     type: GET_PRODUCTS_REQUEST,
   })
@@ -18,7 +18,7 @@ export const getProducts = () => (dispatch) => {
     domain = window.location.origin + process.env.CORE_URL
   }
 
-  return fetch(`${domain}api/get-products?products_type=1`)
+  return fetch(`${domain}api/get-products?products_type=${type}`)
     .then((response) => {
       if (response.status === 200) {
         return response

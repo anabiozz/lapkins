@@ -28,27 +28,31 @@ export default() => (
 
             <li className="icon">
               <Link to="/">
-                <span className="icon-search"></span>
+                <span className="icon-search">
+                  <img src={require("../../../public/search.svg")} />
+                </span>
               </Link>
             </li>
 
             <li className="icon">
               <Link to="/">
-                <span className="icon-user"></span>
+                <span className="icon-user">
+                  <img src={require("../../../public/user.svg")} />
+                </span>
               </Link>
             </li>
 
             <li className="icon">
-              <Link to="/">
-                <span className="icon-cart"></span>
+              <Link to="/cart">
+                <span className="icon-cart">
+                  <img src={require("../../../public/cart.svg")} />
+                </span>
               </Link>
             </li>
 
           </ul>
         </div>
-
       </div>
-
     </div>
 
     {/* <div className="nav-section-container">

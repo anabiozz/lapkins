@@ -38,9 +38,12 @@ export class ProductInfo extends Component {
     getProductByID(match.params.productID)
   }
 
-  switchElement = (productInfo, errors, fetching) => {
+  switchElement = () => {
+
+    const { data, errors, fetching, addProductToCart } = this.props
+
     switch (true) {
-      case productInfo.fetching:
+      case fetching:
         return <MyLoader />
       case errors:
         return (
@@ -49,29 +52,23 @@ export class ProductInfo extends Component {
             {` ${errors.message}`}
           </div>
         )
-      case fetching:
-        return (
-          <div style={{ marginTop: '200px' }}>
-            <strong>FETCHING</strong>
-          </div>
-        )
-      case productInfo && Object.keys(productInfo).length > 0:
+      case data && Object.keys(data).length > 0:
         return (
           <Fragment>
             <div className="image">
-              <img src={`${config.imagePath.full}${productInfo.name}${productInfo.ext}`} alt="" />
+              <img src={`${config.imagePath.full}${data.name}${data.ext}`} alt="" />
             </div>
 
             <div className="information">
-              <div className="description">{productInfo.decription}</div>
+              <div className="description">{data.decription}</div>
 
               <table className="categories">
                 <tbody>
                   {
-                    productInfo.categories && Object.keys(productInfo.categories).map(key => (
+                    data.categories && Object.keys(data.categories).map(key => (
                       <tr key={key}>
                         <td className="pi_table_td">{locale.get(key)}</td>
-                        <td className="pi_table_td">{productInfo.categories[key]}</td>
+                        <td className="pi_table_td">{data.categories[key]}</td>
                       </tr>
                     ))
                   }
@@ -79,7 +76,7 @@ export class ProductInfo extends Component {
               </table>
 
               <div className="price">
-                {productInfo.price}
+                {data.price}
                 {' руб.'}
               </div>
 
@@ -96,14 +93,12 @@ export class ProductInfo extends Component {
   }
 
   render() {
-    const { data, errors, fetching } = this.props
-
     return (
       <div className="container">
         <div className="row">
           <div className="col-12">
             <div className="product_info">
-              { this.switchElement(data, errors, fetching) }
+              { this.switchElement() }
             </div>
           </div>
         </div>

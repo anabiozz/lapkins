@@ -17,7 +17,7 @@ export default function products(state = initialState, action) {
     case GET_PRODUCTS_REQUEST:
       return { ...state, fetching: true }
     case GET_PRODUCTS_SUCCESS:
-      return Object.assign({}, state, { data: action.response, fetching: false, errors: '' })
+      return Object.assign({}, state, { data: action.response ? action.response : [], fetching: false, errors: '' })
     case GET_PRODUCTS_ERROR:
       return { ...state, errors: action.error, fetching: false }
     case GET_PRODUCTS_RESET:

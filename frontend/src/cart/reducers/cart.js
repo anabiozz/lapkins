@@ -16,6 +16,7 @@ export default function(state = initialState, action) {
         products: action.payload
       };
     case ADD_PRODUCT_TO_CART:
+      console.log("lol");
       return {
         ...state,
         productToAdd: Object.assign({}, action.payload)
