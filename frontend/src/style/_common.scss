@@ -104,7 +104,7 @@ html {
 body {
   font-family: $primary_font;
   background-color: #fff;
-  font-size: 15px;
+  font-size: 1em;
   color: $main_color;
   font-weight: 400;
   -webkit-font-smoothing: antialiased;
@@ -115,7 +115,7 @@ body {
 }
 
 ::selection {
-  background: #ff4136;
+  background: #f958ff;
   color: #fff;
   text-shadow: none;
 }
@@ -201,25 +201,19 @@ body {
 
 @media all and (min-width: 768px) {
   .container {
-    width: 750px;
+    width: 70vw;
   }
 }
 
-@media all and (min-width: 992px) {
-  .container {
-    width: 970px;
-  }
-}
+// @media all and (min-width: 992px) {
+//   .container {
+//     width: 90vw;
+//   }
+// }
 
-@media all and (min-width: 1200px) {
+@media all and (min-width: 1200) {
   .container {
-    width: 1200px;
-  }
-}
-
-@media all and (min-width: 1366px) {
-  .container {
-    width: 1200px;
+    width: 70vw;
   }
 }
 

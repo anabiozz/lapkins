@@ -2,7 +2,7 @@
   display: grid;
   grid-template-columns: repeat(8, 1fr);
   grid-template-rows: repeat(8, 4vw);
-  grid-gap: 1.5rem;
+  grid-gap: 1.5em;
 }
 
 .gallery__img {

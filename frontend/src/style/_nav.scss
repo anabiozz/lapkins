@@ -18,8 +18,8 @@
 
     a {
       line-height: 1;
-      font-size: 2.8em;
-      font-weight: 100;
+      font-size: 2.8rem;
+      font-weight: 100 !important;
       font-family: $logo_font;
       color: $logo_color;
       text-transform: uppercase;
@@ -40,17 +40,17 @@
         padding: 0 20px;
         color: $main_black_color;
         text-align: center;
-        cursor: pointer;
         position: relative;
 
         a {
-          font-size: 1.3em;
+          font-size: 1.5rem;
           color: $nav_links_color;
-          font-weight: 200;
+          font-weight: 400;
           line-height: 134px;
           display: block;
           position: relative;
           text-transform: capitalize;
+          cursor: pointer;
         }
       }
     }

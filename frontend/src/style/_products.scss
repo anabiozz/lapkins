@@ -1,21 +1,21 @@
 .products {
   display: grid;
   grid-template-columns: fit-content(25%) fit-content(25%) fit-content(25%) fit-content(25%);
-  grid-gap: 30px;
-  margin: auto;
-  font-size: 21px;
-  font-weight: 400;
+  grid-gap: 3em;
+  justify-content: center;
 
   .product {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     width: 100%;
-    max-width: 270px;
+    // max-width: 270px;
     -webkit-animation: reveal 0.5s ease;
     -webkit-animation-fill-mode: backwards;
     animation: reveal 0.5s ease;
     animation-fill-mode: backwards;
+    font-size: 1.5rem;
+    font-weight: 400;
 
     .image {
       // -webkit-box-shadow: 1px 1px 5px 0px rgba(61, 61, 61, 1);
