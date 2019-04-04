@@ -1,7 +1,9 @@
 .products {
+  width: 100%;
   display: grid;
   grid-template-columns: fit-content(25%) fit-content(25%) fit-content(25%) fit-content(25%);
-  grid-gap: 3em;
+  grid-template-rows: fit-content(1vh);
+  grid-gap: 5em;
   justify-content: center;
 
   .product {
@@ -18,15 +20,14 @@
     font-weight: 400;
 
     .image {
-      // -webkit-box-shadow: 1px 1px 5px 0px rgba(61, 61, 61, 1);
-      // -moz-box-shadow: 1px 1px 5px 0px rgba(61, 61, 61, 1);
-      // box-shadow: 1px 1px 5px 0px rgba(61, 61, 61, 1);
+      height: 100%;
 
       .inner {
-
+        height: 100%;
         img {
           max-width: 100%;
-          object-fit: fill;
+          min-height: 100%;
+          object-fit: cover;
         }
       }
     }
