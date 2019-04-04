@@ -5,16 +5,13 @@
   width: 100%;
   position: relative;
   z-index: 99;
-  // -webkit-box-shadow: 0 6px 4px -2px gray;
-  // -moz-box-shadow: 0 6px 4px -2px gray;
-  // box-shadow: 0 6px 4px -2px gray;
-  // margin-bottom: 50px;
 
   .logo {
     align-items: center;
     justify-content: start;
     display: flex;
     height: 134px;
+    // background-color: antiquewhite;
 
     a {
       line-height: 1;
@@ -29,6 +26,7 @@
   .nav-quicklist {
     margin: 0 auto;
     height: auto;
+    // background-color: aquamarine;
 
     ul {
       max-width: 950px;
@@ -43,7 +41,7 @@
         position: relative;
 
         a {
-          font-size: 1.5rem;
+          font-size: 1.4rem;
           color: $nav_links_color;
           font-weight: 400;
           line-height: 134px;
@@ -61,6 +59,7 @@
     display: flex;
     align-items: center;
     justify-content: flex-end;
+    // background-color: beige;
 
     .icon {
 
@@ -107,3 +106,35 @@
 }
 
 /* END HEADER */
+
+@media all and (min-width: 768px) {
+  .nav .nav-quicklist ul li a {
+    font-size: 1.1rem;
+  }
+
+  .nav .logo a {
+    font-size: 1.9rem;
+  }
+}
+
+@media all and (min-width: 992px) {
+  .nav .nav-quicklist ul li a {
+    font-size: 1.2rem;
+  }
+
+  .nav .logo a {
+    font-size: 2rem;
+  }
+}
+
+
+@media all and (min-width: 1200px) {
+  .nav .nav-quicklist ul li a {
+    font-size: 1.3rem;
+  }
+
+  .nav .logo a {
+    font-size: 2.3rem;
+  }
+}
+
