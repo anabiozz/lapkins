@@ -34,6 +34,10 @@ export class ProductInfo extends Component {
   constructor(props) {
     super(props)
     const { reset, getProductByID, match } = this.props
+
+    console.log(match);
+    
+
     reset()
     getProductByID(match.params.productID)
   }

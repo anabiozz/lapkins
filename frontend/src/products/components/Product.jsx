@@ -7,13 +7,15 @@ import {
 } from '../../utils/props'
 
 const Product = (props) => {
-  const { product, url } = props
+  const { product, url, match } = props
+  
+  console.log(match);
   
   return (
     <div className="product">
       <div className="image">
         <div className="inner">
-          <Link to={`/postcards/${product.id}`}>
+          <Link to={`/products/postcards/${product.id}`}>
             <img src={url} alt="" />
           </Link>
         </div>

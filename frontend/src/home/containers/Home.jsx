@@ -25,21 +25,21 @@ class Home extends React.Component {
         <div className="col-12">
           <div style={this.state.elements.length === 3 ? {} : {display: 'none'}} className="gallery">
   
-            <Link to="wallart" className="gallery__item gallery__item--1">
+            <Link to="/products/new" className="gallery__item gallery__item--1">
               <img 
                 className="gallery__img"
                 onLoad={() => this.add()}
                 src="https://rndr.juniqe-production.juniqe.com/media/cms/Homepage/March_2019/homepage_herotile_desktop_02.jpg" alt=""/>
             </Link>
   
-            <Link to="wallart" className="gallery__item gallery__item--2">
+            <Link to="/products/wallart" className="gallery__item gallery__item--2">
               <img 
                 className="gallery__img" 
                 onLoad={() => this.add()}
                 src="https://rndr.juniqe-production.juniqe.com/media/cms/Homepage/March_2019/Boho_HPD_Tile3.jpg" alt=""/>
             </Link>
   
-            <Link to="wallart" className="gallery__item gallery__item--3">
+            <Link to="/products/gifts" className="gallery__item gallery__item--3">
               <img 
                 className="gallery__img" 
                 onLoad={() => this.add()}

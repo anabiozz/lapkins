@@ -16,10 +16,10 @@ export default() => (
 
         <div className="col-6 nav-quicklist">
           <ul >
-            <li className="drop"><Link to="/wallart">Принты</Link></li>
-            <li><Link to="/stationary">Канцелярия</Link></li>
-            <li><Link to="/gifts">Подарки</Link></li>
-            <li><Link to="/wraps">Обертка</Link></li>
+            <li className="drop"><Link to="/products/wallart">Принты</Link></li>
+            <li><Link to="/products/stationary">Канцелярия</Link></li>
+            <li><Link to="/products/gifts">Подарки</Link></li>
+            <li><Link to="/products/wraps">Обертка</Link></li>
           </ul>
         </div>
 

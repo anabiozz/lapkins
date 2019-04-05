@@ -54,19 +54,22 @@ func main() {
 	paths.PreviewPath = imagesPath + "/preview/"
 
 	// Create router
-	router := mux.NewRouter()
+	router := mux.NewRouter().StrictSlash(true)
 	// subrouter for api
-	apiRouter := router.PathPrefix("/api/").Subrouter()
+	apiRouter := router.PathPrefix("/api/").Subrouter().StrictSlash(true)
 	// subrouter for images
-	imagesRouter := router.PathPrefix(imagesPath).Subrouter()
+	imagesRouter := router.PathPrefix(imagesPath).Subrouter().StrictSlash(true)
 	// subrouter for postcards
-	postcardRouter := router.PathPrefix("/postcards/").Subrouter()
+	postcardRouter := router.PathPrefix("/products/postcards").Subrouter().StrictSlash(true)
 	// Images handler
 	imagesRouter.PathPrefix("/").Handler(http.StripPrefix(imagesPath+"/", http.FileServer(http.Dir(imagesPath))))
 	// Static handlers
-	router.PathPrefix("/static/").Handler(http.StripPrefix("/static/", http.FileServer(http.Dir("./static"))))
-	router.PathPrefix("/images/").Handler(http.StripPrefix("/images/", http.FileServer(http.Dir("./static/images"))))
-	postcardRouter.PathPrefix("/static").Handler(http.StripPrefix("/postcards/static/", http.FileServer(http.Dir("./static"))))
+	// router.PathPrefix("/static/").Handler(http.StripPrefix("/static/", http.FileServer(http.Dir("./static"))))
+	// router.PathPrefix("/images/").Handler(http.StripPrefix("/images/", http.FileServer(http.Dir("./static/images"))))
+	// postcardRouter.PathPrefix("/static").Handler(http.StripPrefix("/postcards/static/", http.FileServer(http.Dir("./static"))))
+
+	postcardRouter.PathPrefix("/static").Handler(http.StripPrefix("/products/postcards/static/", http.FileServer(http.Dir("./static/"))))
+
 	// Index.html handler
 	router.PathPrefix("/").HandlerFunc(IndexHandler())
 
