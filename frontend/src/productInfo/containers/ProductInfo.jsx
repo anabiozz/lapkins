@@ -1,12 +1,12 @@
-import React, { Component, Fragment } from 'react'
-import PropTypes from 'prop-types'
-import { connect } from 'react-redux'
-import ContentLoader from 'react-content-loader'
-import config from '../../config'
-import * as actions from '../actions/productInfoActions'
-import { addProductToCart } from '../../cart/actions/cartActions'
+import React, { Component, Fragment } from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import ContentLoader from 'react-content-loader';
+import config from '../../config';
+import * as actions from '../actions/productInfoActions';
+import { addProductToCart } from '../../cart/actions/cartActions';
 
-import Locale from '../../utils/locale'
+import Locale from '../../utils/locale';
 
 import {
   productProp,
@@ -34,10 +34,6 @@ export class ProductInfo extends Component {
   constructor(props) {
     super(props)
     const { reset, getProductByID, match } = this.props
-
-    console.log(match);
-    
-
     reset()
     getProductByID(match.params.productID)
   }
@@ -85,7 +81,7 @@ export class ProductInfo extends Component {
               </div>
 
               <div className="add_to_cart">
-                <button type="button" onClick={() => addProductToCart({})}>Добавить</button>
+                <button type="button" onClick={() => addProductToCart(data)}>Добавить</button>
               </div>
             </div>
 

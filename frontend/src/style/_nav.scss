@@ -85,16 +85,6 @@
   }
 }
 
-@media all and (max-width: 750px) {
-  .nav-quicklist ul {
-    flex-wrap: wrap;
-  }
-
-  .nav-quicklist ul>li {
-    flex-basis: 50%;
-  }
-}
-
 @media all and (max-width: 500px) {
   .nav-quicklist ul>li {
     flex-basis: 100%;
@@ -105,8 +95,6 @@
   }
 }
 
-/* END HEADER */
-
 @media all and (min-width: 768px) {
   .nav .nav-quicklist ul li a {
     font-size: 1.1rem;
@@ -114,6 +102,16 @@
 
   .nav .logo a {
     font-size: 1.9rem;
+  }
+}
+
+@media all and (max-width: 768px) {
+  .nav-quicklist ul {
+    flex-wrap: wrap;
+  }
+
+  .nav-quicklist ul>li {
+    flex-basis: 50%;
   }
 }
 
@@ -138,3 +136,4 @@
   }
 }
 
+/* END HEADER */
