@@ -2,18 +2,52 @@ import React, { Component } from 'react';
 import config from '../../config';
 import { connect } from 'react-redux';
 import * as actions from '../actions/cartActions';
+import PropTypes from 'prop-types';
 
 import Locale from '../../utils/locale';
 const locale = new Locale('RU').get()
 class Cart extends Component {
 
-  render() {
+  componentDidMount() {
+    
+  }
 
+
+  componentWillReceiveProps(nextProps) {
+
+    console.log(nextProps);
+    
+    if (nextProps.newProduct !== this.props.newProduct) {
+      this.addProduct(nextProps.newProduct);
+    }
+  }
+
+  addProduct = product => {
+    const { cartProducts, updateCart } = this.props;
+    let productAlreadyInCart = false;
+
+    cartProducts.forEach(cp => {
+      if (cp.id === product.id) {
+        cp.quantity += product.quantity;
+        productAlreadyInCart = true;
+      }
+    });
+
+    if (!productAlreadyInCart) {
+      cartProducts.push(product);
+    }
+
+    // updateCart(cartProducts);
+  };
+
+
+  render() {
+    
     console.log('RENDER <Cart>');
 
-    const { productToAdd } = this.props
+    const { productToAdd, cartProducts } = this.props
 
-    console.log(productToAdd);
+    console.log(cartProducts);
 
     return (
       <div className="container">
@@ -23,7 +57,7 @@ class Cart extends Component {
                 <h2 className="cart-title">Cart</h2>
                 <div className="cart-table">
                   <div className="image">
-                    <img src={`${config.imagePath.full}${productToAdd.name}${productToAdd.ext}`} alt="" />
+                    <img src={`${config.imagePath.preview}${productToAdd.name}${productToAdd.ext}`} alt="" />
                   </div>
                   <div className="information">
                     <div className="description">{productToAdd.decription}</div>
@@ -59,7 +93,17 @@ class Cart extends Component {
   }
 }
 
+Cart.propTypes = {
+  loadCart: PropTypes.func.isRequired,
+  // updateCart: PropTypes.func.isRequired,
+  cartProducts: PropTypes.array.isRequired,
+  newProduct: PropTypes.object,
+  removeProduct: PropTypes.func,
+  productToRemove: PropTypes.object
+};
+
 const mapStateToProps = state => ({
+  cartProducts: state.cart.products,
   productToAdd: state.cart.productToAdd,
   errors: state.cart.errors,
   fetching: state.cart.fetching,
