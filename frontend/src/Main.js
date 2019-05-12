@@ -8,14 +8,14 @@ import ProductInfo from './productInfo/containers/ProductInfo'
 const coreURL = process.env.CORE_URL ? process.env.CORE_URL : '/'
 
 const Main = () => (
-  
   <main className="main">
-    {/* <Switch>
+    <Switch>
       <Route exact path={coreURL} component={Home} />
       <Route path={coreURL + "cart"} component={Cart} />
-      <Route exact path={coreURL + ":productType"} component={Products} />
-      <Route exact path={coreURL + ":productType/:productID"} component={ProductInfo} />
-    </Switch> */}
+      <Route exact path={coreURL + "products/new"} component={Products} />
+      <Route exact path={coreURL + "products/:productType"} component={Products} />
+      <Route exact path={coreURL + "products/:productType/:productID"} component={ProductInfo} />
+    </Switch>
   </main>
 )
 

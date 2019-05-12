@@ -5,43 +5,5 @@
   grid-gap: 1.5em;
   justify-content: space-between;
 
-  .product {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    max-width: 270px;
-    -webkit-animation: reveal 0.5s ease;
-    -webkit-animation-fill-mode: backwards;
-    animation: reveal 0.5s ease;
-    animation-fill-mode: backwards;
-    font-size: 1.5rem;
-    font-weight: 400;
-  }
-
-  .image {
-    height: 100%;
-
-    .inner {
-      height: 100%;
-
-      img {
-        max-width: 100%;
-        min-height: 100%;
-        object-fit: cover;
-      }
-    }
-  }
-
-  .prev_desc {
-    text-align: left;
-    margin: 10px 0;
-    color: $main_black_color;
-  }
-
+  @import "product";
 }
-
-// @media all and (max-width: 992px) {
-//   .products {
-//     grid-template-columns: repeat(3, 1fr);
-//   }
-// }

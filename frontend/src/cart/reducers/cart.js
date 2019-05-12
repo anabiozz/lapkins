@@ -13,12 +13,13 @@ export default function(state = initialState, action) {
     case LOAD_CART:
       return {
         ...state,
-        products: action.payload
+        products: JSON.parse(localStorage.getItem('cartProducts'))
       };
     case ADD_PRODUCT_TO_CART:
+      localStorage.setItem('cartProducts', JSON.stringify([...state.products, action.payload]))
       return {
         ...state,
-        productToAdd: Object.assign({}, action.payload)
+        products: [...state.products, action.payload],
       }
     case REMOVE_PRODUCT_FROM_CART:
       return {

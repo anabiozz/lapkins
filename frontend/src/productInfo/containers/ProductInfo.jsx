@@ -38,9 +38,7 @@ export class ProductInfo extends Component {
     getProductByID(match.params.productID)
   }
 
-  switchElement = () => {
-
-    const { data, errors, fetching, addProductToCart } = this.props
+  switchElement = ({ data, errors, fetching, addProductToCart }) => {
 
     switch (true) {
       case fetching:
@@ -81,7 +79,7 @@ export class ProductInfo extends Component {
               </div>
 
               <div className="add_to_cart">
-                <button type="button" onClick={() => addProductToCart(data)}>Добавить</button>
+                <button type="button" onClick={() => addProductToCart(data)}>Добавить в корзину</button>
               </div>
             </div>
 
@@ -98,7 +96,7 @@ export class ProductInfo extends Component {
         <div className="row">
           <div className="col-12">
             <div className="product_info">
-              { this.switchElement() }
+              { this.switchElement(this.props) }
             </div>
           </div>
         </div>

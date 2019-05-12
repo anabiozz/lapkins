@@ -41,7 +41,7 @@ class Products extends Component {
   }
 
   render() {
-    const { data, errors, fetching } = this.props
+    const { data, errors, fetching, match } = this.props
 
     console.log('RENDER <Products>')
 
@@ -63,7 +63,11 @@ class Products extends Component {
               }
               {
                 data && data.length > 0 && data.map(product => (
-                  <Product key={product.id} url={`${config.imagePath.preview}${product.name}_thumb${product.ext}`} product={product} />
+                  <Product 
+                    key={product.id} 
+                    url={`${config.imagePath.preview}${product.name}_thumb${product.ext}`} 
+                    product={product}
+                    productType={match.params.productType} />
                 ))
               }
             </div>

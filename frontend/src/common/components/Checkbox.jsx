@@ -8,7 +8,7 @@ const CheckBox = (props) => {
     selectedOptions,
   } = props
 
-  retutn(
+  return(
     <div className="form-group">
       <label htmlFor={name} className="form-label">
         {title}

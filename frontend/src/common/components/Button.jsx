@@ -1,13 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-const Button = (props) => {
-  const {
-    style,
-    action,
-    type,
-    title,
-  } = props
+const Button = ({ style, action, type, title }) => {
 
   return (
     <button type="button" style={style} className={type === 'primary' ? 'btn btn-primary' : 'btn btn-secondary'} onClick={action}>

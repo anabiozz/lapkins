@@ -1,0 +1,20 @@
+/* FOOTER */
+
+footer {
+  width: 100%;
+  position: relative;
+	z-index: 99;
+	flex-direction: row;
+	font-size: 1.3rem;
+	align-items: center;
+	justify-content: start;
+	display: flex;
+	height: 200px;
+
+	.footer__column {
+		display: flex;
+		flex-direction: column;
+	}
+}
+
+/* END FOOTER */

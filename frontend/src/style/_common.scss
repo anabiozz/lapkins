@@ -90,7 +90,7 @@ body::-webkit-scrollbar-track {
 }
 
 body::-webkit-scrollbar-thumb {
-  background-color: #f958ff;
+  background-color: #181515;
   outline: 1px solid slategrey;
 }
 
@@ -103,7 +103,6 @@ html {
 
 body {
   font-family: $primary_font;
-  background-color: #fff;
   font-size: 1em;
   color: $main_color;
   font-weight: 400;

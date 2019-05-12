@@ -35,9 +35,8 @@ export const removeProductFromCart = product => ({
   payload: product
 });
 
-export const loadCart = products => ({
+export const loadCart = () => ({
   type: LOAD_CART,
-  payload: products
 });
 
 export function reset() {
