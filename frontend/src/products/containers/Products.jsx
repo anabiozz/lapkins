@@ -6,6 +6,7 @@ import ContentLoader from 'react-content-loader'
 import Product from '../components/Product'
 import * as actions from '../actions/productActions'
 import config from '../../config'
+import { addProductToCart } from '../../cart/actions/cartActions';
 
 import {
   productProp,
@@ -41,7 +42,7 @@ class Products extends Component {
   }
 
   render() {
-    const { data, errors, fetching, match } = this.props
+    const { data, errors, fetching, match, addProductToCart } = this.props
 
     console.log('RENDER <Products>')
 
@@ -67,7 +68,8 @@ class Products extends Component {
                     key={product.id} 
                     url={`${config.imagePath.preview}${product.name}_thumb${product.ext}`} 
                     product={product}
-                    productType={match.params.productType} />
+                    productType={match.params.productType}
+                    addProductToCart={addProductToCart} />
                 ))
               }
             </div>
@@ -83,6 +85,7 @@ Products.propTypes = {
   errors: PropTypes.string.isRequired,
   fetching: PropTypes.bool.isRequired,
   getProducts: PropTypes.func.isRequired,
+  addProductToCart: PropTypes.func.isRequired,
 }
 
 const mapStateToProps = state => ({
@@ -91,4 +94,4 @@ const mapStateToProps = state => ({
   fetching: state.products.fetching,
 })
 
-export default connect(mapStateToProps, { ...actions })(Products)
+export default connect(mapStateToProps, { ...actions, addProductToCart })(Products)

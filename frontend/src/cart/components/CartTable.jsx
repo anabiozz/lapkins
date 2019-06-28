@@ -11,12 +11,16 @@ const CartTable = ({ products }) => {
   console.log(products);
 
   return (
-    <div className="cart-table">
+    <div className="cart__table">
         {
           products.map(product => {
             return <CartProductItem key={product.id} product={product} />
           })
         }
+
+        {/* <div className="to-order">
+                  <button type="button">Оформить заказ</button>
+              </div> */}
     </div>
   )
 }

@@ -6,15 +6,14 @@ import (
 	"strconv"
 
 	"github.com/anabiozz/lapkin-project/lapkin/backend/models"
+	"github.com/anabiozz/logger"
+	"github.com/kelseyhightower/envconfig"
 )
 
-const (
-	dbHost     = "localhost"
-	dbPort     = 5432
-	dbUser     = "postgres"
-	dbPassword = "postgres"
-	dbName     = "cartichka"
-)
+// Configs for database
+type Configs struct {
+	DBinfo string `envconfig:"lapkinenv" required:"true"`
+}
 
 // PostgresDatastore ..
 type PostgresDatastore struct {
@@ -23,8 +22,11 @@ type PostgresDatastore struct {
 
 // NewPostgresDatastore ..
 func NewPostgresDatastore() (*PostgresDatastore, error) {
-	dbinfo := fmt.Sprintf("host=%s port=%d user=%s password=%s dbname=%s sslmode=disable", dbHost, dbPort, dbUser, dbPassword, dbName)
-	connection, err := sql.Open("postgres", dbinfo)
+	var db Configs
+	if err := envconfig.Process("", &db); err != nil {
+		logger.Fatal(err)
+	}
+	connection, err := sql.Open("postgres", db.DBinfo)
 	if err != nil {
 		return nil, err
 	}
@@ -36,7 +38,7 @@ func NewPostgresDatastore() (*PostgresDatastore, error) {
 // GetProducts ..
 func (p *PostgresDatastore) GetProducts(productsID string, paths models.Paths) (products []models.Product, err error) {
 	id, err := strconv.Atoi(productsID)
-	query := fmt.Sprintf(`SELECT * FROM cartichka.get_products(%d);`, id)
+	query := fmt.Sprintf(`SELECT * FROM lapkin.get_products(%d);`, id)
 	rows, err := p.Query(query)
 	if err != nil {
 		return nil, err
@@ -69,7 +71,7 @@ func (p *PostgresDatastore) GetProducts(productsID string, paths models.Paths) (
 // GetProductByID ..
 func (p *PostgresDatastore) GetProductByID(productID string) (product *models.Product, err error) {
 	id, err := strconv.Atoi(productID)
-	query := fmt.Sprintf(`SELECT * FROM cartichka.get_product_by_id(%d);`, id)
+	query := fmt.Sprintf(`SELECT * FROM lapkin.get_product_by_id(%d);`, id)
 
 	product = &models.Product{}
 

@@ -6,15 +6,17 @@ const locale = new Locale('RU').get()
 
 const CartProductItem = ({ product }) => {
 
-	return <div className="cart-product-item">
-		<div className="image">
+	console.log(product);
+
+	return <div className="cart__item">
+		<div className="cart__item__image">
 			<img src={`${config.imagePath.preview}${product.name}_thumb${product.ext}`} alt="" />
 		</div>
 
-		<div className="information">
-			<div className="description">{product.decription}</div>
+		<div className="cart__item__information">
+			<div className="cart__item__description">{product.decription}</div>
 
-			<table className="categories">
+			<table className="cart__item__categories">
 				<tbody>
 					{
 						product.categories && Object.keys(product.categories).map(key => (
@@ -27,7 +29,7 @@ const CartProductItem = ({ product }) => {
 				</tbody>
 			</table>
 
-			<div className="price">
+			<div className="cart__item__price">
 				{product.price}
 				{' руб.'}
 			</div>

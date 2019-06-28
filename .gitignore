@@ -3,6 +3,7 @@
 # dependencies
 /frontend/node_modules
 /backend/static/main.js
+/backend/backend
 
 /frontend/npm-debug.log*
 /frontend/yarn-debug.log*

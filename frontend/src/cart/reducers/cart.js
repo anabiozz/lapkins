@@ -5,7 +5,9 @@ import {
 } from '../constant';
 
 const initialState = {
-  products: []
+  products: [],
+  errors: '',
+  fetching: false,
 }
 
 export default function(state = initialState, action) {
@@ -13,7 +15,7 @@ export default function(state = initialState, action) {
     case LOAD_CART:
       return {
         ...state,
-        products: JSON.parse(localStorage.getItem('cartProducts'))
+        products: JSON.parse(localStorage.getItem('cartProducts')) || []
       };
     case ADD_PRODUCT_TO_CART:
       localStorage.setItem('cartProducts', JSON.stringify([...state.products, action.payload]))
@@ -22,9 +24,10 @@ export default function(state = initialState, action) {
         products: [...state.products, action.payload],
       }
     case REMOVE_PRODUCT_FROM_CART:
+      localStorage.setItem('cartProducts', JSON.stringify([...state.products, action.payload]))
       return {
         ...state,
-        productToRemove: Object.assign({}, action.payload)
+        products: [...state.products, action.payload],
       };
     default:
       return state;

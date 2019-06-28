@@ -2,8 +2,8 @@
 export default {
   baseDomain: "http://localhost:9000",
   imagePath: {
-    "full": process.env.HOME + "/images/full/",
-    "preview": process.env.HOME + "/images/preview/"
+    "full": "/root/images/full/",
+    "preview": "/root/images/preview/" //process.env.HOME
   },
   productTypes: ["wallart", "stationary", "gifts", "wraps"]
 
