@@ -1,4 +1,4 @@
---CREATE SCHEMA cartichka;
+--CREATE SCHEMA lapkin;
 
 -- currencies
 CREATE TABLE currencies (
@@ -11,9 +11,9 @@ CREATE TABLE product_types (
   product_type_id SERIAL PRIMARY KEY,
   product_type TEXT
 );
-INSERT INTO cartichka.product_types (product_type)
+INSERT INTO lapkin.product_types (product_type)
 VALUES ('postcards');
-INSERT INTO cartichka.product_types (product_type)
+INSERT INTO lapkin.product_types (product_type)
 VALUES ('posters');
 
 -- sizes
@@ -48,46 +48,46 @@ CREATE TABLE products (
   ext text
 );
 
-INSERT INTO cartichka.currencies (currency)
+INSERT INTO lapkin.currencies (currency)
 VALUES ('RU');
-INSERT INTO cartichka.sizes (product_type, proportions)
+INSERT INTO lapkin.sizes (product_type, proportions)
 VALUES (1, '105x148');
-INSERT INTO cartichka.sizes (product_type, proportions)
+INSERT INTO lapkin.sizes (product_type, proportions)
 VALUES (1, '148x210');
-INSERT INTO cartichka.authors (author)
+INSERT INTO lapkin.authors (author)
 VALUES ('Анастасия Кондратьева');
-INSERT INTO cartichka.authors (author)
+INSERT INTO lapkin.authors (author)
 VALUES ('Lolka Lolkina');
 
 -- get_products
-CREATE OR REPLACE FUNCTION cartichka.get_products(INT)
-RETURNS SETOF cartichka.products
+CREATE OR REPLACE FUNCTION lapkin.get_products(INT)
+RETURNS SETOF lapkin.products
 AS $$
 	BEGIN
-	 	RETURN QUERY SELECT * FROM cartichka.products WHERE product_type = $1;
+	 	RETURN QUERY SELECT * FROM lapkin.products WHERE product_type = $1;
 	END;
 $$ LANGUAGE plpgsql;
 
 -- get_authors
-CREATE OR REPLACE FUNCTION cartichka.get_authors()
-RETURNS SETOF cartichka.authors
+CREATE OR REPLACE FUNCTION lapkin.get_authors()
+RETURNS SETOF lapkin.authors
 AS $$
 	BEGIN
-	 	RETURN QUERY SELECT * FROM cartichka.authors;
+	 	RETURN QUERY SELECT * FROM lapkin.authors;
 	END;
 $$ LANGUAGE plpgsql;
 
 -- get_product_types
-CREATE OR REPLACE FUNCTION cartichka.get_product_types()
-RETURNS SETOF cartichka.product_types
+CREATE OR REPLACE FUNCTION lapkin.get_product_types()
+RETURNS SETOF lapkin.product_types
 AS $$
 	BEGIN
-	 	RETURN QUERY SELECT * FROM cartichka.product_types;
+	 	RETURN QUERY SELECT * FROM lapkin.product_types;
 	END;
 $$ LANGUAGE plpgsql;
 
 -- get_sizes
-CREATE OR REPLACE FUNCTION cartichka.get_sizes(INT)
+CREATE OR REPLACE FUNCTION lapkin.get_sizes(INT)
 RETURNS TABLE  (
 	size_id int,
 	proportions text
@@ -97,17 +97,17 @@ AS $func$
 		RETURN QUERY 
  		SELECT sizes.size_id, sizes.proportions FROM (
 	      SELECT sizes.size_id, sizes.proportions 
-	      FROM   cartichka.sizes
+	      FROM   lapkin.sizes
 	      WHERE product_type = $1
      	) sizes;
 	END;
 $func$ LANGUAGE plpgsql;
 
 -- get_product_by_id
-CREATE OR REPLACE FUNCTION cartichka.get_product_by_id(INT)
-RETURNS SETOF cartichka.products
+CREATE OR REPLACE FUNCTION lapkin.get_product_by_id(INT)
+RETURNS SETOF lapkin.products
 AS $$
 	BEGIN
-	 	RETURN QUERY SELECT * FROM cartichka.products WHERE id = $1;
+	 	RETURN QUERY SELECT * FROM lapkin.products WHERE id = $1;
 	END;
 $$ LANGUAGE plpgsql;

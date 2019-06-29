@@ -4,6 +4,7 @@
 /frontend/node_modules
 /backend/static/main.js
 /backend/backend
+/backend/vendor
 
 /frontend/npm-debug.log*
 /frontend/yarn-debug.log*

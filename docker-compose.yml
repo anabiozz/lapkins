@@ -1,0 +1,16 @@
+version: '3'
+
+services:
+  lapkin:
+    build: 
+      context: $GOPATH/src/github.com/anabiozz/lapkin-project/lapkin
+      dockerfile: Dockerfile
+    image: "lapkin:latest"
+    container_name: lapkin
+    volumes: 
+      - /home/almex/images:/home/lapkin/images
+    environment:
+      - LAPKINENV=${LAPKINENV}
+    ports:
+      - "8080:8080"
+    network_mode: "host"

@@ -3,7 +3,6 @@ package main
 import (
 	"net/http"
 	"os"
-	"os/user"
 	"path/filepath"
 	"time"
 
@@ -20,7 +19,7 @@ import (
 
 const (
 	// URL ...
-	URL = "localhost:9000"
+	URL = "0.0.0.0:8080"
 )
 
 func main() {
@@ -38,14 +37,8 @@ func main() {
 	// Handlers
 	paths := models.Paths{}
 
-	// Getting user home directory
-	usr, err := user.Current()
-	if err != nil {
-		logger.Error(err)
-	}
-
 	// Images directory path
-	imagesPath, err := filepath.Abs(usr.HomeDir + "/images")
+	imagesPath, err := filepath.Abs(os.Getenv("HOME") + "/images")
 	if err != nil {
 		logger.Error(err)
 	}
