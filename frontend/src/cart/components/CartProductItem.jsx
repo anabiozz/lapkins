@@ -34,6 +34,17 @@ const CartProductItem = ({ product }) => {
 				{' руб.'}
 			</div>
 		</div>
+
+		<a href="#" class="close-button">
+			<div class="in">
+				<div class="close-button-block"></div>
+				<div class="close-button-block"></div>
+			</div>
+			<div class="out">
+				<div class="close-button-block"></div>
+				<div class="close-button-block"></div>
+			</div>
+		</a>
 	</div>
 }
 

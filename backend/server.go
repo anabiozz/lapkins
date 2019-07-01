@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"net/http"
 	"os"
 	"path/filepath"
@@ -42,6 +43,8 @@ func main() {
 	if err != nil {
 		logger.Error(err)
 	}
+
+	fmt.Println(imagesPath)
 
 	paths.FullPath = imagesPath + "/full/"
 	paths.PreviewPath = imagesPath + "/preview/"

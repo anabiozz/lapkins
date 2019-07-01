@@ -7,7 +7,6 @@
 
 		.cart__item {
 			display: flex;
-			align-items: center;
 			-webkit-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.75);
 			-moz-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.75);
 			box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.75);
@@ -15,13 +14,16 @@
 			max-height: 200px;
 
 			.cart__item__image {
-				img {
-					max-height: 200px;
-				}
+				align-self: center;
+				padding: 5px;
+				max-width: 150px;
+				flex-grow: 1;
 			}
 
 			.cart__item__information {
+				align-self: center;
 				margin-left: 50px;
+				flex-grow: 3;
 
 				.cart__item__categories {
 					display: flex;
@@ -29,6 +31,102 @@
 
 					td {
 						padding-right: 10px;
+					}
+				}
+			}
+
+			$button-size: 40px;
+			$close-width: ($button-size / 10);
+
+			.close-button {
+				display: block;
+				width: $button-size;
+				height: $button-size;
+				position: relative;
+				overflow: hidden;
+
+				>div {
+					position: relative;
+				}
+
+				&-block {
+					width: 40px;
+					height: 20px;
+					position: relative;
+					overflow: hidden;
+
+					&:before,
+					&:after {
+						content: '';
+						position: absolute;
+						bottom: 0;
+						left: calc(55% - 4px);
+						display: block;
+						width: 4px;
+						height: 25px;
+						transform-origin: bottom center;
+						background: white;
+						transition: all ease-out 280ms;
+					}
+
+					&:last-of-type {
+						transform: rotate(180deg);
+					}
+				}
+
+				.in {
+					.close-button-block {
+						&:before {
+							transition-delay: 280ms;
+							transform: translateX(20px) translateY(-20px) rotate(45deg);
+						}
+
+						&:after {
+							transition-delay: 280ms;
+							transform: translateX(-22px) translateY(-22px) rotate(-45deg);
+						}
+					}
+				}
+
+				.out {
+					position: absolute;
+					top: 0;
+					left: 0;
+
+					.close-button-block {
+						&:before {
+							transform: translateX(-5px) translateY(5px) rotate(45deg);
+						}
+
+						&:after {
+							transform: translateX(5px) translateY(5px) rotate(-45deg);
+						}
+					}
+				}
+
+				&:hover {
+					.in {
+						.close-button-block {
+							&:before {
+								transform: translateX(-5px) translateY(5px) rotate(45deg);
+							}
+
+							&:after {
+								transform: translateX(5px) translateY(5px) rotate(-45deg);
+							}
+						}
+					}
+
+					.out {
+						.close-button-block {
+							&:before {
+								transform: translateX(-20px) translateY(20px) rotate(45deg);
+							}
+
+							&:after {
+								transform: translateX(20px) translateY(20px) rotate(-45deg);
+							}
+						}
 					}
 				}
 			}

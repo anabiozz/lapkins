@@ -1,4 +1,4 @@
-FROM node:8.0-alpine as node
+FROM node:8-alpine as node
 WORKDIR /usr/src/lapkin
 COPY . .
 WORKDIR /usr/src/lapkin/frontend
