@@ -6,6 +6,7 @@ import {
   DISMISS_ADD_PRODUCT_TO_CART_ERROR,
   REMOVE_PRODUCT_FROM_CART,
   LOAD_CART,
+  DECREASE_CART_ITEM
 } from '../constant';
 
 import config from '../../config';
@@ -27,6 +28,16 @@ if (typeof window !== 'undefined') {
 
 export const addProductToCart = product => ({
   type: ADD_PRODUCT_TO_CART,
+  payload: product,
+})
+
+export const increaseCartItem = product => ({
+  type: ADD_PRODUCT_TO_CART,
+  payload: product,
+})
+
+export const decreaseCartItem = product => ({
+  type: DECREASE_CART_ITEM,
   payload: product,
 })
 

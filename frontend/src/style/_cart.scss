@@ -1,6 +1,6 @@
 .cart {
 
-	.cart__table {
+	.cart__content {
 		display: flex;
 		flex-direction: column;
 		margin-top: 70px;
@@ -12,121 +12,143 @@
 			box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.75);
 			margin-bottom: 30px;
 			max-height: 200px;
+			width: 60%;
+			overflow: hidden;
+			justify-content: space-between;
 
 			.cart__item__image {
 				align-self: center;
 				padding: 5px;
 				max-width: 150px;
-				flex-grow: 1;
+				min-width: 150px;
 			}
 
-			.cart__item__information {
-				align-self: center;
-				margin-left: 50px;
-				flex-grow: 3;
+			.cart__item_content {
+				display: flex;
+				width: 100%;
+				margin: 2rem;
 
-				.cart__item__categories {
+				.cart__item__information {
+					width: 50%;
+					align-self: center;
+
+					.cart__item__description {
+						word-wrap: break-word;
+						font-weight: 600;
+					}
+					.cart__item__categories {
+						display: flex;
+						justify-content: space-between;
+						td {
+							padding-right: 10px;
+						}
+					}
+
+					.cart__item__price {
+						font-weight: 600;
+					}
+				}
+
+				.quantity {
 					display: flex;
-					justify-content: space-between;
+					justify-content: center;
+					padding: 0;
+					width: 50%;
 
-					td {
-						padding-right: 10px;
+					.quantity__minus,
+					.quantity__plus {
+						display: block;
+						width: 32px;
+						height: 32px;
+						margin: 0;
+						background: #7c7c7c; 
+						text-decoration: none;
+						text-align: center;
+						line-height: 32px;
+					}
+
+					.quantity__minus:hover,
+					.quantity__plus:hover {
+						background:#7c7c7c; 
+						color: #fff;
+					}
+
+					.quantity__minus {
+						border-radius: 3px 0 0 3px;
+					}
+
+					.quantity__plus {
+						border-radius: 0 3px 3px 0;
+					}
+
+					.quantity__input {
+						width: 48px;
+						height: 32px;
+						margin: 0;
+						padding: 0;
+						text-align: center;
+						// border-top: 2px solid #dee0ee;
+						// border-bottom: 2px solid #dee0ee;
+						// border-left: 1px solid #dee0ee;
+						// border-right: 2px solid #dee0ee;
+						background: #fff;
+						font-weight: 600;
+						color: $main_black_color;
+					}
+
+					.quantity__minus:link,
+					.quantity__plus:link {
+						color: $main_black_color;
+					}
+
+					.quantity__minus:visited,
+					.quantity__plus:visited {
+						color: #fff;
 					}
 				}
 			}
 
-			$button-size: 40px;
-			$close-width: ($button-size / 10);
-
-			.close-button {
-				display: block;
-				width: $button-size;
-				height: $button-size;
+			.close {
 				position: relative;
+				width: 25px;
+				height: 25px;
+				margin: 5px;
 				overflow: hidden;
 
-				>div {
-					position: relative;
-				}
-
-				&-block {
-					width: 40px;
-					height: 20px;
-					position: relative;
-					overflow: hidden;
-
-					&:before,
-					&:after {
-						content: '';
-						position: absolute;
-						bottom: 0;
-						left: calc(55% - 4px);
-						display: block;
-						width: 4px;
-						height: 25px;
-						transform-origin: bottom center;
-						background: white;
-						transition: all ease-out 280ms;
-					}
-
-					&:last-of-type {
-						transform: rotate(180deg);
-					}
-				}
-
-				.in {
-					.close-button-block {
-						&:before {
-							transition-delay: 280ms;
-							transform: translateX(20px) translateY(-20px) rotate(45deg);
-						}
-
-						&:after {
-							transition-delay: 280ms;
-							transform: translateX(-22px) translateY(-22px) rotate(-45deg);
-						}
-					}
-				}
-
-				.out {
-					position: absolute;
-					top: 0;
-					left: 0;
-
-					.close-button-block {
-						&:before {
-							transform: translateX(-5px) translateY(5px) rotate(45deg);
-						}
-
-						&:after {
-							transform: translateX(5px) translateY(5px) rotate(-45deg);
-						}
-					}
-				}
-
 				&:hover {
-					.in {
-						.close-button-block {
-							&:before {
-								transform: translateX(-5px) translateY(5px) rotate(45deg);
-							}
+					cursor: pointer;
 
-							&:after {
-								transform: translateX(5px) translateY(5px) rotate(-45deg);
-							}
-						}
+					&::before,
+					&::after {
+						background: $main_color;
 					}
+				}
 
-					.out {
-						.close-button-block {
-							&:before {
-								transform: translateX(-20px) translateY(20px) rotate(45deg);
-							}
+				&::before,
+				&::after {
+					content: '';
+					position: absolute;
+					height: 2px;
+					width: 100%;
+					top: 50%;
+					left: 0;
+					margin-top: -1px;
+					background: #7c7c7c; 
+				}
 
-							&:after {
-								transform: translateX(20px) translateY(20px) rotate(-45deg);
-							}
-						}
+				&::before {
+					transform: rotate(45deg);
+				}
+
+				&::after {
+					transform: rotate(-45deg);
+				}
+
+				&.hairline {
+
+					&::before,
+					&::after {
+						height: 2px;
 					}
 				}
 			}

@@ -2,54 +2,54 @@ import React from 'react';
 import Locale from '../../utils/locale';
 import PropTypes from "prop-types";
 import config from '../../config';
+import Quantity from '../../common/components/Quantity';
 const locale = new Locale('RU').get()
 
-const CartProductItem = ({ product }) => {
-
-	console.log(product);
+const CartProductItem = ({ cartItem, removeProductFromCart, increaseCartItem, decreaseCartItem }) => {
 
 	return <div className="cart__item">
 		<div className="cart__item__image">
-			<img src={`${config.imagePath.preview}${product.name}_thumb${product.ext}`} alt="" />
+			<img src={`${config.imagePath.preview}${cartItem.product.name}_thumb${cartItem.product.ext}`} alt="" />
 		</div>
 
-		<div className="cart__item__information">
-			<div className="cart__item__description">{product.decription}</div>
+		<div className="cart__item_content">
+			<div className="cart__item__information">
+				<div className="cart__item__description">{cartItem.product.decription}</div>
 
-			<table className="cart__item__categories">
-				<tbody>
-					{
-						product.categories && Object.keys(product.categories).map(key => (
-							<tr key={key}>
-								<td className="pi_table_td">{locale.get(key)}</td>
-								<td className="pi_table_td">{product.categories[key]}</td>
-							</tr>
-						))
-					}
-				</tbody>
-			</table>
+				<table className="cart__item__categories">
+					<tbody>
+						{
+							cartItem.product.categories && Object.keys(cartItem.product.categories).map(key => (
+								<tr key={key}>
+									<td className="pi_table_td">{locale.get(key)}</td>
+									<td className="pi_table_td">{cartItem.product.categories[key]}</td>
+								</tr>
+							))
+						}
+					</tbody>
+				</table>
 
-			<div className="cart__item__price">
-				{product.price}
-				{' руб.'}
+				<div className="cart__item__price">
+					{cartItem.product.price  * cartItem.count}
+					{' руб.'}
+				</div>
 			</div>
+
+			<Quantity 
+				cartItem={cartItem}
+				increaseCartItem={increaseCartItem}
+				decreaseCartItem={decreaseCartItem}
+			/>
+
 		</div>
 
-		<a href="#" class="close-button">
-			<div class="in">
-				<div class="close-button-block"></div>
-				<div class="close-button-block"></div>
-			</div>
-			<div class="out">
-				<div class="close-button-block"></div>
-				<div class="close-button-block"></div>
-			</div>
-		</a>
+		<span onClick={() => removeProductFromCart(cartItem.product)} className="close hairline"></span>
 	</div>
 }
 
 CartProductItem.propTypes = {
-  product: PropTypes.object.isRequired
+	cartItem: PropTypes.object.isRequired,
+	removeProductFromCart: PropTypes.func.isRequired,
 }
 
 export default CartProductItem

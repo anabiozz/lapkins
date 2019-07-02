@@ -2,31 +2,35 @@ import React from 'react';
 import PropTypes from "prop-types";
 import CartProductItem from '../components/CartProductItem';
 
-const CartTable = ({ products }) => {
+const CartTable = ({ cartItems, removeProductFromCart, increaseCartItem, decreaseCartItem }) => {
 
-  if (!products.length) {
+  if (!cartItems.length) {
     return <div> Корзина пуста </div>
   }
 
-  console.log(products);
-
   return (
-    <div className="cart__table">
+    <div className="cart__content">
         {
-          products.map(product => {
-            return <CartProductItem key={product.id} product={product} />
+          cartItems.map(cartItem => {
+            return <CartProductItem 
+              key={cartItem.product.id} 
+              cartItem={cartItem}
+              removeProductFromCart={removeProductFromCart}
+              increaseCartItem={increaseCartItem}
+              decreaseCartItem={decreaseCartItem}
+            />
           })
         }
 
-        {/* <div className="to-order">
-                  <button type="button">Оформить заказ</button>
-              </div> */}
+        <div className="cart__content__order">
+            <button type="button">Оформить заказ</button>
+        </div>
     </div>
   )
 }
 
 CartTable.propTypes = {
-  products: PropTypes.array.isRequired
+  cartItems: PropTypes.array.isRequired
 }
 
 export default CartTable

@@ -12,8 +12,6 @@ const cross = 'PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tI
 
 const Product = ({ product, url, productType, addProductToCart }) => {
 
-  console.log(url);
-  
   return (
     <div className="product">
       <div className="product__image">

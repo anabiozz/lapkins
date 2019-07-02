@@ -9,26 +9,25 @@ const Footer = () => {
 			<div className="col-4 footer__column">
 				<h5>LAPKIN HOME</h5>
 				<ul>
-					<li><a href="">Shop All Products</a></li>
-					<li><a href="">Ethics & Sustainability</a></li>
-					<li><a href="">Materials</a></li>
+					<li><a href="">Все продукты</a></li>
+					<li><a href="">Этика и Устойчивость</a></li>
+					<li><a href="">Материалы</a></li>
 				</ul>
 			</div>
 
 			<div className="col-4 footer__column">
-				<h5>CUSTOMER</h5>
+				<h5>Покупателям</h5>
 				<ul>
-					<li><a href="">Care & Cleaning</a></li>
 					<li><a href="">FAQ</a></li>
-					<li><a href="">Shipping and Delivery</a></li>
+					<li><a href="">Покупки и доставка</a></li>
 				</ul>
 			</div>
 
 			<div className="col-4 footer__column">
-				<h5>CONTACT US</h5>
+				<h5>Контакты</h5>
 				<ul>
-					<li><a href="">Tel: 61 2 9938 3874</a></li>
-					<li><a href="">Email: customerservice@uo.com.au</a></li>
+					<li><a href="">Тел: 89001234567</a></li>
+					<li><a href="">Email: customerservice@ru</a></li>
 				</ul>
 			</div>
 
