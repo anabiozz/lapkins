@@ -1,11 +1,16 @@
 import React from 'react';
 import PropTypes from "prop-types";
 import CartProductItem from '../components/CartProductItem';
+import Button from '../../common/components/button/Button';
 
 const CartTable = ({ cartItems, removeProductFromCart, increaseCartItem, decreaseCartItem }) => {
 
   if (!cartItems.length) {
     return <div> Корзина пуста </div>
+  }
+
+  let create = () => {
+
   }
 
   return (
@@ -17,13 +22,15 @@ const CartTable = ({ cartItems, removeProductFromCart, increaseCartItem, decreas
               cartItem={cartItem}
               removeProductFromCart={removeProductFromCart}
               increaseCartItem={increaseCartItem}
-              decreaseCartItem={decreaseCartItem}
-            />
+              decreaseCartItem={decreaseCartItem} />
           })
         }
 
         <div className="cart__content__order">
-            <button type="button">Оформить заказ</button>
+          <Button 
+            title="Оформить заказ"
+            type="primary"
+            action={create} />
         </div>
     </div>
   )

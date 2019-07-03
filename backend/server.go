@@ -20,7 +20,7 @@ import (
 
 const (
 	// URL ...
-	URL = "0.0.0.0:8080"
+	URL = "127.0.0.1:8080"
 )
 
 func main() {

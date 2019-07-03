@@ -26,13 +26,12 @@
     font-family: $primary_font;
 
     .categories {
-      font-size: 1.5rem;
+      font-size: 1.3rem;
 
       tbody {
         tr {
           td:first-child {
             font-weight: 600;
-            width: 100px;
             padding: 5px 10px 5px 0px;
           }
         }
@@ -45,6 +44,12 @@
 
     .price {
       font-size: 1.5rem;
+      font-weight: 600;
+      margin-top: 26px;
+    }
+
+    .add_to_cart {
+      margin-top: 40px;
     }
   }
 }

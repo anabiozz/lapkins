@@ -32,12 +32,14 @@ class Products extends Component {
   componentWillReceiveProps(nextProps) {
     const { getProducts, match } = nextProps;
     if (match.url !== this.props.match.url) {
+      console.log(match.params.productType);
       getProducts(config.productTypes.indexOf(match.params.productType) + 1)
     }
   }
 
   componentDidMount() {
     const { getProducts, match } = this.props
+    console.log(match);
     getProducts(config.productTypes.indexOf(match.params.productType) + 1)
   }
 

@@ -15,6 +15,8 @@ export default function (state = initialState, action) {
   switch (action.type) {
     case LOAD_CART:
       // localStorage.clear();
+      console.log(localStorage.getItem('cartProducts'));
+      
       return {
         ...state,
         cartItems: JSON.parse(localStorage.getItem('cartProducts')) || []
@@ -59,6 +61,7 @@ export default function (state = initialState, action) {
         };
       case DECREASE_CART_ITEM:
         let newState = state.cartItems.map(cartItem => {
+          if (cartItem.count == 1) return cartItem;
           let tmp = Object.assign({}, cartItem);
           if (tmp.product.name === action.payload.name) {
             tmp.product = action.payload

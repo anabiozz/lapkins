@@ -11,10 +11,11 @@ $logo_color: #181515;
 @import "normalize.scss";
 @import "common.scss";
 @import "nav.scss";
-@import "content.scss";
 @import "footer.scss";
 @import "home.scss";
 @import "products.scss";
 @import "productInfo.scss";
 @import "cart.scss";
+@import "../common/components/button/button.scss";
+@import "../common/components/quantity/quantity.scss";
 

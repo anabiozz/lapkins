@@ -5,6 +5,7 @@ import ContentLoader from 'react-content-loader';
 import config from '../../config';
 import * as actions from '../actions/productInfoActions';
 import { addProductToCart } from '../../cart/actions/cartActions';
+import Button from '../../common/components/button/Button';
 
 import Locale from '../../utils/locale';
 
@@ -79,7 +80,10 @@ export class ProductInfo extends Component {
               </div>
 
               <div className="add_to_cart">
-                <button type="button" onClick={() => addProductToCart(data)}>Добавить в корзину</button>
+                <Button 
+                  title="Добавить в корзину"
+                  type="primary"
+                  action={() => addProductToCart(data)} />
               </div>
             </div>
 
