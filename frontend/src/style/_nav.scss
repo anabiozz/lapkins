@@ -1,16 +1,40 @@
 /* HEADER */
 
-.nav {
+// nav.navbar {
+//   width: 100%;
+//   padding: 10px;
+//   position: fixed;
+//   top: 0;
+//   transition: top 0.6s;
+// }
+
+nav.navbar--hidden {
+  scroll-behavior: smooth;
   font-family: $nav_links_font;
-  width: 100%;
-  position: relative;
   z-index: 99;
+  position: fixed;
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  padding: 15px; /* Large padding which will shrink on scroll (using JS) */
+  transition: 0.4s; /* Adds a transition effect when the padding is decreased */
+}
+
+nav {
+  font-family: $nav_links_font;
+  z-index: 99;
+  width: 100%;
+  position: fixed;
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  padding: 40px 10px; /* Large padding which will shrink on scroll (using JS) */
+  transition: 0.4s; /* Adds a transition effect when the padding is decreased */
 
   .logo {
     align-items: center;
     justify-content: start;
     display: flex;
-    height: 134px;
 
     a {
       line-height: 1;
@@ -41,7 +65,7 @@
           font-size: 1.4rem;
           color: $nav_links_color;
           font-weight: 400;
-          line-height: 134px;
+          // line-height: 134px;
           display: block;
           position: relative;
           text-transform: capitalize;
@@ -52,17 +76,16 @@
   }
 
   .icons {
-    height: 134px;
     display: flex;
     align-items: center;
-    justify-content: flex-end;
-    // background-color: beige;
+    justify-content: space-between;
+    max-width: 150px;
+    margin: 0 auto;
 
     .icon {
 
-      .icon-search {
+      .icon-heart {
         display: inline-block;
-        margin-right: 15px;
       }
 
       .icon-user {
@@ -71,12 +94,11 @@
 
       .icon-cart {
         display: inline-block;
-        margin-left: 15px;
       }
 
       span {
-        height: 20px;
-        width: 20px;
+        height: 30px;
+        width: 30px;
       }
     }
   }

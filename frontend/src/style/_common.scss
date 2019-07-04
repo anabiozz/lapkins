@@ -81,7 +81,7 @@ ol {
 }
 
 body::-webkit-scrollbar {
-  width: 3px;
+  width: 10px;
 }
 
 body::-webkit-scrollbar-track {
@@ -99,6 +99,9 @@ html {
   -webkit-text-size-adjust: 100%;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   margin-left: calc(100vw - 100%);
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 body {
@@ -106,8 +109,6 @@ body {
   font-size: 1em;
   color: $main_color;
   font-weight: 400;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
   margin: 0;
   padding: 0;
   background-color: #fff;
@@ -244,6 +245,7 @@ a {
 
   .content{
     flex: 1;
+    margin-top: 135px;
   }
 }
 
