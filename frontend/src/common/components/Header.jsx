@@ -4,7 +4,7 @@ const cart = 'PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pg0KPCEtLS
 const search = 'PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pg0KPCEtLSBHZW5lcmF0b3I6IEFkb2JlIElsbHVzdHJhdG9yIDE5LjAuMCwgU1ZHIEV4cG9ydCBQbHVnLUluIC4gU1ZHIFZlcnNpb246IDYuMDAgQnVpbGQgMCkgIC0tPg0KPHN2ZyB2ZXJzaW9uPSIxLjEiIGlkPSJDYXBhXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4Ig0KCSB2aWV3Qm94PSIwIDAgNTEuOTk3IDUxLjk5NyIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgNTEuOTk3IDUxLjk5NzsiIHhtbDpzcGFjZT0icHJlc2VydmUiPg0KPGc+DQoJPHBhdGggZD0iTTUxLjkxMSwxNi4yNDJDNTEuMTUyLDcuODg4LDQ1LjIzOSwxLjgyNywzNy44MzksMS44MjdjLTQuOTMsMC05LjQ0NCwyLjY1My0xMS45ODQsNi45MDUNCgkJYy0yLjUxNy00LjMwNy02Ljg0Ni02LjkwNi0xMS42OTctNi45MDZjLTcuMzk5LDAtMTMuMzEzLDYuMDYxLTE0LjA3MSwxNC40MTVjLTAuMDYsMC4zNjktMC4zMDYsMi4zMTEsMC40NDIsNS40NzgNCgkJYzEuMDc4LDQuNTY4LDMuNTY4LDguNzIzLDcuMTk5LDEyLjAxM2wxOC4xMTUsMTYuNDM5bDE4LjQyNi0xNi40MzhjMy42MzEtMy4yOTEsNi4xMjEtNy40NDUsNy4xOTktMTIuMDE0DQoJCUM1Mi4yMTYsMTguNTUzLDUxLjk3LDE2LjYxMSw1MS45MTEsMTYuMjQyeiBNNDkuNTIxLDIxLjI2MWMtMC45ODQsNC4xNzItMy4yNjUsNy45NzMtNi41OSwxMC45ODVMMjUuODU1LDQ3LjQ4MUw5LjA3MiwzMi4yNQ0KCQljLTMuMzMxLTMuMDE4LTUuNjExLTYuODE4LTYuNTk2LTEwLjk5Yy0wLjcwOC0yLjk5Ny0wLjQxNy00LjY5LTAuNDE2LTQuNzAxbDAuMDE1LTAuMTAxQzIuNzI1LDkuMTM5LDcuODA2LDMuODI2LDE0LjE1OCwzLjgyNg0KCQljNC42ODcsMCw4LjgxMywyLjg4LDEwLjc3MSw3LjUxNWwwLjkyMSwyLjE4M2wwLjkyMS0yLjE4M2MxLjkyNy00LjU2NCw2LjI3MS03LjUxNCwxMS4wNjktNy41MTQNCgkJYzYuMzUxLDAsMTEuNDMzLDUuMzEzLDEyLjA5NiwxMi43MjdDNDkuOTM4LDE2LjU3LDUwLjIyOSwxOC4yNjQsNDkuNTIxLDIxLjI2MXoiLz4NCgk8cGF0aCBkPSJNMTUuOTk5LDcuOTA0Yy01LjUxNCwwLTEwLDQuNDg2LTEwLDEwYzAsMC41NTMsMC40NDcsMSwxLDFzMS0wLjQ0NywxLTFjMC00LjQxMSwzLjU4OS04LDgtOGMwLjU1MywwLDEtMC40NDcsMS0xDQoJCVMxNi41NTEsNy45MDQsMTUuOTk5LDcuOTA0eiIvPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPC9zdmc+DQo='
 const user = 'PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pg0KPCEtLSBHZW5lcmF0b3I6IEFkb2JlIElsbHVzdHJhdG9yIDE5LjAuMCwgU1ZHIEV4cG9ydCBQbHVnLUluIC4gU1ZHIFZlcnNpb246IDYuMDAgQnVpbGQgMCkgIC0tPg0KPHN2ZyB2ZXJzaW9uPSIxLjEiIGlkPSJDYXBhXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4Ig0KCSB2aWV3Qm94PSIwIDAgNjAgNjAiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDYwIDYwOyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSI+DQo8cGF0aCBkPSJNNDguMDE0LDQyLjg4OWwtOS41NTMtNC43NzZDMzcuNTYsMzcuNjYyLDM3LDM2Ljc1NiwzNywzNS43NDh2LTMuMzgxYzAuMjI5LTAuMjgsMC40Ny0wLjU5OSwwLjcxOS0wLjk1MQ0KCWMxLjIzOS0xLjc1LDIuMjMyLTMuNjk4LDIuOTU0LTUuNzk5QzQyLjA4NCwyNC45Nyw0MywyMy41NzUsNDMsMjJ2LTRjMC0wLjk2My0wLjM2LTEuODk2LTEtMi42MjV2LTUuMzE5DQoJYzAuMDU2LTAuNTUsMC4yNzYtMy44MjQtMi4wOTItNi41MjVDMzcuODU0LDEuMTg4LDM0LjUyMSwwLDMwLDBzLTcuODU0LDEuMTg4LTkuOTA4LDMuNTNDMTcuNzI0LDYuMjMxLDE3Ljk0NCw5LjUwNiwxOCwxMC4wNTYNCgl2NS4zMTljLTAuNjQsMC43MjktMSwxLjY2Mi0xLDIuNjI1djRjMCwxLjIxNywwLjU1MywyLjM1MiwxLjQ5NywzLjEwOWMwLjkxNiwzLjYyNywyLjgzMyw2LjM2LDMuNTAzLDcuMjM3djMuMzA5DQoJYzAsMC45NjgtMC41MjgsMS44NTYtMS4zNzcsMi4zMmwtOC45MjEsNC44NjZDOC44MDEsNDQuNDI0LDcsNDcuNDU4LDcsNTAuNzYyVjU0YzAsNC43NDYsMTUuMDQ1LDYsMjMsNnMyMy0xLjI1NCwyMy02di0zLjA0Mw0KCUM1Myw0Ny41MTksNTEuMDg5LDQ0LjQyNyw0OC4wMTQsNDIuODg5eiBNNTEsNTRjMCwxLjM1Ny03LjQxMiw0LTIxLDRTOSw1NS4zNTcsOSw1NHYtMy4yMzhjMC0yLjU3MSwxLjQwMi00LjkzNCwzLjY1OS02LjE2NA0KCWw4LjkyMS00Ljg2NkMyMy4wNzMsMzguOTE3LDI0LDM3LjM1NCwyNCwzNS42NTV2LTQuMDE5bC0wLjIzMy0wLjI3OGMtMC4wMjQtMC4wMjktMi40NzUtMi45OTQtMy40MS03LjA2NWwtMC4wOTEtMC4zOTZsLTAuMzQxLTAuMjINCglDMTkuMzQ2LDIzLjMwMywxOSwyMi42NzYsMTksMjJ2LTRjMC0wLjU2MSwwLjIzOC0xLjA4NCwwLjY3LTEuNDc1TDIwLDE2LjIyOFYxMGwtMC4wMDktMC4xMzFjLTAuMDAzLTAuMDI3LTAuMzQzLTIuNzk5LDEuNjA1LTUuMDIxDQoJQzIzLjI1MywyLjk1OCwyNi4wODEsMiwzMCwyYzMuOTA1LDAsNi43MjcsMC45NTEsOC4zODYsMi44MjhjMS45NDcsMi4yMDEsMS42MjUsNS4wMTcsMS42MjMsNS4wNDFMNDAsMTYuMjI4bDAuMzMsMC4yOTgNCglDNDAuNzYyLDE2LjkxNiw0MSwxNy40MzksNDEsMTh2NGMwLDAuODczLTAuNTcyLDEuNjM3LTEuNDIyLDEuODk5bC0wLjQ5OCwwLjE1M2wtMC4xNiwwLjQ5NWMtMC42NjksMi4wODEtMS42MjIsNC4wMDMtMi44MzQsNS43MTMNCgljLTAuMjk3LDAuNDIxLTAuNTg2LDAuNzk0LTAuODM3LDEuMDc5TDM1LDMxLjYyM3Y0LjEyNWMwLDEuNzcsMC45ODMsMy4zNjEsMi41NjYsNC4xNTNsOS41NTMsNC43NzYNCglDNDkuNTEzLDQ1Ljg3NCw1MSw0OC4yOCw1MSw1MC45NTdWNTR6Ii8+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8Zz4NCjwvZz4NCjxnPg0KPC9nPg0KPGc+DQo8L2c+DQo8L3N2Zz4NCg=='
 
-export default class Navbar extends React.Component {
+export default class Header extends React.Component {
 
   constructor(props) {
     super(props);
@@ -24,7 +24,6 @@ export default class Navbar extends React.Component {
 
   handleScroll = () => {
     const currentScrollPos = window.pageYOffset;
-    console.log(currentScrollPos);
 
     if (currentScrollPos > 50) {
       this.setState({
@@ -39,72 +38,65 @@ export default class Navbar extends React.Component {
 
   render() {
     return(
-      <nav className={!this.state.visible ? "navbar--hidden" : "navbar"}>
+      <header className={!this.state.visible ? "hidden" : ""}>
+        <div className="header__content">
+          <div className="logo">
+            <Link to="/">Lapkin Home</Link>
+          </div>
 
-        <div className="container">
-        
-          <div className="row">
+          
 
-            <div className="col-4">
-              <div className="logo">
-                <Link to="/">Lapkin Home</Link>
+          <div className="header__search">
+            <div className="box">
+              <div className="container-4">
+                <input type="search" id="search" placeholder="Найди все что ты хочешь" />
+                <button className="icon">Поиск</button>
               </div>
             </div>
-
-            <div className="col-6 nav-quicklist">
-              <ul >
-                <li className="drop"><Link to="/products/wallart">Открытки</Link></li>
-                <li><Link to="/products/stationary">Канцелярия</Link></li>
-                <li><Link to="/products/gifts">Подарки</Link></li>
-                <li><Link to="/products/wraps">Обертка</Link></li>
-              </ul>
-            </div>
-
-            <div className="col-2">
-              <ul className="icons">
-
-                <li className="icon">
-                  <Link to="/">
-                    <span className="icon-user">
-                      <img src={`data:image/svg+xml;base64,${user}`} />
-                    </span>
-                  </Link>
-                </li>
-
-                <li className="icon">
-                  <Link to="/">
-                    <span className="icon-heart">
-                      <img src={`data:image/svg+xml;base64,${search}`} />
-                    </span>
-                  </Link>
-                </li>
-
-                
-
-                <li className="icon">
-                  <Link to="/cart">
-                    <span className="icon-cart">
-                      <img src={`data:image/svg+xml;base64,${cart}`} />
-                    </span>
-                  </Link>
-                </li>
-
-              </ul>
-            </div>
           </div>
+
+          <ul className="icons">
+
+            <li className="icon">
+              <Link to="/">
+                <span className="icon-user">
+                  <img src={`data:image/svg+xml;base64,${user}`} />
+                </span>
+              </Link>
+            </li>
+
+            <li className="icon">
+              <Link to="/">
+                <span className="icon-heart">
+                  <img src={`data:image/svg+xml;base64,${search}`} />
+                </span>
+              </Link>
+            </li>
+
+            
+
+            <li className="icon">
+              <Link to="/cart">
+                <span className="icon-cart">
+                  <img src={`data:image/svg+xml;base64,${cart}`} />
+                </span>
+              </Link>
+            </li>
+
+          </ul>
         </div>
 
-        {/* <div className="nav-section-container">
-          <div className="brand">
-            <Link to="/">
-                <img/>
-            </Link>
-          </div>
-        </div> */}
+        <div className="nav-quicklist">
+          <ul >
+            <li className="drop"><Link to="/products/wallart">Открытки</Link></li>
+            <li><Link to="/products/stationary">Канцелярия</Link></li>
+            <li><Link to="/products/gifts">Подарки</Link></li>
+            <li><Link to="/products/wraps">Обертка</Link></li>
+          </ul>
+        </div>
 
         
-
-      </nav>
+      </header>
     )
   }
 }

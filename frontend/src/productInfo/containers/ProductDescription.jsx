@@ -31,7 +31,7 @@ const MyLoader = props => (
   </ContentLoader>
 )
 
-export class ProductInfo extends Component {
+export class ProductDescription extends Component {
   constructor(props) {
     super(props)
     const { reset, getProductByID, match } = this.props
@@ -54,39 +54,45 @@ export class ProductInfo extends Component {
       case data && Object.keys(data).length > 0:
         return (
           <Fragment>
-            <div className="image">
+            <div className="product__desc__image">
               <img src={`${config.imagePath.full}${data.name}${data.ext}`} alt="" />
             </div>
 
-            <div className="information">
-              <div className="description">{data.decription}</div>
+            <div className="product__desc__block">
 
-              <table className="categories">
-                <tbody>
-                  {
-                    data.categories && Object.keys(data.categories).map(key => (
-                      <tr key={key}>
-                        <td className="pi_table_td">{locale.get(key)}</td>
-                        <td className="pi_table_td">{data.categories[key]}</td>
-                      </tr>
-                    ))
-                  }
-                </tbody>
-              </table>
-
-              <div className="price">
-                {data.price}
-                {' руб.'}
+              <div className="analog__design">
+                <p> Lorem ipsum dolor</p>
               </div>
 
-              <div className="add_to_cart">
-                <Button 
-                  title="Добавить в корзину"
-                  type="primary"
-                  action={() => addProductToCart(data)} />
+              <div className="information">
+                <div className="description">{data.decription}</div>
+
+                <table className="categories">
+                  <tbody>
+                    {
+                      data.categories && Object.keys(data.categories).map(key => (
+                        <tr key={key}>
+                          <td className="pi_table_td">{locale.get(key)}</td>
+                          <td className="pi_table_td">{data.categories[key]}</td>
+                        </tr>
+                      ))
+                    }
+                  </tbody>
+                </table>
+
+                <div className="price">
+                  {data.price}
+                  {' руб.'}
+                </div>
+
+                <div className="add_to_cart">
+                  <Button 
+                    title="Добавить в корзину"
+                    type="primary"
+                    action={() => addProductToCart(data)} />
+                </div>
               </div>
             </div>
-
           </Fragment>
         )
       default:
@@ -96,20 +102,14 @@ export class ProductInfo extends Component {
 
   render() {
     return (
-      <div className="container">
-        <div className="row">
-          <div className="col-12">
-            <div className="product_info">
-              { this.switchElement(this.props) }
-            </div>
-          </div>
-        </div>
+      <div className="product__desc">
+        { this.switchElement(this.props) }
       </div>
     )
   }
 }
 
-ProductInfo.propTypes = {
+ProductDescription.propTypes = {
   data: PropTypes.PropTypes.shape(productProp).isRequired,
   errors: PropTypes.string.isRequired,
   fetching: PropTypes.bool.isRequired,
@@ -126,4 +126,4 @@ const mapStateToProps = state => ({
 })
 
 
-export default connect(mapStateToProps, { ...actions, addProductToCart })(ProductInfo)
+export default connect(mapStateToProps, { ...actions, addProductToCart })(ProductDescription)

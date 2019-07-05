@@ -1,0 +1,241 @@
+/* HEADER */
+
+header.hidden {
+  font-family: $nav_links_font;
+  z-index: 99;
+  position: fixed;
+  background-color: #fff;
+  padding: 15px;
+  /* Large padding which will shrink on scroll (using JS) */
+  transition: 0.4s;
+  /* Adds a transition effect when the padding is decreased */
+  width: 100%;
+  box-sizing: border-box;
+
+  .nav-quicklist {
+    margin-top: -50px;
+    opacity: 0;
+  }
+
+
+}
+
+header {
+  font-family: $nav_links_font;
+  z-index: 99;
+  position: fixed;
+  font-size: 0;
+  background-color: #fff;
+  padding: 40px 10px;
+  transition: 0.4s;
+  overflow: hidden;
+  top: 0;
+  /* Position the navbar at the top of the page */
+  width: 100%;
+  box-sizing: border-box;
+
+  .header__content {
+    display: flex;
+    width: 70%;
+    justify-content: space-between;
+    margin: 0 auto;
+
+    .logo {
+      vertical-align: top;
+      display: flex;
+      justify-content: center;
+      margin-right: 50px;
+
+      a {
+        font-weight: 100;
+        align-self: center;
+        font-family: $logo_font;
+        color: $logo_color;
+        text-transform: uppercase;
+      }
+    }
+
+    .header__search {
+      flex: 2;
+
+      .container-4 {
+        overflow: hidden;
+        width: 400px;
+        vertical-align: middle;
+        white-space: nowrap;
+      }
+
+      .container-4 input#search {
+        width: 400px;
+        height: 40px;
+        // border: none;
+        font-size: 10pt;
+        float: left;
+        padding-left: 15px;
+        box-sizing: border-box;
+      }
+
+      .container-4 input#search::-webkit-input-placeholder {
+        color: #65737e;
+      }
+
+      .container-4 input#search:-moz-placeholder {
+        /* Firefox 18- */
+        color: #65737e;
+      }
+
+      .container-4 input#search::-moz-placeholder {
+        /* Firefox 19+ */
+        color: #65737e;
+      }
+
+      .container-4 button.icon {
+        border: none;
+        background: $main_black_color;
+        height: 40px;
+        width: 50px;
+        color: #fff;
+        opacity: 0;
+        font-size: 10pt;
+
+        -webkit-transition: all .55s ease;
+        -moz-transition: all .55s ease;
+        -ms-transition: all .55s ease;
+        -o-transition: all .55s ease;
+        transition: all .55s ease;
+      }
+
+      .container-4:hover button.icon,
+      .container-4:active button.icon,
+      .container-4:focus button.icon {
+        outline: none;
+        opacity: 1;
+        margin-left: -50px;
+      }
+
+      .container-4:hover button.icon:hover {
+        background: #818181;
+      }
+    }
+
+    .icons {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-width: 115px;
+      max-width: 115px;
+
+      .icon {
+
+        .icon-heart {
+          display: inline-block;
+        }
+
+        .icon-user {
+          display: inline-block;
+        }
+
+        .icon-cart {
+          display: inline-block;
+        }
+      }
+    }
+  }
+
+  .nav-quicklist {
+    width: 70%;
+    height: 100%;
+    margin: 0 auto;
+    display: flex;
+    padding-top: 30px;
+    box-sizing: border-box;
+
+    ul {
+      display: flex;
+      justify-content: space-between;
+      width: 50%;
+
+      li {
+        color: $main_black_color;
+
+        a {
+          // font-weight: 400;
+          display: block;
+          text-align: center;
+          text-decoration: none;
+          color: $nav_links_color;
+          text-transform: capitalize;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+
+
+}
+
+@media all and (max-width: 500px) {
+  .nav-quicklist ul>li {
+    flex-basis: 100%;
+  }
+
+  .nav-quicklist ul {
+    order: 1;
+  }
+}
+
+@media all and (max-width: 768px) {
+  header .nav-quicklist ul li a {
+    font-size: 1.1rem;
+  }
+
+  nav .logo a {
+    font-size: 1.9rem;
+  }
+}
+
+@media all and (max-width: 991px) and (min-width: 768px) {
+  header .nav-quicklist ul {
+    flex-wrap: wrap;
+  }
+
+  header .nav-quicklist ul>li {
+    flex-basis: 50%;
+  }
+}
+
+@media all and (max-width: 1377px) and (min-width: 992px) {
+  header .nav-quicklist ul li a {
+    font-size: 1rem;
+  }
+
+  header .logo a {
+    font-size: 1.6rem;
+  }
+
+  header .icons .icon span {
+    height: 20px;
+    width: 20px;
+  }
+
+  header .header__content {
+    width: 80%;
+  }
+}
+
+@media all and (min-width: 1378px) {
+  header .nav-quicklist ul li a {
+    font-size: 1rem;
+  }
+
+  header .logo a {
+    font-size: 1.8rem;
+  }
+
+  header .icons .icon span {
+    height: 25px;
+    width: 25px;
+  }
+}
+
+/* END HEADER */

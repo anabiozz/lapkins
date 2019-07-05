@@ -2,8 +2,26 @@
   width: 100%;
   display: grid;
   grid-template-columns: repeat(auto-fill, 270px);
-  grid-gap: 1.5em;
+  grid-gap: 1em;
   justify-content: space-between;
 
   @import "product";
 }
+
+@media all and (max-width: 500px) {}
+
+@media all and (max-width: 768px) {}
+
+@media all and (max-width: 991px) and (min-width: 768px) {}
+
+@media all and (max-width: 1377px) and (min-width: 992px) {
+  // .products {
+  //   width: 100%;
+  //   display: grid;
+  //   grid-template-columns: repeat(auto-fill, auto-fill);
+  //   grid-gap: 1.5em;
+  //   justify-content: space-between;
+  // }
+}
+
+@media all and (min-width: 1378px) {}

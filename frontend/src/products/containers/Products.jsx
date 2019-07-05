@@ -49,34 +49,28 @@ class Products extends Component {
     console.log('RENDER <Products>')
 
     return (
-     <div className="container">
-        <div className="row">
-          <div className="col-12">
-            <div className="products">
-              {
-                fetching && <MyLoader />
-              }
-              {
-                errors && (
-                <div style={{ marginTop: '200px' }}>
-                  <strong>ERROR: </strong>
-                  {errors.message}
-                </div>
-                )
-              }
-              {
-                data && data.length > 0 && data.map(product => (
-                  <Product 
-                    key={product.id} 
-                    url={`${config.imagePath.preview}${product.name}_thumb${product.ext}`} 
-                    product={product}
-                    productType={match.params.productType}
-                    addProductToCart={addProductToCart} />
-                ))
-              }
-            </div>
+      <div className="products">
+        {
+          fetching && <MyLoader />
+        }
+        {
+          errors && (
+          <div style={{ marginTop: '200px' }}>
+            <strong>ERROR: </strong>
+            {errors.message}
           </div>
-        </div>
+          )
+        }
+        {
+          data && data.length > 0 && data.map(product => (
+            <Product 
+              key={product.id} 
+              url={`${config.imagePath.preview}${product.name}_thumb${product.ext}`} 
+              product={product}
+              productType={match.params.productType}
+              addProductToCart={addProductToCart} />
+          ))
+        }
       </div>
     )
   }
