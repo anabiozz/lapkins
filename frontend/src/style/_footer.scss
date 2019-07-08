@@ -10,7 +10,7 @@ footer {
 	flex-direction: row;
 	font-size: 1.3rem;
 	background-color: $main_black_color;
-	color: $product_background_color;
+	color: #fff;
 
 	.footer__content {
 		display: flex;
@@ -25,7 +25,7 @@ footer {
 			flex-direction: column;
 
 			a {
-				color: $product_background_color;
+				color: #fff;
 			}
 		}
 	}

@@ -57,14 +57,18 @@ html {
   padding: 0;
 }
 
-body {
+@mixin font($weight) {
   font-family: $primary_font;
   color: $main_color;
-  font-weight: 400;
+  font-weight: $weight;
+  font-size: 16px;
+}
+
+body {
   margin: 0;
   padding: 0;
-  font-size: 16px;
   background-color: #fff;
+  @include font(400)
 }
 
 ::selection {
@@ -209,5 +213,53 @@ a {
 
   100% {
     opacity: 1;
+  }
+}
+
+
+
+$colors: (
+  "primary": $main_black_color,
+  "secondary": $main_color,
+);
+
+@function color($key) {
+  @if not map-has-key($color, $key) {
+    @warn "Key `#{$key}` not found in $colors map.";
+  }
+  @return map-get($colors, $key)
+}
+
+@mixin unity-parent($child) {
+  @at-root #{selector-unity(&, $child)} {
+    @content;
+  }
+}
+
+@mixin max-screen($res) {
+  @media screen and (max-width: $res) {
+    @content;
+  }
+}
+
+@mixin grid($cols, $margin) {
+  float: left;
+  background: #7e779e;
+
+  margin-bottom: $margin;
+  height: 150px;
+
+  @if($cols >= 5) {
+    width: 100%;
+    margin-right: 0;
+  }
+  @else {
+    width: ((100% - (($cols - 1) * $margin)) / $cols);
+    margin-right: $margin;
+  }
+
+  // Отменяю марджин у последнего элемента
+  &:nth-child(#{$cols}n) {
+    margin-right: 0;
   }
 }

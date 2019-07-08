@@ -1,6 +1,6 @@
 $primary_font: 'Open Sans Condensed', sans-serif;
-$nav_links_font: 'Open Sans Condensed', sans-serif;
-$logo_font: 'Josefin Sans', sans-serif;
+$nav_links_font:  'Open Sans Condensed', sans-serif;
+$logo_font: 'Josefin Sans', sans-serif; //'Josefin Sans', sans-serif;
 
 $product_background_color: #ece8da;
 $main_black_color: #3d3d3d;
@@ -15,7 +15,7 @@ $logo_color: #181515;
 @import "footer.scss";
 @import "home.scss";
 @import "products.scss";
-@import "product_desc.scss";
+@import "product.scss";
 @import "cart.scss";
 @import "../common/components/button/button.scss";
 @import "../common/components/quantity/quantity.scss";

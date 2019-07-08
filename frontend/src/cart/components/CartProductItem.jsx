@@ -7,16 +7,16 @@ const locale = new Locale('RU').get()
 
 const CartProductItem = ({ cartItem, removeProductFromCart, increaseCartItem, decreaseCartItem }) => {
 
-	return <div className="cart__item">
-		<div className="cart__item__image">
+	return <div className="cart__content__item">
+		<div className="cart__content__item__image">
 			<img src={`${config.imagePath.preview}${cartItem.product.name}_thumb${cartItem.product.ext}`} alt="" />
 		</div>
 
-		<div className="cart__item_content">
-			<div className="cart__item__information">
-				<div className="cart__item__description">{cartItem.product.decription}</div>
+		<div className="cart__content__item_content">
+			<div className="cart__content__item__information">
+				<div className="cart__content__item__description">{cartItem.product.decription}</div>
 
-				<table className="cart__item__categories">
+				<table className="cart__content__item__categories">
 					<tbody>
 						{
 							cartItem.product.categories && Object.keys(cartItem.product.categories).map(key => (
@@ -29,7 +29,7 @@ const CartProductItem = ({ cartItem, removeProductFromCart, increaseCartItem, de
 					</tbody>
 				</table>
 
-				<div className="cart__item__price">
+				<div className="cart__content__item__price">
 					{cartItem.product.price  * cartItem.count}
 					{' руб.'}
 				</div>

@@ -39,17 +39,30 @@ export default class Header extends React.Component {
   render() {
     return(
       <header className={!this.state.visible ? "hidden" : ""}>
+
+        <div className="hamburger">
+          <input id="toggle" type="checkbox" />
+          <label className="toggle-container" htmlFor="toggle">
+              <span className="button button-toggle"></span>
+          </label>
+          <nav className="nav">  
+            <Link className="nav-item" to="/products/wallart">Открытки</Link>
+            <Link className="nav-item" to="/products/stationary">Канцелярия</Link>
+            <Link className="nav-item" to="/products/gifts">Подарки</Link>
+            <Link className="nav-item" to="/products/wraps">Обертка</Link>
+          </nav>
+        </div>
+
         <div className="header__content">
+
           <div className="logo">
             <Link to="/">Lapkin Home</Link>
           </div>
 
-          
-
           <div className="header__search">
             <div className="box">
               <div className="container-4">
-                <input type="search" id="search" placeholder="Найди все что ты хочешь" />
+                <input type="search" id="search" placeholder="Найди все что хочешь" />
                 <button className="icon">Поиск</button>
               </div>
             </div>
@@ -73,8 +86,6 @@ export default class Header extends React.Component {
               </Link>
             </li>
 
-            
-
             <li className="icon">
               <Link to="/cart">
                 <span className="icon-cart">
@@ -84,16 +95,18 @@ export default class Header extends React.Component {
             </li>
 
           </ul>
+
+         
         </div>
 
-        <div className="nav-quicklist">
+        <nav className="nav-quicklist">
           <ul >
             <li className="drop"><Link to="/products/wallart">Открытки</Link></li>
             <li><Link to="/products/stationary">Канцелярия</Link></li>
             <li><Link to="/products/gifts">Подарки</Link></li>
             <li><Link to="/products/wraps">Обертка</Link></li>
           </ul>
-        </div>
+        </nav>
 
         
       </header>

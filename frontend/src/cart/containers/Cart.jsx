@@ -33,39 +33,33 @@ class Cart extends Component {
     const { cartItems, errors, fetching, removeProductFromCart, increaseCartItem, decreaseCartItem } = this.props;
 
     return (
-      <div className="container">
-        <div className="row">
-          <div className="col-12">
-            <div className="cart">
-              <h2 className="cart__title">ОФОРМЛЕНИЕ ЗАКАЗА</h2>
+      <div className="cart">
+        <h2 className="cart__title">ОФОРМЛЕНИЕ ЗАКАЗА</h2>
 
-              {
-                fetching && <MyLoader />
-              }
+        {
+          fetching && <MyLoader />
+        }
 
-              {
-                errors && (
-                <div style={{ marginTop: '200px' }}>
-                  <strong>ERROR: </strong>
-                  {errors.message}
-                </div>
-                )
-              }
-
-              {
-                cartItems && cartItems.length == 0 
-                ? <div className="cart__no__product">В вашей корзине пока нет товаров</div> 
-                : <CartTable
-                    cartItems={this.props.cartItems}
-                    removeProductFromCart={removeProductFromCart}
-                    increaseCartItem={increaseCartItem}
-                    decreaseCartItem={decreaseCartItem}
-                  /> 
-              }
-
-            </div>
+        {
+          errors && (
+          <div style={{ marginTop: '200px' }}>
+            <strong>ERROR: </strong>
+            {errors.message}
           </div>
-        </div>
+          )
+        }
+
+        {
+          cartItems && cartItems.length == 0 
+          ? <div className="cart__no__product">В вашей корзине пока нет товаров</div> 
+          : <CartTable
+              cartItems={this.props.cartItems}
+              removeProductFromCart={removeProductFromCart}
+              increaseCartItem={increaseCartItem}
+              decreaseCartItem={decreaseCartItem}
+            /> 
+        }
+
       </div>
     )
   }
