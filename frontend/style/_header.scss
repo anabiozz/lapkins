@@ -1,0 +1,458 @@
+/* HEADER */
+
+header.hidden {
+  z-index: 99;
+
+  .header__content {
+    padding: 10px 0;
+    transition: 0.6s;
+    z-index: 99;
+    width: 70%;
+    background-color: #fff;
+    margin: 0 auto;
+  }
+
+  .nav-quicklist {
+    margin-top: -250px;
+    opacity: 0;
+  }
+}
+
+header {
+  font-family: $nav_links_font;
+  position: fixed;
+  font-size: 0;
+  background-color: #fff;
+  top: 0;
+  width: 100%;
+  z-index: 99;
+
+  .header__content {
+    display: flex;
+    width: 70%;
+    background-color: #fff;
+    justify-content: space-between;
+    margin: 0 auto;
+    padding: 30px 0;
+    transition: 0.6s;
+
+    .logo {
+      vertical-align: top;
+      display: flex;
+      justify-content: center;
+      margin-right: 50px;
+
+      a {
+        font-weight: 100;
+        align-self: center;
+        justify-self: center;
+        font-family: $logo_font;
+        color: $logo_color;
+        text-transform: uppercase;
+      }
+    }
+
+    .header__search {
+      flex: 2;
+
+      .container-4 {
+        // overflow: hidden;
+        width: 80%;
+        vertical-align: middle;
+        white-space: nowrap;
+      }
+
+      .container-4 input#search {
+        width: 80%;
+        height: 40px;
+        // border: none;
+        font-size: 10pt;
+        float: left;
+        padding-left: 15px;
+        box-sizing: border-box;
+      }
+
+      .container-4 input#search::-webkit-input-placeholder {
+        color: #65737e;
+      }
+
+      .container-4 input#search:-moz-placeholder {
+        /* Firefox 18- */
+        color: #65737e;
+      }
+
+      .container-4 input#search::-moz-placeholder {
+        /* Firefox 19+ */
+        color: #65737e;
+      }
+
+      .container-4 button.icon {
+        border: none;
+        background: $main_black_color;
+        height: 40px;
+        width: 50px;
+        color: #fff;
+        opacity: 0;
+        font-size: 10pt;
+
+        -webkit-transition: all .55s ease;
+        -moz-transition: all .55s ease;
+        -ms-transition: all .55s ease;
+        -o-transition: all .55s ease;
+        transition: all .55s ease;
+      }
+
+      .container-4:hover button.icon,
+      .container-4:active button.icon,
+      .container-4:focus button.icon {
+        outline: none;
+        opacity: 1;
+        margin-left: -50px;
+      }
+
+      .container-4:hover button.icon:hover {
+        background: #818181;
+      }
+    }
+
+    .icons {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-width: 115px;
+      max-width: 115px;
+
+      .icon {
+
+        .icon-heart {
+          display: inline-block;
+        }
+
+        .icon-user {
+          display: inline-block;
+        }
+
+        .icon-cart {
+          display: inline-block;
+        }
+      }
+    }
+  }
+
+  .nav-quicklist {
+    width: 70%;
+    height: 100%;
+    margin: 0 auto;
+    display: flex;
+    box-sizing: border-box;
+
+    ul {
+      display: flex;
+      justify-content: space-between;
+      width: 50%;
+
+      li {
+        color: $main_black_color;
+
+        a {
+          font-weight: 400;
+          // font-weight: 600;
+          display: block;
+          text-align: center;
+          text-decoration: none;
+          color: $nav_links_color;
+          text-transform: capitalize;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+
+
+}
+
+// @media all and (max-width: 500px) {
+//   .nav-quicklist ul>li {
+//     flex-basis: 100%;
+//   }
+
+//   .nav-quicklist ul {
+//     order: 1;
+//   }
+// }
+
+// @media all and (max-width: 768px) {
+//   header .nav-quicklist ul li a {
+//     font-size: 1.1rem;
+//   }
+
+//   nav .logo a {
+//     font-size: 1.9rem;
+//   }
+// }
+
+$items: 4;
+$transition-duration: 0.5s;
+$transition-delay: 0.05s;
+
+@media all and (max-width: 991px) and (min-width: 300px) {
+
+  header {
+    position: relative;
+    overflow: hidden;
+    height: 100%;
+   
+    .hamburger {
+      display: flex;
+      justify-content: flex-end;
+      
+      // To hide the checkbox
+      #toggle {
+        position: absolute;
+        right: -100%;
+        top: -100%;
+      }
+
+      // #toggle:focus {
+
+      //   &~.toggle-container .button-toggle {
+      //     box-shadow: 0 0 0 8px rgba(0, 0, 0, 0.1), inset 0 0 0 20px rgba(0, 0, 0, 0.1);
+      //   }
+      // }
+
+      // Styles for the 'open' state, if the checkbox is checked
+      #toggle:checked {
+        // Any element you need to change the style if menu is open goes here, using the sibling selector (~) as follows
+
+        // Making the "X" icon using `:before` and `:after` pseudo-elements
+        &~.toggle-container .button-toggle {
+          box-shadow: 0 0 0 550px rgba(0, 0, 0, 0.1), inset 0 0 0 20px rgba(0, 0, 0, 0.1);
+
+          &:hover {
+            box-shadow: 0 0 0 550px rgba(0, 0, 0, 0.1), inset 0 0 0 20px rgba(0, 0, 0, 0.1), 0 0 0 8px rgba(0, 0, 0, 0.1), inset 0 0 0 20px rgba(0, 0, 0, 0.1);
+          }
+
+          &:before {
+            transform: translateY(-50%) rotate(45deg) scale(1);
+          }
+
+          &:after {
+            transform: translateY(-50%) rotate(-45deg) scale(1);
+          }
+        }
+
+        // &:focus~.toggle-container .button-toggle {
+        //   box-shadow: 0 0 0 550px rgba(0, 0, 0, 0.1), inset 0 0 0 20px rgba(0, 0, 0, 0.1), 0 0 0 8px rgba(0, 0, 0, 0.1), inset 0 0 0 20px rgba(0, 0, 0, 0.1);
+        // }
+
+        // Open nav
+        &~.nav {
+          pointer-events: auto;
+          right: 150px;
+          height: 100%;
+          margin-bottom: 420px;
+          transform: translate(-50px, 50px);
+
+          // Restoring nav items from "lines" in the menu icon
+          .nav-item {
+            width: 100%;
+            color: #EC7263;
+            letter-spacing: 0;
+            height: 40px;
+            line-height: 40px;
+            margin-top: 0;
+            opacity: 1;
+            transform: scaleY(1);
+            transition: $transition-duration, opacity 0.1s;
+
+            // Setting delays for the nav items in open transition
+            @for $i from 1 through $items {
+              &:nth-child(#{$i}) {
+                $delay: ($items - $i) * $transition-delay;
+                transition-delay: $delay;
+
+                &:before {
+                  transition-delay: $delay;
+                }
+              }
+            }
+
+            // Hiding the lines
+            &:before {
+              opacity: 0;
+            }
+          }
+        }
+      }
+
+      /* Toggle button */
+      .button-toggle {
+        position: absolute;
+        display: inline-block;
+        width: 20px;
+        height: 20px;
+        margin: 30px;
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
+        border-radius: 100%;
+        transition: $transition-duration + 0.1;
+
+        // Shadow on hover
+        &:hover {
+          box-shadow: 0 0 0 8px rgba(0, 0, 0, 0.1), inset 0 0 0 20px rgba(0, 0, 0, 0.1);
+        }
+
+        // Making the "X" icon using `:before` and `:after` pseudo-elements
+        // Initially hidden because `scale(0)` transformation
+        &:before,
+        &:after {
+          position: absolute;
+          content: '';
+          top: 50%;
+          right: 0;
+          width: 100%;
+          height: 2px;
+          background-color: #EC7263;
+          border-radius: 5px;
+          transition: $transition-duration;
+        }
+
+        &:before {
+          transform: translateY(-50%) rotate(45deg) scale(0);
+        }
+
+        &:after {
+          transform: translateY(-50%) rotate(-45deg) scale(0);
+        }
+      }
+
+      /* Menu */
+      .nav {
+        display: flex;
+        margin: 30px;
+        height: 20px;
+        width: 20px;
+        flex-direction: column;
+        // Don't want pointer-events as menu is closed
+        pointer-events: none;
+        transition: $transition-duration;
+      }
+
+      // Showing nav items as lines, making up the hamburger menu icon
+      .nav-item {
+        position: relative;
+        display: inline-block;
+        clear: both;
+        color: transparent;
+        font-size: 14px;
+        letter-spacing: -2.5px;
+        height: 7px;
+        line-height: 7px;
+        text-transform: uppercase;
+        white-space: nowrap;
+        transform: scaleY(0.2);
+        transition: $transition-duration, opacity 1s;
+
+        // Setting delays for the nav items in close transition
+        @for $i from 1 through $items {
+          &:nth-child(#{$i}) {
+            $delay: ($i - 1) * $transition-delay;
+            transition-delay: $delay;
+
+            &:before {
+              transition-delay: $delay;
+            }
+          }
+        }
+
+        // Adjusting width for the first line
+        &:nth-child(1) {
+          letter-spacing: -8px;
+        }
+
+        // Adjusting width for the second line
+        &:nth-child(2) {
+          letter-spacing: -7px;
+        }
+
+        // Adjusting from the fourth element onwards
+        &:nth-child(n + 4) {
+          letter-spacing: -8px;
+          margin-top: -7px;
+          opacity: 0;
+        }
+
+        // Getting the lines for the hamburger menu icon
+        &:before {
+          position: absolute;
+          content: '';
+          top: 50%;
+          left: 0;
+          width: 100%;
+          height: 2px;
+          background-color: #EC7263;
+          transform: translateY(-50%) scaleY(5);
+          transition: $transition-duration;
+        }
+      }
+    }
+
+    .header__content {
+      display: none;
+    }
+  }
+
+  header .nav-quicklist {
+    display: none;
+  }
+
+  header .header__content {
+    width: 80%;
+
+    .logo a {
+      font-size: 0.8rem;
+    }
+
+    .icons .icon span {
+      height: 20px;
+      width: 20px;
+    }
+  }
+}
+
+@media all and (max-width: 1377px) and (min-width: 992px) {
+  header .nav-quicklist ul li a {
+    font-size: 1rem;
+  }
+
+  header .logo a {
+    font-size: 1.6rem;
+  }
+
+  header .icons .icon span {
+    height: 20px;
+    width: 20px;
+  }
+
+  header .header__content {
+    width: 80%;
+  }
+}
+
+@media all and (min-width: 1378px) {
+  header .nav-quicklist ul li a {
+    font-size: 1rem;
+  }
+
+  header .logo a {
+    font-size: 1.8rem;
+  }
+
+  header .icons .icon span {
+    height: 25px;
+    width: 25px;
+  }
+}
+
+/* END HEADER */
