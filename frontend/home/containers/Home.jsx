@@ -1,5 +1,5 @@
 import React from 'react'
-import {Link} from 'react-router-dom'
+import {NavLink} from 'react-router-dom'
 
 class Home extends React.Component {
   constructor() {
@@ -20,7 +20,7 @@ class Home extends React.Component {
     return (
       <div style={this.state.elements.length === 3 ? {} : {display: 'none'}} className="gallery">
 
-      <Link to="/products/new" className="gallery__item gallery__item__1">
+      <NavLink to="/products/new" className="gallery__item gallery__item__1">
         <img 
           className="gallery__img"
           onLoad={() => this.add()}
@@ -28,9 +28,9 @@ class Home extends React.Component {
         <div className="content">
           <h1>Новое</h1>
         </div>
-      </Link>
+      </NavLink>
 
-      <Link to="/products/wallart" className="gallery__item gallery__item__2">
+      <NavLink to="/products/wallart" className="gallery__item gallery__item__2">
         <img 
           className="gallery__img" 
           onLoad={() => this.add()}
@@ -38,9 +38,9 @@ class Home extends React.Component {
         <div className="content">
           <h1>Открытки</h1>
         </div>
-      </Link>
+      </NavLink>
 
-      <Link to="/products/gifts" className="gallery__item gallery__item__3">
+      <NavLink to="/products/gifts" className="gallery__item gallery__item__3">
         <img 
           className="gallery__img" 
           onLoad={() => this.add()}
@@ -48,7 +48,7 @@ class Home extends React.Component {
         <div className="content">
           <h1>Подарки</h1>
         </div>
-      </Link>
+      </NavLink>
     </div>
     )
   }

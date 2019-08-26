@@ -6,38 +6,41 @@ import match from 'react-router/lib/match';
 import Router from 'react-router/lib/Router';
 import configureStore from '../../frontend/_flax/store';
 import Provider from 'react-redux/lib/components/Provider'
-import routes from '../../frontend/routes';
 import config from '../config/config';
-import Home from '../../frontend/home/containers/Home';
+import App from '../../frontend/App';
+import { StaticRouter } from 'react-router-dom';
 
 module.exports = function (request, response, next) {
 	console.log('Middleware Url is: ' + request.url);
 	console.log('CORE_URL: ' + process.env.CORE_URL);
 	response.setHeader('Last-Modified', (new Date()).toUTCString());
 
-	match({
-		routes: routes(request),
-		location: request.url
-	}, (err, redirect, props) => {
-		if (err) {
-			console.log('Warning: serverSideRendering middleware routing failed, try backend routing');
-			next()
-		} else if (redirect) {
-			console.log('Log: serverSideRendering middleware trigger redirect');
-			// request.session.redirectURL = request.url;
-			response.redirect(redirect.pathname + redirect.search)
-		} else if (props) {
-			console.log('Log: serverSideRendering middleware found route');
 
-			getInitialSettings(props, response, request);
-		} else {
-			console.log('Log: serverSideRendering middleware does\'t found route, try backend routing');
-			next()
-		}
-	})
+	getInitialSettings(null, response, request);
+
+	// match({
+	// 	routes: routes(request),
+	// 	location: request.url
+	// }, (err, redirect, props) => {
+	// 	if (err) {
+	// 		console.log('Warning: serverSideRendering middleware routing failed, try backend routing');
+	// 		next()
+	// 	} else if (redirect) {
+	// 		console.log('Log: serverSideRendering middleware trigger redirect');
+	// 		// request.session.redirectURL = request.url;
+	// 		response.redirect(redirect.pathname + redirect.search)
+	// 	} else if (props) {
+	// 		console.log('Log: serverSideRendering middleware found route');
+
+	// 		getInitialSettings(props, response, request);
+	// 	} else {
+	// 		console.log('Log: serverSideRendering middleware does\'t found route, try backend routing');
+	// 		next()
+	// 	}
+	// })
 }
 
-function generateInitialSettings(props, response, user) {
+function generateInitialSettings(props, response, request) {
 	try {
 		let initialState = JSON.parse(JSON.stringify(config.initialState));
 
@@ -54,11 +57,11 @@ function generateInitialSettings(props, response, user) {
 		const store = configureStore(initialState);
 
 		try {
-
+			const context = {};
 			const appHtml = renderToString( 
-				<Provider store = {store} >
-					<Home / >
-				</Provider>
+				<StaticRouter location={request.url} context={context}>
+					<App />
+				</StaticRouter>
 			);
 
 			response.send(renderPage(appHtml, store))
@@ -73,9 +76,9 @@ function generateInitialSettings(props, response, user) {
 	}
 }
 
-const getInitialSettings = async (props, response, user) => {
+const getInitialSettings = async (props, response, request) => {
 	try {
-		return await generateInitialSettings(props, response, user)
+		return await generateInitialSettings(props, response, request)
 	} catch (error) {
 		response.send('[ERROR] for details view server logs!')
 	}

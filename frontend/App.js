@@ -5,9 +5,9 @@ import Main from './Main';
 
 const App = () => (
 	<section>
-		{/* <Header /> */}
+		<Header />
     <Main />
-  	{/* <Footer /> */}
+  	<Footer />
 	</section>
 )
 
