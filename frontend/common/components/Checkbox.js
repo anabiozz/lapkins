@@ -28,7 +28,7 @@ const CheckBox = (props) => {
           </label>
         ))}
       </div>
-    </div>,
+    </div>
   )
 }
 

@@ -7,9 +7,7 @@ const configureStore = preloadState => {
     const store = createStore(
         rootReduser,
         preloadState,
-        compose(
-            applyMiddleware(thunk, createLogger())
-        )
+        compose(applyMiddleware(thunk, createLogger()))
     )
 
     if (module.hot) {
