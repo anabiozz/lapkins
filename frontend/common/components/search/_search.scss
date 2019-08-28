@@ -1,16 +1,19 @@
 .search {
-	flex: 2;
+	display: flex;
+	align-items: center;
+	width: 500px;
+
 	&__box {
+		width: 500px;
 		&__container {
-			width: 80%;
-			vertical-align: middle;
-			white-space: nowrap;
+			display: flex;
+			align-items: center;
 		}
 
 		&__container input#search {
-			width: 80%;
+			width: 500px;
 			height: 40px;
-			font-size: 10pt;
+			font-size: 13pt;
 			padding-left: 15px;
 			box-sizing: border-box;
 		}

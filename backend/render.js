@@ -30,7 +30,7 @@ export default (pathname, store, context) => {
 				<link href="https://fonts.googleapis.com/css?family=Jura" rel="stylesheet">
 				<link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300" rel="stylesheet">
 				<link href="https://fonts.googleapis.com/css?family=Mrs+Sheppards" rel="stylesheet">
-				<link href="https://fonts.googleapis.com/css?family=Josefin+Sans:100" rel="stylesheet">
+				<link href="https://fonts.googleapis.com/css?family=Josefin+Sans:100,300,400,600,700&display=swap" rel="stylesheet">
         <title>Title</title>
       </head>
       <body>

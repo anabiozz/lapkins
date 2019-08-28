@@ -55,6 +55,7 @@ html {
   -moz-osx-font-smoothing: grayscale;
   margin: 0;
   padding: 0;
+  --top-spacing: 180px;
 }
 
 @mixin font($weight) {
@@ -92,15 +93,19 @@ a {
   text-decoration: none;
 }
 
-// html::after {
-// 	content:'';
-// 	background: linear-gradient(21deg, #10abff, #1beabd);
-// 	height:3px;
-// 	width:100%;
-// 	position:absolute;
-// 	left:0;
-// 	top:0;
-// }
+.clearfix {
+  clear: both;
+}
+
+html::after {
+	content:'';
+	background: linear-gradient(21deg, #10abff, #1beabd);
+	height:3px;
+	width:100%;
+	position:absolute;
+	left:0;
+	top:0;
+}
 
 @media all and (max-width: 500px) {}
 
@@ -243,9 +248,8 @@ $colors: (
 }
 
 @mixin grid($cols, $margin) {
-  float: left;
+  position: relative;
   background: #7e779e;
-
   margin-bottom: $margin;
   height: 150px;
 
