@@ -7,6 +7,7 @@ import {
 } from '../constants'
 
 import config from '../../config'
+require('isomorphic-fetch');
 
 const receiveSuccess = response => ({
   type: GET_PRODUCT_BY_ID_SUCCESS,
@@ -18,10 +19,15 @@ const receiveFail = error => ({
   error,
 })
 
-let domain = config.baseDomain + process.env.CORE_URL
+let domain = config.apiDomain + "/"
 if (typeof window !== 'undefined') {
-  domain = window.location.origin + process.env.CORE_URL
+  domain = window.location.origin + "/"
 }
+
+// process.env.CORE_URL
+
+console.log(domain);
+
 
 export const getProductByID = productID => (dispatch) => {
   dispatch({

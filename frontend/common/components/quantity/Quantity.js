@@ -1,6 +1,5 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { log } from 'util';
 
 const Quantity = ({ cartItem, increaseCartItem, decreaseCartItem }) => {
 

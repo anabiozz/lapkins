@@ -56,8 +56,11 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
     extended: false
 }));
+
 app.use(root + 'static', express.static(__dirname + '/static'));
 app.use(root + 'images', express.static(__dirname + '/static/images'));
+app.use(root + 'products/static', express.static(__dirname + '/static'));
+app.use(root + 'products/images', express.static(__dirname + '/static/images'));
 
 app.get('*', async (req, res) => {
 

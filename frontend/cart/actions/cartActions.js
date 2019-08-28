@@ -21,7 +21,7 @@ const addToCartFail = error => ({
   error,
 });
 
-let domain = config.baseDomain + process.env.CORE_URL;
+let domain = config.apiDomain + process.env.CORE_URL;
 if (typeof window !== 'undefined') {
   domain = window.location.origin + process.env.CORE_URL;
 }

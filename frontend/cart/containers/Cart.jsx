@@ -23,7 +23,7 @@ const MyLoader = props => (
 
 class Cart extends Component {
 
-  componentWillMount() {
+  componentDidMount() {
     this.props.loadCart()
   }
 

@@ -7,11 +7,11 @@ module.exports = {
   devtool: 'cheap-module-eval-source-map',
   entry: {
     vendor: ["@babel/polyfill", "react"],
-    app: ["./frontend/index.js"]
+    bundle: ["./frontend/index.js"]
   },
   output: {
     path: path.join(__dirname, 'backend/static'),
-    filename: 'bundle-dev.js',
+    filename: '[name]-dev.js',
     publicPath: coreUrl + 'dist'
   },
   resolve: {
@@ -35,7 +35,7 @@ module.exports = {
     ],
   },
   plugins: [
-    new webpack.HotModuleReplacementPlugin(),
+    // new webpack.HotModuleReplacementPlugin(),
     new webpack.DefinePlugin({
       'process.env': {
         HOME: JSON.stringify(process.env.HOME),
