@@ -1,29 +1,30 @@
 /* HEADER */
 
-header.hidden {
+// header.hidden {
 
-  .header__desktop {
+//   .header__desktop {
 
-    &__content {
-      transition: 0.6s;
-      width: 70%;
-      background-color: #fff;
-      margin: 0 auto;
-    }
+//     &__content {
+//       transition: 0.6s;
+//       width: 70%;
+//       background-color: #fff;
+//       margin: 0 auto;
+//     }
 
-    &__quicklist {
-      margin-top: -250px;
-      opacity: 0;
-    }
-  }
-}
+//     &__quicklist {
+//       margin-top: -250px;
+//       opacity: 0;
+//     }
+//   }
+// }
 
 header {
   font-family: $nav_links_font;
-  position: fixed;
   font-size: 0;
+  position: fixed;
   background-color: #fff;
   top: 0;
+  height: 100px;
   width: 100%;
   z-index: 100;
 
@@ -39,12 +40,9 @@ header {
 
       .logo {
         display: flex;
-        justify-content: center;
-        margin-right: 20px;
 
         img {
           width: 100px;
-          margin-left: -20px;
         }
 
         a {
@@ -58,7 +56,33 @@ header {
         }
       }
 
+      .search {
+        flex: 1;
+        font-family: $primary_font;
+        padding: 0 20px 0 20px;
+        max-width: 500px;
+      }
+
+      .quicklist {
+        width: auto;
+        ul {
+          display: flex;
+          li {
+            a {
+              line-height: 100px;
+              padding: 0 10px 0 10px;
+              font-weight: 600;
+              text-align: center;
+              color: $nav_links_color;
+              text-transform: capitalize;
+              font-size: 1.15rem;
+            }
+          }
+        }
+      }
+
       .icons {
+        flex: 1;
         display: flex;
         align-items: center;
         justify-content: space-between;
@@ -67,26 +91,6 @@ header {
 
         .icon * {
           display: inline-block;
-        }
-      }
-    }
-
-    &__quicklist {
-      width: 70%;
-      margin: 0 auto;
-      padding: 20px 0;
-
-      ul {
-        li {
-          display: inline;
-          a {
-            padding: 0 20px 0 0;
-            font-weight: 400;
-            text-align: center;
-            color: $nav_links_color;
-            text-transform: capitalize;
-            font-size: 1.2rem;
-          }
         }
       }
     }
@@ -395,6 +399,10 @@ Note: Beware of modifying this element as it can break the animations - you shou
           height: 20px;
           width: 20px;
         }
+
+        .quicklist ul li a{
+          font-size: 1rem;
+        }
       }
     }
   }
@@ -410,6 +418,30 @@ Note: Beware of modifying this element as it can break the animations - you shou
     .header__desktop {
       &__content {
         width: 80%;
+
+        .logo a {
+          font-size: 2rem;
+        }
+
+        .icons .icon span {
+          height: 25px;
+          width: 25px;
+        }
+      }
+    }
+  }
+}
+
+@media all and (min-width: 2560px) {
+
+  header {
+    .header__mobile {
+      display: none;
+    }
+
+    .header__desktop {
+      &__content {
+        width: 60%;
 
         .logo a {
           font-size: 2rem;

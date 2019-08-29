@@ -42,7 +42,8 @@ export default class Header extends React.Component {
   render() {
     return(
       <Fragment>
-        <header className={!this.state.visible ? "hidden" : ""}>
+      {/* className={!this.state.visible ? "hidden" : ""} */}
+        <header >
 
           <div className="header__mobile">
 
@@ -74,7 +75,16 @@ export default class Header extends React.Component {
                 <NavLink to="/">Lapkin's Home</NavLink>
               </div>
 
-            <Search />
+              <nav className="quicklist">
+                <ul>
+                  <li><NavLink to="/products/wallart">Постеры</NavLink></li>
+                  <li><NavLink to="/products/stationary">Канцелярские товары</NavLink></li>
+                  <li><NavLink to="/products/gifts">Подарки</NavLink></li>
+                  <li><NavLink to="/products/gifts">Товары для дома</NavLink></li>
+                </ul>
+              </nav>
+
+              <Search />
 
               <ul className="icons">
 
@@ -105,20 +115,11 @@ export default class Header extends React.Component {
               </ul>
             </div>
 
-            <nav className="header__desktop__quicklist">
-              <ul>
-                <li className="drop"><NavLink to="/products/wallart">Постеры</NavLink></li>
-                <li className="drop"><NavLink to="/products/wallart">Открытки</NavLink></li>
-                <li><NavLink to="/products/stationary">Канцелярские товары</NavLink></li>
-                <li><NavLink to="/products/gifts">Подарки</NavLink></li>
-                <li><NavLink to="/products/wraps">Обертка</NavLink></li>
-              </ul>
-            </nav>
+            
 
           </div>
 
         </header>
-        <div class="clearfix"></div>
       </Fragment>
       
     )

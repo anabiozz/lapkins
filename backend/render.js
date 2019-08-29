@@ -25,12 +25,8 @@ export default (pathname, store, context) => {
       <html lang="en">
       <head>
 				<meta charset="UTF-8">
-				<link href="https://fonts.googleapis.com/css?family=IBM+Plex+Mono&display=swap" rel="stylesheet">
-				<link href="https://fonts.googleapis.com/css?family=Anonymous+Pro" rel="stylesheet">
-				<link href="https://fonts.googleapis.com/css?family=Jura" rel="stylesheet">
 				<link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300" rel="stylesheet">
-				<link href="https://fonts.googleapis.com/css?family=Mrs+Sheppards" rel="stylesheet">
-				<link href="https://fonts.googleapis.com/css?family=Josefin+Sans:100,300,400,600,700&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Josefin+Sans:100,300,400,600,700&display=swap" rel="stylesheet">
         <title>Title</title>
       </head>
       <body>
