@@ -36,15 +36,21 @@ export class ProductDescription extends Component {
   constructor(props) {
     super(props)
     const { reset, getProductByID, match } = this.props
-    reset()
+    // reset()
     // getProductByID(match.params.productID)
+  }
+
+  componentDidMount() {
+    console.log(this.props.location.state);
   }
 
   switchElement = ({ data, errors, fetching, addProductToCart }) => {
 
     console.log(data);
 
-    let datas =  {"id": 1, "name": "1", "ext": ".jpg", "categories": []}
+    let datas =  this.props.location.state.product
+
+    console.log(datas);
 
     switch (true) {
       case fetching:
@@ -75,10 +81,10 @@ export class ProductDescription extends Component {
                 <table className="categories">
                   <tbody>
                     {
-                      datas.categories && Object.keys(datas.categories).map(key => (
-                        <tr key={key}>
-                          <td className="pi_table_td">{locale.get(key)}</td>
-                          <td className="pi_table_td">{datas.categories[key]}</td>
+                      datas.categories && datas.categories.map((obj, i) => (
+                        <tr key={i}>
+                          <td className="pi_table_td">{Object.keys(obj)[0]}</td>
+                          <td className="pi_table_td">{obj[Object.keys(obj)[0]].join(", ")}</td>
                         </tr>
                       ))
                     }
@@ -106,6 +112,7 @@ export class ProductDescription extends Component {
   }
 
   render() {
+
     return (
       <div className="product__desc">
         { this.switchElement(this.props) }

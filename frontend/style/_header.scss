@@ -53,9 +53,10 @@ header {
             align-self: center;
             justify-self: center;
             font-family: $logo_font;
+            font-size: 1.5rem;
             color: $nav_links_color;
             text-transform: uppercase;
-            width: 150px;
+            // width: 150px;
           }
         }
 
@@ -76,8 +77,8 @@ header {
                 font-weight: 600;
                 text-align: center;
                 color: $nav_links_color;
-                text-transform: capitalize;
-                font-size: 0.75rem;
+                text-transform: uppercase;
+                font-size: 0.8rem;
               }
             }
           }
@@ -120,7 +121,7 @@ $items: 4;
 $transition-duration: 0.5s;
 $transition-delay: 0.05s;
 
-@media all and (max-width: 1200px) {
+@media all and (max-width: 1250px) {
 
   header {
     position: relative;
@@ -203,7 +204,7 @@ Note: Beware of modifying this element as it can break the animations - you shou
   }
 }
 
-@media all and (max-width: 1378px) and (min-width: 1200px) {
+@media all and (max-width: 1420px) and (min-width: 1250px) {
 
   header {
     .header__mobile {
@@ -228,7 +229,7 @@ Note: Beware of modifying this element as it can break the animations - you shou
 }
 
 
-@media all and (max-width: 1930px) and (min-width: 1380px) {
+@media all and (max-width: 1930px) and (min-width: 1420px) {
 
   header {
     .header__mobile {

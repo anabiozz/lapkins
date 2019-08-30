@@ -13,7 +13,7 @@ export default (pathname, store, context) => {
       <StaticRouter location={pathname} context={context}>
 				<Fragment>
 					<Header />
-					<section>{renderRoutes(Routes)}</section>
+					<section  className="main">{renderRoutes(Routes)}</section>
 					<Footer />
 				</Fragment>
       </StaticRouter>

@@ -10,7 +10,7 @@ export default () => {
     <BrowserRouter>
       <Fragment>
         <Header />
-        <section>{renderRoutes(Routes)}</section>
+        <section className="main">{renderRoutes(Routes)}</section>
         <Footer />
       </Fragment>
     </BrowserRouter>

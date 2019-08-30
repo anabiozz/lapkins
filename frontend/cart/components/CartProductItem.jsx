@@ -19,10 +19,10 @@ const CartProductItem = ({ cartItem, removeProductFromCart, increaseCartItem, de
 				<table className="cart__content__item__categories">
 					<tbody>
 						{
-							cartItem.product.categories && Object.keys(cartItem.product.categories).map(key => (
-								<tr key={key}>
-									<td className="pi_table_td">{locale.get(key)}</td>
-									<td className="pi_table_td">{cartItem.product.categories[key]}</td>
+							cartItem.product.categories && cartItem.product.categories.map((obj, i) => (
+								<tr key={i}>
+								<td className="pi_table_td">{Object.keys(obj)[0]}</td>
+									<td className="pi_table_td">{obj[Object.keys(obj)[0]].join(", ")}</td>
 								</tr>
 							))
 						}
