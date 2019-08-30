@@ -46,45 +46,34 @@ export default class Header extends React.Component {
         <header >
 
           <div className="header__mobile">
-
-          <Menu right width={ '50%' }>
-            <NavLink id="home" className="menu-item" to="/">Home</NavLink>
-            <NavLink id="about" className="menu-item" to="/about">About</NavLink>
-            <NavLink id="contact" className="menu-item" to="/contact">Contact</NavLink>
-          </Menu>
-            {/* <div className="header__mobile__hamburger">
-              <input id="toggle" type="checkbox" />
-              <label className="toggle-container" htmlFor="toggle">
-                  <span className="button button-toggle"></span>
-              </label>
-              <nav className="nav">  
-                <NavLink className="nav-item" to="/products/wallart">Открытки</NavLink>
-                <NavLink className="nav-item" to="/products/stationary">Канцелярия</NavLink>
-                <NavLink className="nav-item" to="/products/gifts">Подарки</NavLink>
-                <NavLink className="nav-item" to="/products/wraps">Обертка</NavLink>
-              </nav>
-            </div> */}
+            <Menu right width={ '50%' }>
+              <NavLink id="home" className="menu-item" to="/">Home</NavLink>
+              <NavLink id="about" className="menu-item" to="/about">About</NavLink>
+              <NavLink id="contact" className="menu-item" to="/contact">Contact</NavLink>
+            </Menu>
           </div>
 
           <div className="header__desktop">
 
             <div className="header__desktop__content">
-            
-              <div className="logo">
-                <img src ="http://localhost:8080/static/images/images.png" />
-                <NavLink to="/">Lapkin's Home</NavLink>
+
+              <div className="left_content">
+                <div className="logo">
+                  <img src ="http://localhost:8080/static/images/images.png" />
+                  <NavLink to="/">Lapkin's Home</NavLink>
+                </div>
+
+                <nav className="quicklist">
+                  <ul>
+                    <li><NavLink to="/products/wallart">Постеры</NavLink></li>
+                    <li><NavLink to="/products/stationary">Канцелярия</NavLink></li>
+                    <li><NavLink to="/products/gifts">Подарки</NavLink></li>
+                    <li><NavLink to="/products/home">Для дома</NavLink></li>
+                  </ul>
+                </nav>
+
+                <Search />
               </div>
-
-              <nav className="quicklist">
-                <ul>
-                  <li><NavLink to="/products/wallart">Постеры</NavLink></li>
-                  <li><NavLink to="/products/stationary">Канцелярские товары</NavLink></li>
-                  <li><NavLink to="/products/gifts">Подарки</NavLink></li>
-                  <li><NavLink to="/products/gifts">Товары для дома</NavLink></li>
-                </ul>
-              </nav>
-
-              <Search />
 
               <ul className="icons">
 

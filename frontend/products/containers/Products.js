@@ -38,12 +38,37 @@ class Products extends Component {
   }
 
   componentDidMount() {
-    const { getProducts, match } = this.props
-    getProducts(config.productTypes.indexOf(match.params.productType) + 1)
+    // const { getProducts, match } = this.props
+    // getProducts(config.productTypes.indexOf(match.params.productType) + 1)
   }
 
   render() {
     const { data, errors, fetching, match, addProductToCart } = this.props
+
+    console.log(data);
+
+    let datas = [
+      {"id": 1, "name": "1", "ext": ".jpg", "categories": []},
+      {"id": 2, "name": "2", "ext": ".jpg", "categories": []},
+      {"id": 3, "name": "3", "ext": ".jpg", "categories": []},
+      {"id": 4, "name": "4", "ext": ".jpg", "categories": []},
+      {"id": 5, "name": "5", "ext": ".jpg", "categories": []},
+      {"id": 6, "name": "6", "ext": ".jpg", "categories": []},
+      {"id": 7, "name": "7", "ext": ".jpg", "categories": []},
+      {"id": 8, "name": "8", "ext": ".jpg", "categories": []},
+      {"id": 9, "name": "9", "ext": ".jpg", "categories": []},
+      {"id": 10, "name": "10", "ext": ".jpg", "categories": []},
+      {"id": 11, "name": "11", "ext": ".jpg", "categories": []},
+      {"id": 12, "name": "12", "ext": ".jpg", "categories": []},
+      {"id": 13, "name": "13", "ext": ".jpg", "categories": []},
+      {"id": 14, "name": "14", "ext": ".jpg", "categories": []},
+      {"id": 15, "name": "15", "ext": ".jpg", "categories": []},
+      {"id": 16, "name": "16", "ext": ".jpg", "categories": []},
+      {"id": 17, "name": "17", "ext": ".jpg", "categories": []},
+      {"id": 18, "name": "18", "ext": ".jpg", "categories": []},
+    ]
+
+    console.log(errors);
 
     console.log('RENDER <Products>')
 
@@ -61,10 +86,10 @@ class Products extends Component {
           )
         }
         {
-          data && data.length > 0 && data.map(product => (
+          datas && datas.length > 0 && datas.map(product => (
             <Product 
               key={product.id} 
-              url={`${config.imagePath.preview}${product.name}_thumb${product.ext}`} 
+              url={`${config.imagePath.dev_path_preview}${product.name}_thumb${product.ext}`} 
               product={product}
               productType={match.params.productType}
               addProductToCart={addProductToCart} />

@@ -32,6 +32,10 @@ module.exports = {
         use: ['style-loader', 'css-loader', 'sass-loader'],
 
       },
+      {
+        test: /\.(eot|woff|woff2|svg|ttf|otf)([\?]?.*)$/,
+        use: ['file-loader']
+      }
     ],
   },
   plugins: [

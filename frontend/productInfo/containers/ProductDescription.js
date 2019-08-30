@@ -13,6 +13,7 @@ import {
   productProp,
   matchProp,
 } from '../../utils/props'
+import { log } from 'util';
 
 const locale = new Locale('RU').get()
 
@@ -36,10 +37,14 @@ export class ProductDescription extends Component {
     super(props)
     const { reset, getProductByID, match } = this.props
     reset()
-    getProductByID(match.params.productID)
+    // getProductByID(match.params.productID)
   }
 
   switchElement = ({ data, errors, fetching, addProductToCart }) => {
+
+    console.log(data);
+
+    let datas =  {"id": 1, "name": "1", "ext": ".jpg", "categories": []}
 
     switch (true) {
       case fetching:
@@ -51,11 +56,11 @@ export class ProductDescription extends Component {
             {` ${errors.message}`}
           </div>
         )
-      case data && Object.keys(data).length > 0:
+      case datas && Object.keys(datas).length > 0:
         return (
           <Fragment>
             <div className="product__desc__image">
-              <img src={`${config.imagePath.full}${data.name}${data.ext}`} alt="" />
+              <img src={`${config.imagePath.dev_path_full}${datas.name}${datas.ext}`} alt="" />
             </div>
 
             <div className="product__desc__block">
@@ -65,15 +70,15 @@ export class ProductDescription extends Component {
               </div>
 
               <div className="information">
-                <div className="description">{data.decription}</div>
+                <div className="description">{datas.decription}</div>
 
                 <table className="categories">
                   <tbody>
                     {
-                      data.categories && Object.keys(data.categories).map(key => (
+                      datas.categories && Object.keys(datas.categories).map(key => (
                         <tr key={key}>
                           <td className="pi_table_td">{locale.get(key)}</td>
-                          <td className="pi_table_td">{data.categories[key]}</td>
+                          <td className="pi_table_td">{datas.categories[key]}</td>
                         </tr>
                       ))
                     }
@@ -81,7 +86,7 @@ export class ProductDescription extends Component {
                 </table>
 
                 <div className="price">
-                  {data.price}
+                  {datas.price}
                   {' руб.'}
                 </div>
 
@@ -89,7 +94,7 @@ export class ProductDescription extends Component {
                   <Button 
                     title="Добавить в корзину"
                     type="primary"
-                    action={() => addProductToCart(data)} />
+                    action={() => addProductToCart(datas)} />
                 </div>
               </div>
             </div>

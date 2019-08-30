@@ -19,14 +19,12 @@
 // }
 
 header {
-  font-family: $nav_links_font;
-  font-size: 0;
-  position: fixed;
+  position: sticky;
   background-color: #fff;
   top: 0;
-  height: 100px;
   width: 100%;
   z-index: 100;
+  box-sizing: border-box;
 
   .header__desktop {
 
@@ -38,51 +36,72 @@ header {
       margin: 0 auto;
       transition: 0.6s;
 
-      .logo {
+      .left_content {
         display: flex;
+        width: 100%;
 
-        img {
-          width: 100px;
-        }
-
-        a {
-          font-weight: 800;
-          align-self: center;
-          justify-self: center;
-          font-family: $logo_font;
-          color: $nav_links_color;
-          text-transform: uppercase;
-          width: 150px;
-        }
-      }
-
-      .search {
-        flex: 1;
-        font-family: $primary_font;
-        padding: 0 20px 0 20px;
-        max-width: 500px;
-      }
-
-      .quicklist {
-        width: auto;
-        ul {
+        .logo {
           display: flex;
-          li {
-            a {
-              line-height: 100px;
-              padding: 0 10px 0 10px;
-              font-weight: 600;
-              text-align: center;
-              color: $nav_links_color;
-              text-transform: capitalize;
-              font-size: 1.15rem;
+
+          img {
+            width: 100px;
+            margin-right: 10px;
+          }
+
+          a {
+            font-weight: 800;
+            align-self: center;
+            justify-self: center;
+            font-family: $logo_font;
+            color: $nav_links_color;
+            text-transform: uppercase;
+            width: 150px;
+          }
+        }
+
+        .quicklist {
+          width: auto;
+          margin: 0 20px 0 20px;
+          font-family: $nav_links_font;
+
+          ul {
+            display: flex;
+            align-items: center;
+            height: 100%;
+
+            li {
+              a {
+                line-height: 100px;
+                padding: 0 10px 0 10px;
+                font-weight: 600;
+                text-align: center;
+                color: $nav_links_color;
+                text-transform: capitalize;
+                font-size: 0.75rem;
+              }
             }
+          }
+        }
+
+        .search {
+          width: 30%;
+          font-family: $primary_font;
+          margin-bottom: 10px;
+          
+
+          .search__box__container input#search {
+            font-weight: 600;
+            font-size: 18px;
+          }
+
+          .search__box__container input#search::placeholder {
+            font-weight: 400;
+            font-size: 15px;
           }
         }
       }
 
       .icons {
-        flex: 1;
         display: flex;
         align-items: center;
         justify-content: space-between;
@@ -101,7 +120,7 @@ $items: 4;
 $transition-duration: 0.5s;
 $transition-delay: 0.05s;
 
-@media all and (max-width: 991px) and (min-width: 300px) {
+@media all and (max-width: 1200px) {
 
   header {
     position: relative;
@@ -180,207 +199,11 @@ Note: Beware of modifying this element as it can break the animations - you shou
       .bm-overlay {
         background: rgba(0, 0, 0, 0.3);
       }
-
-      // &__hamburger {
-      //   display: flex;
-      //   justify-content: flex-end;
-
-      //   // To hide the checkbox
-      //   #toggle {
-      //     position: absolute;
-      //     right: -100%;
-      //     top: -100%;
-      //   }
-
-      //   // #toggle:focus {
-
-      //   //   &~.toggle-container .button-toggle {
-      //   //     box-shadow: 0 0 0 8px rgba(0, 0, 0, 0.1), inset 0 0 0 20px rgba(0, 0, 0, 0.1);
-      //   //   }
-      //   // }
-
-      //   // Styles for the 'open' state, if the checkbox is checked
-      //   #toggle:checked {
-      //     // Any element you need to change the style if menu is open goes here, using the sibling selector (~) as follows
-
-      //     // Making the "X" icon using `:before` and `:after` pseudo-elements
-      //     &~.toggle-container .button-toggle {
-      //       box-shadow: 0 0 0 550px rgba(0, 0, 0, 0.1), inset 0 0 0 20px rgba(0, 0, 0, 0.1);
-
-      //       &:hover {
-      //         box-shadow: 0 0 0 550px rgba(0, 0, 0, 0.1), inset 0 0 0 20px rgba(0, 0, 0, 0.1), 0 0 0 8px rgba(0, 0, 0, 0.1), inset 0 0 0 20px rgba(0, 0, 0, 0.1);
-      //       }
-
-      //       &:before {
-      //         transform: translateY(-50%) rotate(45deg) scale(1);
-      //       }
-
-      //       &:after {
-      //         transform: translateY(-50%) rotate(-45deg) scale(1);
-      //       }
-      //     }
-
-      //     // &:focus~.toggle-container .button-toggle {
-      //     //   box-shadow: 0 0 0 550px rgba(0, 0, 0, 0.1), inset 0 0 0 20px rgba(0, 0, 0, 0.1), 0 0 0 8px rgba(0, 0, 0, 0.1), inset 0 0 0 20px rgba(0, 0, 0, 0.1);
-      //     // }
-
-      //     // Open nav
-      //     &~.nav {
-      //       pointer-events: auto;
-      //       right: 150px;
-      //       height: 100%;
-      //       margin-bottom: 420px;
-      //       transform: translate(-50px, 50px);
-
-      //       // Restoring nav items from "lines" in the menu icon
-      //       .nav-item {
-      //         width: 100%;
-      //         color: #EC7263;
-      //         letter-spacing: 0;
-      //         height: 40px;
-      //         line-height: 40px;
-      //         margin-top: 0;
-      //         opacity: 1;
-      //         transform: scaleY(1);
-      //         transition: $transition-duration, opacity 0.1s;
-
-      //         // Setting delays for the nav items in open transition
-      //         @for $i from 1 through $items {
-      //           &:nth-child(#{$i}) {
-      //             $delay: ($items - $i) * $transition-delay;
-      //             transition-delay: $delay;
-
-      //             &:before {
-      //               transition-delay: $delay;
-      //             }
-      //           }
-      //         }
-
-      //         // Hiding the lines
-      //         &:before {
-      //           opacity: 0;
-      //         }
-      //       }
-      //     }
-      //   }
-
-      //   /* Toggle button */
-      //   .button-toggle {
-      //     position: absolute;
-      //     display: inline-block;
-      //     width: 20px;
-      //     height: 20px;
-      //     margin: 30px;
-      //     background-color: transparent;
-      //     border: none;
-      //     cursor: pointer;
-      //     border-radius: 100%;
-      //     transition: $transition-duration + 0.1;
-
-      //     // Shadow on hover
-      //     &:hover {
-      //       box-shadow: 0 0 0 8px rgba(0, 0, 0, 0.1), inset 0 0 0 20px rgba(0, 0, 0, 0.1);
-      //     }
-
-      //     // Making the "X" icon using `:before` and `:after` pseudo-elements
-      //     // Initially hidden because `scale(0)` transformation
-      //     &:before,
-      //     &:after {
-      //       position: absolute;
-      //       content: '';
-      //       top: 50%;
-      //       right: 0;
-      //       width: 100%;
-      //       height: 2px;
-      //       background-color: #EC7263;
-      //       border-radius: 5px;
-      //       transition: $transition-duration;
-      //     }
-
-      //     &:before {
-      //       transform: translateY(-50%) rotate(45deg) scale(0);
-      //     }
-
-      //     &:after {
-      //       transform: translateY(-50%) rotate(-45deg) scale(0);
-      //     }
-      //   }
-
-      //   /* Menu */
-      //   .nav {
-      //     display: flex;
-      //     margin: 30px;
-      //     height: 20px;
-      //     width: 20px;
-      //     flex-direction: column;
-      //     // Don't want pointer-events as menu is closed
-      //     pointer-events: none;
-      //     transition: $transition-duration;
-      //   }
-
-      //   // Showing nav items as lines, making up the hamburger menu icon
-      //   .nav-item {
-      //     position: relative;
-      //     display: inline-block;
-      //     clear: both;
-      //     color: transparent;
-      //     font-size: 14px;
-      //     letter-spacing: -2.5px;
-      //     height: 7px;
-      //     line-height: 7px;
-      //     text-transform: uppercase;
-      //     white-space: nowrap;
-      //     transform: scaleY(0.2);
-      //     transition: $transition-duration, opacity 1s;
-
-      //     // Setting delays for the nav items in close transition
-      //     @for $i from 1 through $items {
-      //       &:nth-child(#{$i}) {
-      //         $delay: ($i - 1) * $transition-delay;
-      //         transition-delay: $delay;
-
-      //         &:before {
-      //           transition-delay: $delay;
-      //         }
-      //       }
-      //     }
-
-      //     // Adjusting width for the first line
-      //     &:nth-child(1) {
-      //       letter-spacing: -8px;
-      //     }
-
-      //     // Adjusting width for the second line
-      //     &:nth-child(2) {
-      //       letter-spacing: -7px;
-      //     }
-
-      //     // Adjusting from the fourth element onwards
-      //     &:nth-child(n + 4) {
-      //       letter-spacing: -8px;
-      //       margin-top: -7px;
-      //       opacity: 0;
-      //     }
-
-      //     // Getting the lines for the hamburger menu icon
-      //     &:before {
-      //       position: absolute;
-      //       content: '';
-      //       top: 50%;
-      //       left: 0;
-      //       width: 100%;
-      //       height: 2px;
-      //       background-color: #EC7263;
-      //       transform: translateY(-50%) scaleY(5);
-      //       transition: $transition-duration;
-      //     }
-      //   }
-      // }
     }
   }
 }
 
-@media all and (max-width: 1377px) and (min-width: 992px) {
+@media all and (max-width: 1378px) and (min-width: 1200px) {
 
   header {
     .header__mobile {
@@ -389,26 +212,23 @@ Note: Beware of modifying this element as it can break the animations - you shou
 
     .header__desktop {
       &__content {
-        width: 80%;
+        width: 90%;
 
         .logo a {
-          font-size: 1.6rem;
+          font-size: 2rem;
         }
 
         .icons .icon span {
-          height: 20px;
-          width: 20px;
-        }
-
-        .quicklist ul li a{
-          font-size: 1rem;
+          height: 25px;
+          width: 25px;
         }
       }
     }
   }
 }
 
-@media all and (min-width: 1378px) {
+
+@media all and (max-width: 1930px) and (min-width: 1380px) {
 
   header {
     .header__mobile {
@@ -432,7 +252,7 @@ Note: Beware of modifying this element as it can break the animations - you shou
   }
 }
 
-@media all and (min-width: 2560px) {
+@media all and (max-width: 2560px) and (min-width: 1930px) {
 
   header {
     .header__mobile {
