@@ -1,30 +1,26 @@
-import React from 'react'
-import {NavLink} from 'react-router-dom'
-import PropTypes from 'prop-types'
+import React from 'react';
+import { NavLink } from 'react-router-dom';
+import { withBreadcrumbs } from './withBreadcrumbs';
 
-const Breadcrumbs = ({ links }) => {
+const UserBreadcrumb = ({ match }) => <span>{match.params.userId}</span>; // use match param userId to fetch/display user name
 
-	console.log(links);
-	
-  return (
-		<section className="breadcrumbs">
-				{/* <ul>
-					{
-						links && links.map(link => {
-							if (link.isLast) {
-								<li>link.name</li>
-							} else {
-								<li><NavLink to={link.url}>link.name</NavLink></li>
-							}
-						})
-					}
-				</ul> */}
-		</section>
-  )
-}
+const routes = [
+  { path: 'users', breadcrumb: 'Users' },
+  { path: 'users/:userId', breadcrumb: UserBreadcrumb},
+  { path: 'something-else', breadcrumb: ':)' },
+];
 
-Breadcrumbs.propTypes = {
-  links: PropTypes.array.isRequired,
-}
+const Breadcrumbs = ({ breadcrumbs }) => (
+  <div>
+    {breadcrumbs.map(({ breadcrumb, path, match }) => (
+      <span key={path}>
+        <NavLink to={match.url}>
+          {breadcrumb}
+        </NavLink>
+        <span>/</span>
+      </span>
+    ))}
+  </div>
+);
 
-export default Breadcrumbs
+export default withBreadcrumbs(routes)(Breadcrumbs);

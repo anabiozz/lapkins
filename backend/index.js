@@ -12,8 +12,6 @@ import {
 import render from './render';
 import configureStore from '../frontend/_flax/store';
 
-let initialState = JSON.parse(JSON.stringify(config.initialState));
-
 var app = new express();
 const host = process.env.NODE_ENV == 'development' ? config.server.develope : config.server.production;
 const port = config.server.port;
@@ -67,15 +65,14 @@ app.use(root + 'products/wallart/static/images', express.static(__dirname + '/st
 
 app.get('*', async (req, res) => {
 
+    let initialState = JSON.parse(JSON.stringify(config.initialState));
+
+    initialState.path = req.path
+
     const store = configureStore(initialState);
 
     const actions = matchRoutes(Routes, req.path)
-        .map(({
-            route
-        }) => route.component.fetching ? route.component.fetching({
-            ...store,
-            path: req.path
-        }) : null)
+        .map(({route}) => route.component.fetching ? route.component.fetching({...store, path: req.path}) : null)
         .map(async actions => await Promise.all(
             (actions || []).map(p => p && new Promise(resolve => p.then(resolve).catch(resolve)))
         ));

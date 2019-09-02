@@ -8,6 +8,8 @@ const config = {
         port: port,
         develope: '127.0.0.1'
     },
-    initialState: {},
+    initialState: {
+        path: "",
+    },
 }
 export default config;

@@ -7,11 +7,12 @@ import configureStore from './_flax/store';
 import './style/main.scss';
 
 const store = configureStore(window.__INITIAL_STATE__);
-delete window.__INITIAL_STATE__;
+// delete window.__INITIAL_STATE__;
+let state = store.getState();
 
 hydrate(
 	<Provider store={store}>
-		 <Router/>
+		 <Router path={state}/>
 	</Provider>, document.getElementById('root'),
   
 )

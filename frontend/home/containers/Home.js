@@ -17,8 +17,6 @@ class Home extends React.Component {
 
   render() {
 
-    console.log(this.state.elements);
-
     return (
       // style={this.state.elements.length === 3 ? {} : {display: 'none'}} 
       <div className="gallery">

@@ -19,9 +19,10 @@ const receiveFail = error => ({
   error,
 })
 
-let domain = config.apiDomain + "/"
+let domain = config.apiDomain + process.env.CORE_URL
 if (typeof window !== 'undefined') {
-  domain = window.location.origin + "/"
+  console.log(window.location.origin);
+  domain = window.location.origin + process.env.CORE_URL
 }
 
 // process.env.CORE_URL

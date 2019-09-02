@@ -13,8 +13,13 @@
 	src: url('fonts/NexaReplicaRU-Bold.otf');
 }
 
+@font-face {
+  font-family: 'SourceSerifPro';
+	src: url('fonts/SourceSerifPro-Light.ttf');
+}
+
 $primary_font: 'Open Sans Condensed', sans-serif; // Open Sans Condensed
-$nav_links_font: 'Comfortaa', sans-serif;
+$nav_links_font: 'NexaReplicaRU', sans-serif;
 $logo_font: 'NexaReplicaRU', sans-serif; // Josefin Sans
 
 $product_background_color: #ece8da;
