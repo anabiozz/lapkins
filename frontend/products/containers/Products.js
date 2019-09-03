@@ -71,6 +71,9 @@ class Products extends Component {
     console.log('RENDER <Products>')
 
     return (
+      // <section className="catalog__navigation">
+
+      // </section>
       <div className="products">
         {
           fetching && <MyLoader />

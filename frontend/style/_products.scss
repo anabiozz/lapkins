@@ -1,9 +1,16 @@
 .products {
   width: 100%;
   display: grid;
-  grid-template-columns: repeat(auto-fill, 270px);
+  grid-template-columns: repeat(auto-fill, 25%);
   grid-gap: 1em;
-  justify-content: space-between;
+  justify-content: center;
+  justify-items: center;
+
+  .catalog__navigation {
+    background-color: $main_black_color;
+    height: 100%;
+    width: 25%;
+  }
 
   @import "product";
 }

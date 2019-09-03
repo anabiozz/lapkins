@@ -8,11 +8,12 @@
     width: 80%;
     margin: 0 auto;
     padding-bottom:100px;
+    background-color: #f3f3f3;
   }
 }
 
 @media all and (min-width: 2550px) {
-  #root section.main {
+  #root section.content {
     width: 60%;
   }
 }
