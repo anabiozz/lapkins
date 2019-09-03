@@ -30,7 +30,7 @@ header {
 
     &__content {
       display: flex;
-      width: 70%;
+      width: 1300px;
       background-color: #fff;
       justify-content: space-between;
       margin: 0 auto;
@@ -56,7 +56,7 @@ header {
             font-size: 1.8rem;
             color: $nav_links_color;
             text-transform: uppercase;
-            // width: 150px;
+            // width: auto;
           }
         }
 
@@ -79,7 +79,7 @@ header {
                 color: $nav_links_color;
                 text-transform: uppercase;
                 // text-transform: capitalize;
-                font-size: 0.7rem;
+                font-size: 0.6rem;
               }
             }
           }
@@ -89,7 +89,7 @@ header {
           width: 30%;
           font-family: $primary_font;
           margin-bottom: 10px;
-          
+
 
           .search__box__container input#search {
             font-weight: 600;
@@ -214,10 +214,17 @@ Note: Beware of modifying this element as it can break the animations - you shou
 
     .header__desktop {
       &__content {
-        width: 90%;
+        width: 1100px;
 
-        .logo a {
-          font-size: 2rem;
+        .left_content {
+
+          .logo a {
+            font-size: 1.3rem;
+          }
+
+          .quicklist ul li a {
+            font-size: 0.5rem;
+          }
         }
 
         .icons .icon span {
@@ -231,7 +238,6 @@ Note: Beware of modifying this element as it can break the animations - you shou
 
 
 @media all and (max-width: 1930px) and (min-width: 1420px) {
-
   header {
     .header__mobile {
       display: none;
@@ -239,10 +245,14 @@ Note: Beware of modifying this element as it can break the animations - you shou
 
     .header__desktop {
       &__content {
-        width: 80%;
 
-        .logo a {
-          font-size: 2rem;
+        .left_content {
+
+          .logo a {
+          }
+
+          .quicklist ul li a {
+          }
         }
 
         .icons .icon span {
@@ -255,7 +265,6 @@ Note: Beware of modifying this element as it can break the animations - you shou
 }
 
 @media all and (max-width: 2560px) and (min-width: 1930px) {
-
   header {
     .header__mobile {
       display: none;
@@ -263,10 +272,15 @@ Note: Beware of modifying this element as it can break the animations - you shou
 
     .header__desktop {
       &__content {
-        width: 60%;
+        width: 1300px;
 
-        .logo a {
-          font-size: 2rem;
+        .left_content {
+
+          .logo a {
+          }
+
+          .quicklist ul li a {
+          }
         }
 
         .icons .icon span {

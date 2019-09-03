@@ -10,6 +10,15 @@
 /frontend/yarn-debug.log*
 /frontend/yarn-error.log*
 
+/backend/static/bundle*
+/backend/static/vendor*
+/backend/static/*.woff
+/backend/static/*.otf
+/backend/static/*.ttf
+/backend/static/*.js
+
+
+
 .vscode
 
 node_modules

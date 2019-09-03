@@ -71,32 +71,68 @@ class Products extends Component {
     console.log('RENDER <Products>')
 
     return (
-      // <section className="catalog__navigation">
-
-      // </section>
-      <div className="products">
-        {
-          fetching && <MyLoader />
-        }
-        {
-          errors && (
-          <div style={{ marginTop: '200px' }}>
-            <strong>ERROR: </strong>
-            {errors.message}
-          </div>
-          )
-        }
-        {
-          datas && datas.length > 0 && datas.map(product => (
-            <Product 
-              key={product.id} 
-              url={`${config.imagePath.dev_path_preview}${product.name}_thumb${product.ext}`} 
-              product={product}
-              productType={match.params.productType}
-              addProductToCart={addProductToCart} />
-          ))
-        }
+      <div className="products__catalog">
+        <div className="catalog">
+          <ul class="cat-nav dt102_1">
+            <li class="cat-nav-item dt102_li1">
+                <span class="cat-nav-item_li ">
+                  <a class="link dt102_bold">Женщинам</a> 
+                  <span class="cat-nav-cnt">226</span>
+                </span>  
+                <ul class="cat-nav cat-nav-sub dt102_2">
+                  <li class="cat-nav-item dt102_li2"> 
+                    <span class="cat-nav-item_li"> 
+                      <a class="link">Обувь</a> 
+                      <span class="cat-nav-cnt">107</span> 
+                    </span>  
+                  </li>
+                  <li class="cat-nav-item dt102_li2"> 
+                    <span class="cat-nav-item_li"> 
+                      <a class="link">Одежда</a> 
+                      <span class="cat-nav-cnt">75</span> 
+                    </span>  
+                  </li>
+                  <li class="cat-nav-item dt102_li2"> 
+                    <span class="cat-nav-item_li"> 
+                      <a class="link" >Аксессуары</a> 
+                     <span class="cat-nav-cnt">44</span> 
+                    </span>  
+                  </li>
+                  <li class="cat-nav-item dt102_li2"> 
+                    <span class="cat-nav-item_li"> 
+                      <a class="link" >Спорт</a> 
+                      <span class="cat-nav-cnt">11</span> 
+                    </span>  
+                  </li>
+                </ul>  
+            </li>
+          </ul>
+        </div>
+        <div className="products">
+          {
+            fetching && <MyLoader />
+          }
+          {
+            errors && (
+            <div style={{ marginTop: '200px' }}>
+              <strong>ERROR: </strong>
+              {errors.message}
+            </div>
+            )
+          }
+          {
+            datas && datas.length > 0 && datas.map(product => (
+              <Product 
+                key={product.id} 
+                url={`${config.imagePath.dev_path_preview}${product.name}_thumb${product.ext}`} 
+                product={product}
+                productType={match.params.productType}
+                addProductToCart={addProductToCart} />
+            ))
+          }
+        </div>
       </div>
+      
     )
   }
 }

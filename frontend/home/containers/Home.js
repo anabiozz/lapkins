@@ -35,9 +35,9 @@ class Home extends React.Component {
           <img 
             className="gallery__img" 
             onLoad={() => this.add()}
-            src="static/images/1.jpg" alt="Открытки" />
+            src="static/images/1.jpg" alt="Постеры" />
           <div className="content">
-            <h1>Открытки</h1>
+            <h1>Постеры</h1>
           </div>
         </NavLink>
 

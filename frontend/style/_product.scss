@@ -2,71 +2,69 @@
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
-	max-width: 270px;
 	-webkit-animation: reveal 0.5s ease;
 	-webkit-animation-fill-mode: backwards;
 	animation: reveal 0.5s ease;
 	animation-fill-mode: backwards;
 	font-size: 1.4rem;
-	font-weight: 400;
 
 	.product__image {
-		background-color: #f3f3f3;
+		background-color: #fff;
 		height: 350px;
+		position: relative;
 
 		.product__image__inner {
-			position: relative;
 			display: flex;
 			justify-content: center;
 			align-items: center;
 			height: 100%;
-
+		
 			a {
 				display: flex;
 				justify-content: center;
 				align-items: center;
-				height: 100%;
+				height: 80%;
+				width: 80%;
 
 				img {
-					max-width: 100%;
-					width: 75%;
-					height: 80%;
-					object-fit: cover;
+					object-fit: contain;
+					-webkit-box-shadow: 10px 10px 12px -11px rgba(0, 0, 0, 0.75);
+					-moz-box-shadow: 10px 10px 12px -11px rgba(0, 0, 0, 0.75);
+					box-shadow: 10px 10px 12px -11px rgba(0, 0, 0, 0.75);
 				}
 			}
+		}
 
-			.to__favorites {
-				display: block;
-				position: absolute;
-				right: 10px;
-				top: 10px;
-				width: 20px;
-				height: 20px;
-				text-align: center;
-				line-height: 30px;
-				cursor: pointer;
-			}
+		.to__favorites {
+			display: block;
+			position: absolute;
+			right: 10px;
+			top: 10px;
+			width: 20px;
+			height: 20px;
+			text-align: center;
+			line-height: 30px;
+			cursor: pointer;
+		}
 
-			.to__favorites:hover {
-				animation: animateHeart 2s infinite;
-			}
+		.to__favorites:hover {
+			animation: animateHeart 2s infinite;
+		}
 
-			.to__cart {
-				display: block;
-				position: absolute;
-				right: 10px;
-				bottom: 10px;
-				width: 20px;
-				height: 20px;
-				text-align: center;
-				line-height: 30px;
-				cursor: pointer;
-			}
+		.to__cart {
+			display: block;
+			position: absolute;
+			right: 10px;
+			bottom: 10px;
+			width: 20px;
+			height: 20px;
+			text-align: center;
+			line-height: 30px;
+			cursor: pointer;
+		}
 
-			.to__cart:hover {
-				animation: animateHeart 2s infinite;
-			}
-
+		.to__cart:hover {
+			animation: animateHeart 2s infinite;
 		}
 	}
 
