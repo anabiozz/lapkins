@@ -5,6 +5,7 @@ import Routes from './Routes';
 import Header from '../common/components/Header';
 import Footer from '../common/components/Footer';
 import Breadcrumbs from '../common/components/breadcrumbs/Breadcrumbs';
+import Search from '../common/components/search/Search';
 
 const UserBreadcrumb = ({ match }) =>
   <span>{match.params.userId}</span>; // use match param userId to fetch/display user name
@@ -27,6 +28,12 @@ export default ({ path }) => {
         {/* <section className="crumb">
             <Breadcrumbs breadcrumbs={routes} />
         </section> */}
+
+        <section className="search_content">
+          <div className="search_wrapper">
+            <Search />
+          </div>
+        </section>
 
         <section className="content">
           {renderRoutes(Routes)}

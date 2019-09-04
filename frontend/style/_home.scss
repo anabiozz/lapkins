@@ -4,7 +4,7 @@
   // grid-template-columns: repeat(8, 1fr);
   grid-template-rows: repeat(8, 4vw);
   grid-gap: 1.5em;
-  width: 1300px;
+  width: $content_width_1;
   margin: 0 auto;
 
   .gallery__item {
@@ -113,7 +113,7 @@
 
 @media all and (max-width: 1420px) and (min-width: 1250px) {
   .gallery {
-    width: 1100px;
+    width: $content_width_2;
   }
 }
 

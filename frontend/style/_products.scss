@@ -1,16 +1,15 @@
 .products__catalog {
   display: flex;
   justify-content: center;
-  width: 1300px;
+  width: $content_width_1;
   margin: 0 auto;
 
   .products {
-    flex: 5;
+    width: ((($content_width_1 / 5) * 4) + (4 * 20px));
     display: grid;
-    grid-template-columns: repeat(auto-fill, 250px);
+    grid-template-columns: repeat(auto-fill, ($content_width_1 / 5));
     grid-template-rows: auto;
-    justify-content: end;
-    grid-gap: 1em;
+    grid-gap: 20px;
 
     @import "product";
   }
@@ -18,12 +17,11 @@
   .catalog {
     position: sticky;
     top: 124.3px;
-    flex: 1.11;
+    width: ((($content_width_1 / 5) * 1) - (4 * 20px));
     background-color: #fff;
     color: $nav_links_color;
     height: 100%;
-    justify-content: start;
-    margin-right: 1em;
+    margin-right: 20px;
   }
 
 }
@@ -34,16 +32,15 @@
 
 @media all and (max-width: 1420px) and (min-width: 1250px) {
   .products__catalog {
-    width: 1100px;
+    width: $content_width_2;
   
     .products {
-      grid-template-columns: repeat(auto-fill, 280px);
-      grid-gap: 0.5em;
+      grid-template-columns: repeat(auto-fill, ($content_width_2 / 4));
+      width: ((($content_width_2 / 4) * 3) + (3 * 20px));
     }
   
     .catalog {
-      flex: 1.29;
-      margin-right: 0.5em;
+      width: (($content_width_2 / 4) - (3 * 20px));
     }
   
   }

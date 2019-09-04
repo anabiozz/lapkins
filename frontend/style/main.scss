@@ -28,6 +28,9 @@ $nav_links_color: #3d3d3d;
 $main_color: #464646;
 $logo_color: #181515;
 
+$content_width_1: (((250px * 4) + (4 * 20px)) + (300px - (4 * 20px)));
+$content_width_2: (((250px * 3) + (3 * 20px)) + (300px - (3 * 20px)));
+
 @import "normalize.scss";
 @import "common.scss";
 @import "header.scss";
@@ -36,6 +39,7 @@ $logo_color: #181515;
 @import "home.scss";
 @import "products.scss";
 @import "product.scss";
+@import "product_desc.scss";
 @import "cart.scss";
 @import "../common/components/button/button.scss";
 @import "../common/components/quantity/quantity.scss";

@@ -30,7 +30,7 @@ header {
 
     &__content {
       display: flex;
-      width: 1300px;
+      width: $content_width_1;
       background-color: #fff;
       justify-content: space-between;
       margin: 0 auto;
@@ -82,23 +82,6 @@ header {
                 font-size: 0.6rem;
               }
             }
-          }
-        }
-
-        .search {
-          width: 30%;
-          font-family: $primary_font;
-          margin-bottom: 10px;
-
-
-          .search__box__container input#search {
-            font-weight: 600;
-            font-size: 18px;
-          }
-
-          .search__box__container input#search::placeholder {
-            font-weight: 400;
-            font-size: 15px;
           }
         }
       }
@@ -214,7 +197,7 @@ Note: Beware of modifying this element as it can break the animations - you shou
 
     .header__desktop {
       &__content {
-        width: 1100px;
+        width: $content_width_2;
 
         .left_content {
 
@@ -272,7 +255,7 @@ Note: Beware of modifying this element as it can break the animations - you shou
 
     .header__desktop {
       &__content {
-        width: 1300px;
+        width: $content_width_1;
 
         .left_content {
 

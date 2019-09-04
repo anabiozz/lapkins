@@ -96,15 +96,15 @@ a {
   clear: both;
 }
 
-html::after {
-	content:'';
-	background: linear-gradient(21deg, #10abff, #1beabd);
-	height:3px;
-	width:100%;
-	position:absolute;
-	left:0;
-	top:0;
-}
+// html::after {
+// 	content:'';
+// 	background: linear-gradient(21deg, #10abff, #1beabd);
+// 	height:3px;
+// 	width:100%;
+// 	position:absolute;
+// 	left:0;
+// 	top:0;
+// }
 
 @media all and (max-width: 1250px) {
   

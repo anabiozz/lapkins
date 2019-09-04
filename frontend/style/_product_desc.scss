@@ -1,10 +1,11 @@
 .product__desc {
   display: flex;
-  // justify-content: start;
   -webkit-animation: reveal 0.5s ease;
   -webkit-animation-fill-mode: backwards;
   animation: reveal 0.5s ease;
   animation-fill-mode: backwards;
+  width: $content_width_1;
+  margin: 0 auto;
 
   // svg {
   //   height: 100%;

@@ -17,8 +17,6 @@
 /backend/static/*.ttf
 /backend/static/*.js
 
-
-
 .vscode
 
 node_modules

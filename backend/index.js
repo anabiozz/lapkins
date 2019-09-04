@@ -59,7 +59,6 @@ app.use(root + 'static', express.static(__dirname + '/static'));
 app.use(root + 'images', express.static(__dirname + '/static/images'));
 app.use(root + 'products/static', express.static(__dirname + '/static'));
 app.use(root + 'products/static/images', express.static(__dirname + '/static/images'));
-
 app.use(root + 'products/wallart/static', express.static(__dirname + '/static'));
 app.use(root + 'products/wallart/static/images', express.static(__dirname + '/static/images'));
 
@@ -70,6 +69,9 @@ app.get('*', async (req, res) => {
     initialState.path = req.path
 
     const store = configureStore(initialState);
+
+    console.log(matchRoutes(Routes, req.path));
+    // console.log(matchRoutes(Routes, req.path)[0].route.render);
 
     const actions = matchRoutes(Routes, req.path)
         .map(({route}) => route.component.fetching ? route.component.fetching({...store, path: req.path}) : null)

@@ -73,35 +73,35 @@ class Products extends Component {
     return (
       <div className="products__catalog">
         <div className="catalog">
-          <ul class="cat-nav dt102_1">
-            <li class="cat-nav-item dt102_li1">
-                <span class="cat-nav-item_li ">
-                  <a class="link dt102_bold">Женщинам</a> 
-                  <span class="cat-nav-cnt">226</span>
+          <ul className="cat-nav dt102_1">
+            <li className="cat-nav-item dt102_li1">
+                <span className="cat-nav-item_li ">
+                  <a className="link dt102_bold">Женщинам</a> 
+                  <span className="cat-nav-cnt">226</span>
                 </span>  
-                <ul class="cat-nav cat-nav-sub dt102_2">
-                  <li class="cat-nav-item dt102_li2"> 
-                    <span class="cat-nav-item_li"> 
-                      <a class="link">Обувь</a> 
-                      <span class="cat-nav-cnt">107</span> 
+                <ul className="cat-nav cat-nav-sub dt102_2">
+                  <li className="cat-nav-item dt102_li2"> 
+                    <span className="cat-nav-item_li"> 
+                      <a className="link">Обувь</a> 
+                      <span className="cat-nav-cnt">107</span> 
                     </span>  
                   </li>
-                  <li class="cat-nav-item dt102_li2"> 
-                    <span class="cat-nav-item_li"> 
-                      <a class="link">Одежда</a> 
-                      <span class="cat-nav-cnt">75</span> 
+                  <li className="cat-nav-item dt102_li2"> 
+                    <span className="cat-nav-item_li"> 
+                      <a className="link">Одежда</a> 
+                      <span className="cat-nav-cnt">75</span> 
                     </span>  
                   </li>
-                  <li class="cat-nav-item dt102_li2"> 
-                    <span class="cat-nav-item_li"> 
-                      <a class="link" >Аксессуары</a> 
-                     <span class="cat-nav-cnt">44</span> 
+                  <li className="cat-nav-item dt102_li2"> 
+                    <span className="cat-nav-item_li"> 
+                      <a className="link" >Аксессуары</a> 
+                     <span className="cat-nav-cnt">44</span> 
                     </span>  
                   </li>
-                  <li class="cat-nav-item dt102_li2"> 
-                    <span class="cat-nav-item_li"> 
-                      <a class="link" >Спорт</a> 
-                      <span class="cat-nav-cnt">11</span> 
+                  <li className="cat-nav-item dt102_li2"> 
+                    <span className="cat-nav-item_li"> 
+                      <a className="link" >Спорт</a> 
+                      <span className="cat-nav-cnt">11</span> 
                     </span>  
                   </li>
                 </ul>  
