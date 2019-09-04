@@ -35,7 +35,20 @@ module.exports = {
       {
         test: /\.(eot|woff|woff2|svg|ttf|otf)([\?]?.*)$/,
         use: ['file-loader']
-      }
+      },
+      {
+        test: /\.(gif|png|jpg|svg)(\?.*$|$)/,
+        use: [
+          {
+            loader: 'url-loader',
+            options: {
+              limit: 8192,
+              name: '[name].[ext]',
+              publicPath: 'images'
+            },
+          },
+        ],
+      },
     ],
   },
   plugins: [

@@ -7,6 +7,7 @@ import Routes from '../frontend/router/Routes';
 import Header from '../frontend/common/components/Header';
 import Footer from '../frontend/common/components/Footer';
 import Breadcrumbs from '../frontend/common/components/breadcrumbs/Breadcrumbs';
+import Search from '../frontend/common/components/search/Search';
 
 const UserBreadcrumb = ({ match }) =>
   <span>{match.params.userId}</span>; // use match param userId to fetch/display user name
@@ -25,11 +26,16 @@ export default (pathname, store, context) => {
       <StaticRouter location={pathname} context={context}>
 				<Fragment>
 
+          
+
 					<Header />
-{/* 
-          <section className="crumb">
-            <Breadcrumbs breadcrumbs={routes} />
-          </section> */}
+
+          <section className="search_content">
+            <div className="search_wrapper">
+              <Search />
+              <Breadcrumbs />
+            </div>
+          </section>
 
           <section className="content">
             {renderRoutes(Routes)}

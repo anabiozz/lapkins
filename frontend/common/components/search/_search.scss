@@ -16,6 +16,14 @@
 			padding-left: 15px;
 			padding-bottom: 5px;
 			box-sizing: border-box;
+			border: none;
+			background-color: #e8f0fe;
+		}
+
+		&__container input#search:focus {
+			border: none;
+			outline: none;
+			background-color: #dce6f7;
 		}
 
 		&__container input#search::-webkit-input-placeholder {
@@ -34,7 +42,7 @@
 
 		&__container button.icon {
 			border: none;
-			background: $main_black_color;
+			background: #65737e;
 			height: 40px;
 			width: 50px;
 			color: #fff;

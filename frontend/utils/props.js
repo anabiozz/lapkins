@@ -14,7 +14,7 @@ export const productProp = {
   decription: PropTypes.string,
   ext: PropTypes.string,
   is_available: PropTypes.bool,
-  price: PropTypes.string,
+  price: PropTypes.number,
   products_type: PropTypes.string,
   categories: PropTypes.object,
 }

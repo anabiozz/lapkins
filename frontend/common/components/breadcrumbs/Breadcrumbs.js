@@ -1,26 +1,17 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
-import { withBreadcrumbs } from './withBreadcrumbs';
+import withBreadcrumbs from "react-router-breadcrumbs-hoc";
+import { Link } from "react-router-dom";
 
-const UserBreadcrumb = ({ match }) => <span>{match.params.userId}</span>; // use match param userId to fetch/display user name
 
-const routes = [
-  { path: 'users', breadcrumb: 'Users' },
-  { path: 'users/:userId', breadcrumb: UserBreadcrumb},
-  { path: 'something-else', breadcrumb: ':)' },
-];
-
-const Breadcrumbs = ({ breadcrumbs }) => (
-  <div>
-    {breadcrumbs.map(({ breadcrumb, path, match }) => (
-      <span key={path}>
-        <NavLink to={match.url}>
-          {breadcrumb}
-        </NavLink>
-        <span>/</span>
-      </span>
+const PureBreadcrumbs = ({ breadcrumbs }) => (
+  <div className="breadcrumbs">
+    {breadcrumbs.map(({ breadcrumb, match }, index) => (
+      match.url == "/" ? null : <div className="bc" key={match.url}>
+        <Link to={match.url || ""}>{breadcrumb}</Link>
+        {index < breadcrumbs.length - 1 && <span>></span>}
+      </div>
     ))}
   </div>
 );
 
-export default withBreadcrumbs(routes)(Breadcrumbs);
+export default withBreadcrumbs()(PureBreadcrumbs);

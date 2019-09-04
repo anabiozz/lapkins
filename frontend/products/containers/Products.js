@@ -46,62 +46,294 @@ class Products extends Component {
     const { data, errors, fetching, match, addProductToCart } = this.props
 
     let datas = [
-      {"id": 1, "name": "1", "ext": ".jpg", "categories": [{"authors":["lapkins", "zhopkins"]}], "decription": "dasdwdqwdq", "price": 50},
-      {"id": 2, "name": "2", "ext": ".jpg", "categories": [{"authors":["lapkins", "zhopkins"]}], "decription": "dasdwdqwdq", "price": 50},
-      {"id": 3, "name": "3", "ext": ".jpg", "categories": [{"authors":["lapkins", "zhopkins"]}], "decription": "dasdwdqwdq", "price": 50},
-      {"id": 4, "name": "4", "ext": ".jpg", "categories": [{"authors":["lapkins", "zhopkins"]}], "decription": "dasdwdqwdq", "price": 50},
-      {"id": 5, "name": "5", "ext": ".jpg", "categories": [{"authors":["lapkins", "zhopkins"]}], "decription": "dasdwdqwdq", "price": 50},
-      {"id": 6, "name": "6", "ext": ".jpg", "categories": [{"authors":["lapkins", "zhopkins"]}], "decription": "dasdwdqwdq", "price": 50},
-      {"id": 7, "name": "7", "ext": ".jpg", "categories": [{"authors":["lapkins", "zhopkins"]}], "decription": "dasdwdqwdq", "price": 50},
-      {"id": 8, "name": "8", "ext": ".jpg", "categories": [{"authors":["lapkins", "zhopkins"]}], "decription": "dasdwdqwdq", "price": 50},
-      {"id": 9, "name": "9", "ext": ".jpg", "categories": [{"authors":["lapkins", "zhopkins"]}], "decription": "dasdwdqwdq", "price": 50},
-      {"id": 10, "name": "10", "ext": ".jpg", "categories": [{"authors":["lapkins", "zhopkins"]}], "decription": "dasdwdqwdq", "price": 50},
-      {"id": 11, "name": "11", "ext": ".jpg", "categories": [{"authors":["lapkins", "zhopkins"]}], "decription": "dasdwdqwdq", "price": 50},
-      {"id": 12, "name": "12", "ext": ".jpg", "categories": [{"authors":["lapkins", "zhopkins"]}], "decription": "dasdwdqwdq", "price": 50},
-      {"id": 13, "name": "13", "ext": ".jpg", "categories": [{"authors":["lapkins", "zhopkins"]}], "decription": "dasdwdqwdq", "price": 50},
-      {"id": 14, "name": "14", "ext": ".jpg", "categories": [{"authors":["lapkins", "zhopkins"]}], "decription": "dasdwdqwdq", "price": 50},
-      {"id": 15, "name": "15", "ext": ".jpg", "categories": [{"authors":["lapkins", "zhopkins"]}], "decription": "dasdwdqwdq", "price": 50},
-      {"id": 16, "name": "16", "ext": ".jpg", "categories": [{"authors":["lapkins", "zhopkins"]}], "decription": "dasdwdqwdq", "price": 50},
-      {"id": 17, "name": "17", "ext": ".jpg", "categories": [{"authors":["lapkins", "zhopkins"]}], "decription": "dasdwdqwdq", "price": 50},
-      {"id": 18, "name": "18", "ext": ".jpg", "categories": [{"authors":["lapkins", "zhopkins"]}], "decription": "dasdwdqwdq", "price": 50},
+      {
+        "id": 1, 
+        "name": "1", 
+        "ext": ".jpg", 
+        "categories": 
+        {
+          "authors":["lapkins", "zhopkins"],
+          "material": "240 g/m² pure white paper",
+          "finish": "Semi-gloss",
+          "print type": "12-colour digital printing",
+        }, 
+        "decription": "dasdwdqwdq", 
+        "price": 50
+      },
+      {
+        "id": 2, 
+        "name": "2", 
+        "ext": ".jpg", 
+        "categories": 
+        {
+          "authors":["lapkins", "zhopkins"],
+          "material": "240 g/m² pure white paper",
+          "finish": "Semi-gloss",
+          "print type": "12-colour digital printing",
+        }, 
+        "decription": "dasdwdqwdq", 
+        "price": 50,
+      },
+      {  
+        "id":3,
+        "name":"3",
+        "ext":".jpg",
+        "categories":
+        {
+          "authors":["lapkins", "zhopkins"],
+          "material": "240 g/m² pure white paper",
+          "finish": "Semi-gloss",
+          "print type": "12-colour digital printing",
+        }, 
+        "decription":"dasdwdqwdq",
+        "price":50
+     },
+     {  
+        "id":4,
+        "name":"4",
+        "ext":".jpg",
+        "categories":
+        {
+          "authors":["lapkins", "zhopkins"],
+          "material": "240 g/m² pure white paper",
+          "finish": "Semi-gloss",
+          "print type": "12-colour digital printing",
+        }, 
+        "decription":"dasdwdqwdq",
+        "price":50
+     },
+     {  
+        "id":5,
+        "name":"5",
+        "ext":".jpg",
+        "categories":
+        {
+          "authors":["lapkins", "zhopkins"],
+          "material": "240 g/m² pure white paper",
+          "finish": "Semi-gloss",
+          "print type": "12-colour digital printing",
+        }, 
+        "decription":"dasdwdqwdq",
+        "price":50
+     },
+     {  
+        "id":6,
+        "name":"6",
+        "ext":".jpg",
+        "categories":
+        {
+          "authors":["lapkins", "zhopkins"],
+          "material": "240 g/m² pure white paper",
+          "finish": "Semi-gloss",
+          "print type": "12-colour digital printing",
+        }, 
+        "decription":"dasdwdqwdq",
+        "price":50
+     },
+     {  
+        "id":7,
+        "name":"7",
+        "ext":".jpg",
+        "categories":
+        {
+          "authors":["lapkins", "zhopkins"],
+          "material": "240 g/m² pure white paper",
+          "finish": "Semi-gloss",
+          "print type": "12-colour digital printing",
+        }, 
+        "decription":"dasdwdqwdq",
+        "price":50
+     },
+     {  
+        "id":8,
+        "name":"8",
+        "ext":".jpg",
+        "categories":
+        {
+          "authors":["lapkins", "zhopkins"],
+          "material": "240 g/m² pure white paper",
+          "finish": "Semi-gloss",
+          "print type": "12-colour digital printing",
+        }, 
+        "decription":"dasdwdqwdq",
+        "price":50
+     },
+     {  
+        "id":9,
+        "name":"9",
+        "ext":".jpg",
+        "categories":
+        {
+          "authors":["lapkins", "zhopkins"],
+          "material": "240 g/m² pure white paper",
+          "finish": "Semi-gloss",
+          "print type": "12-colour digital printing",
+        }, 
+        "decription":"dasdwdqwdq",
+        "price":50
+     },
+     {  
+        "id":10,
+        "name":"10",
+        "ext":".jpg",
+        "categories":
+        {
+          "authors":["lapkins", "zhopkins"],
+          "material": "240 g/m² pure white paper",
+          "finish": "Semi-gloss",
+          "print type": "12-colour digital printing",
+        }, 
+        "decription":"dasdwdqwdq",
+        "price":50
+     },
+     {  
+        "id":11,
+        "name":"11",
+        "ext":".jpg",
+        "categories":
+        {
+          "authors":["lapkins", "zhopkins"],
+          "material": "240 g/m² pure white paper",
+          "finish": "Semi-gloss",
+          "print type": "12-colour digital printing",
+        }, 
+        "decription":"dasdwdqwdq",
+        "price":50
+     },
+     {  
+        "id":12,
+        "name":"12",
+        "ext":".jpg",
+        "categories":
+        {
+          "authors":["lapkins", "zhopkins"],
+          "material": "240 g/m² pure white paper",
+          "finish": "Semi-gloss",
+          "print type": "12-colour digital printing",
+        }, 
+        "decription":"dasdwdqwdq",
+        "price":50
+     },
+     {  
+        "id":13,
+        "name":"13",
+        "ext":".jpg",
+        "categories":
+        {
+          "authors":["lapkins", "zhopkins"],
+          "material": "240 g/m² pure white paper",
+          "finish": "Semi-gloss",
+          "print type": "12-colour digital printing",
+        }, 
+        "decription":"dasdwdqwdq",
+        "price":50
+     },
+     {  
+        "id":14,
+        "name":"14",
+        "ext":".jpg",
+        "categories":
+        {
+          "authors":["lapkins", "zhopkins"],
+          "material": "240 g/m² pure white paper",
+          "finish": "Semi-gloss",
+          "print type": "12-colour digital printing",
+        }, 
+        "decription":"dasdwdqwdq",
+        "price":50
+     },
+     {  
+        "id":15,
+        "name":"15",
+        "ext":".jpg",
+        "categories":
+        {
+          "authors":["lapkins", "zhopkins"],
+          "material": "240 g/m² pure white paper",
+          "finish": "Semi-gloss",
+          "print type": "12-colour digital printing",
+        }, 
+        "decription":"dasdwdqwdq",
+        "price":50
+     },
+     {  
+        "id":16,
+        "name":"16",
+        "ext":".jpg",
+        "categories":
+        {
+          "authors":["lapkins", "zhopkins"],
+          "material": "240 g/m² pure white paper",
+          "finish": "Semi-gloss",
+          "print type": "12-colour digital printing",
+        }, 
+        "decription":"dasdwdqwdq",
+        "price":50
+     },
+     {  
+        "id":17,
+        "name":"17",
+        "ext":".jpg",
+        "categories":
+        {
+          "authors":["lapkins", "zhopkins"],
+          "material": "240 g/m² pure white paper",
+          "finish": "Semi-gloss",
+          "print type": "12-colour digital printing",
+        }, 
+        "decription":"dasdwdqwdq",
+        "price":50
+     },
+     {  
+        "id":18,
+        "name":"18",
+        "ext":".jpg",
+        "categories":
+        {
+          "authors":["lapkins", "zhopkins"],
+          "material": "240 g/m² pure white paper",
+          "finish": "Semi-gloss",
+          "print type": "12-colour digital printing",
+        }, 
+        "decription":"dasdwdqwdq",
+        "price":50
+     }
     ]
-
-    console.log(errors);
 
     console.log('RENDER <Products>')
 
     return (
       <div className="products__catalog">
         <div className="catalog">
-          <ul class="cat-nav dt102_1">
-            <li class="cat-nav-item dt102_li1">
-                <span class="cat-nav-item_li ">
-                  <a class="link dt102_bold">Женщинам</a> 
-                  <span class="cat-nav-cnt">226</span>
+          <ul className="cat-nav dt102_1">
+            <li className="cat-nav-item dt102_li1">
+                <span className="cat-nav-item_li ">
+                  <a className="link dt102_bold">Женщинам</a> 
+                  <span className="cat-nav-cnt">226</span>
                 </span>  
-                <ul class="cat-nav cat-nav-sub dt102_2">
-                  <li class="cat-nav-item dt102_li2"> 
-                    <span class="cat-nav-item_li"> 
-                      <a class="link">Обувь</a> 
-                      <span class="cat-nav-cnt">107</span> 
+                <ul className="cat-nav cat-nav-sub dt102_2">
+                  <li className="cat-nav-item dt102_li2"> 
+                    <span className="cat-nav-item_li"> 
+                      <a className="link">Обувь</a> 
+                      <span className="cat-nav-cnt">107</span> 
                     </span>  
                   </li>
-                  <li class="cat-nav-item dt102_li2"> 
-                    <span class="cat-nav-item_li"> 
-                      <a class="link">Одежда</a> 
-                      <span class="cat-nav-cnt">75</span> 
+                  <li className="cat-nav-item dt102_li2"> 
+                    <span className="cat-nav-item_li"> 
+                      <a className="link">Одежда</a> 
+                      <span className="cat-nav-cnt">75</span> 
                     </span>  
                   </li>
-                  <li class="cat-nav-item dt102_li2"> 
-                    <span class="cat-nav-item_li"> 
-                      <a class="link" >Аксессуары</a> 
-                     <span class="cat-nav-cnt">44</span> 
+                  <li className="cat-nav-item dt102_li2"> 
+                    <span className="cat-nav-item_li"> 
+                      <a className="link" >Аксессуары</a> 
+                     <span className="cat-nav-cnt">44</span> 
                     </span>  
                   </li>
-                  <li class="cat-nav-item dt102_li2"> 
-                    <span class="cat-nav-item_li"> 
-                      <a class="link" >Спорт</a> 
-                      <span class="cat-nav-cnt">11</span> 
+                  <li className="cat-nav-item dt102_li2"> 
+                    <span className="cat-nav-item_li"> 
+                      <a className="link" >Спорт</a> 
+                      <span className="cat-nav-cnt">11</span> 
                     </span>  
                   </li>
                 </ul>  

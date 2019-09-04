@@ -1,6 +1,6 @@
 
 const host = process.env.SERVER;
-const port = process.env.SERVER_PORT;
+const port = 8080; //process.env.SERVER_PORT
 
 const config = {
     server: {
