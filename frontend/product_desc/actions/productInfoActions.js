@@ -20,15 +20,12 @@ const receiveFail = error => ({
 })
 
 let domain = config.apiDomain + process.env.CORE_URL
-if (typeof window !== 'undefined') {
-  console.log(window.location.origin);
-  domain = window.location.origin + process.env.CORE_URL
-}
+// if (typeof window !== 'undefined') {
+//   console.log(window.location.origin);
+//   domain = window.location.origin + process.env.CORE_URL
+// }
 
 // process.env.CORE_URL
-
-console.log(domain);
-
 
 export const getProductByID = productID => (dispatch) => {
   dispatch({
@@ -36,6 +33,23 @@ export const getProductByID = productID => (dispatch) => {
   })
 
   fetch(`${domain}api/get-product-by-id?product_id=${productID}`)
+    .then((response) => {
+      if (response.status === 200) {
+        return response
+      }
+      throw new Error(`Cannot load data from server. Response status ${response.status}`)
+    })
+    .then(response => response.json())
+    .then(response => dispatch(receiveSuccess(response)))
+    .catch(error => dispatch(receiveFail(error)))
+}
+
+export const getProductVariantByID = productVariantID => (dispatch) => {
+  dispatch({
+    type: GET_PRODUCT_BY_ID_REQUEST,
+  })
+
+  fetch(`${domain}api/get-product-variant-by-id?product_variant_id=${productVariantID}`)
     .then((response) => {
       if (response.status === 200) {
         return response

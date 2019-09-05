@@ -1,51 +1,71 @@
 .cart {
+	width: $content_width_1;
+	margin: 0 auto;
+
+	&__title {
+		margin-bottom: 30px;
+	}
 
 	&__content {
 		display: flex;
 		flex-direction: column;
-		margin-top: 70px;
-
+		
 		&__item {
 			display: flex;
 			-webkit-box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.75);
 			-moz-box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.75);
 			box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.75);
 			margin-bottom: 30px;
-			max-height: 200px;
-			width: 60%;
+			height: 368px;
+			position: relative;
 			overflow: hidden;
 			justify-content: space-between;
 
 			&__image {
-				align-self: center;
-				padding: 5px;
-				max-width: 150px;
-				min-width: 150px;
+				flex: 1;
+				display: flex;
+				justify-content: center;
+				height: 100%;
+
+				img {
+					object-fit: cover;
+					height: 100%;
+					width: auto;
+				}
 			}
 
-			&_content {
+			&__content {
+				flex: 2;
 				display: flex;
 				width: 100%;
 				margin: 2rem;
+				justify-content: space-between;
+				font-size: 1.1rem;
 
-				&__information {
-					width: 50%;
+				.information {
 					align-self: center;
+					width: 100%;
 
-					&__description {
+					.description {
 						word-wrap: break-word;
 						font-weight: 600;
+						margin-bottom: 30px;
 					}
-					&__categories {
+
+					.categories {
 						display: flex;
 						justify-content: space-between;
+						width: 100%;
+
 						td {
 							padding-right: 10px;
 						}
 					}
 
-					&__price {
+					.price {
+						margin-top: 30px;
 						font-weight: 600;
+						font-size: 1.3rem;
 					}
 				}
 			}
@@ -101,5 +121,52 @@
 		margin-top: 50px;
 		font-size: 19px;
 	}
+}
 
+@media all and (max-width: 1250px) {
+
+}
+
+@media all and (max-width: 1420px) and (min-width: 1250px) {
+	.cart {
+		width: $content_width_2;
+	
+		&__content {
+	
+			&__item {
+	
+				&__image {}
+	
+				&_content {
+	
+					&__information {
+	
+						&__description {}
+						&__categories {
+							td {}
+						}
+	
+						&__price {}
+					}
+				}
+	
+				.close {
+					&.hairline {}
+				}
+			}
+		}
+	
+	 &__no__product {
+		
+		}
+	}
+}
+
+
+@media all and (max-width: 1930px) and (min-width: 1420px) {
+  
+}
+
+@media all and (max-width: 2560px) and (min-width: 1930px) {
+ 
 }

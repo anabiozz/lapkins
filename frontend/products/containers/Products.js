@@ -32,273 +32,19 @@ class Products extends Component {
   componentWillReceiveProps(nextProps) {
     const { getProducts, match } = nextProps;
     if (match.url !== this.props.match.url) {
-      console.log(match.params.productType);
-      // getProducts(config.productTypes.indexOf(match.params.productType) + 1)
+      getProducts(config.productTypes.indexOf(match.path.split('/')[1]) + 1)
     }
   }
 
   componentDidMount() {
-    // const { getProducts, match } = this.props
-    // getProducts(config.productTypes.indexOf(match.params.productType) + 1)
+    const { getProducts, match } = this.props
+    getProducts(config.productTypes.indexOf(match.path.split('/')[1]) + 1)
   }
 
   render() {
     const { data, errors, fetching, match, addProductToCart } = this.props
 
-    let datas = [
-      {
-        "id": 1, 
-        "name": "1", 
-        "ext": ".jpg", 
-        "categories": 
-        {
-          "authors":["lapkins", "zhopkins"],
-          "material": "240 g/m² pure white paper",
-          "finish": "Semi-gloss",
-          "print type": "12-colour digital printing",
-        }, 
-        "decription": "dasdwdqwdq", 
-        "price": 50
-      },
-      {
-        "id": 2, 
-        "name": "2", 
-        "ext": ".jpg", 
-        "categories": 
-        {
-          "authors":["lapkins", "zhopkins"],
-          "material": "240 g/m² pure white paper",
-          "finish": "Semi-gloss",
-          "print type": "12-colour digital printing",
-        }, 
-        "decription": "dasdwdqwdq", 
-        "price": 50,
-      },
-      {  
-        "id":3,
-        "name":"3",
-        "ext":".jpg",
-        "categories":
-        {
-          "authors":["lapkins", "zhopkins"],
-          "material": "240 g/m² pure white paper",
-          "finish": "Semi-gloss",
-          "print type": "12-colour digital printing",
-        }, 
-        "decription":"dasdwdqwdq",
-        "price":50
-     },
-     {  
-        "id":4,
-        "name":"4",
-        "ext":".jpg",
-        "categories":
-        {
-          "authors":["lapkins", "zhopkins"],
-          "material": "240 g/m² pure white paper",
-          "finish": "Semi-gloss",
-          "print type": "12-colour digital printing",
-        }, 
-        "decription":"dasdwdqwdq",
-        "price":50
-     },
-     {  
-        "id":5,
-        "name":"5",
-        "ext":".jpg",
-        "categories":
-        {
-          "authors":["lapkins", "zhopkins"],
-          "material": "240 g/m² pure white paper",
-          "finish": "Semi-gloss",
-          "print type": "12-colour digital printing",
-        }, 
-        "decription":"dasdwdqwdq",
-        "price":50
-     },
-     {  
-        "id":6,
-        "name":"6",
-        "ext":".jpg",
-        "categories":
-        {
-          "authors":["lapkins", "zhopkins"],
-          "material": "240 g/m² pure white paper",
-          "finish": "Semi-gloss",
-          "print type": "12-colour digital printing",
-        }, 
-        "decription":"dasdwdqwdq",
-        "price":50
-     },
-     {  
-        "id":7,
-        "name":"7",
-        "ext":".jpg",
-        "categories":
-        {
-          "authors":["lapkins", "zhopkins"],
-          "material": "240 g/m² pure white paper",
-          "finish": "Semi-gloss",
-          "print type": "12-colour digital printing",
-        }, 
-        "decription":"dasdwdqwdq",
-        "price":50
-     },
-     {  
-        "id":8,
-        "name":"8",
-        "ext":".jpg",
-        "categories":
-        {
-          "authors":["lapkins", "zhopkins"],
-          "material": "240 g/m² pure white paper",
-          "finish": "Semi-gloss",
-          "print type": "12-colour digital printing",
-        }, 
-        "decription":"dasdwdqwdq",
-        "price":50
-     },
-     {  
-        "id":9,
-        "name":"9",
-        "ext":".jpg",
-        "categories":
-        {
-          "authors":["lapkins", "zhopkins"],
-          "material": "240 g/m² pure white paper",
-          "finish": "Semi-gloss",
-          "print type": "12-colour digital printing",
-        }, 
-        "decription":"dasdwdqwdq",
-        "price":50
-     },
-     {  
-        "id":10,
-        "name":"10",
-        "ext":".jpg",
-        "categories":
-        {
-          "authors":["lapkins", "zhopkins"],
-          "material": "240 g/m² pure white paper",
-          "finish": "Semi-gloss",
-          "print type": "12-colour digital printing",
-        }, 
-        "decription":"dasdwdqwdq",
-        "price":50
-     },
-     {  
-        "id":11,
-        "name":"11",
-        "ext":".jpg",
-        "categories":
-        {
-          "authors":["lapkins", "zhopkins"],
-          "material": "240 g/m² pure white paper",
-          "finish": "Semi-gloss",
-          "print type": "12-colour digital printing",
-        }, 
-        "decription":"dasdwdqwdq",
-        "price":50
-     },
-     {  
-        "id":12,
-        "name":"12",
-        "ext":".jpg",
-        "categories":
-        {
-          "authors":["lapkins", "zhopkins"],
-          "material": "240 g/m² pure white paper",
-          "finish": "Semi-gloss",
-          "print type": "12-colour digital printing",
-        }, 
-        "decription":"dasdwdqwdq",
-        "price":50
-     },
-     {  
-        "id":13,
-        "name":"13",
-        "ext":".jpg",
-        "categories":
-        {
-          "authors":["lapkins", "zhopkins"],
-          "material": "240 g/m² pure white paper",
-          "finish": "Semi-gloss",
-          "print type": "12-colour digital printing",
-        }, 
-        "decription":"dasdwdqwdq",
-        "price":50
-     },
-     {  
-        "id":14,
-        "name":"14",
-        "ext":".jpg",
-        "categories":
-        {
-          "authors":["lapkins", "zhopkins"],
-          "material": "240 g/m² pure white paper",
-          "finish": "Semi-gloss",
-          "print type": "12-colour digital printing",
-        }, 
-        "decription":"dasdwdqwdq",
-        "price":50
-     },
-     {  
-        "id":15,
-        "name":"15",
-        "ext":".jpg",
-        "categories":
-        {
-          "authors":["lapkins", "zhopkins"],
-          "material": "240 g/m² pure white paper",
-          "finish": "Semi-gloss",
-          "print type": "12-colour digital printing",
-        }, 
-        "decription":"dasdwdqwdq",
-        "price":50
-     },
-     {  
-        "id":16,
-        "name":"16",
-        "ext":".jpg",
-        "categories":
-        {
-          "authors":["lapkins", "zhopkins"],
-          "material": "240 g/m² pure white paper",
-          "finish": "Semi-gloss",
-          "print type": "12-colour digital printing",
-        }, 
-        "decription":"dasdwdqwdq",
-        "price":50
-     },
-     {  
-        "id":17,
-        "name":"17",
-        "ext":".jpg",
-        "categories":
-        {
-          "authors":["lapkins", "zhopkins"],
-          "material": "240 g/m² pure white paper",
-          "finish": "Semi-gloss",
-          "print type": "12-colour digital printing",
-        }, 
-        "decription":"dasdwdqwdq",
-        "price":50
-     },
-     {  
-        "id":18,
-        "name":"18",
-        "ext":".jpg",
-        "categories":
-        {
-          "authors":["lapkins", "zhopkins"],
-          "material": "240 g/m² pure white paper",
-          "finish": "Semi-gloss",
-          "print type": "12-colour digital printing",
-        }, 
-        "decription":"dasdwdqwdq",
-        "price":50
-     }
-    ]
+    console.log(data);
 
     console.log('RENDER <Products>')
 
@@ -353,12 +99,12 @@ class Products extends Component {
             )
           }
           {
-            datas && datas.length > 0 && datas.map(product => (
+            data && data.length > 0 && data.map(product => (
               <Product 
                 key={product.id} 
-                url={`${config.imagePath.dev_path_preview}${product.name}_thumb${product.ext}`} 
+                url={`${config.imagePath.dev_path_preview}${product.id}_thumb.jpg`} 
                 product={product}
-                productType={match.params.productType}
+                productType={match.path}
                 addProductToCart={addProductToCart} />
             ))
           }
