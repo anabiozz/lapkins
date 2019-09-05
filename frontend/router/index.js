@@ -7,15 +7,6 @@ import Footer from '../common/components/Footer';
 import Breadcrumbs from '../common/components/breadcrumbs/Breadcrumbs';
 import Search from '../common/components/search/Search';
 
-const UserBreadcrumb = ({ match }) =>
-  <span>{match.params.userId}</span>; // use match param userId to fetch/display user name
-
-const routes = [
-  { path: 'users', breadcrumb: 'Users' },
-  { path: 'users/:userId', breadcrumb: UserBreadcrumb},
-  { path: 'something-else', breadcrumb: ':)' },
-];
-
 export default ({ path }) => {
   console.log(path);
   
@@ -25,9 +16,12 @@ export default ({ path }) => {
 
         <Header />
 
-        {/* <section className="crumb">
-            <Breadcrumbs breadcrumbs={routes} />
-        </section> */}
+        <section className="search_content">
+          <div className="search_wrapper">
+            <Search />
+            <Breadcrumbs />
+          </div>
+        </section>
 
         <section className="search_content">
           <div className="search_wrapper">

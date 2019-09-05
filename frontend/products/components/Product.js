@@ -17,13 +17,16 @@ const Product = ({ product, url, productType, addProductToCart }) => {
         <div className="product__image__inner">
           <Link to={{ pathname: `/products/${productType}/${product.id}`, state: {product} }} ><img src={url} alt="" /></Link>
         </div>
-        <img className="to__favorites" src={`data:image/svg+xml;base64,${heart}`} />
-        <img onClick={() => addProductToCart(product)} className="to__cart" src={`data:image/svg+xml;base64,${cross}`} />
+        {/* <img onClick={() => addProductToCart(product)} className="to__cart" src={`data:image/svg+xml;base64,${cross}`} /> */}
       </div>
       <div className="product__info">
-        <div className="product__info__desc">{product.decription}</div>
-        <div className="product__info__authors">{product.categories.authors}</div>
-        <div className="product__info__price">{product.price}{' руб.'}</div>
+        <div className="left">
+          <div className="product__info__desc">{product.decription}</div>
+          <div className="product__info__price">{product.price}{' руб.'}</div>
+        </div>
+        <div className="right">
+          <img className="to__favorites" src={`data:image/svg+xml;base64,${heart}`} />
+        </div>
       </div>
     </div>
   )

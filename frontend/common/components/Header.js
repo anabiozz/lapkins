@@ -64,7 +64,7 @@ export default class Header extends React.Component {
               <div className="left_content">
                 <div className="logo">
                   {/* <img src ="http://localhost:8080/static/images/images.png" /> */}
-                  <NavLink to="/">Lapkin's Home</NavLink>
+                  <NavLink to="/">Лапкин дом</NavLink>
                 </div>
 
                 <nav className="quicklist">

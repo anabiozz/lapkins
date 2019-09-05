@@ -75,9 +75,9 @@ export class ProductDescription extends Component {
 
             <div className="product__desc__block">
 
-              <div className="analog__design">
+              {/* <div className="analog__design">
                 <p> Lorem ipsum dolor</p>
-              </div>
+              </div> */}
 
               <div className="information">
                 <div className="description">{datas.decription}</div>
@@ -85,10 +85,16 @@ export class ProductDescription extends Component {
                 <table className="categories">
                   <tbody>
                     {
-                      datas.categories && datas.categories.map((obj, i) => (
+                      Object.keys(datas.categories) && Object.keys(datas.categories).map((category, i) => (
                         <tr key={i}>
-                          <td className="pi_table_td">{Object.keys(obj)[0]}</td>
-                          <td className="pi_table_td">{obj[Object.keys(obj)[0]].join(", ")}</td>
+                          <td className="pi_table_td">{category}</td>
+                          <td className="pi_table_td">
+                            {
+                              Array.isArray(datas.categories[category]) 
+                              ? datas.categories[category].join(", ") 
+                              : datas.categories[category]
+                            }
+                          </td>
                         </tr>
                       ))
                     }
