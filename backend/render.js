@@ -26,20 +26,12 @@ export default (pathname, store, context) => {
       <StaticRouter location={pathname} context={context}>
 				<Fragment>
 
-          
-
 					<Header />
 
           <section className="search_content">
             <div className="search_wrapper">
               <Search />
               <Breadcrumbs />
-            </div>
-          </section>
-
-          <section className="search_content">
-            <div className="search_wrapper">
-              <Search />
             </div>
           </section>
 

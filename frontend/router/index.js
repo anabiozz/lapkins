@@ -23,12 +23,6 @@ export default ({ path }) => {
           </div>
         </section>
 
-        <section className="search_content">
-          <div className="search_wrapper">
-            <Search />
-          </div>
-        </section>
-
         <section className="content">
           {renderRoutes(Routes)}
         </section>

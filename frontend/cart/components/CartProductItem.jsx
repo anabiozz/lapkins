@@ -9,7 +9,7 @@ const CartProductItem = ({ cartItem, removeProductFromCart, increaseCartItem, de
 
 	return <div className="cart__content__item">
 		<div className="cart__content__item__image">
-			<img src={`${config.imagePath.preview}${cartItem.product.name}_thumb${cartItem.product.ext}`} alt="" />
+			<img src={`${config.imagePath.dev_path_preview}${cartItem.product.name}_thumb${cartItem.product.ext}`} alt="" />
 		</div>
 
 		<div className="cart__content__item_content">

@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 const PureBreadcrumbs = ({ breadcrumbs }) => (
   <div className="breadcrumbs">
     {breadcrumbs.map(({ breadcrumb, match }, index) => (
-      match.url == "/" ? null : <div className="bc" key={match.url}>
+      <div className="bc" key={match.url}>
         <Link to={match.url || ""}>{breadcrumb}</Link>
         {index < breadcrumbs.length - 1 && <span>></span>}
       </div>

@@ -64,15 +64,15 @@ export default class Header extends React.Component {
               <div className="left_content">
                 <div className="logo">
                   {/* <img src ="http://localhost:8080/static/images/images.png" /> */}
-                  <NavLink to="/">Лапкин дом</NavLink>
+                  <NavLink to="/">Lapkin's home</NavLink>
                 </div>
 
                 <nav className="quicklist">
                   <ul>
-                    <li><NavLink to="/products/wallart">Постеры</NavLink></li>
-                    <li><NavLink to="/products/stationary">Канцелярия</NavLink></li>
-                    <li><NavLink to="/products/gifts">Подарки</NavLink></li>
-                    <li><NavLink to="/products/home">Для дома</NavLink></li>
+                    <li><NavLink to="/wallart">Постеры</NavLink></li>
+                    <li><NavLink to="/stationary">Канцелярия</NavLink></li>
+                    <li><NavLink to="/gifts">Подарки</NavLink></li>
+                    <li><NavLink to="/home">Для дома</NavLink></li>
                   </ul>
                 </nav>
                

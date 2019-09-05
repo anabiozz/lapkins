@@ -57,7 +57,7 @@ class Products extends Component {
           "finish": "Semi-gloss",
           "print type": "12-colour digital printing",
         }, 
-        "decription": "dasdwdqwdq", 
+        "decription": "Enim duis ad excepteur ut cillum nisi consectetur esse velit aute cillum tempor eu.", 
         "price": 50
       },
       {
@@ -71,7 +71,7 @@ class Products extends Component {
           "finish": "Semi-gloss",
           "print type": "12-colour digital printing",
         }, 
-        "decription": "dasdwdqwdq", 
+        "decription": "Ex cillum cupidatat sit cupidatat excepteur sit deserunt pariatur veniam velit.", 
         "price": 50,
       },
       {  
@@ -85,7 +85,7 @@ class Products extends Component {
           "finish": "Semi-gloss",
           "print type": "12-colour digital printing",
         }, 
-        "decription":"dasdwdqwdq",
+        "decription":"Veniam minim tempor magna minim ea.",
         "price":50
      },
      {  
@@ -99,7 +99,7 @@ class Products extends Component {
           "finish": "Semi-gloss",
           "print type": "12-colour digital printing",
         }, 
-        "decription":"dasdwdqwdq",
+        "decription":"Labore deserunt do quis aute elit amet sunt.",
         "price":50
      },
      {  
@@ -113,7 +113,7 @@ class Products extends Component {
           "finish": "Semi-gloss",
           "print type": "12-colour digital printing",
         }, 
-        "decription":"dasdwdqwdq",
+        "decription":"dasdwdqQuis voluptate consectetur reprehenderit excepteur irure exercitation exercitation veniam et nisi Lorem consequat.wdq",
         "price":50
      },
      {  
@@ -127,7 +127,7 @@ class Products extends Component {
           "finish": "Semi-gloss",
           "print type": "12-colour digital printing",
         }, 
-        "decription":"dasdwdqwdq",
+        "decription":"Ut sunt aute enim occaecat excepteur.",
         "price":50
      },
      {  
@@ -141,7 +141,7 @@ class Products extends Component {
           "finish": "Semi-gloss",
           "print type": "12-colour digital printing",
         }, 
-        "decription":"dasdwdqwdq",
+        "decription":"Aliqua voluptate eu eiusmod cillum fugiat id aute.",
         "price":50
      },
      {  
@@ -155,7 +155,7 @@ class Products extends Component {
           "finish": "Semi-gloss",
           "print type": "12-colour digital printing",
         }, 
-        "decription":"dasdwdqwdq",
+        "decription":"Ut laborum deserunt enim culpa nostrud id reprehenderit veniam elit ad qui aliqua nisi.",
         "price":50
      },
      {  
@@ -169,7 +169,7 @@ class Products extends Component {
           "finish": "Semi-gloss",
           "print type": "12-colour digital printing",
         }, 
-        "decription":"dasdwdqwdq",
+        "decription":"Sint qui voluptate tempor pariatur id quis esse ipsum irure.",
         "price":50
      },
      {  
@@ -183,124 +183,15 @@ class Products extends Component {
           "finish": "Semi-gloss",
           "print type": "12-colour digital printing",
         }, 
-        "decription":"dasdwdqwdq",
-        "price":50
-     },
-     {  
-        "id":11,
-        "name":"11",
-        "ext":".jpg",
-        "categories":
-        {
-          "authors":["lapkins", "zhopkins"],
-          "material": "240 g/m² pure white paper",
-          "finish": "Semi-gloss",
-          "print type": "12-colour digital printing",
-        }, 
-        "decription":"dasdwdqwdq",
-        "price":50
-     },
-     {  
-        "id":12,
-        "name":"12",
-        "ext":".jpg",
-        "categories":
-        {
-          "authors":["lapkins", "zhopkins"],
-          "material": "240 g/m² pure white paper",
-          "finish": "Semi-gloss",
-          "print type": "12-colour digital printing",
-        }, 
-        "decription":"dasdwdqwdq",
-        "price":50
-     },
-     {  
-        "id":13,
-        "name":"13",
-        "ext":".jpg",
-        "categories":
-        {
-          "authors":["lapkins", "zhopkins"],
-          "material": "240 g/m² pure white paper",
-          "finish": "Semi-gloss",
-          "print type": "12-colour digital printing",
-        }, 
-        "decription":"dasdwdqwdq",
-        "price":50
-     },
-     {  
-        "id":14,
-        "name":"14",
-        "ext":".jpg",
-        "categories":
-        {
-          "authors":["lapkins", "zhopkins"],
-          "material": "240 g/m² pure white paper",
-          "finish": "Semi-gloss",
-          "print type": "12-colour digital printing",
-        }, 
-        "decription":"dasdwdqwdq",
-        "price":50
-     },
-     {  
-        "id":15,
-        "name":"15",
-        "ext":".jpg",
-        "categories":
-        {
-          "authors":["lapkins", "zhopkins"],
-          "material": "240 g/m² pure white paper",
-          "finish": "Semi-gloss",
-          "print type": "12-colour digital printing",
-        }, 
-        "decription":"dasdwdqwdq",
-        "price":50
-     },
-     {  
-        "id":16,
-        "name":"16",
-        "ext":".jpg",
-        "categories":
-        {
-          "authors":["lapkins", "zhopkins"],
-          "material": "240 g/m² pure white paper",
-          "finish": "Semi-gloss",
-          "print type": "12-colour digital printing",
-        }, 
-        "decription":"dasdwdqwdq",
-        "price":50
-     },
-     {  
-        "id":17,
-        "name":"17",
-        "ext":".jpg",
-        "categories":
-        {
-          "authors":["lapkins", "zhopkins"],
-          "material": "240 g/m² pure white paper",
-          "finish": "Semi-gloss",
-          "print type": "12-colour digital printing",
-        }, 
-        "decription":"dasdwdqwdq",
-        "price":50
-     },
-     {  
-        "id":18,
-        "name":"18",
-        "ext":".jpg",
-        "categories":
-        {
-          "authors":["lapkins", "zhopkins"],
-          "material": "240 g/m² pure white paper",
-          "finish": "Semi-gloss",
-          "print type": "12-colour digital printing",
-        }, 
-        "decription":"dasdwdqwdq",
+        "decription":"Qui non cupidatat anim dolor sunt et eu reprehenderit.",
         "price":50
      }
     ]
 
     console.log('RENDER <Products>')
+
+    console.log(match);
+    
 
     return (
       <div className="products__catalog">
@@ -358,7 +249,7 @@ class Products extends Component {
                 key={product.id} 
                 url={`${config.imagePath.dev_path_preview}${product.name}_thumb${product.ext}`} 
                 product={product}
-                productType={match.params.productType}
+                productType={match.path}
                 addProductToCart={addProductToCart} />
             ))
           }

@@ -15,17 +15,17 @@ export default [
 	},
 	{
     component: Products,
-		path: '/products/new',
+		path: '/wallart',
 		exact: true
 	},
 	{
     component: Products,
-		path: '/products/:productType',
+		path: '/wallart/new',
 		exact: true
 	},
 	{
     component: ProductDescription,
-		path: '/products/:productType/:productID',
+		path: '/wallart/:productID',
 		exact: true
   }
 ];

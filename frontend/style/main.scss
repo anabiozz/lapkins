@@ -1,26 +1,16 @@
 @font-face {
-  font-family: 'Comfortaa';
-	src: url('fonts/Comfortaa-Regular.ttf');
+  font-family: 'Raleway_Black';
+	src: url('fonts/Raleway-v4020-Black.otf');
 }
 
 @font-face {
-  font-family: 'MazzardSoftM';
-	src: url('fonts/MazzardSoftM-Light.woff');
-}
-
-@font-face {
-  font-family: 'NexaReplicaRU';
-	src: url('fonts/NexaReplicaRU-Bold.otf');
-}
-
-@font-face {
-  font-family: 'SourceSerifPro';
-	src: url('fonts/SourceSerifPro-Light.ttf');
+  font-family: 'Raleway_SemiBold';
+	src: url('fonts/Raleway-v4020-Medium.otf');
 }
 
 $primary_font: 'Open Sans Condensed', sans-serif; // Open Sans Condensed
-$nav_links_font: 'NexaReplicaRU', sans-serif;
-$logo_font: 'NexaReplicaRU', sans-serif; // Josefin Sans
+$nav_links_font: 'Raleway_SemiBold', sans-serif;
+$logo_font: 'Raleway_Black', sans-serif; // Josefin Sans
 
 $product_background_color: #ece8da;
 $main_black_color: #3d3d3d;
@@ -31,7 +21,6 @@ $logo_color: #181515;
 $content_gap: 30px;
 $content_width_1: (((250px * 4) + (4 * $content_gap)) + (300px - (4 * $content_gap)));
 $content_width_2: (((250px * 3) + (3 * $content_gap)) + (300px - (3 * $content_gap)));
-
 
 @import "normalize.scss";
 @import "common.scss";

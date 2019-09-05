@@ -1,9 +1,14 @@
 .cart {
+	width: $content_width_1;
+	margin: 0 auto;
+
+	&__title {
+		margin-bottom: 30px;
+	}
 
 	&__content {
 		display: flex;
 		flex-direction: column;
-		margin-top: 70px;
 
 		&__item {
 			display: flex;
@@ -101,5 +106,52 @@
 		margin-top: 50px;
 		font-size: 19px;
 	}
+}
 
+@media all and (max-width: 1250px) {
+
+}
+
+@media all and (max-width: 1420px) and (min-width: 1250px) {
+	.cart {
+		width: $content_width_2;
+	
+		&__content {
+	
+			&__item {
+	
+				&__image {}
+	
+				&_content {
+	
+					&__information {
+	
+						&__description {}
+						&__categories {
+							td {}
+						}
+	
+						&__price {}
+					}
+				}
+	
+				.close {
+					&.hairline {}
+				}
+			}
+		}
+	
+	 &__no__product {
+		
+		}
+	}
+}
+
+
+@media all and (max-width: 1930px) and (min-width: 1420px) {
+  
+}
+
+@media all and (max-width: 2560px) and (min-width: 1930px) {
+ 
 }

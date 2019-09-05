@@ -21,7 +21,7 @@ class Home extends React.Component {
       // style={this.state.elements.length === 3 ? {} : {display: 'none'}} 
       <div className="gallery">
 
-        <NavLink to="/products/new" className="gallery__item gallery__item__1">
+        <NavLink to="/new" className="gallery__item gallery__item__1">
           <img 
             className="gallery__img"
             onLoad={() => this.add()}
@@ -31,7 +31,7 @@ class Home extends React.Component {
           </div>
         </NavLink>
 
-        <NavLink to="/products/wallart" className="gallery__item gallery__item__2">
+        <NavLink to="/wallart" className="gallery__item gallery__item__2">
           <img 
             className="gallery__img" 
             onLoad={() => this.add()}
@@ -41,7 +41,7 @@ class Home extends React.Component {
           </div>
         </NavLink>
 
-        <NavLink to="/products/gifts" className="gallery__item gallery__item__3">
+        <NavLink to="/gifts" className="gallery__item gallery__item__3">
           <img 
             className="gallery__img" 
             onLoad={() => this.add()}

@@ -57,10 +57,10 @@ app.use(bodyParser.urlencoded({
 
 app.use(root + 'static', express.static(__dirname + '/static'));
 app.use(root + 'images', express.static(__dirname + '/static/images'));
-app.use(root + 'products/static', express.static(__dirname + '/static'));
-app.use(root + 'products/static/images', express.static(__dirname + '/static/images'));
-app.use(root + 'products/wallart/static', express.static(__dirname + '/static'));
-app.use(root + 'products/wallart/static/images', express.static(__dirname + '/static/images'));
+app.use(root + 'static', express.static(__dirname + '/static'));
+app.use(root + 'static/images', express.static(__dirname + '/static/images'));
+app.use(root + 'wallart/static', express.static(__dirname + '/static'));
+app.use(root + 'wallart/static/images', express.static(__dirname + '/static/images'));
 
 app.get('*', async (req, res) => {
 
