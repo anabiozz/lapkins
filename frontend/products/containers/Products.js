@@ -32,161 +32,19 @@ class Products extends Component {
   componentWillReceiveProps(nextProps) {
     const { getProducts, match } = nextProps;
     if (match.url !== this.props.match.url) {
-      console.log(match.params.productType);
-      // getProducts(config.productTypes.indexOf(match.params.productType) + 1)
+      getProducts(config.productTypes.indexOf(match.path.split('/')[1]) + 1)
     }
   }
 
   componentDidMount() {
-    // const { getProducts, match } = this.props
-    // getProducts(config.productTypes.indexOf(match.params.productType) + 1)
+    const { getProducts, match } = this.props
+    getProducts(config.productTypes.indexOf(match.path.split('/')[1]) + 1)
   }
 
   render() {
     const { data, errors, fetching, match, addProductToCart } = this.props
 
-    let datas = [
-      {
-        "id": 1, 
-        "name": "1", 
-        "ext": ".jpg", 
-        "categories": 
-        {
-          "authors":["lapkins", "zhopkins"],
-          "material": "240 g/m² pure white paper",
-          "finish": "Semi-gloss",
-          "print type": "12-colour digital printing",
-        }, 
-        "decription": "Enim duis ad excepteur ut cillum nisi consectetur esse velit aute cillum tempor eu.", 
-        "price": 50
-      },
-      {
-        "id": 2, 
-        "name": "2", 
-        "ext": ".jpg", 
-        "categories": 
-        {
-          "authors":["lapkins", "zhopkins"],
-          "material": "240 g/m² pure white paper",
-          "finish": "Semi-gloss",
-          "print type": "12-colour digital printing",
-        }, 
-        "decription": "Ex cillum cupidatat sit cupidatat excepteur sit deserunt pariatur veniam velit.", 
-        "price": 50,
-      },
-      {  
-        "id":3,
-        "name":"3",
-        "ext":".jpg",
-        "categories":
-        {
-          "authors":["lapkins", "zhopkins"],
-          "material": "240 g/m² pure white paper",
-          "finish": "Semi-gloss",
-          "print type": "12-colour digital printing",
-        }, 
-        "decription":"Veniam minim tempor magna minim ea.",
-        "price":50
-     },
-     {  
-        "id":4,
-        "name":"4",
-        "ext":".jpg",
-        "categories":
-        {
-          "authors":["lapkins", "zhopkins"],
-          "material": "240 g/m² pure white paper",
-          "finish": "Semi-gloss",
-          "print type": "12-colour digital printing",
-        }, 
-        "decription":"Labore deserunt do quis aute elit amet sunt.",
-        "price":50
-     },
-     {  
-        "id":5,
-        "name":"5",
-        "ext":".jpg",
-        "categories":
-        {
-          "authors":["lapkins", "zhopkins"],
-          "material": "240 g/m² pure white paper",
-          "finish": "Semi-gloss",
-          "print type": "12-colour digital printing",
-        }, 
-        "decription":"dasdwdqQuis voluptate consectetur reprehenderit excepteur irure exercitation exercitation veniam et nisi Lorem consequat.wdq",
-        "price":50
-     },
-     {  
-        "id":6,
-        "name":"6",
-        "ext":".jpg",
-        "categories":
-        {
-          "authors":["lapkins", "zhopkins"],
-          "material": "240 g/m² pure white paper",
-          "finish": "Semi-gloss",
-          "print type": "12-colour digital printing",
-        }, 
-        "decription":"Ut sunt aute enim occaecat excepteur.",
-        "price":50
-     },
-     {  
-        "id":7,
-        "name":"7",
-        "ext":".jpg",
-        "categories":
-        {
-          "authors":["lapkins", "zhopkins"],
-          "material": "240 g/m² pure white paper",
-          "finish": "Semi-gloss",
-          "print type": "12-colour digital printing",
-        }, 
-        "decription":"Aliqua voluptate eu eiusmod cillum fugiat id aute.",
-        "price":50
-     },
-     {  
-        "id":8,
-        "name":"8",
-        "ext":".jpg",
-        "categories":
-        {
-          "authors":["lapkins", "zhopkins"],
-          "material": "240 g/m² pure white paper",
-          "finish": "Semi-gloss",
-          "print type": "12-colour digital printing",
-        }, 
-        "decription":"Ut laborum deserunt enim culpa nostrud id reprehenderit veniam elit ad qui aliqua nisi.",
-        "price":50
-     },
-     {  
-        "id":9,
-        "name":"9",
-        "ext":".jpg",
-        "categories":
-        {
-          "authors":["lapkins", "zhopkins"],
-          "material": "240 g/m² pure white paper",
-          "finish": "Semi-gloss",
-          "print type": "12-colour digital printing",
-        }, 
-        "decription":"Sint qui voluptate tempor pariatur id quis esse ipsum irure.",
-        "price":50
-     },
-     {  
-        "id":10,
-        "name":"10",
-        "ext":".jpg",
-        "categories":
-        {
-          "authors":["lapkins", "zhopkins"],
-          "material": "240 g/m² pure white paper",
-          "finish": "Semi-gloss",
-          "print type": "12-colour digital printing",
-        }, 
-        "decription":"Qui non cupidatat anim dolor sunt et eu reprehenderit.",
-        "price":50
-     }
-    ]
+    console.log(data);
 
     console.log('RENDER <Products>')
 
@@ -244,10 +102,10 @@ class Products extends Component {
             )
           }
           {
-            datas && datas.length > 0 && datas.map(product => (
+            data && data.length > 0 && data.map(product => (
               <Product 
                 key={product.id} 
-                url={`${config.imagePath.dev_path_preview}${product.name}_thumb${product.ext}`} 
+                url={`${config.imagePath.dev_path_preview}${product.id}_thumb.jpg`} 
                 product={product}
                 productType={match.path}
                 addProductToCart={addProductToCart} />

@@ -7,26 +7,28 @@ const locale = new Locale('RU').get()
 
 const CartProductItem = ({ cartItem, removeProductFromCart, increaseCartItem, decreaseCartItem }) => {
 
+	console.log(cartItem);
+
 	return <div className="cart__content__item">
 		<div className="cart__content__item__image">
-			<img src={`${config.imagePath.dev_path_preview}${cartItem.product.name}_thumb${cartItem.product.ext}`} alt="" />
+			<img src={`${config.imagePath.dev_path_preview}${cartItem.product.product_id}_thumb.jpg`} alt="" />
 		</div>
 
-		<div className="cart__content__item_content">
-			<div className="cart__content__item__information">
-				<div className="cart__content__item__description">{cartItem.product.decription}</div>
+		<div className="cart__content__item__content">
+			<div className="information">
+				<div className="description">{cartItem.product.decription}</div>
 
-				<table className="cart__content__item__categories">
+				<table className="categories">
 					<tbody>
 						{
-							Object.keys(cartItem.product.categories) && Object.keys(cartItem.product.categories).map((category, i) => (
+							Object.keys(cartItem.product.attributes) && Object.keys(cartItem.product.attributes).map((category, i) => (
 								<tr key={i}>
-									<td className="pi_table_td">{category}</td>
+									<td className="pi_table_td">{locale.get(category)}</td>
 									<td className="pi_table_td">
 										{
-											Array.isArray(cartItem.product.categories[category]) 
-											? cartItem.product.categories[category].join(", ") 
-											: cartItem.product.categories[category]
+											Array.isArray(cartItem.product.attributes[category]) 
+											? cartItem.product.attributes[category].join(", ") 
+											: cartItem.product.attributes[category]
 										}
 									</td>
 								</tr>
@@ -35,8 +37,8 @@ const CartProductItem = ({ cartItem, removeProductFromCart, increaseCartItem, de
 					</tbody>
 				</table>
 
-				<div className="cart__content__item__price">
-					{cartItem.product.price  * cartItem.count}
+				<div className="price">
+					{cartItem.product.price_override  * cartItem.count}
 					{' руб.'}
 				</div>
 			</div>

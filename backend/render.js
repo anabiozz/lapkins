@@ -28,12 +28,12 @@ export default (pathname, store, context) => {
 
 					<Header />
 
-          <section className="search_content">
+          {/* <section className="search_content">
             <div className="search_wrapper">
               <Search />
               <Breadcrumbs />
             </div>
-          </section>
+          </section> */}
 
           <section className="content">
             {renderRoutes(Routes)}

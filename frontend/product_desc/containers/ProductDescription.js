@@ -6,7 +6,7 @@ import config from '../../config';
 import * as actions from '../actions/productInfoActions';
 import { addProductToCart } from '../../cart/actions/cartActions';
 import Button from '../../common/components/button/Button';
-
+import Select from '../../common/components/Select';
 import Locale from '../../utils/locale';
 
 import {
@@ -33,28 +33,37 @@ const MyLoader = props => (
 )
 
 export class ProductDescription extends Component {
-  constructor(props) {
-    super(props)
-    const { reset, getProductByID, match } = this.props
-    // reset()
-    // getProductByID(match.params.productID)
+
+  constructor() {
+    super()
+    this.state = {
+      select_value: "",
+    }
   }
 
+
   // static fetching ({ dispatch }) {
-  //   return [dispatch(this.props.getProductByID(match.params.productID))];
+  //   return [dispatch(this.props.getProductByID(this.props.match.params.productID))];
   // }
 
   componentDidMount() {
-    // this.props.getProductByID(this.props.match.params.productID)
+    this.props.reset()
+    this.props.getProductByID(this.props.match.params.productID)
   }
 
-  switchElement = ({ location, data, errors, fetching, addProductToCart }) => {
+  getProductVariant = (id) => {
+    this.props.reset()
+    this.props.getProductByID(id)
+  }
 
-    let datas = {}
+  switchElement = ({ data, errors, fetching, addProductToCart }) => {
 
-    if (location.state != undefined) {
-      datas =  location.state.product
+    if (this.props.location.state != undefined) {
+      console.log(this.props.location.state);
     }
+
+    console.log(data);
+    
 
     switch (true) {
       case fetching:
@@ -66,11 +75,11 @@ export class ProductDescription extends Component {
             {` ${errors.message}`}
           </div>
         )
-      case datas && Object.keys(datas).length > 0:
+      case data && Object.keys(data).length > 0:
         return (
           <Fragment>
             <div className="product__desc__image">
-              <img src={`${config.imagePath.dev_path_full}${datas.name}${datas.ext}`} alt="" />
+              <img src={`${config.imagePath.dev_path_full}${data.product_id}.jpg`} alt="" />
             </div>
 
             <div className="product__desc__block">
@@ -80,19 +89,19 @@ export class ProductDescription extends Component {
               </div> */}
 
               <div className="information">
-                <div className="description">{datas.decription}</div>
+                <div className="description">{data.decription}</div>
 
                 <table className="categories">
                   <tbody>
                     {
-                      Object.keys(datas.categories) && Object.keys(datas.categories).map((category, i) => (
+                      Object.keys(data.attributes) && Object.keys(data.attributes).map((category, i) => (
                         <tr key={i}>
                           <td className="pi_table_td">{category}</td>
                           <td className="pi_table_td">
                             {
-                              Array.isArray(datas.categories[category]) 
-                              ? datas.categories[category].join(", ") 
-                              : datas.categories[category]
+                              Array.isArray(data.attributes[category]) 
+                              ? data.attributes[category].join(", ") 
+                              : data.attributes[category]
                             }
                           </td>
                         </tr>
@@ -102,16 +111,27 @@ export class ProductDescription extends Component {
                 </table>
 
                 <div className="price">
-                  {datas.price}
+                  {data.price_override}
                   {' руб.'}
+                </div>
+
+                <div className="size_select">
+                  <Select
+                    placeholder="Выбери размер"
+                    name="size_select"
+                    title="Выбери размер"
+                    options={data.sizes}
+                    value={this.state.select_value}
+                    handleChange={() => this.getProductVariant(8)} />
                 </div>
 
                 <div className="add_to_cart">
                   <Button 
                     title="Добавить в корзину"
                     type="primary"
-                    action={() => addProductToCart(datas)} />
+                    action={() => addProductToCart(data)} />
                 </div>
+
               </div>
             </div>
           </Fragment>

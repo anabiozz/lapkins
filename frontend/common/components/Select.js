@@ -24,7 +24,7 @@ const Select = (props) => {
         <option value="" disabled>
           {placeholder}
         </option>
-        {options.map(option => (
+        {options && options.map(option => (
           <option key={option} value={option} label={option}>
             {option}
           </option>

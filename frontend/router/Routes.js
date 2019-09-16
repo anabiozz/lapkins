@@ -20,14 +20,24 @@ export default [
 	},
 	{
     component: Products,
-		path: '/wallart/new',
+		path: '/new',
 		exact: true
 	},
 	{
     component: ProductDescription,
 		path: '/wallart/:productID',
 		exact: true
-  }
+	},
+	{
+    component: Products,
+		path: '/stationary',
+		exact: true
+	},
+	{
+    component: ProductDescription,
+		path: '/stationary/:productID',
+		exact: true
+	},
 ];
 
 

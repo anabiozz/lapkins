@@ -15,13 +15,13 @@ export default ({ path }) => {
       <Fragment>
 
         <Header />
-
+{/* 
         <section className="search_content">
           <div className="search_wrapper">
             <Search />
             <Breadcrumbs />
           </div>
-        </section>
+        </section> */}
 
         <section className="content">
           {renderRoutes(Routes)}

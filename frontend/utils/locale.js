@@ -9,8 +9,9 @@ export default class Locale {
         return new Map([
           ['sizes', 'Размер'],
           ['authors', 'Автор'],
+          ['finish', 'Покрытие'],
           ['materials', 'Материалы'],
-          ['print_type', 'Тип печати'],
+          ['print type', 'Тип печати'],
         ])
       default:
         return null

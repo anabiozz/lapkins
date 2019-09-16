@@ -61,6 +61,8 @@ app.use(root + 'static', express.static(__dirname + '/static'));
 app.use(root + 'static/images', express.static(__dirname + '/static/images'));
 app.use(root + 'wallart/static', express.static(__dirname + '/static'));
 app.use(root + 'wallart/static/images', express.static(__dirname + '/static/images'));
+app.use(root + 'stationary/static', express.static(__dirname + '/static'));
+app.use(root + 'stationary/static/images', express.static(__dirname + '/static/images'));
 
 app.get('*', async (req, res) => {
 
