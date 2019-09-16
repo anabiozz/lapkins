@@ -53,7 +53,7 @@ export class ProductDescription extends Component {
 
   getProductVariant = (id) => {
     this.props.reset()
-    this.props.getProductByID(id)
+    this.props.getProductVariantByID(id)
   }
 
   switchElement = ({ data, errors, fetching, addProductToCart }) => {
@@ -63,6 +63,7 @@ export class ProductDescription extends Component {
     }
 
     console.log(data);
+
     
 
     switch (true) {
@@ -96,12 +97,12 @@ export class ProductDescription extends Component {
                     {
                       Object.keys(data.attributes) && Object.keys(data.attributes).map((category, i) => (
                         <tr key={i}>
-                          <td className="pi_table_td">{category}</td>
+                          <td className="pi_table_td">{locale.get(category)}</td>
                           <td className="pi_table_td">
                             {
-                              Array.isArray(data.attributes[category]) 
-                              ? data.attributes[category].join(", ") 
-                              : data.attributes[category]
+                              locale.has(Array.isArray(data.attributes[category]) ? data.attributes[category].join(", ") : data.attributes[category])
+                              ? locale.get(Array.isArray(data.attributes[category]) ? data.attributes[category].join(", ") : data.attributes[category])
+                              : Array.isArray(data.attributes[category]) ? data.attributes[category].join(", ") : data.attributes[category] 
                             }
                           </td>
                         </tr>
@@ -111,8 +112,7 @@ export class ProductDescription extends Component {
                 </table>
 
                 <div className="price">
-                  {data.price_override}
-                  {' руб.'}
+                 от {data.price_override} рублей
                 </div>
 
                 <div className="size_select">
@@ -122,7 +122,7 @@ export class ProductDescription extends Component {
                     title="Выбери размер"
                     options={data.sizes}
                     value={this.state.select_value}
-                    handleChange={() => this.getProductVariant(8)} />
+                    handleChange={() => this.getProductVariant(this.props.match.params.productID)} />
                 </div>
 
                 <div className="add_to_cart">

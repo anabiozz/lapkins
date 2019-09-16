@@ -12,9 +12,10 @@ export default class Locale {
           ['finish', 'Покрытие'],
           ['materials', 'Материалы'],
           ['print type', 'Тип печати'],
+          ['semi-gloss', 'Полуглянцевая']
         ])
       default:
-        return null
+        return this
     }
   }
 }
