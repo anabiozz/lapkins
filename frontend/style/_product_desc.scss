@@ -1,9 +1,11 @@
+@import 'https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css';
+
 .product__desc {
   display: flex;
-  -webkit-animation: reveal 0.5s ease;
-  -webkit-animation-fill-mode: backwards;
-  animation: reveal 0.5s ease;
-  animation-fill-mode: backwards;
+  // -webkit-animation: reveal 1s ease;
+  // -webkit-animation-fill-mode: backwards;
+  // animation: reveal 1s ease;
+  // animation-fill-mode: backwards;
   width: $content_width_1;
   margin: 0 auto;
 
@@ -20,14 +22,9 @@
   }
 
   .product__desc__block {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    height: auto;
     width: 60%;
 
     .analog__design {
-      background-color: bisque;
       margin: 0px auto;
       width: 100%;
     }
@@ -36,7 +33,8 @@
       font-family: $primary_font;
       display: flex;
       flex-direction: column;
-      justify-content: flex-end;
+      justify-content: space-between;
+      height: 70%;
 
       .categories {
         font-size: 1.3rem;
@@ -61,44 +59,13 @@
         margin-top: 26px;
       }
 
-      .add_to_cart {
-        margin-top: 40px;
-        // удаляет синее свечение 
-        outline: none
+      .elements {
+        display: flex;
+        justify-content: space-between;
       }
     }
   }
 }
-
-// @media all and (max-width: 500px) {
-//   .nav-quicklist ul>li {
-//     flex-basis: 100%;
-//   }
-
-//   .nav-quicklist ul {
-//     order: 1;
-//   }
-// }
-
-// @media all and (max-width: 768px) {
-//   nav .nav-quicklist ul li a {
-//     font-size: 1.1rem;
-//   }
-
-//   nav .logo a {
-//     font-size: 1.9rem;
-//   }
-// }
-
-// @media all and (max-width: 991px) and (min-width: 768px) {
-//   nav .nav-quicklist ul {
-//     flex-wrap: wrap;
-//   }
-
-//   nav .nav-quicklist ul>li {
-//     flex-basis: 50%;
-//   }
-// }
 
 @media all and (max-width: 1250px) {
   .product__desc {
@@ -127,10 +94,6 @@
           font-size: 1.3rem;
           font-weight: 600;
           margin-top: 26px;
-        }
-
-        .add_to_cart {
-          margin-top: 40px;
         }
       }
     }
@@ -166,9 +129,6 @@
           margin-top: 26px;
         }
 
-        .add_to_cart {
-          margin-top: 40px;
-        }
       }
     }
   }

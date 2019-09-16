@@ -12,25 +12,17 @@ const Select = (props) => {
   } = props
 
   return (
-    <div className="form-group">
-      <label htmlFor={name}>{title}</label>
-      <select
-        id={name}
-        name={name}
-        value={value}
-        onChange={handleChange}
-        className="form-control"
-      >
-        <option value="" disabled>
-          {placeholder}
-        </option>
-        {options && options.map(option => (
-          <option key={option} value={option} label={option}>
-            {option}
-          </option>
-        ))}
+   <div className="select-box">
+      {/* <label htmlFor={name}>{title}</label> */}
+      <select id={name} name={name} value={value} onChange={handleChange}>
+        <option value="" disabled >{placeholder}</option> 
+        {
+          options && options.map((option, i) => (
+            <option key={i} value={option} label={option}>{option}</option>
+          ))
+        }
       </select>
-    </div>
+    </div> 
   )
 }
 
@@ -44,3 +36,5 @@ Select.propTypes = {
 }
 
 export default Select
+
+

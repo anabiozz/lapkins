@@ -1,19 +1,22 @@
-button.btn {
+.select-box select{
+	width: 330px;
+	height: 60px;
+	// border-radius: 3px;
+	font-size: 22px;
+	font-weight: 600;
 	background: transparent none repeat scroll 0 0;
 	border: 0 none;
 	-webkit-box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.75);
 	-moz-box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.75);
 	box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.75);
 	color: $main_black_color;
-	width: 200px;
-	font-size: 22px;
-	font-weight: 600;
-	line-height: 20px;
-	padding: 20px 0;
 	text-transform: uppercase;
 	transition: all 0.4s ease 0s;
-	cursor: pointer;
 	outline: none;
-}
 
-// button.btn-primary
+	option {
+		overflow: hidden;
+		z-index: 1;
+		transition: all 1s ease-out;
+	}
+}

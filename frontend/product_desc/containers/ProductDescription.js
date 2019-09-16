@@ -6,7 +6,7 @@ import config from '../../config';
 import * as actions from '../actions/productInfoActions';
 import { addProductToCart } from '../../cart/actions/cartActions';
 import Button from '../../common/components/button/Button';
-import Select from '../../common/components/Select';
+import Select from '../../common/components/select/Select';
 import Locale from '../../utils/locale';
 
 import {
@@ -37,7 +37,9 @@ export class ProductDescription extends Component {
   constructor() {
     super()
     this.state = {
-      select_value: "",
+      select: {
+        value: ""
+      },
     }
   }
 
@@ -52,9 +54,27 @@ export class ProductDescription extends Component {
   }
 
   getProductVariant = (id) => {
+    console.log(id);
+    
     this.props.reset()
-    this.props.getProductByID(id)
+    this.props.getProductVariantByID(id)
   }
+
+
+	handleSelect = (e, product_id) => {
+    const value = e.currentTarget.value;
+		const name = e.currentTarget.name;
+    
+		this.setState(prevState => ({
+			select: {
+				...prevState.select,
+				[name]: value,
+			}
+    }));
+    
+    this.props.reset()
+    this.props.getProductVariantByID(product_id, value)
+	}
 
   switchElement = ({ data, errors, fetching, addProductToCart }) => {
 
@@ -62,7 +82,7 @@ export class ProductDescription extends Component {
       console.log(this.props.location.state);
     }
 
-    console.log(data);
+    console.log(this.state.select.value);
     
 
     switch (true) {
@@ -84,11 +104,7 @@ export class ProductDescription extends Component {
 
             <div className="product__desc__block">
 
-              {/* <div className="analog__design">
-                <p> Lorem ipsum dolor</p>
-              </div> */}
-
-              <div className="information">
+              <div className="information animated infinite bounce delay-2s fadeInDown">
                 <div className="description">{data.decription}</div>
 
                 <table className="categories">
@@ -96,12 +112,12 @@ export class ProductDescription extends Component {
                     {
                       Object.keys(data.attributes) && Object.keys(data.attributes).map((category, i) => (
                         <tr key={i}>
-                          <td className="pi_table_td">{category}</td>
+                          <td className="pi_table_td">{locale.get(category)}</td>
                           <td className="pi_table_td">
                             {
-                              Array.isArray(data.attributes[category]) 
-                              ? data.attributes[category].join(", ") 
-                              : data.attributes[category]
+                              locale.has(Array.isArray(data.attributes[category]) ? data.attributes[category].join(", ") : data.attributes[category])
+                              ? locale.get(Array.isArray(data.attributes[category]) ? data.attributes[category].join(", ") : data.attributes[category])
+                              : Array.isArray(data.attributes[category]) ? data.attributes[category].join(", ") : data.attributes[category] 
                             }
                           </td>
                         </tr>
@@ -111,25 +127,32 @@ export class ProductDescription extends Component {
                 </table>
 
                 <div className="price">
-                  {data.price_override}
-                  {' руб.'}
+                  {
+                    this.state.select.value == "" ? "от " + data.price_override + " рублей" : data.price_override + " рублей"
+                  }
                 </div>
 
-                <div className="size_select">
-                  <Select
-                    placeholder="Выбери размер"
-                    name="size_select"
-                    title="Выбери размер"
-                    options={data.sizes}
-                    value={this.state.select_value}
-                    handleChange={() => this.getProductVariant(8)} />
-                </div>
+                
 
-                <div className="add_to_cart">
-                  <Button 
-                    title="Добавить в корзину"
-                    type="primary"
-                    action={() => addProductToCart(data)} />
+                <div className="elements">
+
+                  <div className="size_select">
+                    <Select
+                      placeholder="Выбери размер"
+                      name="value"
+                      title="Выбери размер"
+                      options={data.sizes}
+                      value={this.state.select.value}
+                      handleChange={(e) => this.handleSelect(e, data.product_id)} />
+                  </div>
+
+                  <div className="add_to_cart">
+                    <Button 
+                      title="Добавить в корзину"
+                      type="primary"
+                      action={() => addProductToCart(data)} />
+                  </div>
+
                 </div>
 
               </div>
@@ -144,7 +167,12 @@ export class ProductDescription extends Component {
   render() {
 
     return (
+     
       <div className="product__desc">
+       <div class="wrapper" data-anim="base wrapper">
+        <div class="circle" data-anim="base left"></div>
+        <div class="circle" data-anim="base right"></div>
+      </div>
         { this.switchElement(this.props) }
       </div>
     )
