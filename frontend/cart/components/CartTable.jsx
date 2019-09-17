@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from "prop-types";
 import CartProductItem from './CartProductItem';
 import Button from '../../common/components/button/Button';
+import { Link } from 'react-router-dom';
 
 const CartTable = ({ cartItems, removeProductFromCart, increaseCartItem, decreaseCartItem }) => {
 
@@ -27,10 +28,12 @@ const CartTable = ({ cartItems, removeProductFromCart, increaseCartItem, decreas
         }
 
         <div className="cart__content__order">
-          <Button 
-            title="Оформить заказ"
-            type="primary"
-            action={create} />
+          <Link to='/checkout'>
+            <Button
+              title="Оформить заказ"
+              type="primary"
+              action={create} />
+          </Link>
         </div>
     </div>
   )

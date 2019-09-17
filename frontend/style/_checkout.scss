@@ -1,0 +1,62 @@
+@import 'https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css';
+
+.chackout {
+  display: flex;
+  flex-direction: column;
+  -webkit-animation: reveal 1s ease;
+  -webkit-animation-fill-mode: backwards;
+  animation: reveal 1s ease;
+  animation-fill-mode: backwards;
+  width: $content_width_1;
+  margin: 0 auto;
+
+  &__title {
+		margin-bottom: 30px;
+  }
+  
+  .articles {
+    display: flex;
+
+    .order__form__container {
+      .order__container {
+        .order__left {
+          
+          .order__personal__data,
+          .order__delivery__data {
+            display: flex;
+            flex-direction: column;
+
+            .fields__line {
+              display: flex;
+              margin-bottom: 17px;
+            }
+
+            .field__group {
+              max-width: 376px;
+              width: 376px;
+              margin-right: 9px;
+            }
+          }
+        }
+      }
+    }
+  }
+
+}
+
+@media all and (max-width: 1250px) {
+  .chackout {
+    width: $content_width_2;
+  }
+}
+
+@media all and (max-width: 1575px) and (min-width: 1250px) {
+  .chackout {
+    width: $content_width_2;
+  }
+}
+
+
+@media all and (max-width: 1930px) and (min-width: 1575px) {}
+
+@media all and (max-width: 2560px) and (min-width: 1930px) {}

@@ -1,0 +1,18 @@
+.box {
+	&__input {
+		display: block;
+    width: 100%;
+    box-sizing: border-box;
+    // border: 0;
+    border-radius: 0;
+    color: #000;
+    padding-left: 13px;
+    cursor: pointer;
+    position: relative;
+    font-size: 23px;
+    background: none;
+    line-height: 61px;
+    height: 61px;
+    margin-bottom: 0;
+	}
+}

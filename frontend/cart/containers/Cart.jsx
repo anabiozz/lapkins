@@ -20,7 +20,6 @@ const MyLoader = props => (
   </ContentLoader>
 )
 
-
 class Cart extends Component {
 
   componentDidMount() {

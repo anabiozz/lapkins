@@ -9,15 +9,6 @@ import Footer from '../frontend/common/components/Footer';
 import Breadcrumbs from '../frontend/common/components/breadcrumbs/Breadcrumbs';
 import Search from '../frontend/common/components/search/Search';
 
-const UserBreadcrumb = ({ match }) =>
-  <span>{match.params.userId}</span>; // use match param userId to fetch/display user name
-
-const routes = [
-  { path: 'users', breadcrumb: 'Users' },
-  { path: 'users/:userId', breadcrumb: UserBreadcrumb},
-  { path: 'something-else', breadcrumb: ':)' },
-];
-
 export default (pathname, store, context) => {
   console.log(JSON.stringify(store.getState()));
   
@@ -75,11 +66,10 @@ export default (pathname, store, context) => {
       <body>
       <div id="root">
         <div class="divLoader">
-          <svg class="svgLoader" viewBox="0 0 1024 1024" width="10em" height="10em">
-            <path fill="lightblue"
-              d="PATH FOR THE LOADER ICON"
-            />
-          </svg>
+          // <svg class="svgLoader" viewBox="0 0 1024 1024" width="10em" height="10em">
+          //   <path fill="lightblue" m="PATH FOR THE LOADER ICON"/>
+          // </svg>
+          <img class="svgLoader" src="https://rndr.juniqe-production.juniqe.com/template/view_in_room5/x386/69d99cf0abf7af48329767900546b617da2f60a99708e135aeb1912ff7672ed2/sku_675-51-101P-80x120/view_in_room.jpg" alt="" />
         </div>
         ${content}
       </div>

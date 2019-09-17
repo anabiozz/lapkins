@@ -3,6 +3,10 @@
   justify-content: center;
   width: $content_width_1;
   margin: 0 auto;
+  -webkit-animation: reveal 0.5s ease;
+	-webkit-animation-fill-mode: backwards;
+	animation: reveal 0.5s ease;
+	animation-fill-mode: backwards;
 
   $product_width: ($content_width_1 / 5);
 
@@ -31,7 +35,7 @@
 
 }
 
-@media all and (max-width: 1420px) and (min-width: 1250px) {
+@media all and (max-width: 1575px) and (min-width: 1250px) {
   .products__catalog {
     width: $content_width_2;
 
@@ -50,7 +54,7 @@
 }
 
 
-@media all and (max-width: 1930px) and (min-width: 1420px) {
+@media all and (max-width: 1930px) and (min-width: 1575px) {
   
 }
 

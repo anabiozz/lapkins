@@ -12,7 +12,7 @@
 	.product__image {
 		background-color: #fff;
 		position: relative;
-		height: 368px;
+		height: $item_width * 1.414; // width * 1.414
 
 		.product__image__inner {
 			display: flex;
