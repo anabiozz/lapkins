@@ -26,8 +26,8 @@ $logo_color: #181515;
 $logo_font_size: 2.3rem;
 $nav_links_font_size: 0.8rem;
 $content_gap: 30px;
-$content_width_1: (((250px * 4) + (4 * $content_gap)) + (300px - (4 * $content_gap)));
-$content_width_2: (((250px * 3) + (3 * $content_gap)) + (300px - (3 * $content_gap)));
+$content_width_1: (((300px * 4) + (4 * $content_gap)) + (300px - (4 * $content_gap)));
+$content_width_2: (((300px * 3) + (3 * $content_gap)) + (300px - (3 * $content_gap)));
 
 @import "normalize.scss";
 @import "common.scss";
@@ -40,6 +40,7 @@ $content_width_2: (((250px * 3) + (3 * $content_gap)) + (300px - (3 * $content_g
 @import "product_desc.scss";
 @import "cart.scss";
 @import "circle.scss";
+@import "checkout.scss";
 @import "../common/components/button/button.scss";
 @import "../common/components/quantity/quantity.scss";
 @import "../common/components/search/search.scss";

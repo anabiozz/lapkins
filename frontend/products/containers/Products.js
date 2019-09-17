@@ -48,9 +48,6 @@ class Products extends Component {
 
     console.log('RENDER <Products>')
 
-    console.log(match);
-    
-
     return (
       <div className="products__catalog">
         <div className="catalog">

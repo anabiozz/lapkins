@@ -104,7 +104,7 @@ export class ProductDescription extends Component {
 
             <div className="product__desc__block">
 
-              <div className="information animated infinite bounce delay-2s fadeInDown">
+              <div className="information">
                 <div className="description">{data.decription}</div>
 
                 <table className="categories">
@@ -130,16 +130,6 @@ export class ProductDescription extends Component {
                   {
                     this.state.select.value == "" ? "от " + data.price_override + " рублей" : data.price_override + " рублей"
                   }
-                </div>
-
-                <div className="size_select">
-                  <Select
-                    placeholder="Выбери размер"
-                    name="size_select"
-                    title="Выбери размер"
-                    options={data.sizes}
-                    value={this.state.select_value}
-                    handleChange={() => this.getProductVariant(this.props.match.params.productID)} />
                 </div>
 
                 <div className="elements">
