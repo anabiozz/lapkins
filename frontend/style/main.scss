@@ -39,8 +39,9 @@ $content_width_2: (((250px * 3) + (3 * $content_gap)) + (300px - (3 * $content_g
 @import "product.scss";
 @import "product_desc.scss";
 @import "cart.scss";
+@import "circle.scss";
 @import "../common/components/button/button.scss";
 @import "../common/components/quantity/quantity.scss";
 @import "../common/components/search/search.scss";
 @import "../common/components/breadcrumbs/breadcrumbs.scss";
-
+@import "../common/components/select/select.scss";

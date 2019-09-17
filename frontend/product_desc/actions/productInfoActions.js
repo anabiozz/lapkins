@@ -27,12 +27,12 @@ let domain = config.apiDomain + process.env.CORE_URL
 
 // process.env.CORE_URL
 
-export const getProductByID = productID => (dispatch) => {
+export const getProductByID = product_id => (dispatch) => {
   dispatch({
     type: GET_PRODUCT_BY_ID_REQUEST,
   })
 
-  fetch(`${domain}api/get-product-by-id?product_id=${productID}`)
+  fetch(`${domain}api/get-product-by-id?product_id=${product_id}`)
     .then((response) => {
       if (response.status === 200) {
         return response
@@ -44,12 +44,12 @@ export const getProductByID = productID => (dispatch) => {
     .catch(error => dispatch(receiveFail(error)))
 }
 
-export const getProductVariantByID = productVariantID => (dispatch) => {
+export const getProductVariantByID = (product_variant_id, size) => (dispatch) => {
   dispatch({
     type: GET_PRODUCT_BY_ID_REQUEST,
   })
 
-  fetch(`${domain}api/get-product-variant-by-id?product_variant_id=${productVariantID}`)
+  fetch(`${domain}api/get-product-variant-by-id?product_variant_id=${product_variant_id}&size=${size}`)
     .then((response) => {
       if (response.status === 200) {
         return response

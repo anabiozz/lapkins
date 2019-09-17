@@ -50,6 +50,7 @@ class Home extends React.Component {
             <h1>Подарки</h1>
           </div>
         </NavLink>
+
       </div>
     )
   }
