@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 const Select = (props) => {
   const {
-    title,
+    error,
     name,
     value,
     handleChange,
@@ -14,7 +14,7 @@ const Select = (props) => {
   return (
    <div className="select-box">
       {/* <label htmlFor={name}>{title}</label> */}
-      <select id={name} name={name} value={value} onChange={handleChange}>
+      <select className={error ? "select-error" : ""} id={name} name={name} value={value} onChange={handleChange} >
         <option value="" disabled >{placeholder}</option> 
         {
           options && options.map((option, i) => (
@@ -27,6 +27,7 @@ const Select = (props) => {
 }
 
 Select.propTypes = {
+  error: PropTypes.bool.isRequired,
   name: PropTypes.string.isRequired,
   handleChange: PropTypes.string.isRequired,
   value: PropTypes.string.isRequired,

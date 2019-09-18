@@ -12,7 +12,8 @@ export default class Locale {
           ['finish', 'Покрытие'],
           ['materials', 'Материалы'],
           ['print type', 'Тип печати'],
-          ['semi-gloss', 'Полуглянцевая']
+          ['semi-gloss', 'Полуглянцевая'],
+          ['frame', 'Материал рамки'],
         ])
       default:
         return this

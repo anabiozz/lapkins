@@ -13,7 +13,6 @@ import {
   productProp,
   matchProp,
 } from '../../utils/props'
-import { log } from 'util';
 
 const locale = new Locale('RU').get()
 
@@ -38,11 +37,11 @@ export class ProductDescription extends Component {
     super()
     this.state = {
       select: {
-        value: ""
+        value: "",
+        error: false,
       },
     }
   }
-
 
   // static fetching ({ dispatch }) {
   //   return [dispatch(this.props.getProductByID(this.props.match.params.productID))];
@@ -50,16 +49,8 @@ export class ProductDescription extends Component {
 
   componentDidMount() {
     this.props.reset()
-    this.props.getProductByID(this.props.match.params.productID)
+    this.props.getProductVariantByID(this.props.match.params.productID, "")
   }
-
-  getProductVariant = (id) => {
-    console.log(id);
-    
-    this.props.reset()
-    this.props.getProductVariantByID(id)
-  }
-
 
 	handleSelect = (e, product_id) => {
     const value = e.currentTarget.value;
@@ -74,16 +65,50 @@ export class ProductDescription extends Component {
     
     this.props.reset()
     this.props.getProductVariantByID(product_id, value)
-	}
+  }
+  
+  addToCart = (data) => {
 
-  switchElement = ({ data, errors, fetching, addProductToCart }) => {
+    if (this.state.select.error) {
+      this.setState(prevState => ({
+        select: {
+          ...prevState.select,
+          error: false,
+        }
+      }));
+      return
+    }
+   
+    if (this.state.select.value == "") {
+      this.setState(prevState => ({
+        select: {
+          ...prevState.select,
+          error: true,
+        }
+      }));
+
+      setTimeout(() => {
+
+        this.setState(prevState => ({
+          select: {
+            ...prevState.select,
+            error: false,
+          }
+        }));
+      
+      }, 1000)
+      return
+    } 
+    this.props.addProductToCart(data)
+  }
+
+  switchElement = ({ data, errors, fetching }) => {
 
     if (this.props.location.state != undefined) {
       console.log(this.props.location.state);
     }
 
-    console.log(this.state.select.value);
-    
+    console.log(this.state.select.error);
 
     switch (true) {
       case fetching:
@@ -136,6 +161,7 @@ export class ProductDescription extends Component {
 
                   <div className="size_select">
                     <Select
+                      error={this.state.select.error}
                       placeholder="Выбери размер"
                       name="value"
                       title="Выбери размер"
@@ -148,7 +174,7 @@ export class ProductDescription extends Component {
                     <Button 
                       title="Добавить в корзину"
                       type="primary"
-                      action={() => addProductToCart(data)} />
+                      action={() => this.addToCart(data)} />
                   </div>
 
                 </div>
