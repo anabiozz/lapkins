@@ -3,8 +3,8 @@ import { connect } from 'react-redux';
 import { loadCart, removeProductFromCart, increaseCartItem, decreaseCartItem } from '../actions/cartActions';
 import ContentLoader from 'react-content-loader'
 import PropTypes from 'prop-types';
-import CartTable from "../components/CartTable"
 import Input from '../../common/components/input/Input'
+import Button from '../../common/components/button/Button';
 
 const MyLoader = props => (
   <ContentLoader
@@ -35,11 +35,11 @@ class Checkout extends Component {
 			<h2 className="chackout__title">ОФОРМЛЕНИЕ ЗАКАЗА</h2>
 			<div className="articles">
 
-				<article className="order__form__container">
+				<article className="order">
 
 					<div className="order__container">
-						<form action="" className="validate-form validate-delivery order-form" novalidate="novalidate">
-							<div className="order__left">
+						<form action="" novalidate="novalidate">
+							<div className="order__form">
 
 								<div className="order__personal__data">
 										<h3>Введите данные покупателя</h3>
@@ -164,30 +164,10 @@ class Checkout extends Component {
 												</ul>
 										</div>
 								</div>
-								<div className="cart-section-note return">
-										<div className="cart-section-note-text">
-												В течение 14 дней вы можете сделать возврат.
-										</div>
-								</div>
-								<button type="submit" className="login-popup-button delivery-section-checkout_button only-xs">
-										<span className="button-inner">Оплатить через Сбербанк</span>
-								</button>
-								<div className="cart-section-note footer">
-										<div className="cart-section-note-text">
-												Поможем оформить заказ, если что-то пошло не так. Звоните
-												<a href="tel:89101200135">+7 (910) 120-01-35</a>
-										</div>
-								</div>
 
-							</div>
-
-							<div className="order-right hidden-xs">
-								<div className="order-bill">
+								<div className="order__bill">
 									<h3>Ваш чек</h3>
-									<div className="cart-section-summ-price fixprice only-xs">
-											2 990
-									</div>
-									<div className="order-cost">
+									<div className="order__cost">
 										<div className="order-cost-title">Товары:</div>
 										<div>
 												<div className="cart-section-cost-actual" data-sum="2990">
@@ -215,10 +195,28 @@ class Checkout extends Component {
 												</div>
 										</div>
 									</div>
+
+									<div className="cart-section-note return">
+										<div className="cart-section-note-text">
+												В течение 14 дней вы можете сделать возврат.
+										</div>
 								</div>
+
+									<div className="cart-section-note footer">
+										<div className="cart-section-note-text">
+												Поможем оформить заказ, если что-то пошло не так. Звоните
+												<a href="tel:89101200135">+7 (910) 120-01-35</a>
+										</div>
+									</div>
+								</div>
+
 							</div>
 
 						</form>
+
+						<Button
+              title="Оформить заказ"
+              type="primary" />
 					</div>
 				</article>
 			</div>

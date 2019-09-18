@@ -30,7 +30,7 @@ const CartTable = ({ cartItems, removeProductFromCart, increaseCartItem, decreas
         <div className="cart__content__order">
           <Link to='/checkout'>
             <Button
-              title="Оформить заказ"
+              title="Расчитать"
               type="primary"
               action={create} />
           </Link>

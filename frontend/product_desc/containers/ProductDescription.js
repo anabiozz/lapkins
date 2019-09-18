@@ -191,12 +191,11 @@ export class ProductDescription extends Component {
   render() {
 
     return (
-     
       <div className="product__desc">
-       <div class="wrapper" data-anim="base wrapper">
+       {/* <div class="wrapper" data-anim="base wrapper">
         <div class="circle" data-anim="base left"></div>
         <div class="circle" data-anim="base right"></div>
-      </div>
+      </div> */}
         { this.switchElement(this.props) }
       </div>
     )

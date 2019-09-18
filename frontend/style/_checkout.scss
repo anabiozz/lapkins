@@ -17,9 +17,14 @@
   .articles {
     display: flex;
 
-    .order__form__container {
+    .order {
       .order__container {
-        .order__left {
+        .order__form {
+          display: flex;
+          
+          > * {
+            padding-right: 50px;
+          }
           
           .order__personal__data,
           .order__delivery__data {

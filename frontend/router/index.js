@@ -22,8 +22,8 @@ export default ({ path }) => {
       <Fragment>
 
         <Header />
-{/* 
-        <section className="search_content">
+ 
+        {/* <section className="search_content">
           <div className="search_wrapper">
             <Search />
             <Breadcrumbs />
