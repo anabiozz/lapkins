@@ -11,23 +11,24 @@
   margin: 0 auto;
 
   &__title {
-		margin-bottom: 30px;
+    margin-bottom: 30px;
   }
-  
+
   .articles {
     display: flex;
 
     .order {
-      .order__container {
-        .order__form {
+      &__container {
+        &__form {
           display: flex;
-          
-          > * {
+
+          >* {
             padding-right: 50px;
           }
-          
-          .order__personal__data,
-          .order__delivery__data {
+
+          .personal__data,
+          .delivery__data,
+          .order__bill {
             display: flex;
             flex-direction: column;
 
@@ -37,9 +38,30 @@
             }
 
             .field__group {
-              max-width: 376px;
-              width: 376px;
+              max-width: 340px;
+              width: 340px;
               margin-right: 9px;
+            }
+          }
+
+          .order__bill {
+            // background-color: #fffdf7;
+            // padding: 30px;
+
+            .order__cost {
+              display: flex;
+              margin: 10px 0 10px 0;
+              font-size: 19px;
+              justify-content: space-between;
+              
+              .title {
+                font-weight: 600;
+                margin-right: 20px;
+              }
+
+              .value {
+
+              }
             }
           }
         }

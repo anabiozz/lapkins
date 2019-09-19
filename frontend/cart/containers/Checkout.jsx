@@ -39,17 +39,16 @@ class Checkout extends Component {
 
 					<div className="order__container">
 						<form action="" novalidate="novalidate">
-							<div className="order__form">
+							<div className="order__container__form">
 
-								<div className="order__personal__data">
+								<div className="personal__data">
 										<h3>Введите данные покупателя</h3>
 										<div className="fields__line">
 											<div className="field__group">
 												<Input
 													title="Телефон"
-													id="ORDER_PROP_3" 
 													type="tel" 
-													name="ORDER_PROP_3" 
+													name="Телефон" 
 													required="" 
 													value="" 
 													aria-required="true" />
@@ -59,9 +58,8 @@ class Checkout extends Component {
 											<div className="field__group">
 												<Input
 													title="Имя"
-													id="ORDER_PROP_30" 
 													type="text" 
-													name="ORDER_PROP_30" 
+													name="Имя" 
 													required="" 
 													value="" 
 													aria-required="true" />
@@ -72,7 +70,7 @@ class Checkout extends Component {
 												<Input
 													title="Фамилия"
 													type="text" 
-													name="ORDER_PROP_27" 
+													name="Фамилия" 
 													required="" 
 													value="" 
 													aria-required="true" />
@@ -83,7 +81,7 @@ class Checkout extends Component {
 													<Input
 														title="Email"
 														type="text" 
-														name="ORDER_PROP_2" 
+														name="Email" 
 														required="" 
 														value="" 
 														aria-required="true" />
@@ -91,39 +89,39 @@ class Checkout extends Component {
 										</div>
 								</div>
 
-								<div className="order__delivery__data">
+								<div className="delivery__data">
 										<h3>Заполните адрес доставки</h3>
 
-										<div className="fields__line">
+										{/* <div className="fields__line">
 											<div className="field__group">
 												<Input
 													title="Город"
 													type="text" 
-													name="ORDER_PROP_2" 
+													name="Город" 
 													required="" 
 													value="" 
 													aria-required="true"/>
 											</div>
-										</div>
+										</div> */}
 
-										<div className="fields__line">
+										{/* <div className="fields__line">
 											<div className="field__group">
 												<Input
 													title="Индекс"
 													type="number" 
-													name="ORDER_PROP_2" 
+													name="Индекс" 
 													required="" 
 													value="" 
 													aria-required="true" />
 											</div>
-										</div>
+										</div> */}
 
 										<div className="fields__line">
 											<div className="field__group">
 												<Input
 													title="Улица"
 													type="text" 
-													name="ORDER_PROP_2" 
+													name="Улица" 
 													required="" 
 													value="" 
 													aria-required="true" />
@@ -135,7 +133,7 @@ class Checkout extends Component {
 												<Input
 													title="Кв."
 													type="text" 
-													name="ORDER_PROP_2" 
+													name="Кв." 
 													required="" 
 													value="" 
 													aria-required="true" />
@@ -147,14 +145,14 @@ class Checkout extends Component {
 												<Input
 													title="Дом"
 													type="text" 
-													name="ORDER_PROP_2" 
+													name="Дом" 
 													required="" 
 													value="" 
 													aria-required="true" />
 											</div>
 										</div>
 
-										<div className="order-delivery">
+										{/* <div className="order-delivery">
 												<h3>Выберите способ доставки</h3>
 												<p>При заказе от 4000 руб. доставка по всей России бесплатная.</p>
 												<input type="hidden" name="deliverySum" id="deliverySum" value="" />
@@ -162,52 +160,50 @@ class Checkout extends Component {
 												<ul className="delivery-options">
 														<li>Заполните все поля выше</li>
 												</ul>
-										</div>
+										</div> */}
+										<h3>В данный момент доставка осуществляется только в пределах Москвы</h3>
 								</div>
 
 								<div className="order__bill">
 									<h3>Ваш чек</h3>
 									<div className="order__cost">
-										<div className="order-cost-title">Товары:</div>
-										<div>
-												<div className="cart-section-cost-actual" data-sum="2990">
+										<div className="title">
+											Товары:
+										</div>
+										<div className="value">
+											2 990
+										</div>
+									</div>
+
+									<div className="order__cost">
+										<div className="title">
+											Доставка:
+										</div>
+										<div className="value">
+											Заполните адрес
+										</div>
+									</div>
+
+									<div className="order__cost">
+										<Input
+											type="text" 
+											name="promocode"
+											required="" 
+											value="" 
+											aria-required="true"
+											placeholder="Промокод" />
+									</div>
+
+									<div className="order__cost">
+											<div className="title">
+												Итого:
+											</div>
+											<div className="value">
 													2 990
-												</div>
-										</div>
+											</div>
 									</div>
 
-									<div className="order-cost delivery-cost">
-										<div className="order-cost-title">Доставка</div>
-										<div className="btn-delivery-price">Заполните адрес</div>
-										<div className="cart-section-delivery-price order-cost-pricer">
-												0
-										</div>
-									</div>
-									<div className="promo-form">
-										<input type="text" name="promocode" className="cart-section-promo js-cart-promo-input" placeholder="Промокод" />
-										<button className="cart-section-add_button js-cart-promo"></button>
-									</div>
-									<div className="payment-summ">
-										<div className="cart-section-summ">
-												<div>Итого:</div>
-												<div className="cart-section-summ-price">
-														2 990
-												</div>
-										</div>
-									</div>
-
-									<div className="cart-section-note return">
-										<div className="cart-section-note-text">
-												В течение 14 дней вы можете сделать возврат.
-										</div>
-								</div>
-
-									<div className="cart-section-note footer">
-										<div className="cart-section-note-text">
-												Поможем оформить заказ, если что-то пошло не так. Звоните
-												<a href="tel:89101200135">+7 (910) 120-01-35</a>
-										</div>
-									</div>
+									
 								</div>
 
 							</div>
@@ -217,6 +213,13 @@ class Checkout extends Component {
 						<Button
               title="Оформить заказ"
               type="primary" />
+
+						<div className="cart-section-note footer">
+							<div className="cart-section-note-text">
+									Поможем оформить заказ, если что-то пошло не так. Звоните
+									<a href="tel:89101200135">+7 (910) 120-01-35</a>
+							</div>
+						</div>
 					</div>
 				</article>
 			</div>
