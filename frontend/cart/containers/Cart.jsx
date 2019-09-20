@@ -3,7 +3,9 @@ import { connect } from 'react-redux';
 import { loadCart, removeProductFromCart, increaseCartItem, decreaseCartItem } from '../actions/cartActions';
 import ContentLoader from 'react-content-loader'
 import PropTypes from 'prop-types';
-import CartTable from "../components/CartTable"
+import CartTable from "../components/CartTable";
+import { Link } from 'react-router-dom';
+import Button from '../../common/components/button/Button';
 
 const MyLoader = props => (
   <ContentLoader
@@ -27,9 +29,16 @@ class Cart extends Component {
   }
 
   render() {
+
+    let create = () => {
+
+    }
+
     console.log('RENDER <Cart>');
 
     const { cartItems, errors, fetching, removeProductFromCart, increaseCartItem, decreaseCartItem } = this.props;
+
+    console.log(cartItems);
 
     return (
       <div className="cart">
@@ -49,8 +58,8 @@ class Cart extends Component {
         }
 
         {
-          cartItems && cartItems.length == 0 
-          ? <div className="cart__no__product">В вашей корзине пока нет товаров</div> 
+          cartItems && !cartItems.length
+          ? <div className="cart__no__product">В вашей корзине пока нет товаров</div>
           : <CartTable
               cartItems={this.props.cartItems}
               removeProductFromCart={removeProductFromCart}
@@ -58,6 +67,15 @@ class Cart extends Component {
               decreaseCartItem={decreaseCartItem}
             /> 
         }
+
+        <div className="cart__content__order">
+          <Link to={{ pathname: '/checkout', state: {cartItems: cartItems}}}>
+            <Button
+              title="Расчитать"
+              type="primary"
+              action={create} />
+          </Link>
+        </div>
 
       </div>
     )

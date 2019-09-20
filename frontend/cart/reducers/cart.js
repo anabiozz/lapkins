@@ -15,8 +15,6 @@ export default function (state = initialState, action) {
   switch (action.type) {
     case LOAD_CART:
       // localStorage.clear();
-      console.log(localStorage.getItem('cartProducts'));
-      
       return {
         ...state,
         cartItems: JSON.parse(localStorage.getItem('cartProducts')) || []

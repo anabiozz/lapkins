@@ -7,8 +7,6 @@ const locale = new Locale('RU').get()
 
 const CartProductItem = ({ cartItem, removeProductFromCart, increaseCartItem, decreaseCartItem }) => {
 
-	console.log(cartItem);
-
 	return <div className="cart__content__item">
 		<div className="cart__content__item__image">
 			<img src={`${config.imagePath.dev_path_preview}${cartItem.product.product_id}_thumb.jpg`} alt="" />
