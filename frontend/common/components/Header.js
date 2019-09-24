@@ -70,10 +70,98 @@ export default class Header extends React.Component {
 
                 <nav className="quicklist">
                   <ul>
-                    <li><NavLink to="/wallart">Постеры</NavLink></li>
-                    <li><NavLink to="/stationary">Канцелярия</NavLink></li>
-                    <li><NavLink to="/gifts">Подарки</NavLink></li>
-                    <li><NavLink to="/home">Для дома</NavLink></li>
+                    <li className="quicklist__has__dropdown quicklist__has__dropdown__centered">
+                      <NavLink className="quicklist_main_link" to="/wallart">Настенное Искусство</NavLink>
+
+                      <div className="quicklist__dropdown quicklist__dropdown__centered">
+          
+                        <div className="quicklist__childlist">
+
+                          <ul className="quicklist__childlist__grid">
+
+                            <li className="quicklist__childlist__item">
+                              <div className="quicklist__childlist__item__title">
+                                Темы &amp; Категории
+                              </div>
+                              <ul>
+                                <li>
+                                  <NavLink to="/collections/abstract-wall-art" className="quicklist__link" aria-current="page">
+                                    Абстракция
+                                  </NavLink>
+                                </li>
+                              
+                                <li>
+                                  <NavLink to="/collections/animal-wall-art" className="quicklist__link">
+                                    Животные
+                                  </NavLink>
+                                </li>
+                              
+                                <li>
+                                  <NavLink to="/collections/black-and-white-wall-art" className="quicklist__link">
+                                    Черное и белое
+                                  </NavLink>
+                                </li>
+                              
+                                <li>
+                                  <NavLink to="/collections/minimalist-posters" className="quicklist__link">
+                                    Минимализм
+                                  </NavLink>
+                                </li>
+                              
+                                <li>
+                                  <NavLink to="/collections/landscape-art" className="quicklist__link">
+                                    Природа &amp; Пейзажи
+                                  </NavLink>
+                                </li>
+                              
+                              </ul>
+                            </li>
+                          
+                            <li class="quicklist__childlist__item">
+                              <div className="quicklist__childlist__item__title">
+                                Размеры
+                              </div>
+                              <ul>
+                              
+                                <li>
+                                  <NavLink to="/collections/30x40-posters" className="quicklist__link">
+                                    30x40CM
+                                  </NavLink>
+                                </li>
+                              
+                                <li>
+                                  <NavLink to="/collections/60x90-posters" className="quicklist__link">
+                                    60x90CM
+                                  </NavLink>
+                                </li>
+                              
+                              </ul>
+                            </li>
+                          </ul>
+                          
+                          {/* <div class="last-news-menu">
+                            <a href="/collections/new-arrivals">
+                              <div class="last-news-title">  
+                                New arrivals
+                              </div>
+                              <div class="last-news-image"> 
+                                <img src="//cdn.shopify.com/s/files/1/0077/8718/4241/collections/new-arrivals_500x500.jpg?v=1550078531/" />
+                              </div>
+                            </a>
+                          </div> */}
+                        </div>
+                      </div>
+                     
+                    </li>
+                    <li className="quicklist__has__dropdown quicklist__has__dropdown__centered">
+                      <NavLink className="quicklist_main_link" to="/stationary">Канцелярия</NavLink>
+                    </li>
+                    <li className="quicklist__has__dropdown quicklist__has__dropdown__centered">
+                      <NavLink className="quicklist_main_link" to="/gifts">Подарки</NavLink>
+                    </li>
+                    <li className="quicklist__has__dropdown quicklist__has__dropdown__centered">
+                      <NavLink className="quicklist_main_link" to="/home">Для дома</NavLink>
+                    </li>
                   </ul>
                 </nav>
                
@@ -107,8 +195,6 @@ export default class Header extends React.Component {
 
               </ul>
             </div>
-
-            
 
           </div>
 
