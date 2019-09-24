@@ -71,7 +71,7 @@ export default class Header extends React.Component {
                 <nav className="quicklist">
                   <ul>
                     <li className="quicklist__has__dropdown quicklist__has__dropdown__centered">
-                      <NavLink className="quicklist_main_link" to="/wallart">Настенное Искусство</NavLink>
+                      <NavLink className="quicklist_main_link" to="/wallart">Постеры</NavLink>
 
                       <div className="quicklist__dropdown quicklist__dropdown__centered">
           
@@ -81,36 +81,24 @@ export default class Header extends React.Component {
 
                             <li className="quicklist__childlist__item">
                               <div className="quicklist__childlist__item__title">
-                                Темы &amp; Категории
+                                Продукты
                               </div>
                               <ul>
                                 <li>
-                                  <NavLink to="/collections/abstract-wall-art" className="quicklist__link" aria-current="page">
-                                    Абстракция
+                                  <NavLink to="/wallart/posters" className="quicklist__link" aria-current="page">
+                                    Постеры без рамки
+                                  </NavLink>
+                                </li>
+
+                                <li>
+                                  <NavLink to="/wallart/framed-posters" className="quicklist__link">
+                                    Постеры с пластиковой рамкой
                                   </NavLink>
                                 </li>
                               
                                 <li>
-                                  <NavLink to="/collections/animal-wall-art" className="quicklist__link">
-                                    Животные
-                                  </NavLink>
-                                </li>
-                              
-                                <li>
-                                  <NavLink to="/collections/black-and-white-wall-art" className="quicklist__link">
-                                    Черное и белое
-                                  </NavLink>
-                                </li>
-                              
-                                <li>
-                                  <NavLink to="/collections/minimalist-posters" className="quicklist__link">
-                                    Минимализм
-                                  </NavLink>
-                                </li>
-                              
-                                <li>
-                                  <NavLink to="/collections/landscape-art" className="quicklist__link">
-                                    Природа &amp; Пейзажи
+                                  <NavLink to="/wallart/framed-posters-wood" className="quicklist__link">
+                                    Постеры с деревянной рамкой
                                   </NavLink>
                                 </li>
                               
@@ -124,13 +112,13 @@ export default class Header extends React.Component {
                               <ul>
                               
                                 <li>
-                                  <NavLink to="/collections/30x40-posters" className="quicklist__link">
+                                  <NavLink to="/wallart/30x40-posters" className="quicklist__link">
                                     30x40CM
                                   </NavLink>
                                 </li>
                               
                                 <li>
-                                  <NavLink to="/collections/60x90-posters" className="quicklist__link">
+                                  <NavLink to="/wallart/60x90-posters" className="quicklist__link">
                                     60x90CM
                                   </NavLink>
                                 </li>
@@ -155,13 +143,57 @@ export default class Header extends React.Component {
                     </li>
                     <li className="quicklist__has__dropdown quicklist__has__dropdown__centered">
                       <NavLink className="quicklist_main_link" to="/stationary">Канцелярия</NavLink>
+
+                      <div className="quicklist__dropdown quicklist__dropdown__centered">
+          
+                        <div className="quicklist__childlist">
+
+                          <ul className="quicklist__childlist__grid">
+
+                            <li className="quicklist__childlist__item">
+                              <div className="quicklist__childlist__item__title">
+                                Продукты
+                              </div>
+                              <ul>
+                                <li>
+                                  <NavLink to="/collections/abstract-wall-art" className="quicklist__link" aria-current="page">
+                                    Открытки
+                                  </NavLink>
+                                </li>
+                              
+                                <li>
+                                  <NavLink to="/collections/animal-wall-art" className="quicklist__link">
+                                    Тетради
+                                  </NavLink>
+                                </li>
+                              
+                                <li>
+                                  <NavLink to="/collections/black-and-white-wall-art" className="quicklist__link">
+                                    Ежедневники
+                                  </NavLink>
+                                </li>
+
+                                <li>
+                                  <NavLink to="/collections/black-and-white-wall-art" className="quicklist__link">
+                                    Календари
+                                  </NavLink>
+                                </li>
+                              
+                              </ul>
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
                     </li>
-                    <li className="quicklist__has__dropdown quicklist__has__dropdown__centered">
+
+                    {/* <li className="quicklist__has__dropdown quicklist__has__dropdown__centered">
                       <NavLink className="quicklist_main_link" to="/gifts">Подарки</NavLink>
                     </li>
+
                     <li className="quicklist__has__dropdown quicklist__has__dropdown__centered">
                       <NavLink className="quicklist_main_link" to="/home">Для дома</NavLink>
-                    </li>
+                    </li> */}
+
                   </ul>
                 </nav>
                

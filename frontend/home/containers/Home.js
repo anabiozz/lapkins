@@ -25,9 +25,9 @@ class Home extends React.Component {
           <img 
             className="gallery__img"
             onLoad={() => this.add()}
-            src="static/images/3.jpeg" alt="Новое" />
+            src="https://cdn.shopify.com/s/files/1/0077/8718/4241/files/Set_028_1950x.jpeg?v=1550063217" alt="Новое" />
           <div className="content">
-            <h1>Новое</h1>
+            <h2>Новое</h2>
           </div>
         </NavLink>
 
@@ -35,9 +35,9 @@ class Home extends React.Component {
           <img 
             className="gallery__img" 
             onLoad={() => this.add()}
-            src="static/images/1.jpg" alt="Постеры" />
+            src="https://cdn.shopify.com/s/files/1/0077/8718/4241/files/set_014_720x.jpg?v=1550063513" alt="Постеры" />
           <div className="content">
-            <h1>Постеры</h1>
+            <h2>Постеры</h2>
           </div>
         </NavLink>
 
@@ -45,9 +45,9 @@ class Home extends React.Component {
           <img 
             className="gallery__img" 
             onLoad={() => this.add()}
-            src="static/images/4.jpg" alt="Подарки" />
+            src="https://cdn.shopify.com/s/files/1/0077/8718/4241/files/Set_028_1950x.jpeg?v=1550063217" alt="Подарки" />
           <div className="content">
-            <h1>Подарки</h1>
+            <h2>Подарки</h2>
           </div>
         </NavLink>
 
