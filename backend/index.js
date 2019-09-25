@@ -64,6 +64,9 @@ app.use(root + 'wallart', express.static(__dirname + '/static'));
 app.use(root + 'wallart/static/images', express.static(__dirname + '/static/images'));
 app.use(root + 'wallart/posters', express.static(__dirname + '/static'));
 app.use(root + 'wallart/posters/static/images', express.static(__dirname + '/static/images'));
+app.use(root + 'wallart/framed-posters-wood', express.static(__dirname + '/static'));
+app.use(root + 'wallart/framed-posters-wood/static/images', express.static(__dirname + '/static/images'));
+
 
 app.get('*', async (req, res) => {
 

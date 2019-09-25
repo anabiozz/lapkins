@@ -27,32 +27,12 @@ export default [
 	},
 	{
     component: Products,
-		path: '/wallart/posters',
-		exact: true,
-	},
-	{
-    component: Products,
-		path: '/wallart/framed-posters',
-		exact: true
-	},
-	{
-    component: Products,
-		path: '/wallart/framed-posters-wood',
+		path: '/wallart/:wallartType',
 		exact: true
 	},
 	{
     component: ProductDescription,
-		path: '/wallart/posters/:productID',
-		exact: true
-	},
-	{
-    component: ProductDescription,
-		path: '/wallart/framed-posters/:productID',
-		exact: true
-	},
-	{
-    component: ProductDescription,
-		path: '/wallart/framed-posters-wood/:productID',
+		path: '/wallart/:wallartType/:productID',
 		exact: true
 	},
 	{

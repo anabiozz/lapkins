@@ -32,17 +32,22 @@ class Products extends Component {
   componentWillReceiveProps(nextProps) {
     const { getProducts, match } = nextProps;
     if (match.url !== this.props.match.url) {
-      getProducts(config.productTypes[match.path.split('/')[2]])
+      getProducts(config.productTypes[match.url.split('/')[2]])
     }
   }
 
   componentDidMount() {
     const { getProducts, match } = this.props
-    getProducts(config.productTypes[match.path.split('/')[2]])
+    console.log(match);
+    
+    getProducts(config.productTypes[match.url.split('/')[2]])
   }
 
   render() {
     const { data, errors, fetching, match, addProductToCart } = this.props
+
+    console.log(data);
+    
 
     console.log('RENDER <Products>')
 
@@ -102,7 +107,7 @@ class Products extends Component {
                 key={product.id} 
                 url={`${config.imagePath.dev_path_preview}${product.id}_thumb.jpg`} 
                 product={product}
-                productType={match.path}
+                productType={match.url}
                 addProductToCart={addProductToCart} />
             ))
           }

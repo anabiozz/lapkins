@@ -50,6 +50,7 @@ export class ProductDescription extends Component {
 
   componentDidMount() {
     this.props.reset()
+    console.log(this.props.match);
     this.props.getProductVariantByID(this.props.match.params.productID, "")
   }
 
