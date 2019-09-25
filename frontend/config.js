@@ -150,5 +150,13 @@ export default {
       "price":50
    }
   ],
-  productTypes: ["wallart", "stationary", "gifts", "wraps"]
+  productTypes: {
+    "wallart": 1,
+    "stationary": 2,
+    "gifts": 3, 
+    "wraps": 4,
+    "posters": 5,
+    "framed-posters": 6,
+    "framed-posters-wood": 7,
+  }
 }

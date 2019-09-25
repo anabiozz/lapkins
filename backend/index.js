@@ -13,6 +13,10 @@ import render from './render';
 import configureStore from '../frontend/_flax/store';
 
 var app = new express();
+
+async () => {
+    await app.close();
+}
 const host = process.env.NODE_ENV == 'development' ? config.server.develope : config.server.production;
 const port = config.server.port;
 
@@ -50,31 +54,23 @@ app.use(function (req, res, next) {
 });
 
 app.use(logger('dev'));
-app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
     extended: false
 }));
+app.use(bodyParser.json());
 
-app.use(root + 'static', express.static(__dirname + '/static'));
-app.use(root + 'images', express.static(__dirname + '/static/images'));
-app.use(root + 'static', express.static(__dirname + '/static'));
-app.use(root + 'static/images', express.static(__dirname + '/static/images'));
-app.use(root + 'wallart/static', express.static(__dirname + '/static'));
+app.use(root, express.static(__dirname + '/static'));
+app.use(root + 'wallart', express.static(__dirname + '/static'));
 app.use(root + 'wallart/static/images', express.static(__dirname + '/static/images'));
-app.use(root + 'stationary/static', express.static(__dirname + '/static'));
-app.use(root + 'stationary/static/images', express.static(__dirname + '/static/images'));
+app.use(root + 'wallart/posters', express.static(__dirname + '/static'));
+app.use(root + 'wallart/posters/static/images', express.static(__dirname + '/static/images'));
 
 app.get('*', async (req, res) => {
 
     let initialState = JSON.parse(JSON.stringify(config.initialState));
 
     initialState.path = req.path
-
     const store = configureStore(initialState);
-
-    console.log(matchRoutes(Routes, req.path));
-    // console.log(matchRoutes(Routes, req.path)[0].route.render);
-
     const actions = matchRoutes(Routes, req.path)
         .map(({route}) => route.component.fetching ? route.component.fetching({...store, path: req.path}) : null)
         .map(async actions => await Promise.all(

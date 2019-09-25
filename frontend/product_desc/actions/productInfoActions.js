@@ -25,9 +25,8 @@ let domain = config.apiDomain + process.env.CORE_URL
 //   domain = window.location.origin + process.env.CORE_URL
 // }
 
-// process.env.CORE_URL
-
 export const getProductByID = product_id => (dispatch) => {
+
   dispatch({
     type: GET_PRODUCT_BY_ID_REQUEST,
   })
@@ -45,6 +44,8 @@ export const getProductByID = product_id => (dispatch) => {
 }
 
 export const getProductVariantByID = (product_variant_id, size) => (dispatch) => {
+  console.log("window.location.origin", window.location.origin);
+  console.log("process.env.CORE_URL", process.env.CORE_URL);
   dispatch({
     type: GET_PRODUCT_BY_ID_REQUEST,
   })

@@ -71,7 +71,7 @@ export default class Header extends React.Component {
                 <nav className="quicklist">
                   <ul>
                     <li className="quicklist__has__dropdown quicklist__has__dropdown__centered">
-                      <NavLink className="quicklist_main_link" to="/wallart">Постеры</NavLink>
+                      <NavLink className="quicklist_main_link" to="/wallart/posters">Постеры</NavLink>
 
                       <div className="quicklist__dropdown quicklist__dropdown__centered">
           
@@ -105,7 +105,7 @@ export default class Header extends React.Component {
                               </ul>
                             </li>
                           
-                            <li class="quicklist__childlist__item">
+                            <li className="quicklist__childlist__item">
                               <div className="quicklist__childlist__item__title">
                                 Размеры
                               </div>
@@ -127,12 +127,12 @@ export default class Header extends React.Component {
                             </li>
                           </ul>
                           
-                          {/* <div class="last-news-menu">
+                          {/* <div className="last-news-menu">
                             <a href="/collections/new-arrivals">
-                              <div class="last-news-title">  
+                              <div className="last-news-title">  
                                 New arrivals
                               </div>
-                              <div class="last-news-image"> 
+                              <div className="last-news-image"> 
                                 <img src="//cdn.shopify.com/s/files/1/0077/8718/4241/collections/new-arrivals_500x500.jpg?v=1550078531/" />
                               </div>
                             </a>

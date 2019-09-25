@@ -15,13 +15,28 @@
     margin-right: 40px;
     display: flex;
     justify-content: center;
-    height: $img_width * 1.414; // width * 1.414
+    // height: $img_width * 1.414; // width * 1.414
     width: $img_width;
 
-    img {
-      height: auto;
-      object-fit: cover;
+    div {
+      // display: flex;
+
+      .carousel {
+        .thumbs-wrapper, axis-vertical {
+          margin: 20px 0;
+
+          // .thumbs  {
+          //   display: flex;
+          //   flex-direction: column;
+          // }
+        }
+      };
     }
+
+    // img {
+    //   height: auto;
+    //   object-fit: cover;
+    // }
   }
 
   .product__desc__block {

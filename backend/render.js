@@ -19,12 +19,12 @@ export default (pathname, store, context) => {
 
 					<Header />
 
-          {/* <section className="search_content">
+          <section className="search_content">
             <div className="search_wrapper">
               <Search />
               <Breadcrumbs />
             </div>
-          </section> */}
+          </section>
 
           <section className="content">
             {renderRoutes(Routes)}
@@ -65,18 +65,17 @@ export default (pathname, store, context) => {
       </head>
       <body>
       <div id="root">
-        <div class="divLoader">
-          // <svg class="svgLoader" viewBox="0 0 1024 1024" width="10em" height="10em">
-          //   <path fill="lightblue" m="PATH FOR THE LOADER ICON"/>
-          // </svg>
-          <img class="svgLoader" src="https://rndr.juniqe-production.juniqe.com/template/view_in_room5/x386/69d99cf0abf7af48329767900546b617da2f60a99708e135aeb1912ff7672ed2/sku_675-51-101P-80x120/view_in_room.jpg" alt="" />
+        <div className="divLoader">
+          <svg className="svgLoader" viewBox="0 0 1024 1024" width="10em" height="10em">
+            <path fill="lightblue" m="PATH FOR THE LOADER ICON"/>
+          </svg>
         </div>
         ${content}
       </div>
       <script>
         window.__INITIAL_STATE__ = ${JSON.stringify(store.getState())}
       </script>
-      <script src="static/bundle-dev.js"></script>
+      <script src="bundle-dev.js"></script>
       </body>
       </html>
   `;

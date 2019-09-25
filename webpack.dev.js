@@ -12,7 +12,7 @@ module.exports = {
   output: {
     path: path.join(__dirname, 'backend/static'),
     filename: '[name]-dev.js',
-    publicPath: coreUrl + 'dist'
+    publicPath: coreUrl + 'static'
   },
   resolve: {
     extensions: ['*', '.js', '.jsx']
@@ -36,19 +36,19 @@ module.exports = {
         test: /\.(eot|woff|woff2|svg|ttf|otf)([\?]?.*)$/,
         use: ['file-loader']
       },
-      {
-        test: /\.(gif|png|jpg|svg)(\?.*$|$)/,
-        use: [
-          {
-            loader: 'url-loader',
-            options: {
-              limit: 8192,
-              name: '[name].[ext]',
-              publicPath: 'images'
-            },
-          },
-        ],
-      },
+      // {
+      //   test: /\.(gif|png|jpg|svg)(\?.*$|$)/,
+      //   use: [
+      //     {
+      //       loader: 'url-loader',
+      //       options: {
+      //         limit: 8192,
+      //         name: '[name].[ext]',
+      //         publicPath: 'images'
+      //       },
+      //     },
+      //   ],
+      // },
     ],
   },
   plugins: [

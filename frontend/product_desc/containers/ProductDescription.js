@@ -8,6 +8,7 @@ import { addProductToCart } from '../../cart/actions/cartActions';
 import Button from '../../common/components/button/Button';
 import Select from '../../common/components/select/Select';
 import Locale from '../../utils/locale';
+import { Carousel } from 'react-responsive-carousel';
 
 import {
   productProp,
@@ -108,7 +109,7 @@ export class ProductDescription extends Component {
       console.log(this.props.location.state);
     }
 
-    console.log(this.state.select.error);
+    console.log(data);
 
     switch (true) {
       case fetching:
@@ -124,7 +125,21 @@ export class ProductDescription extends Component {
         return (
           <Fragment>
             <div className="product__desc__image">
-              <img src={`${config.imagePath.dev_path_full}${data.product_id}.jpg`} alt="" />
+              <Carousel axis="horizontal">
+                <div>
+                    <img src={`${config.imagePath.dev_path_full}${data.product_id}.jpg`} />
+                    <p className="legend">Legend 1</p>
+                </div>
+                <div>
+                    <img src={`${config.imagePath.dev_path_full}${data.product_id}.jpg`} />
+                    <p className="legend">Legend 2</p>
+                </div>
+                <div>
+                    <img src={`${config.imagePath.dev_path_full}${data.product_id}.jpg`} />
+                    <p className="legend">Legend 3</p>
+                </div>
+              </Carousel>
+              {/* <img src={`${config.imagePath.dev_path_full}${data.product_id}.jpg`} alt="" /> */}
             </div>
 
             <div className="product__desc__block">
@@ -192,9 +207,9 @@ export class ProductDescription extends Component {
 
     return (
       <div className="product__desc">
-       {/* <div class="wrapper" data-anim="base wrapper">
-        <div class="circle" data-anim="base left"></div>
-        <div class="circle" data-anim="base right"></div>
+       {/* <div className="wrapper" data-anim="base wrapper">
+        <div className="circle" data-anim="base left"></div>
+        <div className="circle" data-anim="base right"></div>
       </div> */}
         { this.switchElement(this.props) }
       </div>

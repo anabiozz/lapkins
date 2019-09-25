@@ -15,7 +15,6 @@ export default ({ path }) => {
   useEffect(() => {
     setTimeout(() => setSpinner(false), 1000)
   }, []);
-  // [] means like componentDidMount
 
   return !spinner && (
     <BrowserRouter>

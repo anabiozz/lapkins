@@ -16,6 +16,7 @@ export const getProducts = (type = 1) => (dispatch) => {
 
   let domain = config.apiDomain + process.env.CORE_URL
   // if (typeof window !== 'undefined') {
+  //   console.log(window.location);
   //   domain = window.location.origin + process.env.CORE_URL
   // }
 

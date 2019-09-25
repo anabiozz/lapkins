@@ -12,7 +12,8 @@ export default [
   },
   {
     component: Cart,
-    path: '/cart'
+		path: '/cart',
+		exact: true
 	},
 	{
     component: Checkout,
@@ -21,17 +22,37 @@ export default [
 	},
 	{
     component: Products,
-		path: '/wallart',
-		exact: true
-	},
-	{
-    component: Products,
 		path: '/new',
 		exact: true
 	},
 	{
+    component: Products,
+		path: '/wallart/posters',
+		exact: true,
+	},
+	{
+    component: Products,
+		path: '/wallart/framed-posters',
+		exact: true
+	},
+	{
+    component: Products,
+		path: '/wallart/framed-posters-wood',
+		exact: true
+	},
+	{
     component: ProductDescription,
-		path: '/wallart/:productID',
+		path: '/wallart/posters/:productID',
+		exact: true
+	},
+	{
+    component: ProductDescription,
+		path: '/wallart/framed-posters/:productID',
+		exact: true
+	},
+	{
+    component: ProductDescription,
+		path: '/wallart/framed-posters-wood/:productID',
 		exact: true
 	},
 	{

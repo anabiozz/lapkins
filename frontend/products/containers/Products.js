@@ -32,25 +32,23 @@ class Products extends Component {
   componentWillReceiveProps(nextProps) {
     const { getProducts, match } = nextProps;
     if (match.url !== this.props.match.url) {
-      getProducts(config.productTypes.indexOf(match.path.split('/')[1]) + 1)
+      getProducts(config.productTypes[match.path.split('/')[2]])
     }
   }
 
   componentDidMount() {
     const { getProducts, match } = this.props
-    getProducts(config.productTypes.indexOf(match.path.split('/')[1]) + 1)
+    getProducts(config.productTypes[match.path.split('/')[2]])
   }
 
   render() {
     const { data, errors, fetching, match, addProductToCart } = this.props
 
-    console.log(data);
-
     console.log('RENDER <Products>')
 
     return (
       <div className="products__catalog">
-        <div className="catalog">
+        {/* <div className="catalog">
           <ul className="cat-nav dt102_1">
             <li className="cat-nav-item dt102_li1">
                 <span className="cat-nav-item_li ">
@@ -85,7 +83,7 @@ class Products extends Component {
                 </ul>  
             </li>
           </ul>
-        </div>
+        </div> */}
         <div className="products">
           {
             fetching && <MyLoader />

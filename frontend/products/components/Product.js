@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-
 import {
   productProp,
 } from '../../utils/props'
@@ -10,12 +9,13 @@ const heart = 'PHN2ZyB2aWV3Qm94PSIwIC0yOCA1MTIuMDAxIDUxMiIgeG1sbnM9Imh0dHA6Ly93d
 const cross = 'PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTkuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgdmlld0JveD0iMCAwIDUxMiA1MTIiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDUxMiA1MTI7IiB4bWw6c3BhY2U9InByZXNlcnZlIiB3aWR0aD0iNTEycHgiIGhlaWdodD0iNTEycHgiPgo8Zz4KCTxnPgoJCTxwb2x5Z29uIHBvaW50cz0iMjc2LDIzNiAyNzYsMCAyMzYsMCAyMzYsMjM2IDAsMjM2IDAsMjc2IDIzNiwyNzYgMjM2LDUxMiAyNzYsNTEyIDI3NiwyNzYgNTEyLDI3NiA1MTIsMjM2ICAgIiBmaWxsPSIjMDAwMDAwIi8+Cgk8L2c+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPGc+CjwvZz4KPC9zdmc+Cg=='
 
 const Product = ({ product, url, productType, addProductToCart }) => {
-
   return (
     <div className="product">
       <div className="product__image">
         <div className="product__image__inner">
-          <Link to={{ pathname: `${productType}/${product.id}` }} ><img src={url} alt="" /></Link>
+          <Link to={{ pathname: `${productType}/${product.id}` }}>
+            <img src={url} alt="" />
+          </Link>
         </div>
         {/* <img onClick={() => addProductToCart(product)} className="to__cart" src={`data:image/svg+xml;base64,${cross}`} /> */}
       </div>

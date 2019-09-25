@@ -6,14 +6,14 @@
   section.content {
     flex: 1;
     width: 100%;
-    // padding: $content_gap 0 $content_gap 0;
+    padding: 0 0 $content_gap 0;
   }
 
   section.search_content {
     width: 100%;
     margin: 0 auto;
     display: flex;
-    background-color: #99c1e2;
+    background-color: #b8b7ad; //99c1e2
 
     .search_wrapper {
       width: $content_width_1;
