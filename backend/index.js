@@ -54,24 +54,29 @@ app.use(function (req, res, next) {
 });
 
 app.use(logger('dev'));
+app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
     extended: false
 }));
-app.use(bodyParser.json());
 
-app.use(root, express.static(__dirname + '/static'));
-app.use(root + 'wallart', express.static(__dirname + '/static'));
-app.use(root + 'wallart/static/images', express.static(__dirname + '/static/images'));
-app.use(root + 'wallart/posters', express.static(__dirname + '/static'));
-app.use(root + 'wallart/posters/static/images', express.static(__dirname + '/static/images'));
-app.use(root + 'wallart/framed-posters-wood', express.static(__dirname + '/static'));
-app.use(root + 'wallart/framed-posters-wood/static/images', express.static(__dirname + '/static/images'));
+app.use(express.static(__dirname + '/static'));
+app.use(express.static(__dirname + '/static/images'));
+
+app.use(root + ':category', express.static(__dirname + '/static'));
+app.use(root + ':category/static/images', express.static(__dirname + '/static/images'));
+
+// app.use(root + ':category/:categoryType', express.static(__dirname + '/static'));
+// app.use(root + ':category/:categoryType/static/images', express.static(__dirname + '/static/images'));
+
+
+// app.use(root + 'wallart/framed-posters-wood', express.static(__dirname + '/static'));
+// app.use(root + 'wallart/framed-posters-wood/static/images', express.static(__dirname + '/static/images'));
 
 
 app.get('*', async (req, res) => {
-
-    let initialState = JSON.parse(JSON.stringify(config.initialState));
-
+    console.log("path", req.path);
+    
+    const initialState = JSON.parse(JSON.stringify(config.initialState));
     initialState.path = req.path
     const store = configureStore(initialState);
     const actions = matchRoutes(Routes, req.path)
@@ -79,7 +84,8 @@ app.get('*', async (req, res) => {
         .map(async actions => await Promise.all(
             (actions || []).map(p => p && new Promise(resolve => p.then(resolve).catch(resolve)))
         ));
-
+    console.log("actions", actions);
+    
     await Promise.all(actions);
     const context = {};
     const content = render(req.path, store, context);

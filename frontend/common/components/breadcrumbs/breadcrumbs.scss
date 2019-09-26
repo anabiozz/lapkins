@@ -6,16 +6,16 @@
     box-sizing: border-box;
 
     span {
-      font-family: $nav_links_font;
+      font-family: $primary_font;
       display: inline;
       font-size: 1rem;
       font-weight: 600;
-      color: #fff;
-      padding: 0 10px 0 10px;
+      color: $main_black_color;
+      padding: 0 10px 0 0;
     }
 
     span:last-child {
-      padding: 0 0 0 10px;
+      padding: 0 0 0 0;
     }
 
     // li+li:before {

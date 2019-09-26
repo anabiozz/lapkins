@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import ContentLoader from 'react-content-loader'
 
 import Product from '../components/Product'
-import * as actions from '../actions/productActions'
+import { getProducts } from '../actions/productActions'
 import config from '../../config'
 import { addProductToCart } from '../../cart/actions/cartActions';
 
@@ -32,22 +32,21 @@ class Products extends Component {
   componentWillReceiveProps(nextProps) {
     const { getProducts, match } = nextProps;
     if (match.url !== this.props.match.url) {
-      getProducts(config.productTypes[match.url.split('/')[2]])
+      getProducts(config.productTypes[match.params.categoryType])
     }
   }
 
   componentDidMount() {
     const { getProducts, match } = this.props
-    console.log(match);
-    
-    getProducts(config.productTypes[match.url.split('/')[2]])
+    getProducts(config.productTypes[match.params.categoryType])
   }
+
+  // static fetching ({ dispatch }) {
+  //   return [dispatch(getProducts(config.productTypes[match.params.categoryType]))];
+  // }
 
   render() {
     const { data, errors, fetching, match, addProductToCart } = this.props
-
-    console.log(data);
-    
 
     console.log('RENDER <Products>')
 
@@ -107,7 +106,7 @@ class Products extends Component {
                 key={product.id} 
                 url={`${config.imagePath.dev_path_preview}${product.id}_thumb.jpg`} 
                 product={product}
-                productType={match.url}
+                productType={"/" + match.params.category+ "/" +match.params.categoryType}
                 addProductToCart={addProductToCart} />
             ))
           }
@@ -132,4 +131,4 @@ const mapStateToProps = state => ({
   fetching: state.products.fetching,
 })
 
-export default connect(mapStateToProps, { ...actions, addProductToCart })(Products)
+export default connect(mapStateToProps, { getProducts, addProductToCart })(Products)

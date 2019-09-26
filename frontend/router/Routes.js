@@ -27,22 +27,12 @@ export default [
 	},
 	{
     component: Products,
-		path: '/wallart/:wallartType',
+		path: '/:category/:categoryType',
 		exact: true
 	},
 	{
     component: ProductDescription,
-		path: '/wallart/:wallartType/:productID',
-		exact: true
-	},
-	{
-    component: Products,
-		path: '/stationary',
-		exact: true
-	},
-	{
-    component: ProductDescription,
-		path: '/stationary/:productID',
+		path: '/:category/:categoryType/:productID',
 		exact: true
 	},
 ];
