@@ -1,8 +1,9 @@
-import Home from '../home/containers/Home'
-import Products from '../products/containers/Products'
-import Cart from '../cart/containers/Cart'
-import ProductDescription from '../product_desc/containers/ProductDescription'
-import Checkout from '../cart/containers/Checkout'
+import Home from '../home/containers/Home';
+import Products from '../products/containers/Products';
+import Cart from '../cart/containers/Cart';
+import ProductDescription from '../product_desc/containers/ProductDescription';
+import Checkout from '../cart/containers/Checkout';
+import NotFound from '../common/components/NotFound';
 
 export default [
   {
@@ -34,6 +35,10 @@ export default [
     component: ProductDescription,
 		path: '/:category/:categoryType/:productID',
 		exact: true
+	},
+	{
+    component: NotFound,
+		path: '*',
 	},
 ];
 

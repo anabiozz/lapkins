@@ -1,30 +1,26 @@
-const path = require('path')
-const webpack = require('webpack')
+var path = require('path');
+var webpack = require('webpack');
 
 const coreUrl = process.env.CORE_URL ? process.env.CORE_URL : '/'
 
 module.exports = {
+  mode: 'development',
   devtool: 'cheap-module-eval-source-map',
-  entry: {
-    vendor: ["@babel/polyfill", "react"],
-    bundle: ["./frontend/index.js"]
-  },
+  entry: "./frontend/index.jsx",
   output: {
-    path: path.join(__dirname, 'backend/static'),
+    path: path.join(__dirname, '/backend/static'),
     filename: '[name]-dev.js',
-    publicPath: coreUrl + 'static'
+    publicPath: '/static'
   },
   resolve: {
     extensions: ['*', '.js', '.jsx']
   },
   module: {
-    rules: [{
-        test: /\.jsx?$/,
-        exclude: /(node_modules)/,
-        loader: 'babel-loader',
-        query: {
-          presets: ['react', 'es2015', 'stage-0']
-        }
+    rules: [ 
+      {
+        test: /\.(js|jsx)$/,
+        exclude: '/node_modules/',
+        loader: 'babel-loader'
       },
       {
         test: /\.(s*)css$/,

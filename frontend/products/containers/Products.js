@@ -1,16 +1,16 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
-import PropTypes from 'prop-types'
-import ContentLoader from 'react-content-loader'
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import ContentLoader from 'react-content-loader';
 
-import Product from '../components/Product'
-import { getProducts } from '../actions/productActions'
-import config from '../../config'
-import { addProductToCart } from '../../cart/actions/cartActions';
+import Product from '../components/Product';
+import * as actions from '../actions/productActions';
+import config from '../../config';
+// import PureBreadcrumbs from '../../common/components/breadcrumbs/Breadcrumbs';
 
 import {
   productProp,
-} from '../../utils/props'
+} from '../../utils/props';
 
 const MyLoader = props => (
   <ContentLoader
@@ -27,6 +27,7 @@ const MyLoader = props => (
   </ContentLoader>
 )
 
+
 class Products extends Component {
 
   componentWillReceiveProps(nextProps) {
@@ -38,15 +39,16 @@ class Products extends Component {
 
   componentDidMount() {
     const { getProducts, match } = this.props
+    console.log(this.props);
     getProducts(config.productTypes[match.params.categoryType])
   }
 
-  // static fetching ({ dispatch }) {
-  //   return [dispatch(getProducts(config.productTypes[match.params.categoryType]))];
-  // }
+  static fetching ({ dispatch }) {
+    return [dispatch(actions.getProducts(config.productTypes["posters"]))];
+  }
 
   render() {
-    const { data, errors, fetching, match, addProductToCart } = this.props
+    const { data, errors, fetching, match } = this.props
 
     console.log('RENDER <Products>')
 
@@ -89,6 +91,7 @@ class Products extends Component {
           </ul>
         </div> */}
         <div className="products">
+          {/* <PureBreadcrumbs /> */}
           {
             fetching && <MyLoader />
           }
@@ -106,8 +109,7 @@ class Products extends Component {
                 key={product.id} 
                 url={`${config.imagePath.dev_path_preview}${product.id}_thumb.jpg`} 
                 product={product}
-                productType={"/" + match.params.category+ "/" +match.params.categoryType}
-                addProductToCart={addProductToCart} />
+                productType={"/" + match.params.category+ "/" +match.params.categoryType} />
             ))
           }
         </div>
@@ -122,7 +124,6 @@ Products.propTypes = {
   errors: PropTypes.string.isRequired,
   fetching: PropTypes.bool.isRequired,
   getProducts: PropTypes.func.isRequired,
-  addProductToCart: PropTypes.func.isRequired,
 }
 
 const mapStateToProps = state => ({
@@ -131,4 +132,4 @@ const mapStateToProps = state => ({
   fetching: state.products.fetching,
 })
 
-export default connect(mapStateToProps, { getProducts, addProductToCart })(Products)
+export default connect(mapStateToProps, {...actions})(Products);

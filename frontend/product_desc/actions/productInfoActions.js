@@ -7,7 +7,7 @@ import {
 } from '../constants'
 
 import config from '../../config'
-require('isomorphic-fetch');
+import 'isomorphic-fetch';
 
 const receiveSuccess = response => ({
   type: GET_PRODUCT_BY_ID_SUCCESS,
@@ -44,8 +44,6 @@ export const getProductByID = product_id => (dispatch) => {
 }
 
 export const getProductVariantByID = (product_variant_id, size) => (dispatch) => {
-  console.log("window.location.origin", window.location.origin);
-  console.log("process.env.CORE_URL", process.env.CORE_URL);
   dispatch({
     type: GET_PRODUCT_BY_ID_REQUEST,
   })

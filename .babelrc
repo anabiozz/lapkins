@@ -3,6 +3,7 @@
   "plugins": [
     "syntax-class-properties",
     "transform-object-rest-spread",
+    "babel-plugin-transform-class-properties",
     "transform-decorators-legacy",
     ["transform-runtime", {
       "helpers": false,

@@ -27,6 +27,8 @@ if (!root) {
 }
 
 var webpackConfig = null;
+
+
 if (process.env.NODE_ENV == 'development') {
     webpackConfig = require('../webpack.dev');
 } else {
@@ -59,19 +61,8 @@ app.use(bodyParser.urlencoded({
     extended: false
 }));
 
-app.use(express.static(__dirname + '/static'));
-app.use(express.static(__dirname + '/static/images'));
-
-app.use(root + ':category', express.static(__dirname + '/static'));
-app.use(root + ':category/static/images', express.static(__dirname + '/static/images'));
-
-// app.use(root + ':category/:categoryType', express.static(__dirname + '/static'));
-// app.use(root + ':category/:categoryType/static/images', express.static(__dirname + '/static/images'));
-
-
-// app.use(root + 'wallart/framed-posters-wood', express.static(__dirname + '/static'));
-// app.use(root + 'wallart/framed-posters-wood/static/images', express.static(__dirname + '/static/images'));
-
+app.use("/static", express.static(__dirname + '/static'));
+app.use("/static/images", express.static(__dirname + '/static/images'));
 
 app.get('*', async (req, res) => {
     console.log("path", req.path);
@@ -89,6 +80,10 @@ app.get('*', async (req, res) => {
     await Promise.all(actions);
     const context = {};
     const content = render(req.path, store, context);
+
+    if(context.status === 404) {
+        res.status(404);
+    }
 
     res.send(content);
 });

@@ -44,13 +44,12 @@ export class ProductDescription extends Component {
     }
   }
 
-  // static fetching ({ dispatch }) {
-  //   return [dispatch(this.props.getProductByID(this.props.match.params.productID))];
-  // }
+  static fetching ({ dispatch }) {
+    return [dispatch(actions.getProductVariantByID(1, ""))];
+  }
 
   componentDidMount() {
     this.props.reset()
-    console.log(this.props.match);
     this.props.getProductVariantByID(this.props.match.params.productID, "")
   }
 
@@ -169,7 +168,7 @@ export class ProductDescription extends Component {
 
                 <div className="price">
                   {
-                    this.state.select.value == "" ? "от " + data.price_override + " рублей" : data.price_override + " рублей"
+                    this.state.select.value == "" ? "от " + data.price_override + " руб." : data.price_override + " руб."
                   }
                 </div>
 
@@ -233,6 +232,5 @@ const mapStateToProps = state => ({
   errors: state.productInfo.errors,
   fetching: state.productInfo.fetching,
 })
-
 
 export default connect(mapStateToProps, { ...actions, addProductToCart })(ProductDescription)

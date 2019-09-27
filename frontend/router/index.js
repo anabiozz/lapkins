@@ -5,11 +5,8 @@ import Routes from './Routes';
 import Header from '../common/components/Header';
 import Footer from '../common/components/Footer';
 import PureBreadcrumbs from '../common/components/breadcrumbs/Breadcrumbs';
-import Search from '../common/components/search/Search';
 
 export default ({ path }) => {
-  console.log(path);
-
   return (
     <BrowserRouter>
       <Fragment>
@@ -19,7 +16,7 @@ export default ({ path }) => {
         <section className="search_content">
           <div className="search_wrapper">
             {/* <Search /> */}
-            <PureBreadcrumbs />
+            {/* <PureBreadcrumbs /> */}
           </div>
         </section>
 
