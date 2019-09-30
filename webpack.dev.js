@@ -7,14 +7,20 @@ process.env.NODE_ENV = "development"
 module.exports = {
   mode: 'development',
   devtool: 'cheap-module-eval-source-map',
-  entry: ['webpack-hot-middleware/client?reload=true', './frontend'],
+  entry: ['webpack-hot-middleware/client?path=/__webpack_hmr', './frontend'],
   output: {
-    path: path.join(__dirname, '/dist'),
+    path:  path.resolve(__dirname, "backend/static"),
     filename: 'bundle-dev.js',
-    publicPath: '/dist/'
+    publicPath: "/",
+    hotUpdateChunkFilename: 'static/hot/[hash].hot-update.js',
+    hotUpdateMainFilename: 'static/hot/[hash].hot-update.json',
   },
   resolve: {
     extensions: ['*', '.js', '.jsx'],
+  },
+  watchOptions: {
+    aggregateTimeout: 10000,
+    poll: 5000
   },
   module: {
     rules: [ 
@@ -63,6 +69,7 @@ module.exports = {
     // keeps hashes consistent between compilations
     new webpack.optimize.OccurrenceOrderPlugin(),
     new webpack.HotModuleReplacementPlugin(),
+    new webpack.NoEmitOnErrorsPlugin(),
     new webpack.DefinePlugin({
       'process.env': {
         HOME: JSON.stringify(process.env.HOME),

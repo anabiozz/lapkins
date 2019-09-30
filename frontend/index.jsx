@@ -8,6 +8,7 @@ import './style/main.scss';
 const store = configureStore(window.__INITIAL_STATE__);
 delete window.__INITIAL_STATE__;
 let state = store.getState();
+console.log(state);
 
 hydrate(
 	<Provider store={store}>

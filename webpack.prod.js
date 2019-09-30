@@ -11,11 +11,11 @@ module.exports = {
 		publicPath: '/dist'
 	},
 	resolve: {
-    extensions: ['*', '.js', '.jsx'],
-  },
+		extensions: ['*', '.js', '.jsx'],
+	},
 	optimization: {
-    minimize: true //Update this to true or false
-  },
+		minimize: true //Update this to true or false
+	},
 	plugins: [
 		new webpack.optimize.OccurrenceOrderPlugin(),
 		new webpack.LoaderOptionsPlugin({
@@ -53,17 +53,15 @@ module.exports = {
 
 			},
 			{
-        test: /\.(eot|woff|woff2|svg|ttf|otf)([\?]?.*)$/,
-        use: [
-          {
-            loader: 'file-loader',
-            options: {
-              name: '[name].[ext]',
-              outputPath: 'backend/static/fonts'
-            }
-          }
-        ]
-      },
+				test: /\.(eot|woff|woff2|svg|ttf|otf)([\?]?.*)$/,
+				use: [{
+					loader: 'file-loader',
+					options: {
+						name: '[name].[ext]',
+						outputPath: 'backend/static/fonts'
+					}
+				}]
+			},
 		]
 	}
 }

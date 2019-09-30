@@ -2,8 +2,6 @@ import express from 'express';
 import webpack from 'webpack';
 import bodyParser from 'body-parser';
 import config from './config/config';
-import webpackDevMiddleware from 'webpack-dev-middleware';
-import webpackHotMiddleware from 'webpack-hot-middleware';
 import logger from 'morgan';
 import Routes from '../frontend/router/Routes';
 import {
@@ -12,12 +10,13 @@ import {
 import render from './render';
 import configureStore from '../frontend/_flax/store';
 import setBundleHeaders from './middleware/setBundleHeaders';
+import path from 'path';
 
 var app = new express();
 
-async () => {
-    await app.close();
-}
+// async () => {
+//     await app.close();
+// }
 const host = process.env.NODE_ENV == 'development' ? config.server.develope : config.server.production;
 const port = config.server.port;
 
@@ -39,11 +38,11 @@ if (process.env.NODE_ENV == 'production') {
     app.use('*.js', setBundleHeaders); // USE GZIP COMPRESSION FOR PRODUCTION BUNDLE
     app.use(root + 'dist', express.static(__dirname + '/../dist'));
 } else {
-    app.use(webpackDevMiddleware(compiler, {
+    app.use(require("webpack-dev-middleware")(compiler, {
         noInfo: true,
         publicPath: webpackConfig.output.publicPath
     }));
-    app.use(webpackHotMiddleware(compiler));
+    app.use(require("webpack-hot-middleware")(compiler));
 }
 
 // TO DELETE IN PRODUCTION!!!
@@ -62,11 +61,10 @@ app.use(bodyParser.urlencoded({
 
 app.use(root + "static", express.static(__dirname + '/static'));
 app.use(root + "static/images", express.static(__dirname + '/static/images'));
+app.use(root + "static/hot", express.static(__dirname + '/static/hot'));
 app.use(root + 'favicon.ico', express.static(__dirname + '/static/images/favicon.ico'));
 
 app.get('*', async (req, res) => {
-    console.log("path", req.path);
-    
     const initialState = JSON.parse(JSON.stringify(config.initialState));
     initialState.path = req.path
     const store = configureStore(initialState);
@@ -75,7 +73,6 @@ app.get('*', async (req, res) => {
         .map(async actions => await Promise.all(
             (actions || []).map(p => p && new Promise(resolve => p.then(resolve).catch(resolve)))
         ));
-    console.log("actions", actions);
     
     await Promise.all(actions);
     const context = {};
@@ -87,7 +84,6 @@ app.get('*', async (req, res) => {
 
     res.send(content);
 });
-
 
 app.listen(port, host, function (error) {
     if (error) {

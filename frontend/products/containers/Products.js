@@ -43,9 +43,9 @@ class Products extends Component {
     getProducts(config.productTypes[match.params.categoryType])
   }
 
-  static fetching ({ dispatch }) {
-    return [dispatch(actions.getProducts(config.productTypes["posters"]))];
-  }
+  // static fetching ({ dispatch }) {
+  //   return [dispatch(actions.getProducts(config.productTypes["posters"]))];
+  // }
 
   render() {
     const { data, errors, fetching, match } = this.props

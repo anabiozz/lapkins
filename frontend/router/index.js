@@ -4,18 +4,14 @@ import { renderRoutes } from 'react-router-config';
 import Routes from './Routes';
 import Header from '../common/components/Header';
 import Footer from '../common/components/Footer';
-import PureBreadcrumbs from '../common/components/breadcrumbs/Breadcrumbs';
 
-export default ({ path }) => {
+export default ({ pathname }) => {
   return (
-    <Router>
+    <Router location={pathname} >
       <Fragment>
         <Header />
         <section className="search_content">
-          <div className="search_wrapper">
-            {/* <Search /> */}
-            {/* <PureBreadcrumbs /> */}
-          </div>
+          <div className="search_wrapper"></div>
         </section>
         <section className="content">
           {renderRoutes(Routes)}

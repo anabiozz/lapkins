@@ -44,9 +44,9 @@ export class ProductDescription extends Component {
     }
   }
 
-  static fetching ({ dispatch }) {
-    return [dispatch(actions.getProductVariantByID(1, ""))];
-  }
+  // static fetching ({ dispatch }) {
+  //   return [dispatch(actions.getProductVariantByID(1, ""))];
+  // }
 
   componentDidMount() {
     this.props.reset()
