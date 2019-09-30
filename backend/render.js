@@ -42,8 +42,11 @@ export default (pathname, store, context) => {
     <script>
       window.__INITIAL_STATE__ = ${JSON.stringify(store.getState())}
     </script>
-    <script src="${jsBundle}"></script>
+    <script src="/bundle/${jsBundle}"></script>
   </body>
   </html>
   `;
 };
+
+// ${process.env.CORE_URL}static/
+

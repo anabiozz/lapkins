@@ -10,13 +10,11 @@ import {
 import render from './render';
 import configureStore from '../frontend/_flax/store';
 import setBundleHeaders from './middleware/setBundleHeaders';
-import path from 'path';
+import webpackConfig from'../webpack.config.js';
 
 var app = new express();
 
-// async () => {
-//     await app.close();
-// }
+const compiler = webpack(webpackConfig);
 const host = process.env.NODE_ENV == 'development' ? config.server.develope : config.server.production;
 const port = config.server.port;
 
@@ -26,24 +24,27 @@ if (!root) {
     process.env['CORE_URL'] = root;
 }
 
-var webpackConfig = null;
-if (process.env.NODE_ENV == 'development') {
-    webpackConfig = require('../webpack.dev');
-} else {
-    webpackConfig = require('../webpack.prod');
-}
-var compiler = webpack(webpackConfig);
+// var webpackConfig = null;
+// if (process.env.NODE_ENV == 'development') {
+//     webpackConfig = require('../webpack.dev');
+// } else {
+//     webpackConfig = require('../webpack.prod');
+// }
+// var compiler = webpack(webpackConfig);
 
 if (process.env.NODE_ENV == 'production') {
     app.use('*.js', setBundleHeaders); // USE GZIP COMPRESSION FOR PRODUCTION BUNDLE
     app.use(root + 'dist', express.static(__dirname + '/../dist'));
 } else {
-    app.use(require("webpack-dev-middleware")(compiler, {
+    app.use(require('webpack-dev-middleware')(compiler, {
         noInfo: true,
         publicPath: webpackConfig.output.publicPath
-    }));
-    app.use(require("webpack-hot-middleware")(compiler));
+      })
+    );
+  app.use(require('webpack-hot-middleware')(compiler));
 }
+
+
 
 // TO DELETE IN PRODUCTION!!!
 app.use(function (req, res, next) {
@@ -59,9 +60,9 @@ app.use(bodyParser.urlencoded({
     extended: false
 }));
 
-app.use(root + "static", express.static(__dirname + '/static'));
-app.use(root + "static/images", express.static(__dirname + '/static/images'));
-app.use(root + "static/hot", express.static(__dirname + '/static/hot'));
+app.use(root + "css", express.static(__dirname + '/static'));
+app.use(root + "images", express.static(__dirname + '/static/images'));
+app.use(root + "bundle", express.static(__dirname + '/static/bundle'));
 app.use(root + 'favicon.ico', express.static(__dirname + '/static/images/favicon.ico'));
 
 app.get('*', async (req, res) => {

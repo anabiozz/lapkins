@@ -5,9 +5,9 @@ import Routes from './Routes';
 import Header from '../common/components/Header';
 import Footer from '../common/components/Footer';
 
-export default ({ pathname }) => {
+let App = ({ pathname }) => {
   return (
-    <Router location={pathname} >
+   <Router location={pathname} >
       <Fragment>
         <Header />
         <section className="search_content">
@@ -21,3 +21,5 @@ export default ({ pathname }) => {
     </Router>
   );
 };
+
+export default App;

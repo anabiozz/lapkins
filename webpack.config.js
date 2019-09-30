@@ -1,36 +1,37 @@
 var path = require('path');
 var webpack = require('webpack');
 
-const coreUrl = process.env.CORE_URL ? process.env.CORE_URL : '/'
-process.env.NODE_ENV = "development"
-
 module.exports = {
   mode: 'development',
-  devtool: 'inline-source-map',
   entry: [
-     './frontend/index.jsx'
+    'react-hot-loader/patch',
+    // activate HMR for React
+		'webpack-hot-middleware/client',
+      // bundle the client for hot reloading
+    'babel-polyfill',
+    './frontend/index.jsx'
+    // the entry point of our app
   ],
   output: {
-    filename: 'bundle/bundle-dev.js',
+		filename: 'bundle-dev.js',
+    // the output bundle
     path: path.resolve(__dirname, 'backend/static'),
-    publicPath: '/'
+    publicPath: '/bundle/'
+    // necessary for HMR to know where to load the hot update chunks
   },
-  resolve: {
-    extensions: ['*', '.js', '.jsx'],
-  },
+  devtool: 'inline-source-map',
   module: {
-    rules: [ 
+    rules: [
       {
         test: /\.(js|jsx)$/,
         exclude: '/node_modules/',
         loader: 'babel-loader',
-        // include: path.resolve(__dirname, "frontend"),
+        // include: path.resolve(__dirname, "./frontend"),
       },
       {
         test: /\.(s*)css$/,
         exclude: /node_modules/,
         use: ['style-loader', 'css-loader', 'sass-loader'],
-
       },
       {
         test: /\.(eot|woff|woff2|svg|ttf|otf)([\?]?.*)$/,
@@ -43,19 +44,29 @@ module.exports = {
             }
           }
         ]
-      },
+      }
     ],
   },
+
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
+    // enable HMR globally
+
     new webpack.NamedModulesPlugin(),
+    // prints more readable module names in the browser console on HMR updates
+
     new webpack.NoEmitOnErrorsPlugin(),
-    new webpack.DefinePlugin({
-      'process.env': {
-        HOME: JSON.stringify(process.env.HOME),
-        CORE_URL: JSON.stringify(coreUrl),
-        NODE_ENV: JSON.stringify('development'),
-      },
-    }),
+    // do not emit compiled assets that include errors
   ],
-}
+
+  devServer: {
+    host: 'localhost',
+    port: 8080,
+
+    // historyApiFallback: true,
+    // // respond to 404s with index.html
+
+    hot: true,
+    // enable HMR on the server
+  },
+};
