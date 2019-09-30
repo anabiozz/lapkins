@@ -11,6 +11,7 @@ import {
 } from 'react-router-config';
 import render from './render';
 import configureStore from '../frontend/_flax/store';
+import setBundleHeaders from './middleware/setBundleHeaders';
 
 var app = new express();
 
@@ -27,8 +28,6 @@ if (!root) {
 }
 
 var webpackConfig = null;
-
-
 if (process.env.NODE_ENV == 'development') {
     webpackConfig = require('../webpack.dev');
 } else {
@@ -61,8 +60,9 @@ app.use(bodyParser.urlencoded({
     extended: false
 }));
 
-app.use("/static", express.static(__dirname + '/static'));
-app.use("/static/images", express.static(__dirname + '/static/images'));
+app.use(root + "static", express.static(__dirname + '/static'));
+app.use(root + "static/images", express.static(__dirname + '/static/images'));
+app.use(root + 'favicon.ico', express.static(__dirname + '/static/images/favicon.ico'));
 
 app.get('*', async (req, res) => {
     console.log("path", req.path);

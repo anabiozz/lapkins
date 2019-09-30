@@ -1,65 +1,69 @@
 var path = require('path');
 var webpack = require('webpack');
 var CompressionPlugin = require('compression-webpack-plugin');
-var core_url = process.env.CORE_URL ? process.env.CORE_URL : '/';
+const coreUrl = process.env.CORE_URL ? process.env.CORE_URL : '/'
 
 module.exports = {
-    entry: [
-        './frontend/index'
-    ],
-    output: {
-        path: path.join(__dirname, '/dist'),
-        filename: 'bundle-prod.js',
-        publicPath: '/dist'
-    },
-    plugins: [
-        new webpack.optimize.OccurrenceOrderPlugin(),
-        new webpack.LoaderOptionsPlugin({
-            minimize: true,
-            debug: false
-        }),
-        new webpack.optimize.UglifyJsPlugin({
-            beautify: false,
-            compress: {
-                warnings: false,
-                screw_ie8: true
-            },
-            comments: false,
-            sourceMap: false,
-            mangle: true,
-            minimize: true
-        }),
-        new webpack.DefinePlugin({
-            "process.env": {
-								HOME: JSON.stringify('/home/lapkin'),
-                NODE_ENV: JSON.stringify('production'),
-                CORE_URL: JSON.stringify(core_url)
+	entry: './frontend',
+	output: {
+		path: path.join(__dirname, '/dist'),
+		filename: 'bundle-prod.js',
+		publicPath: '/dist'
+	},
+	resolve: {
+    extensions: ['*', '.js', '.jsx'],
+  },
+	optimization: {
+    minimize: true //Update this to true or false
+  },
+	plugins: [
+		new webpack.optimize.OccurrenceOrderPlugin(),
+		new webpack.LoaderOptionsPlugin({
+			minimize: true,
+			debug: false
+		}),
+		new webpack.DefinePlugin({
+			'process.env': {
+				HOME: JSON.stringify(process.env.HOME),
+				CORE_URL: JSON.stringify(coreUrl),
+				NODE_ENV: JSON.stringify('production'),
+			},
+		}),
+		new CompressionPlugin({
+			// asset: 'bundle-prod.js.gz',
+			algorithm: "gzip",
+			test: /\.js$|\.css$|\.html$/,
+			threshold: 10240,
+			minRatio: 0.8
+		})
+	],
+	module: {
+		rules: [{
+				test: /\.(js|jsx)$/,
+				exclude: '/node_modules/',
+				loader: 'babel-loader',
+				include: [
+					path.resolve(__dirname, "frontend"),
+				],
+			},
+			{
+				test: /\.(s*)css$/,
+				exclude: /node_modules/,
+				use: ['style-loader', 'css-loader', 'sass-loader'],
+
+			},
+			{
+        test: /\.(eot|woff|woff2|svg|ttf|otf)([\?]?.*)$/,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: '[name].[ext]',
+              outputPath: 'backend/static/fonts'
             }
-        }),
-        new CompressionPlugin({ 
-            asset: 'bundle-prod.js.gz',
-            algorithm: "gzip",
-            test: /\.js$|\.css$|\.html$/,
-            threshold: 10240,
-            minRatio: 0.8
-        })
-    ],
-    module: {
-        rules: [
-            {
-                test: /\.js$/,
-                include: [
-                    path.resolve(__dirname, "."),
-                ],
-                loader: 'babel-loader',
-                query: {
-                    plugins: ['transform-runtime']
-                }
-            },
-            {
-                test:   /\.css$/,
-                loader: "style-loader!css-loader!postcss-loader"
-            }
+          }
         ]
-    }
+      },
+		]
+	}
 }

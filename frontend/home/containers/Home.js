@@ -1,5 +1,5 @@
 import React from 'react'
-import {NavLink} from 'react-router-dom'
+import NavLink from 'react-router-dom/NavLink'
 
 class Home extends React.Component {
   constructor() {
@@ -27,7 +27,7 @@ class Home extends React.Component {
             onLoad={() => this.add()}
             src="https://cdn.shopify.com/s/files/1/0077/8718/4241/files/Set_028_1950x.jpeg?v=1550063217" alt="Новое" />
           <div className="content">
-            <h2>Новое</h2>
+            <h2>Новое2</h2>
           </div>
         </NavLink>
 

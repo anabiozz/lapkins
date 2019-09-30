@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import { renderToString } from 'react-dom/server';
 import { Provider } from 'react-redux';
-import { StaticRouter } from 'react-router-dom';
+import StaticRouter from 'react-router-dom/StaticRouter';
 import { renderRoutes } from 'react-router-config';
 import Routes from '../frontend/router/Routes';
 import Header from '../frontend/common/components/Header';
@@ -31,7 +31,7 @@ export default (pathname, store, context) => {
       </StaticRouter>
     </Provider>
   );
-
+  const jsBundle = process.env.NODE_ENV === 'production' ? 'bundle-prod.js' : 'bundle-dev.js';
   return `
   <!DOCTYPE html>
       <html lang="en">
@@ -71,7 +71,7 @@ export default (pathname, store, context) => {
         <script>
           window.__INITIAL_STATE__ = ${JSON.stringify(store.getState())}
         </script>
-        <script src="/static/main-dev.js"></script>
+        <script src="${process.env.CORE_URL}dist/${jsBundle}"></script>
       </body>
       </html>
   `;

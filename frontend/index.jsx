@@ -11,9 +11,8 @@ let state = store.getState();
 
 hydrate(
 	<Provider store={store}>
-		 <Router path={state}/>
+		<Router path={state}/>
 	</Provider>, document.getElementById('root'),
 )
-
 
 // debugger; // TO INSPECT THE PAGE BEFORE 1ST RENDER

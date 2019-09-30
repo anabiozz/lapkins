@@ -14,27 +14,32 @@ export default [
   {
     component: Cart,
 		path: '/cart',
-		exact: true
+		exact: true,
+		strict: true,
 	},
 	{
     component: Checkout,
 		path: '/checkout',
-		exact: true
+		exact: true,
+		strict: true,
 	},
 	{
     component: Products,
 		path: '/new',
-		exact: true
+		exact: true,
+		strict: true,
 	},
 	{
     component: Products,
 		path: '/:category/:categoryType',
-		exact: true
+		exact: true,
+		strict: true,
 	},
 	{
     component: ProductDescription,
 		path: '/:category/:categoryType/:productID',
-		exact: true
+		exact: true,
+		strict: true,
 	},
 	{
     component: NotFound,
