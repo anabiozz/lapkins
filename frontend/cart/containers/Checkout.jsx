@@ -3,8 +3,8 @@ import { connect } from 'react-redux';
 import { loadCart, removeProductFromCart, increaseCartItem, decreaseCartItem } from '../actions/cartActions';
 import ContentLoader from 'react-content-loader'
 import PropTypes from 'prop-types';
-import Input from '../../common/components/input/Input'
-import Button from '../../common/components/button/Button';
+import Input from '../../common/components/input/Input.jsx'
+import Button from '../../common/components/button/Button.jsx';
 
 const MyLoader = props => (
   <ContentLoader

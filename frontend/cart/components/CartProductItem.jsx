@@ -2,7 +2,7 @@ import React from 'react';
 import Locale from '../../utils/locale';
 import PropTypes from "prop-types";
 import config from '../../config';
-import Quantity from '../../common/components/quantity/Quantity';
+import Quantity from '../../common/components/quantity/Quantity.jsx';
 const locale = new Locale('RU').get()
 
 const CartProductItem = ({ cartItem, removeProductFromCart, increaseCartItem, decreaseCartItem }) => {

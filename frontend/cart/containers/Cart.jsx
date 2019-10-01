@@ -4,8 +4,8 @@ import { loadCart, removeProductFromCart, increaseCartItem, decreaseCartItem } f
 import ContentLoader from 'react-content-loader'
 import PropTypes from 'prop-types';
 import CartTable from "../components/CartTable";
-import Link from 'react-router-dom/Link';
-import Button from '../../common/components/button/Button';
+import { Link } from 'react-router-dom';
+import Button from '../../common/components/button/Button.jsx';
 
 const MyLoader = props => (
   <ContentLoader

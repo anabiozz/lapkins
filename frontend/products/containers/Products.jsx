@@ -3,10 +3,9 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import ContentLoader from 'react-content-loader';
 
-import Product from '../components/Product';
+import Product from '../components/Product.jsx';
 import * as actions from '../actions/productActions';
 import config from '../../config';
-// import PureBreadcrumbs from '../../common/components/breadcrumbs/Breadcrumbs';
 
 import {
   productProp,
@@ -91,7 +90,6 @@ class Products extends Component {
           </ul>
         </div> */}
         <div className="products">
-          {/* <PureBreadcrumbs /> */}
           {
             fetching && <MyLoader />
           }

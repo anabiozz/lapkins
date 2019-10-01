@@ -3,21 +3,17 @@ import { renderToString } from 'react-dom/server';
 import { Provider } from 'react-redux';
 import { StaticRouter as Router } from 'react-router-dom';
 import { renderRoutes } from 'react-router-config';
-import Routes from '../frontend/router/Routes';
 import Header from '../frontend/common/components/Header';
 import Footer from '../frontend/common/components/Footer';
 
-export default (pathname, store, context) => {
+export default (path, store, context, routes) => {
   const content = renderToString(
     <Provider store={store}>
-      <Router location={pathname} context={context}>
+      <Router location={path} context={context}>
 				<Fragment>
 					<Header />
-          <section className="search_content">
-            <div className="search_wrapper"></div>
-          </section>
           <section className="content">
-            {renderRoutes(Routes)}
+            {renderRoutes(routes)}
           </section>
 					<Footer />
 				</Fragment>
@@ -42,11 +38,9 @@ export default (pathname, store, context) => {
     <script>
       window.__INITIAL_STATE__ = ${JSON.stringify(store.getState())}
     </script>
-    <script src="/bundle/${jsBundle}"></script>
+    <script src="/${jsBundle}"></script>
   </body>
   </html>
   `;
 };
-
-// ${process.env.CORE_URL}static/
 

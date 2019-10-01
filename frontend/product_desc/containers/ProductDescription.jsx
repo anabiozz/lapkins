@@ -5,8 +5,8 @@ import ContentLoader from 'react-content-loader';
 import config from '../../config';
 import * as actions from '../actions/productInfoActions';
 import { addProductToCart } from '../../cart/actions/cartActions';
-import Button from '../../common/components/button/Button';
-import Select from '../../common/components/select/Select';
+import Button from '../../common/components/button/Button.jsx';
+import Select from '../../common/components/select/Select.jsx';
 import Locale from '../../utils/locale';
 import { Carousel } from 'react-responsive-carousel';
 

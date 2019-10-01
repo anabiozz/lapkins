@@ -4,7 +4,7 @@ import cart from '../cart/reducers/cart';
 import productInfo from '../product_desc/reducers/productInfo';
 
 export default combineReducers({
-    products,
-    productInfo,
-    cart,
+    products: products,
+    productInfo: productInfo,
+    cart: cart,
 })

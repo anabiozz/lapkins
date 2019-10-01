@@ -1,9 +1,9 @@
-import Home from '../home/containers/Home';
-import Products from '../products/containers/Products';
-import Cart from '../cart/containers/Cart';
-import ProductDescription from '../product_desc/containers/ProductDescription';
-import Checkout from '../cart/containers/Checkout';
-import NotFound from '../common/components/NotFound';
+import Home from './home/containers/Home.jsx';
+import Products from './products/containers/Products.jsx';
+import Cart from './cart/containers/Cart';
+import ProductDescription from './product_desc/containers/ProductDescription.jsx';
+import Checkout from './cart/containers/Checkout';
+import NotFound from './common/components/NotFound';
 
 export default [
   {

@@ -4,9 +4,9 @@ const port = 8080; //process.env.SERVER_PORT
 
 const config = {
     server: {
-        production: '127.0.0.1',
+        production: 'localhost',
         port: port,
-        develope: '127.0.0.1'
+        develope: 'localhost'
     },
     initialState: {
         path: "",
