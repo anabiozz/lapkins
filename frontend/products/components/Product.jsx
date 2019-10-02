@@ -6,13 +6,13 @@ import {
 } from '../../utils/props';
 import config from '../../config';
 
-const Product = ({ product, url, productType }) => {
+const Product = ({ product, imgUrl, productType }) => {
   return (
     <div className="product">
       <div className="product__image">
         <div className="product__image__inner">
-          <Link to={{ pathname: `${productType}/${product.id}` }}>
-            <img src={url} alt="" />
+          <Link to={ `${productType}/${product.name}` }>
+            <img src={imgUrl} alt="" />
           </Link>
         </div>
       </div>
@@ -29,7 +29,7 @@ const Product = ({ product, url, productType }) => {
 
 Product.propTypes = {
   product: PropTypes.shape(productProp).isRequired,
-  url: PropTypes.string.isRequired,
+  imgUrl: PropTypes.string.isRequired,
 }
 
 export default Product

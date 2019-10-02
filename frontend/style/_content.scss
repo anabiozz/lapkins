@@ -6,14 +6,13 @@
   section.content {
     flex: 1;
     width: 100%;
-    padding: 0 0 $content_gap 0;
+    // padding: 0 0 $content_gap 0;
   }
 
   section.search_content {
     width: 100%;
     margin: 0 auto;
     display: flex;
-    background-color: #fff; //99c1e2
 
     .search_wrapper {
       width: $content_width_1;
@@ -46,20 +45,9 @@
 
 @media all and (max-width: 1575px) and (min-width: 1250px) {
   #root {
-  
-    section.content {}
-  
     section.search_content {
-  
       .search_wrapper {
         width: $content_width_2;
-  
-        .search {
-  
-          .search__box__container input#search {}
-  
-          .search__box__container input#search::placeholder {}
-        }
       }
     }
   }

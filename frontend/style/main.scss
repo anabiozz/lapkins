@@ -25,10 +25,15 @@ $logo_color: #181515;
 
 $logo_font_size: 2.3rem;
 $nav_links_font_size: 0.85rem;
+
 $content_gap: 30px;
-$item_width: 300px;
-$content_width_1: ((($item_width * 4) + (4 * $content_gap)) + ($item_width - (4 * $content_gap)));
-$content_width_2: ((($item_width * 3) + (3 * $content_gap)) + ($item_width - (3 * $content_gap)));
+$product_width: 350px;
+$product_height: $product_width * 1.414;
+$product_desc_width: 450px;
+$product_desc_height: $product_desc_width * 1.414;
+
+$content_width_1: ((($product_width * 4) + (3 * $content_gap))); //  ((($item_width * 4) + (4 * $content_gap)) + ($item_width - (4 * $content_gap)))
+$content_width_2: ((($product_width * 3) + (2 * $content_gap))); //((($item_width * 3) + (3 * $content_gap)) + ($item_width - (3 * $content_gap)))
 
 @import "normalize";
 @import "common";
@@ -37,9 +42,8 @@ $content_width_2: ((($item_width * 3) + (3 * $content_gap)) + ($item_width - (3 
 @import "footer";
 @import "home";
 @import "products";
-@import "product";
+@import "product_variant";
 @import "carousel";
-@import "product_desc";
 @import "cart";
 @import "circle";
 @import "checkout";

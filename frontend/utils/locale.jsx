@@ -14,6 +14,11 @@ export default class Locale {
           ['print type', 'Тип печати'],
           ['semi-gloss', 'Полуглянцевая'],
           ['frame', 'Материал рамки'],
+          ['wallart', 'Декор'],
+          ['home', 'Домой'],
+          ['posters', 'Постеры'],
+          ['framed-posters-wood', 'Постеры с деревянной рамкой'],
+          ['framed-posters-plastic', 'Постеры с пластиковой рамкой'],
         ])
       default:
         return this

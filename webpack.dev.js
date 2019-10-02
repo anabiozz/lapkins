@@ -11,7 +11,7 @@ module.exports = {
     "@babel/polyfill",
     'react-hot-loader/patch',
     'webpack-hot-middleware/client',
-    './frontend/index.jsx'
+    './frontend'
   ],
   output: {
     filename: 'bundle-dev.js',

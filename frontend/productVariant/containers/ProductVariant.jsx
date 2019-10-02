@@ -3,12 +3,13 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import ContentLoader from 'react-content-loader';
 import config from '../../config';
-import * as actions from '../actions/productInfoActions';
+import * as actions from '../actions/productVariantActions';
 import { addProductToCart } from '../../cart/actions/cartActions';
 import Button from '../../common/components/button/Button.jsx';
 import Select from '../../common/components/select/Select.jsx';
-import Locale from '../../utils/locale';
+import Locale from '../../utils/locale.jsx';
 import { Carousel } from 'react-responsive-carousel';
+import Breadcrumbs from '../../common/components/breadcrumbs'
 
 import {
   productProp,
@@ -32,7 +33,7 @@ const MyLoader = props => (
   </ContentLoader>
 )
 
-export class ProductDescription extends Component {
+export class Product extends Component {
 
   constructor() {
     super()
@@ -50,7 +51,7 @@ export class ProductDescription extends Component {
 
   componentDidMount() {
     this.props.reset()
-    this.props.getProductVariantByID(this.props.match.params.productID, "")
+    this.props.getProductVariantByID(Number(this.props.match.params.productID.split("-")[0]), "")
   }
 
 	handleSelect = (e, product_id) => {
@@ -68,7 +69,7 @@ export class ProductDescription extends Component {
     this.props.getProductVariantByID(product_id, value)
   }
   
-  addToCart = (data) => {
+  addToCart = (productVariant) => {
 
     if (this.state.select.error) {
       this.setState(prevState => ({
@@ -100,17 +101,10 @@ export class ProductDescription extends Component {
       }, 1000)
       return
     } 
-    this.props.addProductToCart(data)
+    this.props.addProductToCart(productVariant)
   }
 
-  switchElement = ({ data, errors, fetching }) => {
-
-    if (this.props.location.state != undefined) {
-      console.log(this.props.location.state);
-    }
-
-    console.log(data);
-
+  switchElement = ({ productVariant, errors, fetching }) => {
     switch (true) {
       case fetching:
         return <MyLoader />
@@ -121,43 +115,43 @@ export class ProductDescription extends Component {
             {` ${errors.message}`}
           </div>
         )
-      case data && Object.keys(data).length > 0:
+      case productVariant && Object.keys(productVariant).length > 0:
         return (
           <Fragment>
-            <div className="product__desc__image">
+            <div className="product__description__image">
               <Carousel axis="horizontal">
                 <div>
-                    <img src={`${config.imagePath.dev_path_full}${data.product_id}.jpg`} />
+                    <img src={`${config.imagePath.dev_path_full}${productVariant.product_id}.jpg`} />
                     <p className="legend">Legend 1</p>
                 </div>
                 <div>
-                    <img src={`${config.imagePath.dev_path_full}${data.product_id}.jpg`} />
+                    <img src={`${config.imagePath.dev_path_full}${productVariant.product_id}.jpg`} />
                     <p className="legend">Legend 2</p>
                 </div>
                 <div>
-                    <img src={`${config.imagePath.dev_path_full}${data.product_id}.jpg`} />
+                    <img src={`${config.imagePath.dev_path_full}${productVariant.product_id}.jpg`} />
                     <p className="legend">Legend 3</p>
                 </div>
               </Carousel>
-              {/* <img src={`${config.imagePath.dev_path_full}${data.product_id}.jpg`} alt="" /> */}
+              {/* <img src={`${config.imagePath.dev_path_full}${productVariant.product_id}.jpg`} alt="" /> */}
             </div>
 
-            <div className="product__desc__block">
+            <div className="product__description__block">
 
               <div className="information">
-                <div className="description">{data.decription}</div>
+                <div className="description">{productVariant.decription}</div>
 
                 <table className="categories">
                   <tbody>
                     {
-                      Object.keys(data.attributes) && Object.keys(data.attributes).map((category, i) => (
+                      Object.keys(productVariant.attributes) && Object.keys(productVariant.attributes).map((category, i) => (
                         <tr key={i}>
                           <td className="pi_table_td">{locale.get(category)}</td>
                           <td className="pi_table_td">
                             {
-                              locale.has(Array.isArray(data.attributes[category]) ? data.attributes[category].join(", ") : data.attributes[category])
-                              ? locale.get(Array.isArray(data.attributes[category]) ? data.attributes[category].join(", ") : data.attributes[category])
-                              : Array.isArray(data.attributes[category]) ? data.attributes[category].join(", ") : data.attributes[category] 
+                              locale.has(Array.isArray(productVariant.attributes[category]) ? productVariant.attributes[category].join(", ") : productVariant.attributes[category])
+                              ? locale.get(Array.isArray(productVariant.attributes[category]) ? productVariant.attributes[category].join(", ") : productVariant.attributes[category])
+                              : Array.isArray(productVariant.attributes[category]) ? productVariant.attributes[category].join(", ") : productVariant.attributes[category] 
                             }
                           </td>
                         </tr>
@@ -168,7 +162,7 @@ export class ProductDescription extends Component {
 
                 <div className="price">
                   {
-                    this.state.select.value == "" ? "от " + data.price_override + " руб." : data.price_override + " руб."
+                    this.state.select.value == "" ? "от " + productVariant.price_override + " руб." : productVariant.price_override + " руб."
                   }
                 </div>
 
@@ -180,16 +174,16 @@ export class ProductDescription extends Component {
                       placeholder="Выбери размер"
                       name="value"
                       title="Выбери размер"
-                      options={data.sizes}
+                      options={productVariant.sizes}
                       value={this.state.select.value}
-                      handleChange={(e) => this.handleSelect(e, data.product_id)} />
+                      handleChange={(e) => this.handleSelect(e, productVariant.product_id)} />
                   </div>
 
                   <div className="add_to_cart">
                     <Button 
                       title="Добавить в корзину"
                       type="primary"
-                      action={() => this.addToCart(data)} />
+                      action={() => this.addToCart(productVariant)} />
                   </div>
 
                 </div>
@@ -206,19 +200,22 @@ export class ProductDescription extends Component {
   render() {
 
     return (
-      <div className="product__desc">
-       {/* <div className="wrapper" data-anim="base wrapper">
-        <div className="circle" data-anim="base left"></div>
-        <div className="circle" data-anim="base right"></div>
-      </div> */}
-        { this.switchElement(this.props) }
+      <div className="product__description">
+        <section className="search_content">
+          <div className="search_wrapper">
+            <Breadcrumbs options={{excludePaths: ["/wallart/posters/1-pstr-veselye"]}} />
+          </div>
+        </section>
+        <div className="product__description__content">
+          { this.switchElement(this.props) }
+        </div>
       </div>
     )
   }
 }
 
-ProductDescription.propTypes = {
-  data: PropTypes.PropTypes.shape(productProp).isRequired,
+Product.propTypes = {
+  productVariant: PropTypes.PropTypes.shape(productProp).isRequired,
   errors: PropTypes.string.isRequired,
   fetching: PropTypes.bool.isRequired,
   getProductByID: PropTypes.func.isRequired,
@@ -228,9 +225,9 @@ ProductDescription.propTypes = {
 }
 
 const mapStateToProps = state => ({
-  data: state.productInfo.data,
-  errors: state.productInfo.errors,
-  fetching: state.productInfo.fetching,
+  productVariant: state.productVariant.productVariant,
+  errors: state.productVariant.errors,
+  fetching: state.productVariant.fetching,
 })
 
-export default connect(mapStateToProps, { ...actions, addProductToCart })(ProductDescription)
+export default connect(mapStateToProps, { ...actions, addProductToCart })(Product)

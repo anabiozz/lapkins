@@ -5,7 +5,7 @@ import { renderRoutes } from 'react-router-config';
 import routes from './routes';
 import Header from './common/components/Header';
 import Footer from './common/components/Footer';
-import ErrorBoundary from './common/components/ErrorBoundary';
+import ErrorBoundary from './common/components/ErrorBoundary.jsx';
 
 const App = ({path}) => (
   <Router location={path} >
@@ -22,7 +22,7 @@ const App = ({path}) => (
 let ExportedApp = App;
 
 if (process.env.DEV) {
-  const { setConfig } = require('react-hot-loader');
+  const { setConfig } = require('react-hot-loader')
   setConfig({
     logLevel: 'debug',
     errorReporter: ErrorBoundary,

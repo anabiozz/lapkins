@@ -156,7 +156,7 @@ export default {
     "gifts": 3, 
     "wraps": 4,
     "posters": 5,
-    "framed-posters": 6,
+    "framed-posters-plastic": 6,
     "framed-posters-wood": 7,
   },
   heart: `PHN2ZyB2aWV3Qm94PSIwIC0yOCA1MTIuMDAxIDUxMiIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBk

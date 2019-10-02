@@ -85,7 +85,7 @@ export default class Header extends React.Component {
                                 </li>
 
                                 <li>
-                                  <NavLink to="/wallart/framed-posters" className="quicklist__link">
+                                  <NavLink to="/wallart/framed-posters-plastic" className="quicklist__link">
                                     Постеры с пластиковой рамкой
                                   </NavLink>
                                 </li>

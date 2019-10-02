@@ -19,6 +19,18 @@ const receiveFail = error => ({
   error,
 })
 
+export function reset() {
+  return dispatch => dispatch({
+    type: GET_PRODUCT_BY_ID_RESET,
+  })
+}
+
+export function dismissError() {
+  return dispatch => dispatch({
+    type: DISMISS_GET_PRODUCT_BY_ID_ERROR,
+  })
+}
+
 let domain = config.apiDomain + process.env.CORE_URL
 // if (typeof window !== 'undefined') {
 //   console.log(window.location.origin);
@@ -60,14 +72,3 @@ export const getProductVariantByID = (product_variant_id, size) => (dispatch) =>
     .catch(error => dispatch(receiveFail(error)))
 }
 
-export function reset() {
-  return dispatch => dispatch({
-    type: GET_PRODUCT_BY_ID_RESET,
-  })
-}
-
-export function dismissError() {
-  return dispatch => dispatch({
-    type: DISMISS_GET_PRODUCT_BY_ID_ERROR,
-  })
-}

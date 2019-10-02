@@ -10,6 +10,18 @@ import fetch from 'isomorphic-fetch'
 const receiveSuccess = response => ({ type: GET_PRODUCTS_SUCCESS, response })
 const receiveFail = error => ({ type: GET_PRODUCTS_ERROR, error })
 
+export function reset() {
+  return dispatch => dispatch({
+    type: GET_REGIONS_RESET,
+  })
+}
+
+export function dismissError() {
+  return dispatch => dispatch({
+    type: DISMISS_REGIONS_ERROR,
+  })
+}
+
 export const getProducts = (type = 1) => (dispatch) => {
   dispatch({
     type: GET_PRODUCTS_REQUEST,
@@ -31,16 +43,4 @@ export const getProducts = (type = 1) => (dispatch) => {
     .then(response => response.json())
     .then(response => dispatch(receiveSuccess(response)))
     .catch(error => dispatch(receiveFail(error)))
-}
-
-export function reset() {
-  return dispatch => dispatch({
-    type: GET_REGIONS_RESET,
-  })
-}
-
-export function dismissError() {
-  return dispatch => dispatch({
-    type: DISMISS_REGIONS_ERROR,
-  })
 }

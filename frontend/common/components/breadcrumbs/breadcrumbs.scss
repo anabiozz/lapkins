@@ -4,14 +4,20 @@
   .bc {
     list-style: none;
     box-sizing: border-box;
-
-    span {
-      font-family: $primary_font;
-      display: inline;
-      font-size: 1rem;
-      font-weight: 600;
+    font-family: $primary_font;
+ 
+    a {
       color: $main_black_color;
-      padding: 0 10px 0 0;
+      padding-right: 10px;
+      font-weight: 600;
+      font-size: 1rem;
+    }
+
+    span{
+      color: $main_black_color;
+      margin-right: 10px;
+      font-weight: 600;
+      font-size: 1rem;
     }
 
     span:last-child {

@@ -1,5 +1,5 @@
 import React from 'react';
-import Locale from '../../utils/locale';
+import Locale from '../../utils/locale.jsx';
 import PropTypes from "prop-types";
 import config from '../../config';
 import Quantity from '../../common/components/quantity/Quantity.jsx';

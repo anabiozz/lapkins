@@ -4,7 +4,8 @@ import PropTypes from 'prop-types';
 import ContentLoader from 'react-content-loader';
 
 import Product from '../components/Product.jsx';
-import * as actions from '../actions/productActions';
+import Breadcrumbs from '../../common/components/breadcrumbs'
+import * as actions from '../actions/productsActions';
 import config from '../../config';
 
 import {
@@ -29,6 +30,13 @@ const MyLoader = props => (
 
 class Products extends Component {
 
+  constructor() {
+    super()
+    this.state = {
+      redirect: false
+    }
+  }
+
   componentWillReceiveProps(nextProps) {
     const { getProducts, match } = nextProps;
     if (match.url !== this.props.match.url) {
@@ -47,12 +55,19 @@ class Products extends Component {
   // }
 
   render() {
-    const { data, errors, fetching, match } = this.props
+    const { products, errors, fetching, match } = this.props
 
     console.log('RENDER <Products>')
 
+    console.log(products);
+
     return (
       <div className="products__catalog">
+        <section className="search_content">
+          <div className="search_wrapper">
+            <Breadcrumbs />
+          </div>
+        </section>
         {/* <div className="catalog">
           <ul className="cat-nav dt102_1">
             <li className="cat-nav-item dt102_li1">
@@ -102,32 +117,31 @@ class Products extends Component {
             )
           }
           {
-            data && data.length > 0 && data.map(product => (
-              <Product 
+            products && products.length > 0 && products.map(product => (
+              <Product
                 key={product.id} 
-                url={`${config.imagePath.dev_path_preview}${product.id}_thumb.jpg`} 
+                imgUrl={`${config.imagePath.dev_path_preview}${product.id}_thumb.jpg`} 
                 product={product}
                 productType={"/" + match.params.category+ "/" +match.params.categoryType} />
             ))
           }
         </div>
       </div>
-      
     )
   }
 }
 
 Products.propTypes = {
-  data: PropTypes.arrayOf(PropTypes.shape(productProp).isRequired).isRequired,
+  products: PropTypes.arrayOf(PropTypes.shape(productProp).isRequired).isRequired,
   errors: PropTypes.string.isRequired,
   fetching: PropTypes.bool.isRequired,
   getProducts: PropTypes.func.isRequired,
 }
 
 const mapStateToProps = state => ({
-  data: state.products.data,
+  products: state.products.products,
   errors: state.products.errors,
   fetching: state.products.fetching,
 })
 
-export default connect(mapStateToProps, {...actions})(Products);
+export default connect(mapStateToProps, { ...actions })(Products);
