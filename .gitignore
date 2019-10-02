@@ -16,6 +16,7 @@
 /backend/static/*.otf
 /backend/static/*.ttf
 /backend/static/*.js
+/backend/static/*.j*
 
 .vscode
 
