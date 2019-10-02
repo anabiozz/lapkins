@@ -105,6 +105,8 @@ export class Product extends Component {
   }
 
   switchElement = ({ productVariant, errors, fetching }) => {
+    console.log(productVariant);
+    
     switch (true) {
       case fetching:
         return <MyLoader />
@@ -120,18 +122,14 @@ export class Product extends Component {
           <Fragment>
             <div className="product__description__image">
               <Carousel axis="horizontal">
-                <div>
-                    <img src={`${config.imagePath.dev_path_full}${productVariant.product_id}.jpg`} />
-                    <p className="legend">Legend 1</p>
-                </div>
-                <div>
-                    <img src={`${config.imagePath.dev_path_full}${productVariant.product_id}.jpg`} />
-                    <p className="legend">Legend 2</p>
-                </div>
-                <div>
-                    <img src={`${config.imagePath.dev_path_full}${productVariant.product_id}.jpg`} />
-                    <p className="legend">Legend 3</p>
-                </div>
+                {
+                  productVariant.images.map((image, index) => {
+                    return <div key={index}>
+                        <img src={`${config.imagePath.dev_path_full}${image}.jpg`} />
+                        <p className="legend">Legend {index}</p>
+                    </div>
+                  })
+                }
               </Carousel>
               {/* <img src={`${config.imagePath.dev_path_full}${productVariant.product_id}.jpg`} alt="" /> */}
             </div>
