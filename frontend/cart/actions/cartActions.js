@@ -21,10 +21,10 @@ const addToCartFail = error => ({
   error,
 });
 
-let domain = config.apiDomain + process.env.CORE_URL;
-if (typeof window !== 'undefined') {
-  domain = window.location.origin + process.env.CORE_URL;
-}
+// let domain = config.apiDomain + process.env.CORE_URL;
+// if (typeof window !== 'undefined') {
+//   domain = window.location.origin + process.env.CORE_URL;
+// }
 
 export const addProductToCart = product => ({
   type: ADD_PRODUCT_TO_CART,

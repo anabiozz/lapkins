@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { loadCart, removeProductFromCart, increaseCartItem, decreaseCartItem } from '../actions/cartActions';
+import * as action from '../actions/cartActions';
 import ContentLoader from 'react-content-loader'
 import PropTypes from 'prop-types';
-import CartTable from "../components/CartTable";
-import { Link } from 'react-router-dom';
-import Button from '../../common/components/button';
+import CartContent from "../components/CartContent";
+import Breadcrumbs from '../../common/components/breadcrumbs';
 
 const MyLoader = props => (
   <ContentLoader
@@ -28,55 +27,57 @@ class Cart extends Component {
     this.props.loadCart()
   }
 
+  checkout = () => {
+
+  }
+
   render() {
-
-    let create = () => {
-
-    }
 
     console.log('RENDER <Cart>');
 
-    const { cartItems, errors, fetching, removeProductFromCart, increaseCartItem, decreaseCartItem } = this.props;
+    const {
+      cartItems,
+      errors,
+      fetching,
+      removeProductFromCart,
+      increaseCartItem,
+      decreaseCartItem
+    } = this.props;
 
     console.log(cartItems);
 
     return (
       <div className="cart">
-        <h2 className="cart__title">ОФОРМЛЕНИЕ ЗАКАЗА</h2>
-
-        {
-          fetching && <MyLoader />
-        }
-
-        {
-          errors && (
-          <div style={{ marginTop: '200px' }}>
-            <strong>ERROR: </strong>
-            {errors.message}
+        <section className="search_content">
+          <div className="search_wrapper">
+            <Breadcrumbs />
           </div>
-          )
-        }
-
-        {
-          cartItems && !cartItems.length
-          ? <div className="cart__no__product">В вашей корзине пока нет товаров</div>
-          : <CartTable
-              cartItems={this.props.cartItems}
-              removeProductFromCart={removeProductFromCart}
-              increaseCartItem={increaseCartItem}
-              decreaseCartItem={decreaseCartItem}
-            /> 
-        }
-
-        <div className="cart__content__order">
-          <Link to={{ pathname: '/checkout', state: {cartItems: cartItems}}}>
-            <Button
-              title="Расчитать"
-              type="primary"
-              action={create} />
-          </Link>
+        </section>
+        <div className="cart__main">
+          <h2 className="cart__title">ОФОРМЛЕНИЕ ЗАКАЗА</h2>
+          {
+            fetching && <MyLoader />
+          }
+          {
+            errors && (
+            <div style={{ marginTop: '200px' }}>
+              <strong>ERROR: </strong>
+              {errors.message}
+            </div>
+            )
+          }
+          {
+            cartItems && !cartItems.length
+            ? <div className="cart__no__product">В вашей корзине пока нет товаров</div>
+            : <CartContent
+                cartItems={this.props.cartItems}
+                removeProductFromCart={removeProductFromCart}
+                increaseCartItem={increaseCartItem}
+                decreaseCartItem={decreaseCartItem}
+                checkout={this.checkout}
+              /> 
+          }
         </div>
-
       </div>
     )
   }
@@ -99,4 +100,4 @@ const mapStateToProps = state => ({
   fetching: state.cart.fetching,
 })
 
-export default connect(mapStateToProps, { loadCart, removeProductFromCart, increaseCartItem, decreaseCartItem })(Cart)
+export default connect(mapStateToProps, { ...action })(Cart)

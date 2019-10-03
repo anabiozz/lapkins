@@ -2,171 +2,112 @@
 	width: $content_width_1;
 	margin: 0 auto;
 
-	&__title {
-		margin-bottom: 30px;
-	}
+	&__main {
 
-	&__content {
-		display: flex;
-		flex-direction: column;
-		
-		&__item {
+		margin: $content_gap 0;
+
+		.cart__content {
 			display: flex;
-			-webkit-box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.75);
-			-moz-box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.75);
-			box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.75);
-			margin-bottom: 30px;
-			height: 368px;
-			position: relative;
-			overflow: hidden;
-			justify-content: space-between;
+			flex-direction: column;
+			width: auto;
 
-			&__image {
-				flex: 1;
+			.cart__product__item {
 				display: flex;
-				justify-content: center;
-				height: 100%;
+				margin-bottom: $content_gap;
+				height: 230px;
+				position: relative;
+				margin: $content_gap 0;
 
-				img {
-					object-fit: cover;
-					height: 100%;
-					width: auto;
-				}
-			}
+				.cart__content__item__image {
+					display: flex;
+					width: 150px;
+					margin-right: $content_gap;
 
-			&__content {
-				flex: 2;
-				display: flex;
-				width: 100%;
-				margin: 2rem;
-				justify-content: space-between;
-				font-size: 1.1rem;
-
-				.information {
-					align-self: center;
-					width: 100%;
-
-					.description {
-						word-wrap: break-word;
-						font-weight: 600;
-						margin-bottom: 30px;
+					img {
+						object-fit: cover;
+						width: auto;
 					}
+				}
 
-					.categories {
+				.product__item__content {
+					font-size: 1.1rem;
+					display: flex;
+
+					.left__content {
+						height: 100%;
 						display: flex;
+						flex-direction: column;
 						justify-content: space-between;
-						width: 100%;
+						margin-right: $content_gap;
 
-						td {
-							padding-right: 10px;
+						.content {
+							display: flex;
+							flex-direction: column;
+							word-wrap: break-word;
+							margin-bottom: 30px;
+							max-width: 350px;
+
+							span {
+								margin: 4px 0;
+							}
+
+							.decription {
+								font-weight: 600;
+								overflow: hidden;
+								max-height: 80px;
+							}
+						}
+
+						.close {
+							position: relative;
+							overflow: hidden;
+							color: #303030;
+		
+							&:hover {
+								cursor: pointer;
+		
+								&::before,
+								&::after {
+									background: $main_color;
+								}
+							}
 						}
 					}
 
-					.price {
-						margin-top: 30px;
-						font-weight: 600;
-						font-size: 1.3rem;
-					}
-				}
-			}
+					.right__content {
+						display: flex;
+						justify-content: space-between;
+						height: 100%;
 
-			.close {
-				position: relative;
-				width: 25px;
-				height: 25px;
-				margin: 5px;
-				overflow: hidden;
+						.counter {
+							margin-right: $content_gap;
+						}
 
-				&:hover {
-					cursor: pointer;
-
-					&::before,
-					&::after {
-						background: $main_color;
-					}
-				}
-
-				&::before,
-				&::after {
-					content: '';
-					position: absolute;
-					height: 2px;
-					width: 100%;
-					top: 50%;
-					left: 0;
-					margin-top: -1px;
-					background: #7c7c7c; 
-				}
-
-				&::before {
-					transform: rotate(45deg);
-				}
-
-				&::after {
-					transform: rotate(-45deg);
-				}
-
-				&.hairline {
-
-					&::before,
-					&::after {
-						height: 2px;
+						.price {
+							font-weight: 600;
+							font-size: 1.3rem;
+						}
 					}
 				}
 			}
 		}
 	}
 
- &__no__product {
+	&__no__product {
 		margin-top: 50px;
 		font-size: 19px;
 	}
 }
 
-@media all and (max-width: 1250px) {
-
-}
+@media all and (max-width: 1250px) {}
 
 @media all and (max-width: 1575px) and (min-width: 1250px) {
 	.cart {
 		width: $content_width_2;
-	
-		&__content {
-	
-			&__item {
-	
-				&__image {}
-	
-				&_content {
-	
-					&__information {
-	
-						&__description {}
-						&__categories {
-							td {}
-						}
-	
-						&__price {}
-					}
-				}
-	
-				.close {
-					&.hairline {}
-				}
-			}
-		}
-	
-	 &__no__product {
-		
-		}
 	}
 }
 
 
-@media all and (max-width: 1930px) and (min-width: 1575px) {
-  
-}
+@media all and (max-width: 1930px) and (min-width: 1575px) {}
 
-@media all and (max-width: 2560px) and (min-width: 1930px) {
- 
-}
+@media all and (max-width: 2560px) and (min-width: 1930px) {}

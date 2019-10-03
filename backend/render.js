@@ -27,7 +27,6 @@ export default (path, store, context, routes) => {
   <head>
     <meta charset="UTF-8">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Josefin+Sans:100,300,400,600,700&display=swap" rel="stylesheet">
     <title>Лапкин дом</title>
   </head>
   <body>

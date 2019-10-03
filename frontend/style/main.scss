@@ -42,9 +42,9 @@ $content_width_2: ((($product_width * 3) + (2 * $content_gap))); //((($item_widt
 @import "cart";
 @import "circle";
 @import "checkout";
-@import "../common/components/button/button.scss";
-@import "../common/components/quantity/quantity.scss";
-@import "../common/components/search/search.scss";
-@import "../common/components/breadcrumbs/breadcrumbs.scss";
-@import "../common/components/select/select.scss";
-@import "../common/components/input/input.scss";
+@import "../common/components/button/button";
+@import "../common/components/counter/counter";
+@import "../common/components/search/search";
+@import "../common/components/breadcrumbs/breadcrumbs";
+@import "../common/components/select/select";
+@import "../common/components/input/input";
