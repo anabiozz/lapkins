@@ -4,7 +4,7 @@ import { loadCart, removeProductFromCart, increaseCartItem, decreaseCartItem } f
 import ContentLoader from 'react-content-loader'
 import PropTypes from 'prop-types';
 import Input from '../../common/components/input/Input.jsx'
-import Button from '../../common/components/button/Button.jsx';
+import Button from '../../common/components/button';
 
 const MyLoader = props => (
   <ContentLoader

@@ -120,7 +120,7 @@ class Products extends Component {
             products && products.length > 0 && products.map(product => (
               <Product
                 key={product.id} 
-                imgUrl={`${config.imagePath.dev_path_preview}${product.images[0]}_thumb.jpg`} 
+                imgUrl={`${config.imagePath.dev_path_preview}${product.name}/300x450/1_thumb.jpg`} 
                 product={product}
                 productType={"/" + match.params.category+ "/" +match.params.categoryType} />
             ))

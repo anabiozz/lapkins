@@ -18,8 +18,6 @@
 
     .product__description__image {
       margin-right: 40px;
-      // display: flex;
-      // justify-content: center;
       width: $product_desc_width;
   
       div {
@@ -32,7 +30,7 @@
     }
   
     .product__description__block {
-  
+      width: 50vw;
       .information {
         font-family: $primary_font;
         display: flex;
@@ -65,10 +63,9 @@
   
         .elements {
           display: flex;
-          justify-content: space-between;
   
           .size_select {
-            margin-bottom: 30px;
+            margin-right: 50px;
           }
         }
       }

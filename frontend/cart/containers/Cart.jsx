@@ -5,7 +5,7 @@ import ContentLoader from 'react-content-loader'
 import PropTypes from 'prop-types';
 import CartTable from "../components/CartTable";
 import { Link } from 'react-router-dom';
-import Button from '../../common/components/button/Button.jsx';
+import Button from '../../common/components/button';
 
 const MyLoader = props => (
   <ContentLoader

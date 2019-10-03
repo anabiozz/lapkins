@@ -1,21 +1,11 @@
 @font-face {
-  font-family: 'Raleway_Black';
-	src: url('fonts/Raleway-v4020-Black.otf');
-}
-
-@font-face {
-  font-family: 'Raleway_SemiBold';
-	src: url('fonts/Raleway-v4020-Medium.otf');
-}
-
-@font-face {
   font-family: 'NexaReplicaRU';
 	src: url('fonts/NexaReplicaRU-Bold.otf');
 }
 
-$primary_font: 'Open Sans Condensed', sans-serif; // Open Sans Condensed
+$primary_font: 'Open Sans Condensed', sans-serif;
 $nav_links_font: 'NexaReplicaRU', sans-serif;
-$logo_font: 'NexaReplicaRU', sans-serif; // Josefin Sans
+$logo_font: 'NexaReplicaRU', sans-serif;
 
 $product_background_color: #ece8da;
 $main_black_color: #3d3d3d;
@@ -25,6 +15,11 @@ $logo_color: #181515;
 
 $logo_font_size: 2.3rem;
 $nav_links_font_size: 0.85rem;
+
+$element_width: 250px;
+$element_height: 60px;
+$element_font_size: 1.2rem;
+$element_text_transform: uppercase;
 
 $content_gap: 30px;
 $product_width: 350px;

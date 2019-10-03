@@ -5,9 +5,9 @@ import ContentLoader from 'react-content-loader';
 import config from '../../config';
 import * as actions from '../actions/productVariantActions';
 import { addProductToCart } from '../../cart/actions/cartActions';
-import Button from '../../common/components/button/Button.jsx';
-import Select from '../../common/components/select/Select.jsx';
-import Locale from '../../utils/locale.jsx';
+import Button from '../../common/components/button';
+import Select from '../../common/components/select';
+import Locale from '../../utils/locale';
 import { Carousel } from 'react-responsive-carousel';
 import Breadcrumbs from '../../common/components/breadcrumbs'
 
@@ -64,6 +64,8 @@ export class Product extends Component {
 				[name]: value,
 			}
     }));
+
+    console.log(product_id);
     
     this.props.reset()
     this.props.getProductVariantByID(product_id, value)
@@ -71,15 +73,15 @@ export class Product extends Component {
   
   addToCart = (productVariant) => {
 
-    if (this.state.select.error) {
-      this.setState(prevState => ({
-        select: {
-          ...prevState.select,
-          error: false,
-        }
-      }));
-      return
-    }
+    // if (this.state.select.error) {
+    //   this.setState(prevState => ({
+    //     select: {
+    //       ...prevState.select,
+    //       error: false,
+    //     }
+    //   }));
+    //   return
+    // }
    
     if (this.state.select.value == "") {
       this.setState(prevState => ({
@@ -131,7 +133,6 @@ export class Product extends Component {
                   })
                 }
               </Carousel>
-              {/* <img src={`${config.imagePath.dev_path_full}${productVariant.product_id}.jpg`} alt="" /> */}
             </div>
 
             <div className="product__description__block">
@@ -147,9 +148,15 @@ export class Product extends Component {
                           <td className="pi_table_td">{locale.get(category)}</td>
                           <td className="pi_table_td">
                             {
-                              locale.has(Array.isArray(productVariant.attributes[category]) ? productVariant.attributes[category].join(", ") : productVariant.attributes[category])
-                              ? locale.get(Array.isArray(productVariant.attributes[category]) ? productVariant.attributes[category].join(", ") : productVariant.attributes[category])
-                              : Array.isArray(productVariant.attributes[category]) ? productVariant.attributes[category].join(", ") : productVariant.attributes[category] 
+                              locale.has(Array.isArray(productVariant.attributes[category])
+                              ? productVariant.attributes[category].join(", ") 
+                              : productVariant.attributes[category])
+                              ? locale.get(Array.isArray(productVariant.attributes[category]) 
+                              ? productVariant.attributes[category].join(", ") 
+                              : productVariant.attributes[category])
+                              : Array.isArray(productVariant.attributes[category]) 
+                              ? productVariant.attributes[category].join(", ") 
+                              : productVariant.attributes[category] 
                             }
                           </td>
                         </tr>
@@ -160,7 +167,9 @@ export class Product extends Component {
 
                 <div className="price">
                   {
-                    this.state.select.value == "" ? "от " + productVariant.price_override + " руб." : productVariant.price_override + " руб."
+                    this.state.select.value == "" 
+                    ? "от " + productVariant.price_override + " руб." 
+                    : productVariant.price_override + " руб."
                   }
                 </div>
 
@@ -201,7 +210,7 @@ export class Product extends Component {
       <div className="product__description">
         <section className="search_content">
           <div className="search_wrapper">
-            <Breadcrumbs options={{excludePaths: ["/wallart/posters/1-pstr-veselye"]}} />
+            <Breadcrumbs />
           </div>
         </section>
         <div className="product__description__content">
