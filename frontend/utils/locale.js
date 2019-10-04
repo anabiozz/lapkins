@@ -20,6 +20,12 @@ export default class Locale {
           ['framed-posters-wood', 'Постеры с деревянной рамкой'],
           ['framed-posters-plastic', 'Постеры с пластиковой рамкой'],
           ['cart', 'Корзина'],
+          ['stationery', 'Канцелярия'],
+          ['postcards', 'Открытки'],
+          ['notebooks', 'Тетради'],
+          ['diaries', 'Ежедневники'],
+          ['calendars', 'Календари'],
+          ['new', 'Новое'],
         ])
       default:
         return this

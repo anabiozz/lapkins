@@ -152,12 +152,16 @@ export default {
   ],
   productTypes: {
     "wallart": 1,
-    "stationary": 2,
+    "stationery": 2,
     "gifts": 3, 
     "wraps": 4,
     "posters": 5,
     "framed-posters-plastic": 6,
     "framed-posters-wood": 7,
+    "postcards": 8,
+    "notebooks": 9,
+    "diaries": 10,
+    "calendars": 11,
   },
   heart: `PHN2ZyB2aWV3Qm94PSIwIC0yOCA1MTIuMDAxIDUxMiIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBk
           PSJtMjU2IDQ1NS41MTU2MjVjLTcuMjg5MDYyIDAtMTQuMzE2NDA2LTIuNjQwNjI1LTE5Ljc5Mjk2OS03LjQzNzUtMjAuNjgzNTkz

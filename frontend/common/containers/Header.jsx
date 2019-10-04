@@ -1,42 +1,39 @@
 import React, { Fragment } from 'react';
 import { NavLink } from 'react-router-dom';
 import { slide as Menu } from 'react-burger-menu';
-import config from '../../config'
+import config from '../../config';
+import { connect } from 'react-redux';
+import { reset } from '../../cart/actions/cartActions'
 
-export default class Header extends React.Component {
-
+class Header extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
       visible: true,
       open: false,
+      productAdded: false,
     };
   }
 
-  componentDidMount() {
-    window.addEventListener("scroll", this.handleScroll);
-  }
-  
-  componentWillUnmount() {
-    window.removeEventListener("scroll", this.handleScroll);
-  }
-
-  handleScroll = () => {
-    const currentScrollPos = window.pageYOffset;
-
-    if (currentScrollPos > 50) {
-      this.setState({
-        visible: false,
-      });
-    } else {
-      this.setState({
-        visible: true
-      });
-    }
-  };
-
   render() {
+
+    const { click } = this.props;
+
+    if (click) {
+     
+      this.setState(({
+				productAdded: true,
+			}));
+
+      setTimeout(() => {
+        this.setState(({
+          productAdded: false,
+        }));
+      }, 1000)
+     
+      this.props.reset()
+    } 
 
     return(
       <Fragment>
@@ -62,7 +59,7 @@ export default class Header extends React.Component {
                 <nav className="quicklist">
                   <ul>
                     <li className="quicklist__has__dropdown quicklist__has__dropdown__centered">
-                      <NavLink className="quicklist_main_link" to="/wallart/posters">Постеры</NavLink>
+                      <NavLink className="quicklist_main_link" to="/wallart/posters">Декор</NavLink>
 
                       <div className="quicklist__dropdown quicklist__dropdown__centered">
           
@@ -72,7 +69,7 @@ export default class Header extends React.Component {
 
                             <li className="quicklist__childlist__item">
                               <div className="quicklist__childlist__item__title">
-                                Продукты
+                                Постеры
                               </div>
                               <ul>
                                 <li>
@@ -96,7 +93,7 @@ export default class Header extends React.Component {
                               </ul>
                             </li>
                           
-                            <li className="quicklist__childlist__item">
+                            {/* <li className="quicklist__childlist__item">
                               <div className="quicklist__childlist__item__title">
                                 Размеры
                               </div>
@@ -115,7 +112,7 @@ export default class Header extends React.Component {
                                 </li>
                               
                               </ul>
-                            </li>
+                            </li> */}
                           </ul>
                           
                           {/* <div className="last-news-menu">
@@ -130,10 +127,9 @@ export default class Header extends React.Component {
                           </div> */}
                         </div>
                       </div>
-                     
                     </li>
                     <li className="quicklist__has__dropdown quicklist__has__dropdown__centered">
-                      <NavLink className="quicklist_main_link" to="/stationary">Канцелярия</NavLink>
+                      <NavLink className="quicklist_main_link" to="/stationery">Канцелярия</NavLink>
 
                       <div className="quicklist__dropdown quicklist__dropdown__centered">
           
@@ -147,25 +143,25 @@ export default class Header extends React.Component {
                               </div>
                               <ul>
                                 <li>
-                                  <NavLink to="/collections/abstract-wall-art" className="quicklist__link" aria-current="page">
+                                  <NavLink to="/stationery/postcards" className="quicklist__link">
                                     Открытки
                                   </NavLink>
                                 </li>
                               
                                 <li>
-                                  <NavLink to="/collections/animal-wall-art" className="quicklist__link">
+                                  <NavLink to="/stationery/notebooks" className="quicklist__link">
                                     Тетради
                                   </NavLink>
                                 </li>
                               
                                 <li>
-                                  <NavLink to="/collections/black-and-white-wall-art" className="quicklist__link">
+                                  <NavLink to="/stationery/diaries" className="quicklist__link">
                                     Ежедневники
                                   </NavLink>
                                 </li>
 
                                 <li>
-                                  <NavLink to="/collections/black-and-white-wall-art" className="quicklist__link">
+                                  <NavLink to="/stationery/calendars" className="quicklist__link">
                                     Календари
                                   </NavLink>
                                 </li>
@@ -211,7 +207,7 @@ export default class Header extends React.Component {
                 <li className="icon">
                   <NavLink to="/cart">
                     <span className="icon-cart">
-                      <img src={`data:image/svg+xml;base64,${config.cart}`} />
+                      <img className={this.state.productAdded ? "product__added" : ""} src={`data:image/svg+xml;base64,${config.cart}`} />
                     </span>
                   </NavLink>
                 </li>
@@ -227,3 +223,9 @@ export default class Header extends React.Component {
     )
   }
 }
+
+const mapStateToProps = state => ({
+  click: state.cart.click,
+})
+
+export default connect(mapStateToProps, { reset })(Header)

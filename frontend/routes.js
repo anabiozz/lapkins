@@ -31,6 +31,12 @@ export default [
 	},
 	{
     component: Products,
+		path: '/:category',
+		exact: true,
+		strict: true,
+	},
+	{
+    component: Products,
 		path: '/:category/:categoryType',
 		exact: true,
 		strict: true,

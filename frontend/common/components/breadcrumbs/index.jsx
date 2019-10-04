@@ -5,7 +5,12 @@ import Locale from '../../../utils/locale';
 import routes from '../../../routes'
 const locale = new Locale('RU').get()
 
-const excludePaths = ['/wallart/posters/*', '/wallart/framed-posters-wood/*', '/wallart/framed-posters-plastic/*'];
+const excludePaths = [
+  '/wallart/posters/*', 
+  '/wallart/framed-posters-wood/*', 
+  '/wallart/framed-posters-plastic/*',
+  '/stationery/postcards/*',
+];
 
 const Breadcrumbs = ({ breadcrumbs }) => (
 

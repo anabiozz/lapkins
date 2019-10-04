@@ -3,7 +3,7 @@ import { renderToString } from 'react-dom/server';
 import { Provider } from 'react-redux';
 import { StaticRouter as Router } from 'react-router-dom';
 import { renderRoutes } from 'react-router-config';
-import Header from '../frontend/common/components/Header';
+import Header from '../frontend/common/containers/Header';
 import Footer from '../frontend/common/components/Footer';
 
 export default (path, store, context, routes) => {
@@ -31,9 +31,7 @@ export default (path, store, context, routes) => {
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div id="root">
-      ${content}
-    </div>
+    <div id="root">${content}</div>
     <script>
       window.__INITIAL_STATE__ = ${JSON.stringify(store.getState())}
     </script>

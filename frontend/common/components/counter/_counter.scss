@@ -6,35 +6,63 @@
 
 	.counter__minus,
 	.counter__plus {
+		position: relative;
 		display: block;
 		width: $counter_width;
 		height: $counter_height;
 		line-height: $counter_height;
 		color: #fff;
-		font-size: 2rem;
-		background: #b6b6b6;
+		font-size: 1.5rem;
+		font-family: 'Times New Roman', Times, serif;
 		text-align: center;
 		cursor: pointer;
-
-		span {
-			margin: 0;
-			padding: 0;
-		}
+		background-color: $element_b_color;
+		transition: all 0.5s;
 	}
 
-	.counter__minus:hover,
-	.counter__plus:hover {
-		background: #b6b6b6;
-		color: #fff;
+	.counter__minus {
+		line-height: $counter_height - 4px;
 	}
 
-	// .counter__plus:active {
-	// 	-webkit-transform: translateY(-1em);
-	// }
+	.counter__minus::before,
+	.counter__plus:before {
+		content: '';
+		position: absolute;
+		width: $counter_width;
+		height: $counter_height;
+		top: 0;
+		left: 0;
+		z-index: 1;
+		background-color: rgba(255,255,255,0.1);
+		transition: all 0.5s;
+	}
 
-	// .counter__minus:active {
-	// 	-webkit-transform: translateY(1em);
-	// }
+	.counter__minus:hover::before,
+	.counter__plus:hover::before {
+		opacity: 0 ;
+		transform: scale(0.5,0.5);
+	}
+
+	.counter__minus::after,
+	.counter__plus::after {
+		content: '';
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		z-index: 1;
+		opacity: 0;
+		transition: all 0.5s;
+		transform: scale(1.2,1.2);
+		box-sizing: border-box;
+	}
+
+	.counter__minus:hover::after,
+	.counter__plus:hover::after {
+		opacity: 1;
+		transform: scale(1,1);
+	}
 
 	.counter__input {
 		width: $counter_width * 1.5;
@@ -42,23 +70,11 @@
 		margin: 0;
 		padding: 0;
 		text-align: center;
-		border-top: 2px solid #b6b6b6;
-		border-bottom: 2px solid #b6b6b6;
-		border-left: 1px solid #b6b6b6;
-		border-right: 2px solid #b6b6b6;
+		border: 0;
+		outline: none;
 		background: #fff;
 		font-weight: 600;
 		color: $main_black_color;
 		box-sizing: border-box;
-	}
-
-	.counter__minus:link,
-	.counter__plus:link {
-		color: $main_black_color;
-	}
-
-	.counter__minus:visited,
-	.counter__plus:visited {
-		color: #fff;
 	}
 }

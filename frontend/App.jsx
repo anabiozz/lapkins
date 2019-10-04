@@ -3,8 +3,8 @@ import React, { Fragment } from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { renderRoutes } from 'react-router-config';
 import routes from './routes';
-import Header from './common/components/Header';
-import Footer from './common/components/Footer';
+import Header from './common/containers/Header.jsx';
+import Footer from './common/components/Footer.jsx';
 import ErrorBoundary from './common/components/ErrorBoundary.jsx';
 
 const App = ({path}) => (

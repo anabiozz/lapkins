@@ -24,8 +24,8 @@ const MyLoader = props => (
 
 class Checkout extends Component {
 
-	constructor() {
-		super();
+	constructor(props) {
+		super(props);
 		this.state = {
 			isDelivery: false,
 		};

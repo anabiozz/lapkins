@@ -1,7 +1,8 @@
 .cart {
 	width: $content_width_1;
 	margin: 0 auto;
-
+	@include  reveal(0.5s);
+	
 	&__main {
 
 		margin: $content_gap 0;
@@ -17,6 +18,7 @@
 				height: 230px;
 				position: relative;
 				margin: $content_gap 0;
+		
 
 				.cart__content__item__image {
 					display: flex;

@@ -3,12 +3,13 @@ import {
   LOAD_CART,
   REMOVE_PRODUCT_FROM_CART,
   DECREASE_CART_ITEM,
+  ADD_PRODUCT_TO_CART_RESET
 } from '../constant';
 
 const initialState = {
   cartItems: [],
   errors: '',
-  fetching: false,
+  click: false,
 }
 
 export default function (state = initialState, action) {
@@ -39,24 +40,19 @@ export default function (state = initialState, action) {
           })
 
           localStorage.setItem('cartProducts', JSON.stringify(newState))
-          return {
-            ...state,
-            cartItems: newState,
-          }
+
+          return {...state, cartItems: newState, click: true }
         } 
 
         cartItem.product = action.payload
         localStorage.setItem('cartProducts', JSON.stringify([...state.cartItems, cartItem]))
-        return {
-          ...state,
-          cartItems: [...state.cartItems, cartItem],
-        }
+        return { ...state, cartItems: [...state.cartItems, cartItem], click: true }
+
       case REMOVE_PRODUCT_FROM_CART:
         localStorage.setItem('cartProducts', JSON.stringify(state.cartItems.filter(cartItem => cartItem.product.name != action.payload.name)));
         return {
-          ...state,
-          cartItems: state.cartItems.filter(cartItem => cartItem.product.name != action.payload.name),
-        };
+          ...state, cartItems: state.cartItems.filter(cartItem => cartItem.product.name != action.payload.name)};
+          
       case DECREASE_CART_ITEM:
         let newState = state.cartItems.map(cartItem => {
           if (cartItem.count == 1) return cartItem;
@@ -72,6 +68,9 @@ export default function (state = initialState, action) {
           ...state,
           cartItems: newState,
         }
+
+      case ADD_PRODUCT_TO_CART_RESET:
+        return { ...state, click: false }
       default:
         return state;
   }

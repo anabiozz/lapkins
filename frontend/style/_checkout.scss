@@ -3,13 +3,10 @@
 .chackout {
   display: flex;
   flex-direction: column;
-  -webkit-animation: reveal 1s ease;
-  -webkit-animation-fill-mode: backwards;
-  animation: reveal 1s ease;
-  animation-fill-mode: backwards;
   width: $content_width_1;
   margin: 0 auto;
   position: relative;
+  @include  reveal(0.5s);
 
   &__title {
     margin-bottom: 30px;
@@ -105,10 +102,7 @@
             }
   
             // .delivery__data {
-            //   -webkit-animation: reveal 1s ease;
-            //   -webkit-animation-fill-mode: backwards;
-            //   animation: reveal 1s ease;
-            //   animation-fill-mode: backwards;
+            // 	  @include  reveal();
             // }
   
             .hide {
@@ -166,8 +160,6 @@
     }
   }
 }
-
-
 
 @media all and (max-width: 1250px) {
   .chackout {

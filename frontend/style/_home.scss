@@ -5,10 +5,7 @@
   grid-gap: 1.5em;
   width: $content_width_1;
   margin: 0 auto;
-  -webkit-animation: reveal 0.5s ease;
-  -webkit-animation-fill-mode: backwards;
-  animation: reveal 0.5s ease;
-  animation-fill-mode: backwards;
+	@include  reveal(0.5s);
 
   &__item {
     position: relative;

@@ -35,8 +35,8 @@ const MyLoader = props => (
 
 export class Product extends Component {
 
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
     this.state = {
       select: {
         value: "",
@@ -50,7 +50,7 @@ export class Product extends Component {
   // }
 
   componentDidMount() {
-    this.props.reset()
+    // this.props.reset()
     this.props.getProductVariantByID(Number(this.props.match.params.productID.split("-")[0]), "")
   }
 
@@ -73,16 +73,6 @@ export class Product extends Component {
   
   addToCart = (productVariant) => {
 
-    // if (this.state.select.error) {
-    //   this.setState(prevState => ({
-    //     select: {
-    //       ...prevState.select,
-    //       error: false,
-    //     }
-    //   }));
-    //   return
-    // }
-   
     if (this.state.select.value == "") {
       this.setState(prevState => ({
         select: {
@@ -187,7 +177,7 @@ export class Product extends Component {
                   </div>
 
                   <div className="add_to_cart">
-                    <Button 
+                    <Button
                       title="Добавить в корзину"
                       type="primary"
                       action={() => this.addToCart(productVariant)} />

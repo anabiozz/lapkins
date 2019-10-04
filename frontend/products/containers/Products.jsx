@@ -30,8 +30,8 @@ const MyLoader = props => (
 
 class Products extends Component {
 
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
     this.state = {
       redirect: false
     }
@@ -117,10 +117,13 @@ class Products extends Component {
             )
           }
           {
-            products && products.length > 0 && products.map(product => (
+            products && products.length === 0 && "Данная категория товара на данный момент отсутствует."
+          }
+          {
+            products.map(product => (
               <Product
                 key={product.id} 
-                imgUrl={`${config.imagePath.dev_path_preview}${product.name}/300x450/1_thumb.jpg`} 
+                imgUrl={`${config.imagePath.dev_path_preview}${product.name}/${product.size}/1_thumb.jpg`} 
                 product={product}
                 productType={"/" + match.params.category+ "/" +match.params.categoryType} />
             ))

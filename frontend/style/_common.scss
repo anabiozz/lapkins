@@ -31,6 +31,8 @@ footer, header, hgroup, menu, nav, section {
     display: block;
 }
 
+// SCROLLBAR
+
 body::-webkit-scrollbar {
   width: 15px;
 }
@@ -45,44 +47,30 @@ body::-webkit-scrollbar-thumb {
   outline: 1px solid slategrey;
 }
 
+// END SCROLLBAR
+
 html {
-  -ms-text-size-adjust: 100%;
-  -webkit-text-size-adjust: 100%;
-  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   margin-left: calc(100vw - 100%);
-  scroll-behavior: smooth;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  margin: 0;
-  padding: 0;
-  // letter-spacing: 1px;
-}
-
-@mixin font($weight) {
-  font-family: $primary_font;
-  color: $main_color;
-  font-weight: $weight;
-  font-size: 16px;
-}
-
-body {
+  letter-spacing: 0.1px;
+  @include font(400);
   margin: 0;
   padding: 0;
   position: relative;
   background-color: #fff;
-  @include font(400);
-  // 	/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#f7cac9+0,92a8d1+100 */
-	// background: rgb(247, 202, 201);
-	// /* Old browsers */
-	// background: -moz-linear-gradient(-45deg, rgba(247, 202, 201, 1) 0%, rgba(146, 168, 209, 1) 100%);
-	// /* FF3.6-15 */
-	// background: -webkit-linear-gradient(-45deg, rgba(247, 202, 201, 1) 0%, rgba(146, 168, 209, 1) 100%);
-	// /* Chrome10-25,Safari5.1-6 */
-	// background: linear-gradient(135deg, rgba(247, 202, 201, 1) 0%, rgba(146, 168, 209, 1) 100%);
+}
+
+body {
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  scroll-behavior: smooth;
 }
 
 ::selection {
-  background: #7e779e;
+  background: #dd6c49;
   color: #fff;
   text-shadow: none;
 }
@@ -100,265 +88,4 @@ img,
 a {
   outline: none;
   text-decoration: none;
-}
-
-.clearfix {
-  clear: both;
-}
-
-// html::after {
-// 	content:'';
-// 	background: linear-gradient(21deg, #10abff, #1beabd);
-// 	height:3px;
-// 	width:100%;
-// 	position:absolute;
-// 	left:0;
-// 	top:0;
-// }
-
-@media all and (max-width: 1250px) {
-  
-}
-
-
-@media all and (max-width: 1420px) and (min-width: 1250px)  {
-  body {
-    font-size: 15px;
-  }
-}
-
-@media all and (max-width: 1930px) and (min-width: 1420px) {
-
-}
-
-@media all and (max-width: 2560px) and (min-width: 1930px)  {}
-
-@-webkit-keyframes reveal {
-  0% {
-    opacity: 0;
-  }
-
-  10% {
-    opacity: 0.1;
-  }
-
-  20% {
-    opacity: 0.2;
-  }
-
-  30% {
-    opacity: 0.3;
-  }
-
-  40% {
-    opacity: 0.4;
-  }
-
-  50% {
-    opacity: 0.5;
-  }
-
-  60% {
-    opacity: 0.6;
-  }
-
-  70% {
-    opacity: 0.7;
-  }
-
-  80% {
-    opacity: 0.8;
-  }
-
-  90% {
-    opacity: 0.9;
-  }
-
-  100% {
-    opacity: 1;
-  }
-}
-
-@keyframes reveal {
-  0% {
-    opacity: 0;
-  }
-
-  10% {
-    opacity: 0.1;
-  }
-
-  20% {
-    opacity: 0.2;
-  }
-
-  30% {
-    opacity: 0.3;
-  }
-
-  40% {
-    opacity: 0.4;
-  }
-
-  50% {
-    opacity: 0.5;
-  }
-
-  60% {
-    opacity: 0.6;
-  }
-
-  70% {
-    opacity: 0.7;
-  }
-
-  80% {
-    opacity: 0.8;
-  }
-
-  90% {
-    opacity: 0.9;
-  }
-
-  100% {
-    opacity: 1;
-  }
-}
-
-@-webkit-keyframes disappear {
-  0% {
-    opacity: 1;
-  }
-
-  10% {
-    opacity: 0.9;
-  }
-
-  20% {
-    opacity: 0.8;
-  }
-
-  30% {
-    opacity: 0.7;
-  }
-
-  40% {
-    opacity: 0.6;
-  }
-
-  50% {
-    opacity: 0.5;
-  }
-
-  60% {
-    opacity: 0.4;
-  }
-
-  70% {
-    opacity: 0.3;
-  }
-
-  80% {
-    opacity: 0.2;
-  }
-
-  90% {
-    opacity: 0.1;
-  }
-
-  100% {
-    opacity: 0;
-  }
-}
-
-@keyframes disappear {
-  0% {
-    opacity: 1;
-  }
-
-  10% {
-    opacity: 0.9;
-  }
-
-  20% {
-    opacity: 0.8;
-  }
-
-  30% {
-    opacity: 0.7;
-  }
-
-  40% {
-    opacity: 0.6;
-  }
-
-  50% {
-    opacity: 0.5;
-  }
-
-  60% {
-    opacity: 0.4;
-  }
-
-  70% {
-    opacity: 0.3;
-  }
-
-  80% {
-    opacity: 0.2;
-  }
-
-  90% {
-    opacity: 0.1;
-  }
-
-  100% {
-    opacity: 0;
-  }
-}
-
-
-$colors: (
-  "primary": $main_black_color,
-  "secondary": $main_color,
-);
-
-@function color($key) {
-  @if not map-has-key($color, $key) {
-    @warn "Key `#{$key}` not found in $colors map.";
-  }
-  @return map-get($colors, $key)
-}
-
-@mixin unity-parent($child) {
-  @at-root #{selector-unity(&, $child)} {
-    @content;
-  }
-}
-
-@mixin max-screen($res) {
-  @media screen and (max-width: $res) {
-    @content;
-  }
-}
-
-@mixin grid($cols, $margin) {
-  position: relative;
-  background: #7e779e;
-  margin-bottom: $margin;
-  height: 150px;
-
-  @if($cols >= 5) {
-    width: 100%;
-    margin-right: 0;
-  }
-  @else {
-    width: ((100% - (($cols - 1) * $margin)) / $cols);
-    margin-right: $margin;
-  }
-
-  // Отменяю марджин у последнего элемента
-  &:nth-child(#{$cols}n) {
-    margin-right: 0;
-  }
 }

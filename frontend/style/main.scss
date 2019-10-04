@@ -16,20 +16,30 @@ $logo_color: #181515;
 $logo_font_size: 2.3rem;
 $nav_links_font_size: 0.85rem;
 
+// ******************* HEADER ********************** //
+$header_quicklist_b_color: #fff; //#b8b7ad
+$header_quicklist_color: $nav_links_color;
+$header_b_color: #fff;
+
+// ******************* ELEMENTS ********************** //
+
 $element_width: 250px;
 $element_height: 60px;
 $element_font_size: 1.2rem;
 $element_text_transform: uppercase;
+$element_b_color: #66A182;
+
+// ******************* CONTENT ********************** //
 
 $content_gap: 30px;
 $product_width: 350px;
 $product_height: $product_width * 1.414;
 $product_desc_width: 450px;
 $product_desc_height: $product_desc_width * 1.414;
-
 $content_width_1: ((($product_width * 4) + (3 * $content_gap))); //  ((($item_width * 4) + (4 * $content_gap)) + ($item_width - (4 * $content_gap)))
 $content_width_2: ((($product_width * 3) + (2 * $content_gap))); //((($item_width * 3) + (3 * $content_gap)) + ($item_width - (3 * $content_gap)))
 
+@import "mixins";
 @import "normalize";
 @import "common";
 @import "header";
@@ -42,6 +52,7 @@ $content_width_2: ((($product_width * 3) + (2 * $content_gap))); //((($item_widt
 @import "cart";
 @import "circle";
 @import "checkout";
+@import "animations";
 @import "../common/components/button/button";
 @import "../common/components/counter/counter";
 @import "../common/components/search/search";

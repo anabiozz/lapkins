@@ -1,0 +1,58 @@
+@mixin reveal($speed) {
+  -webkit-animation: reveal $speed ease;
+	-webkit-animation-fill-mode: backwards;
+	animation: reveal $speed ease;
+  animation-fill-mode: backwards;
+}
+
+@mixin font($weight) {
+  font-family: $primary_font;
+  color: $main_color;
+  font-weight: $weight;
+  font-size: 16px;
+}
+
+@mixin unity-parent($child) {
+  @at-root #{selector-unity(&, $child)} {
+    @content;
+  }
+}
+
+@mixin max-screen($res) {
+  @media screen and (max-width: $res) {
+    @content;
+  }
+}
+
+@mixin grid($cols, $margin) {
+  position: relative;
+  background: #7e779e;
+  margin-bottom: $margin;
+  height: 150px;
+
+  @if($cols >= 5) {
+    width: 100%;
+    margin-right: 0;
+  }
+  @else {
+    width: ((100% - (($cols - 1) * $margin)) / $cols);
+    margin-right: $margin;
+  }
+
+  // Отменяю марджин у последнего элемента
+  &:nth-child(#{$cols}n) {
+    margin-right: 0;
+  }
+}
+
+$colors: (
+  "primary": $main_black_color,
+  "secondary": $main_color,
+);
+
+@function color($key) {
+  @if not map-has-key($color, $key) {
+    @warn "Key `#{$key}` not found in $colors map.";
+  }
+  @return map-get($colors, $key)
+}
