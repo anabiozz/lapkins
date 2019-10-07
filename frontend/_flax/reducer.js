@@ -1,10 +1,12 @@
 import { combineReducers } from 'redux';
-import products from '../products/reducers/products';
-import cart from '../cart/reducers/cart';
-import productVariant from '../productVariant/reducers/productVariant';
+import products from '../elements/products/reducers';
+import cart from '../elements/cart/reducers';
+import variant from '../elements/variant/reducers';
+import categories from '../elements/categories/reducers'
 
 export default combineReducers({
     products: products,
-    productVariant: productVariant,
+    variant: variant,
     cart: cart,
+    categories: categories,
 })

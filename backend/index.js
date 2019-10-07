@@ -54,7 +54,6 @@ app.use(bodyParser.urlencoded({
 }));
 
 app.use(root + "css", express.static(__dirname + '/static'));
-// app.use(root + "static", express.static(__dirname + '/static'));
 app.use(root + "static/images", express.static(__dirname + '/static/images'));
 app.use(root + 'favicon.ico', express.static(__dirname + '/static/images/favicon.ico'));
 

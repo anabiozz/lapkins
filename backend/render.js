@@ -3,8 +3,8 @@ import { renderToString } from 'react-dom/server';
 import { Provider } from 'react-redux';
 import { StaticRouter as Router } from 'react-router-dom';
 import { renderRoutes } from 'react-router-config';
-import Header from '../frontend/common/containers/Header';
-import Footer from '../frontend/common/components/Footer';
+import Header from '../frontend/elements/common/containers/Header';
+import Footer from '../frontend/elements/common/components/Footer';
 
 export default (path, store, context, routes) => {
   const content = renderToString(

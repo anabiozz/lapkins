@@ -1,9 +1,10 @@
-import Home from './home/containers/Home.jsx';
-import Products from './products/containers/Products.jsx';
-import Cart from './cart/containers/Cart';
-import ProductVariant from './productVariant/containers/ProductVariant.jsx';
-import Checkout from './cart/containers/Checkout';
-import NotFound from './common/components/NotFound';
+import Home from './elements/home/containers/Home';
+import Products from './elements/products/containers/Products';
+import Cart from './elements/cart/containers/Cart';
+import Variant from './elements/variant/containers/Variant';
+import Checkout from './elements/cart/containers/Checkout';
+import NotFound from './elements/common/components/NotFound';
+import Categories from './elements/categories/containers/Categories'
 
 export default [
   {
@@ -30,7 +31,7 @@ export default [
 		strict: true,
 	},
 	{
-    component: Products,
+    component: Categories,
 		path: '/:category',
 		exact: true,
 		strict: true,
@@ -42,7 +43,7 @@ export default [
 		strict: true,
 	},
 	{
-    component: ProductVariant,
+    component: Variant,
 		path: '/:category/:categoryType/:productID',
 		exact: true,
 		strict: true,

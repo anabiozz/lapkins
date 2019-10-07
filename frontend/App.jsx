@@ -3,9 +3,9 @@ import React, { Fragment } from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { renderRoutes } from 'react-router-config';
 import routes from './routes';
-import Header from './common/containers/Header.jsx';
-import Footer from './common/components/Footer.jsx';
-import ErrorBoundary from './common/components/ErrorBoundary.jsx';
+import Header from './elements/common/containers/Header';
+import Footer from './elements/common/components/Footer';
+import ErrorBoundary from './elements/common/components/ErrorBoundary';
 
 const App = ({path}) => (
   <Router location={path} >

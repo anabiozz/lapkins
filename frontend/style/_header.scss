@@ -12,7 +12,7 @@ header {
     &__content {
       display: flex;
       width: $content_width_1;
-      background-color:$header_b_color;
+      background-color: $header_b_color;
       justify-content: space-between;
       margin: 0 auto;
 
@@ -22,6 +22,8 @@ header {
 
         .logo {
           display: flex;
+          align-items: center;
+          justify-content: center;
 
           img {
             width: 100px;
@@ -29,8 +31,6 @@ header {
           }
 
           a {
-            align-self: center;
-            justify-self: center;
             font-family: $logo_font;
             font-size: $logo_font_size;
             color: $nav_links_color;
@@ -40,7 +40,6 @@ header {
         }
 
         .quicklist {
-          width: auto;
           margin: 0 20px;
           font-family: $nav_links_font;
 
@@ -48,7 +47,7 @@ header {
             display: flex;
             align-items: center;
             height: 100%;
-            
+
             .quicklist__has__dropdown {
               position: relative;
 
@@ -69,7 +68,7 @@ header {
                 z-index: 7;
                 text-align: left;
                 top: 50px;
-                @include  reveal(0.2s);
+                @include reveal(0.2s);
 
                 .quicklist__childlist {
                   display: inline-block;
@@ -91,10 +90,9 @@ header {
                     flex-wrap: wrap;
                     width: $content_width_1;
                     margin: 0 auto;
-                    padding: 30px 0 30px 0;
+                    padding: 30px 0;
                     box-sizing: border-box;
 
-                    
                     .quicklist__childlist__item {
                       display: -webkit-flex;
                       display: -ms-flexbox;
@@ -111,7 +109,7 @@ header {
                         font-size: 1.2rem;
                         padding: 5px;
                       }
-                    
+
                       ul {
                         display: -webkit-flex;
                         display: -ms-flexbox;
@@ -131,11 +129,27 @@ header {
                             font-family: $primary_font;
                             font-size: 1.2rem;
                           }
+
+                          .quicklist__link:hover {
+                            color: rgb(187, 25, 25);
+                          }
+
+                          .quicklist__link:focus {
+                            color: rgb(114, 39, 39);
+                          }
+
+                          // .quicklist__link:active {
+                          // color: rgb(94, 114, 39);
+                          // }
                         }
                       }
                     }
                   }
                 }
+              }
+
+              .hover {
+               display: block;
               }
 
               .quicklist__dropdown__centered {
@@ -146,31 +160,19 @@ header {
                 padding: 0;
                 text-align: center
               }
-
-              .quicklist__dropdown .quicklist:not(.quicklist__childlink__parent):hover {
-                background: #f7f5f3;
-              }
-
-              .quicklist__active__dropdown .quicklist__dropdown {
-                display: block;
-              }
-
-              .quicklist__dropdown li {
-                display: block;
-              }
-  
             }
 
             .quicklist__has__dropdown__centered {
               position: static;
             }
-           
-            .quicklist__has__dropdown:hover .quicklist__dropdown,
-            .quicklist__has__dropdown:focus .quicklist__dropdown {
-              display: block;
-            }
+
+            // .quicklist__has__dropdown:hover .quicklist__dropdown,
+            // .quicklist__has__dropdown:focus .quicklist__dropdown {
+            //   display: block;
+            // }
           }
         }
+
       }
 
       .icons {
@@ -293,14 +295,14 @@ Note: Beware of modifying this element as it can break the animations - you shou
           }
 
           .quicklist {
-  
+
             ul {
               .quicklist__has__dropdown {
-  
+
                 .quicklist__dropdown {
-                  
+
                   .quicklist__childlist {
-                   
+
                     .quicklist__childlist__grid {
                       width: $content_width_2;
                     }
@@ -361,7 +363,7 @@ Note: Beware of modifying this element as it can break the animations - you shou
 /* END HEADER */
 
 .product__added {
-  animation: animateHeart 1s cubic-bezier(.36,.07,.19,.97) both;
+  animation: animateHeart 1s cubic-bezier(.36, .07, .19, .97) both;
   transform: translate3d(0, 0, 0);
   backface-visibility: hidden;
   perspective: 50px;
