@@ -3,71 +3,60 @@ import {
   LOAD_CART,
   REMOVE_PRODUCT_FROM_CART,
   DECREASE_CART_ITEM,
-  ADD_PRODUCT_TO_CART_RESET
+  ADD_PRODUCT_TO_CART_RESET,
+  INCREASE_CART_ITEM
 } from '../constant';
 
 const initialState = {
-  cartItems: [],
+  addedItems: [],
   errors: '',
   isProductAdded: false,
+  fetching: false,
+  total: 0,
 }
 
 export default function (state = initialState, action) {
   switch (action.type) {
     case LOAD_CART:
       // localStorage.clear();
-      return {
-        ...state,
-        cartItems: JSON.parse(localStorage.getItem('cartProducts')) || []
-      };
+      return { ...state, addedItems: JSON.parse(localStorage.getItem('cartProducts')) || [] };
     case ADD_PRODUCT_TO_CART:
 
-        const cartItem = {
-          product: {},
-          count: 1,
+        //check if the name exists in the addedItems
+        const existedItem = state.addedItems.find(addedItem => addedItem.name === action.payload.name)
+
+        if (existedItem) {
+          action.payload.quantity++
+          localStorage.setItem('cartProducts', JSON.stringify([ action.payload ]))
+          return {...state, isProductAdded: true, addedItems: [ action.payload ], total: state.total + action.payload.price_override }
         }
 
-        let instateProduct = state.cartItems.filter(cartItem => cartItem.product.name === action.payload.name)[0]
-
-        if (instateProduct) {
-          let newState = state.cartItems.map(cartItem => {
-            let tmp = Object.assign({}, cartItem);
-            if (tmp.product.name === action.payload.name) {
-              tmp.product = action.payload
-              tmp.count++
-            }
-            return tmp
-          })
-
-          localStorage.setItem('cartProducts', JSON.stringify(newState))
-
-          return {...state, cartItems: newState, isProductAdded: true }
-        } 
-
-        cartItem.product = action.payload
-        localStorage.setItem('cartProducts', JSON.stringify([...state.cartItems, cartItem]))
-        return { ...state, cartItems: [...state.cartItems, cartItem], isProductAdded: true }
+        action.payload.quantity = 1
+        const newTotal = state.total + action.payload.price_override
+        localStorage.setItem('cartProducts', JSON.stringify([ ...state.addedItems, action.payload ]))
+        return { ...state, addedItems: [ ...state.addedItems, action.payload ], isProductAdded: true,  total: newTotal }
 
       case REMOVE_PRODUCT_FROM_CART:
-        localStorage.setItem('cartProducts', JSON.stringify(state.cartItems.filter(cartItem => cartItem.product.name != action.payload.name)));
-        return {
-          ...state, cartItems: state.cartItems.filter(cartItem => cartItem.product.name != action.payload.name)};
+        const newRemoveState = state.addedItems.filter(addedItem => { return addedItem.name != action.payload.name })
+        localStorage.setItem('cartProducts', JSON.stringify( newRemoveState ));
+        return { ...state, addedItems: newRemoveState };
           
-      case DECREASE_CART_ITEM:
-        let newState = state.cartItems.map(cartItem => {
-          if (cartItem.count == 1) return cartItem;
-          let tmp = Object.assign({}, cartItem);
-          if (tmp.product.name === action.payload.name) {
-            tmp.product = action.payload
-            tmp.count--
-          }
-          return tmp
+      case INCREASE_CART_ITEM:
+        const newIncreaseState = state.addedItems.map(addedItem => { 
+          return addedItem.id == action.payload.id ? { ...addedItem, quantity: action.payload.quantity + 1 } : addedItem;
         })
-        localStorage.setItem('cartProducts', JSON.stringify(newState))
-        return {
-          ...state,
-          cartItems: newState,
+        localStorage.setItem('cartProducts', JSON.stringify( newIncreaseState ))
+        return { ...state, addedItems: newIncreaseState }
+
+      case DECREASE_CART_ITEM:
+        if (action.payload.quantity <= 1) {
+          return { ...state }
         }
+        const newDecreaseState = state.addedItems.map(addedItem => { 
+          return addedItem.id == action.payload.id ? { ...addedItem, quantity: action.payload.quantity - 1 } : addedItem;
+        })
+        localStorage.setItem('cartProducts', JSON.stringify( newDecreaseState ))
+        return { ...state, addedItems: newDecreaseState }
 
       case ADD_PRODUCT_TO_CART_RESET:
         return { ...state, isProductAdded: false }

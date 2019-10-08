@@ -16,7 +16,7 @@ export default class Locale {
           ['frame', 'Материал рамки'],
           ['wallart', 'Декор'],
           ['home', 'Домой'],
-          ['posters', 'Постеры'],
+          ['posters-without-frame', 'Постеры'],
           ['framed-posters-wood', 'Постеры с деревянной рамкой'],
           ['framed-posters-plastic', 'Постеры с пластиковой рамкой'],
           ['cart', 'Корзина'],

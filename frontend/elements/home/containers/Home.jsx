@@ -41,13 +41,13 @@ class Home extends React.Component {
           </div>
         </NavLink>
 
-        <NavLink to="/gifts" className="gallery__item gallery__item__3">
+        <NavLink to="/stationery" className="gallery__item gallery__item__3">
           <img 
             className="gallery__img" 
             onLoad={() => this.add()}
-            src="https://cdn.shopify.com/s/files/1/0077/8718/4241/files/Set_028_1950x.jpeg?v=1550063217" alt="Подарки" />
+            src="https://cdn.shopify.com/s/files/1/0077/8718/4241/files/Set_028_1950x.jpeg?v=1550063217" alt="Канцелярия" />
           <div className="content">
-            <h2>Подарки</h2>
+            <h2>Канцелярия</h2>
           </div>
         </NavLink>
 

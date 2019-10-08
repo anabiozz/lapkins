@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import * as action from '../actions/cartActions';
+import * as action from '../actions';
 import PropTypes from 'prop-types';
 import CartContent from "../components/CartContent";
 import Breadcrumbs from '../../common/components/breadcrumbs';
@@ -21,15 +21,17 @@ class Cart extends Component {
     console.log('RENDER <Cart>');
 
     const {
-      cartItems,
+      addedItems,
       errors,
       fetching,
       removeProductFromCart,
       increaseCartItem,
-      decreaseCartItem
+      decreaseCartItem,
+      total,
     } = this.props;
 
-    console.log(cartItems);
+    console.log(addedItems);
+    
 
     return (
       <div className="cart">
@@ -52,14 +54,15 @@ class Cart extends Component {
             )
           }
           {
-            cartItems && !cartItems.length
+            addedItems && !addedItems.length
             ? <div className="cart__no__product">В вашей корзине пока нет товаров</div>
             : <CartContent
-                cartItems={this.props.cartItems}
+                addedItems={this.props.addedItems}
                 removeProductFromCart={removeProductFromCart}
                 increaseCartItem={increaseCartItem}
                 decreaseCartItem={decreaseCartItem}
                 checkout={this.checkout}
+                total={total}
               /> 
           }
         </div>
@@ -70,17 +73,17 @@ class Cart extends Component {
 
 Cart.propTypes = {
   loadCart: PropTypes.func.isRequired,
-  cartItems: PropTypes.array.isRequired,
-  removeProductFromCart: PropTypes.func,
-  addProductToCart: PropTypes.func,
-  increaseCartItem: PropTypes.func,
-  decreaseCartItem: PropTypes.func,
+  addedItems: PropTypes.array.isRequired,
+  removeProductFromCart: PropTypes.func.isRequired,
+  addProductToCart: PropTypes.func.isRequired,
+  increaseCartItem: PropTypes.func.isRequired,
+  decreaseCartItem: PropTypes.func.isRequired,
   errors: PropTypes.string.isRequired,
   fetching: PropTypes.bool.isRequired,
 };
 
 const mapStateToProps = state => ({
-  cartItems: state.cart.cartItems,
+  addedItems: state.cart.addedItems,
   errors: state.cart.errors,
   fetching: state.cart.fetching,
 })

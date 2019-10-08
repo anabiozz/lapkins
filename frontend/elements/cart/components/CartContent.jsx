@@ -5,26 +5,26 @@ import { Link } from 'react-router-dom';
 import Button from '../../common/components/button';
 
 
-const CartContent = ({ cartItems, removeProductFromCart, increaseCartItem, decreaseCartItem, checkout }) => {
+const CartContent = ({ addedItems, removeProductFromCart, increaseCartItem, decreaseCartItem, checkout }) => {
 
-  if (!cartItems.length) {
+  if (!addedItems.length) {
     return <div> Корзина пуста </div>
   }
 
   return (
     <div className="cart__content">
       {
-        cartItems.map(cartItem => {
-          return <CartProductItem 
-            key={cartItem.product.id} 
-            cartItem={cartItem}
+        addedItems.map(addedItem => {
+          return <CartProductItem
+            key={addedItem.id}
+            addedItem={addedItem}
             removeProductFromCart={removeProductFromCart}
             increaseCartItem={increaseCartItem}
             decreaseCartItem={decreaseCartItem} />
         })
       }
       <div className="cart__content__order">
-        <Link to={{ pathname: '/checkout', state: {cartItems: cartItems}}}>
+        <Link to={{ pathname: '/checkout', state: addedItems}}>
           <Button
             title="Продолжить офрмление"
             type="primary"
@@ -36,7 +36,7 @@ const CartContent = ({ cartItems, removeProductFromCart, increaseCartItem, decre
 }
 
 CartContent.propTypes = {
-  cartItems: PropTypes.array.isRequired
+  addedItems: PropTypes.array.isRequired
 }
 
 export default CartContent

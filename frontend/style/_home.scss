@@ -2,9 +2,10 @@
   display: grid;
   grid-template-columns: repeat(4, [col] 1fr);
   grid-template-rows: repeat(2, [row] 60vh);
-  grid-gap: 1.5em;
+  grid-gap: $content_gap / 1.2;
   width: $content_width_1;
   margin: 0 auto;
+  margin-bottom: $content_gap / 1.2;
 	@include  reveal(0.5s);
 
   &__item {

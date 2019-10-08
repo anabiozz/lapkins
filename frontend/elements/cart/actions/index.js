@@ -6,7 +6,8 @@ import {
   DISMISS_ADD_PRODUCT_TO_CART_ERROR,
   REMOVE_PRODUCT_FROM_CART,
   LOAD_CART,
-  DECREASE_CART_ITEM
+  DECREASE_CART_ITEM,
+  INCREASE_CART_ITEM
 } from '../constant';
 
 const addToCartSuccess = response => ({
@@ -25,7 +26,7 @@ export const addProductToCart = product => ({
 })
 
 export const increaseCartItem = product => ({
-  type: ADD_PRODUCT_TO_CART,
+  type: INCREASE_CART_ITEM,
   payload: product,
 })
 

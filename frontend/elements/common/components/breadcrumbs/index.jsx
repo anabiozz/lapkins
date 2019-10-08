@@ -6,7 +6,7 @@ import routes from '../../../../routes'
 const locale = new Locale('RU').get()
 
 const excludePaths = [
-  '/wallart/posters/*', 
+  '/wallart/posters-without-frame/*', 
   '/wallart/framed-posters-wood/*', 
   '/wallart/framed-posters-plastic/*',
   '/stationery/postcards/*',

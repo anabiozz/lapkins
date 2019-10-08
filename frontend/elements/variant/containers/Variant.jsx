@@ -1,10 +1,9 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import ContentLoader from 'react-content-loader';
 import config from '../../../config';
 import * as actions from '../actions/actions';
-import { addProductToCart } from '../../cart/actions/cartActions';
+import { addProductToCart } from '../../cart/actions';
 import Button from '../../common/components/button';
 import Select from '../../common/components/select';
 import Locale from '../../../utils/locale';

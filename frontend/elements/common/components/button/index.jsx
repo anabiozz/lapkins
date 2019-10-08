@@ -11,7 +11,7 @@ const Button = ({ action, type, title }) => {
 }
 
 Button.propTypes = {
-  action: PropTypes.func.isRequired,
+  action: PropTypes.func,
   type: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
 }

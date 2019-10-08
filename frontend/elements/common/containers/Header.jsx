@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 import { slide as Menu } from 'react-burger-menu';
 import config from '../../../config';
 import { connect } from 'react-redux';
-import { reset } from '../../cart/actions/cartActions'
+import { reset } from '../../cart/actions';
 
 class Header extends React.Component {
   constructor(props) {
@@ -27,6 +27,24 @@ class Header extends React.Component {
         }
       }));
     }
+  }
+
+  linkOnClick = (name) => {
+    this.setState(prevState => ({
+      hover: {
+        ...prevState.select,
+        [name]: false,
+      }
+    }));
+  }
+
+  mainLinkOnClick = (name) => {
+    this.setState(prevState => ({
+      hover: {
+        ...prevState.select,
+        [name]: false,
+      }
+    }));
   }
 
   render() {
@@ -76,8 +94,8 @@ class Header extends React.Component {
                       className="quicklist__has__dropdown quicklist__has__dropdown__centered">
 
                       <NavLink
-                        onClick={() => this.hover("wallart", false)}
-                        className="quicklist_main_link" 
+                        onClick={() => this.mainLinkOnClick("wallart")}
+                        className="quicklist_main_link"
                         to="/wallart">Декор</NavLink>
 
                       <div className={this.state.hover.wallart ? "quicklist__dropdown quicklist__dropdown__centered hover" : "quicklist__dropdown quicklist__dropdown__centered"}>
@@ -90,19 +108,19 @@ class Header extends React.Component {
                               </div>
                               <ul>
                                 <li>
-                                  <NavLink onClick={() => this.hover("wallart", false)} to="/wallart/posters" className="quicklist__link">
+                                  <NavLink onClick={() => this.linkOnClick("wallart")} to="/wallart/posters-without-frame" className="quicklist__link">
                                     Постеры без рамки
                                   </NavLink>
                                 </li>
 
                                 <li>
-                                  <NavLink  onClick={() => this.hover("wallart", false)} to="/wallart/framed-posters-plastic" className="quicklist__link">
+                                  <NavLink  onClick={() => this.linkOnClick("wallart")} to="/wallart/framed-posters-plastic" className="quicklist__link">
                                     Постеры с пластиковой рамкой
                                   </NavLink>
                                 </li>
                               
                                 <li>
-                                  <NavLink  onClick={() => this.hover("wallart", false)} to="/wallart/framed-posters-wood" className="quicklist__link">
+                                  <NavLink  onClick={() => this.linkOnClick("wallart")} to="/wallart/framed-posters-wood" className="quicklist__link">
                                     Постеры с деревянной рамкой
                                   </NavLink>
                                 </li>
@@ -151,7 +169,7 @@ class Header extends React.Component {
                       onMouseLeave={() => this.hover("stationery", false)}>
 
                       <NavLink
-                        onClick={() => this.hover("stationery", false)}
+                        onClick={() => this.mainLinkOnClick("stationery")}
                         className="quicklist_main_link" 
                         to="/stationery">Канцелярия</NavLink>
 
@@ -165,25 +183,25 @@ class Header extends React.Component {
                               </div>
                               <ul>
                                 <li>
-                                  <NavLink onClick={() => this.hover("wallart", false)} to="/stationery/postcards" className="quicklist__link">
+                                  <NavLink onClick={() => this.linkOnClick("stationery")} to="/stationery/postcards" className="quicklist__link">
                                     Открытки
                                   </NavLink>
                                 </li>
                               
                                 <li>
-                                  <NavLink onClick={() => this.hover("wallart", false)} to="/stationery/notebooks" className="quicklist__link">
+                                  <NavLink onClick={() => this.linkOnClick("stationery")} to="/stationery/notebooks" className="quicklist__link">
                                     Тетради
                                   </NavLink>
                                 </li>
                               
                                 <li>
-                                  <NavLink onClick={() => this.hover("wallart", false)} to="/stationery/diaries" className="quicklist__link">
+                                  <NavLink onClick={() => this.linkOnClick("stationery")} to="/stationery/diaries" className="quicklist__link">
                                     Ежедневники
                                   </NavLink>
                                 </li>
 
                                 <li>
-                                  <NavLink onClick={() => this.hover("wallart", false)} to="/stationery/calendars" className="quicklist__link">
+                                  <NavLink onClick={() => this.linkOnClick("stationery")} to="/stationery/calendars" className="quicklist__link">
                                     Календари
                                   </NavLink>
                                 </li>

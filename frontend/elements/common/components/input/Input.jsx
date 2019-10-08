@@ -5,9 +5,9 @@ const Input = (props) => {
   const {
     name,
     title,
-    inputType,
+    type,
     value,
-    handleChange,
+    onChange,
     placeholder,
   } = props
 
@@ -20,9 +20,9 @@ const Input = (props) => {
         className="box__input"
         id={name}
         name={name}
-        type={inputType}
+        type={type}
         value={value}
-        onChange={handleChange}
+        onChange={onChange}
         placeholder={placeholder}
         {...props}
       />
@@ -32,11 +32,11 @@ const Input = (props) => {
 
 Input.propTypes = {
   name: PropTypes.string.isRequired,
-  inputType: PropTypes.string.isRequired,
+  type: PropTypes.string,
   value: PropTypes.string.isRequired,
-  title: PropTypes.string.isRequired,
-  handleChange: PropTypes.string.isRequired,
-  placeholder: PropTypes.string.isRequired,
+  title: PropTypes.string,
+  onChange: PropTypes.func.isRequired,
+  placeholder: PropTypes.string,
 }
 
 export default Input
