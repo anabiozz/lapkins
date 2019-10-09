@@ -48,14 +48,14 @@ class Categories extends Component {
 						)
 					}
 					{
-						categories.categories && categories.categories.map(category => (
-							<div className="category">
+						categories.categories && categories.categories.map((category, i) => (
+							<div className="category" key={i}>
 								<h2 className="category__title">{category.category_name}</h2>
 								{
 								<div className="subcotegory__content">
 									{
-										category.sub_categories.map(sub_category => (
-												<NavLink className="subcotegory__item" to={ `${this.props.match.params.category}/${sub_category.url}` }>
+										category.sub_categories.map((sub_category, i) => (
+												<NavLink key={i} className="subcotegory__item" to={ `${this.props.match.params.category}/${sub_category.url}` }>
 													<img 
 														src="https://cdn.shopify.com/s/files/1/0077/8718/4241/files/Set_028_1950x.jpeg?v=1550063217" alt="Новое" />
 													<div className="subcotegory__name">

@@ -40,6 +40,8 @@ const CartProductItem = ({ addedItem, removeProductFromCart, increaseCartItem, d
 CartProductItem.propTypes = {
 	addedItem: PropTypes.object.isRequired,
 	removeProductFromCart: PropTypes.func.isRequired,
+	increaseCartItem: PropTypes.func.isRequired,
+	decreaseCartItem: PropTypes.func.isRequired,
 }
 
 export default CartProductItem

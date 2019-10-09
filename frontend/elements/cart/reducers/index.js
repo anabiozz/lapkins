@@ -19,7 +19,7 @@ export default function (state = initialState, action) {
   switch (action.type) {
     case LOAD_CART:
       // localStorage.clear();
-      return { ...state, addedItems: JSON.parse(localStorage.getItem('cartProducts')) || [] };
+      return { ...state, addedItems: JSON.parse(localStorage.getItem('addedItems')) || [] };
     case ADD_PRODUCT_TO_CART:
 
         //check if the name exists in the addedItems
@@ -27,26 +27,26 @@ export default function (state = initialState, action) {
 
         if (existedItem) {
           action.payload.quantity++
-          localStorage.setItem('cartProducts', JSON.stringify([ action.payload ]))
-          return {...state, isProductAdded: true, addedItems: [ action.payload ], total: state.total + action.payload.price_override }
+          localStorage.setItem('addedItems', JSON.stringify([ action.payload ]))
+          return {...state, isProductAdded: true, addedItems: [ action.payload ], total: Number(state.total) + Number(action.payload.price_override) }
         }
 
         action.payload.quantity = 1
-        const newTotal = state.total + action.payload.price_override
-        localStorage.setItem('cartProducts', JSON.stringify([ ...state.addedItems, action.payload ]))
+        const newTotal = Number(state.total) + Number(action.payload.price_override)
+        localStorage.setItem('addedItems', JSON.stringify([ ...state.addedItems, action.payload ]))
         return { ...state, addedItems: [ ...state.addedItems, action.payload ], isProductAdded: true,  total: newTotal }
 
       case REMOVE_PRODUCT_FROM_CART:
         const newRemoveState = state.addedItems.filter(addedItem => { return addedItem.name != action.payload.name })
-        localStorage.setItem('cartProducts', JSON.stringify( newRemoveState ));
+        localStorage.setItem('addedItems', JSON.stringify( newRemoveState ));
         return { ...state, addedItems: newRemoveState };
           
       case INCREASE_CART_ITEM:
         const newIncreaseState = state.addedItems.map(addedItem => { 
           return addedItem.id == action.payload.id ? { ...addedItem, quantity: action.payload.quantity + 1 } : addedItem;
         })
-        localStorage.setItem('cartProducts', JSON.stringify( newIncreaseState ))
-        return { ...state, addedItems: newIncreaseState }
+        localStorage.setItem('addedItems', JSON.stringify( newIncreaseState ))
+        return { ...state, addedItems: newIncreaseState, total: Number(state.total) + Number(action.payload.price_override) }
 
       case DECREASE_CART_ITEM:
         if (action.payload.quantity <= 1) {
@@ -55,8 +55,8 @@ export default function (state = initialState, action) {
         const newDecreaseState = state.addedItems.map(addedItem => { 
           return addedItem.id == action.payload.id ? { ...addedItem, quantity: action.payload.quantity - 1 } : addedItem;
         })
-        localStorage.setItem('cartProducts', JSON.stringify( newDecreaseState ))
-        return { ...state, addedItems: newDecreaseState }
+        localStorage.setItem('addedItems', JSON.stringify( newDecreaseState ))
+        return { ...state, addedItems: newDecreaseState, total: Number(state.total) - Number(action.payload.price_override) }
 
       case ADD_PRODUCT_TO_CART_RESET:
         return { ...state, isProductAdded: false }

@@ -42,7 +42,7 @@ class Checkout extends Component {
     
 		this.setState(prevState => ({
 			inputs: {
-				...prevState.select,
+				...prevState.inputs,
 				[name]: value,
 			}
     }));
@@ -52,20 +52,7 @@ class Checkout extends Component {
 
 		console.log('RENDER <Checkout>');
 
-		const { location, total }= this.props;
-
-		const addedItems = location.state;
-
-		console.log("total", total);
-		
-
-		const price = addedItems.map((item) => {
-			 return item.price_override * item.quantity
-		})
-
-		const totalProductPrice = addedItems.map((addedItem) => {
-			return addedItem.price_override * addedItem.quantity
-	 }).reduce((a, b) => a+b)
+		const { total } = this.props;
 
     return (
 		<div className="chackout">
@@ -114,7 +101,6 @@ class Checkout extends Component {
 										</div>
 									</div>
 								</div>
-
 
 								<div className="data__inputs">
 									<div className="personal__data">
@@ -253,12 +239,8 @@ class Checkout extends Component {
 								<div className="order__bill">
 									<h3>Ваш чек</h3>
 									<div className="order__cost">
-										<div className="title">
-											Товары:
-										</div>
-										<div className="value">
-											{totalProductPrice}
-										</div>
+										<div className="title">Товары:</div>
+										<div className="value">{total}</div>
 									</div>
 
 									<div className="order__cost">
@@ -282,12 +264,8 @@ class Checkout extends Component {
 									</div>
 
 									<div className="order__cost">
-											<div className="title">
-												Итого:
-											</div>
-											<div className="value">
-												{totalProductPrice}
-											</div>
+											<div className="title">Итого:</div>
+											<div className="value">{total}</div>
 									</div>
 								</div>
 							</div>
@@ -298,11 +276,9 @@ class Checkout extends Component {
 						title="Оформить заказ"
 						type="primary" />
 
-						<div className="cart-section-note footer">
-							<div className="cart-section-note-text">
-									Поможем оформить заказ, если что-то пошло не так. Звоните
-									<a href="tel:89101200135">+7 (910) 120-01-35</a>
-							</div>
+						<div className="cart__section__note">
+								Поможем оформить заказ, если что-то пошло не так. Звоните
+								<a href="tel:89101200135">+7 (920) 293-72-64</a>
 						</div>
 				</article>
 			</div>
@@ -311,7 +287,6 @@ class Checkout extends Component {
     )
   }
 }
-
 
 const mapStateToProps = state => ({
   total: state.cart.total,

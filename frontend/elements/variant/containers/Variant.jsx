@@ -197,7 +197,7 @@ Variant.propTypes = {
   variant: PropTypes.PropTypes.shape(productProp).isRequired,
   errors: PropTypes.string.isRequired,
   fetching: PropTypes.bool.isRequired,
-  getProductByID: PropTypes.func.isRequired,
+  getVariant: PropTypes.func.isRequired,
   reset: PropTypes.func.isRequired,
   match: PropTypes.shape(matchProp).isRequired,
   addProductToCart: PropTypes.func.isRequired

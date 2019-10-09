@@ -86,6 +86,7 @@ const mapStateToProps = state => ({
   addedItems: state.cart.addedItems,
   errors: state.cart.errors,
   fetching: state.cart.fetching,
+  total: state.cart.total,
 })
 
 export default connect(mapStateToProps, { ...action })(Cart)

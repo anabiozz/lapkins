@@ -12,12 +12,12 @@ const Input = (props) => {
   } = props
 
   return (
-    <div className="box">
-      <label htmlFor={name} className="box__label">
+    <div className="input__element">
+      <label htmlFor={name} className="input__label">
         {title}
       </label>
       <input
-        className="box__input"
+        className="input"
         id={name}
         name={name}
         type={type}
