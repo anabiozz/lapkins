@@ -1,5 +1,4 @@
 import React from 'react';
-import Locale from '../../../utils/locale';
 import PropTypes from "prop-types";
 import config from '../../../config';
 import Counter from '../../common/components/counter';
@@ -23,7 +22,7 @@ const CartProductItem = ({ addedItem, removeProductFromCart, increaseCartItem, d
 			</div>
 
 			<div className="right__content">
-				<Counter 
+				<Counter
 					addedItem={addedItem}
 					increaseCartItem={increaseCartItem}
 					decreaseCartItem={decreaseCartItem}

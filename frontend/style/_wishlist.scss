@@ -1,0 +1,32 @@
+.wishlist {
+  display: flex;
+  flex-direction: column;
+  width: $content_width_1;
+  margin: 0 auto;
+	@include  reveal(0.5s);
+
+  .wishlist__content {
+    display: flex;
+    margin: $content_gap 0;
+    justify-content: left;
+    position: relative;
+
+  }
+}
+
+@media all and (max-width: 1250px) {
+  .wishlist {
+    width: $content_width_2;
+  }
+}
+
+@media all and (max-width: 1575px) and (min-width: 1250px) {
+  .wishlist {
+    width: $content_width_2;
+  }
+}
+
+
+@media all and (max-width: 1930px) and (min-width: 1575px) {}
+
+@media all and (max-width: 2560px) and (min-width: 1930px) {}

@@ -10,6 +10,7 @@ import Locale from '../../../utils/locale';
 import { Carousel } from 'react-responsive-carousel';
 import Breadcrumbs from '../../common/components/breadcrumbs';
 import Loader from '../../common/components/Loader';
+import { withCookies } from 'react-cookie';
 
 import {
   productProp,
@@ -30,11 +31,13 @@ export class Variant extends Component {
     }
   }
 
-  // static fetching ({ dispatch }) {
-  //   return [dispatch(actions.getVariant(1, ""))];
-  // }
+  static fetching ({ dispatch, path }) {
+    return [dispatch(actions.getVariant(path.split("/")[3].split("-")[0], ""))];
+  }
 
   componentDidMount() {
+    console.log(this.props.location.pathname.split("/")[3]);
+    
     this.props.getVariant(Number(this.props.match.params.productID.split("-")[0]), "")
   }
 
@@ -80,7 +83,7 @@ export class Variant extends Component {
     this.props.addProductToCart(variant)
   }
 
-  switchElement = ({ variant, errors, fetching }) => {
+  switchElement = ({ variant, errors, fetching, cookies }) => {
     switch (true) {
       case fetching:
         return <Loader />
@@ -203,10 +206,11 @@ Variant.propTypes = {
   addProductToCart: PropTypes.func.isRequired
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state, ownProps) => ({
   variant: state.variant.variant,
   errors: state.variant.errors,
   fetching: state.variant.fetching,
+  cookies: ownProps.cookies,
 })
 
-export default connect(mapStateToProps, { ...actions, addProductToCart })(Variant)
+export default withCookies(connect(mapStateToProps, { ...actions, addProductToCart })(Variant))

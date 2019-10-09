@@ -10,26 +10,14 @@ import fetch from 'isomorphic-fetch'
 const receiveSuccess = response => ({ type: GET_PRODUCTS_SUCCESS, response })
 const receiveFail = error => ({ type: GET_PRODUCTS_ERROR, error })
 
-export function reset() {
-  return dispatch => dispatch({
-    type: GET_REGIONS_RESET,
-  })
-}
+export const reset = () => async dispatch => dispatch({ type: GET_REGIONS_RESET })
+export const dismissError = () => async dispatch => dispatch({ type: DISMISS_REGIONS_ERROR })
 
-export function dismissError() {
-  return dispatch => dispatch({
-    type: DISMISS_REGIONS_ERROR,
-  })
-}
-
-export const getProducts = (type = 1) => (dispatch) => {
+export const getProducts = (type = 1) => async dispatch => {
   dispatch({
     type: GET_PRODUCTS_REQUEST,
   })
-
-  let domain = config.apiDomain + process.env.CORE_URL
-
-  return fetch(`${domain}api/get-products?products_type=${type}`)
+  return fetch(`${config.apiDomain}/api/get-products?products_type=${type}`)
     .then((response) => {
       if (response.status === 200) {
         return response

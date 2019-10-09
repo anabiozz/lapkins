@@ -229,7 +229,7 @@ class Header extends React.Component {
               <ul className="icons">
 
                 <li className="icon">
-                  <NavLink to="/">
+                  <NavLink to="/registration">
                     <span className="icon-user">
                       <img src={`data:image/svg+xml;base64,${config.user}`} />
                     </span>
@@ -237,7 +237,7 @@ class Header extends React.Component {
                 </li>
 
                 <li className="icon">
-                  <NavLink to="/">
+                  <NavLink to="/wishlist">
                     <span className="icon-heart">
                       <img src={`data:image/svg+xml;base64,${config.search}`} />
                     </span>

@@ -3,6 +3,8 @@ import { hydrate } from "react-dom";
 import { Provider } from 'react-redux';
 import App from './App';
 import configureStore from './_flax/store';
+import { CookiesProvider } from 'react-cookie';
+import { BrowserRouter as Router } from 'react-router-dom';
 
 import './style/main.scss';
 
@@ -11,9 +13,13 @@ delete window.__INITIAL_STATE__;
 let state = store.getState();
 
 hydrate(
-	<Provider store={store}>
-		<App path={state}/>
-	</Provider>,
+	<CookiesProvider>
+		<Router location={state.path} >
+			<Provider store={store}>
+				<App />
+			</Provider>
+		</Router>
+	</CookiesProvider>,
 	document.getElementById('root')
 );
 

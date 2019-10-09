@@ -9,8 +9,6 @@
 
   $order_tabs_with: 700px;
 
-  &__title {}
-
   h3 {
     margin-bottom: $content_gap;
   }
@@ -107,7 +105,6 @@
             position: sticky;
             box-sizing: border-box;
             top: 15vh;
-            z-index: 100;
 
             h3 {
               font-size: 1.8rem;

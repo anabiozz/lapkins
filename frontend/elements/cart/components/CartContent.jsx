@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import Button from '../../common/components/button';
 
 
-const CartContent = ({ addedItems, removeProductFromCart, increaseCartItem, decreaseCartItem, checkout, total }) => {
+const CartContent = ({ addedItems, removeProductFromCart, increaseCartItem, decreaseCartItem, total }) => {
 
   if (!addedItems.length) {
     return <div> Корзина пуста </div>
@@ -29,8 +29,7 @@ const CartContent = ({ addedItems, removeProductFromCart, increaseCartItem, decr
         <Link to='/checkout'>
           <Button
             title="Продолжить оформление"
-            type="primary"
-            action={checkout} />
+            type="primary" />
         </Link>
       </div>
     </div>

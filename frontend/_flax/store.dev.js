@@ -8,7 +8,7 @@ const configureStore = preloadState => {
         rootReduser,
         preloadState,
         compose(applyMiddleware(thunk, createLogger()))
-    )
+    );
 
     if (module.hot) {
         // Enable Webpack hot module replacement for reducers

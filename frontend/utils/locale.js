@@ -26,6 +26,9 @@ export default class Locale {
           ['diaries', 'Ежедневники'],
           ['calendars', 'Календари'],
           ['new', 'Новое'],
+          ['checkout', 'Корзина'],
+          ['wishlist', 'Список моих желаний'],
+          ['registration', 'Регистрация'],
         ])
       default:
         return this

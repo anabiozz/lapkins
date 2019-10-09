@@ -1,19 +1,20 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import * as action from '../actions';
+import * as actions from '../actions';
 import PropTypes from 'prop-types';
 import CartContent from "../components/CartContent";
 import Breadcrumbs from '../../common/components/breadcrumbs';
 import Loader from '../../common/components/Loader';
+import { withCookies } from 'react-cookie';
 
 class Cart extends Component {
 
-  componentDidMount() {
-    this.props.loadCart()
+  static fetching ({ dispatch }) {
+    return [dispatch(actions.loadCart())];
   }
 
-  checkout = () => {
-
+  componentDidMount() {
+    this.props.loadCart();
   }
 
   render() {
@@ -28,10 +29,10 @@ class Cart extends Component {
       increaseCartItem,
       decreaseCartItem,
       total,
+      cookies
     } = this.props;
 
-    console.log(addedItems);
-    
+    console.log("addedItems", cookies.get('addedItems'));
 
     return (
       <div className="cart">
@@ -61,7 +62,6 @@ class Cart extends Component {
                 removeProductFromCart={removeProductFromCart}
                 increaseCartItem={increaseCartItem}
                 decreaseCartItem={decreaseCartItem}
-                checkout={this.checkout}
                 total={total}
               /> 
           }
@@ -82,11 +82,12 @@ Cart.propTypes = {
   fetching: PropTypes.bool.isRequired,
 };
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state, ownProps) => ({
   addedItems: state.cart.addedItems,
   errors: state.cart.errors,
   fetching: state.cart.fetching,
   total: state.cart.total,
+  cookies: ownProps.cookies,
 })
 
-export default connect(mapStateToProps, { ...action })(Cart)
+export default withCookies(connect(mapStateToProps, { ...actions })(Cart));

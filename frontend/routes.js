@@ -4,11 +4,14 @@ import Cart from './elements/cart/containers/Cart';
 import Variant from './elements/variant/containers/Variant';
 import Checkout from './elements/cart/containers/Checkout';
 import NotFound from './elements/common/components/NotFound';
-import Categories from './elements/categories/containers/Categories'
+import Categories from './elements/categories/containers/Categories';
+import Done from './elements/cart/components/Done';
+import Wishlist from './elements/wishlist/containers/Wishlist';
+import Registration from './elements/registration/containers/Registration';
 
 export default [
   {
-    component: Home,
+    render: Home,
     path: '/',
     exact: true
   },
@@ -21,6 +24,24 @@ export default [
 	{
     component: Checkout,
 		path: '/checkout',
+		exact: true,
+		strict: true,
+	},
+	{
+    component: Done,
+		path: '/done',
+		exact: true,
+		strict: true,
+	},
+	{
+    component: Wishlist,
+		path: '/wishlist',
+		exact: true,
+		strict: true,
+	},
+	{
+    component: Registration,
+		path: '/registration',
 		exact: true,
 		strict: true,
 	},

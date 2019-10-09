@@ -1,5 +1,3 @@
-// @import 'https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css';
-
 .product__description {
   display: flex;
   flex-direction: column;
@@ -16,14 +14,6 @@
     .product__description__image {
       margin-right: $content_gap;
       width: $product_desc_width;
-  
-      div {
-        .carousel {
-          .thumbs-wrapper, axis-vertical {
-            // margin: 20px 0;
-          }
-        }
-      }
     }
   
     .product__description__block {

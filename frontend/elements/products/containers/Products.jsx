@@ -12,12 +12,15 @@ import {
 } from '../../../utils/props';
 
 class Products extends Component {
-
   constructor(props) {
     super(props)
     this.state = {
       redirect: false
     }
+  }
+
+  static fetching ({ dispatch, path }) {
+    return [dispatch(actions.getProducts(config.productTypes[path.substr(2)]))];
   }
 
   componentWillReceiveProps(nextProps) {
@@ -29,13 +32,8 @@ class Products extends Component {
 
   componentDidMount() {
     const { getProducts, match } = this.props
-    console.log(this.props);
     getProducts(config.productTypes[match.params.categoryType])
   }
-
-  // static fetching ({ dispatch }) {
-  //   return [dispatch(actions.getProducts(config.productTypes["posters"]))];
-  // }
 
   render() {
     const { products, errors, fetching, match } = this.props

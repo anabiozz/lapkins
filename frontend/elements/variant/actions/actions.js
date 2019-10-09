@@ -31,14 +31,12 @@ export function dismissError() {
   })
 }
 
-let domain = config.apiDomain + process.env.CORE_URL
-
 export const getVariant = (variant_id, size) => (dispatch) => {
   dispatch({
     type: GET_VARIANT_REQUEST,
   })
 
-  fetch(`${domain}api/get-variant?variant_id=${variant_id}&size=${size}`)
+  fetch(`${config.apiDomain}/api/get-variant?variant_id=${variant_id}&size=${size}`)
     .then((response) => {
       if (response.status === 200) {
         return response

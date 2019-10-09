@@ -9,6 +9,14 @@ import { NavLink } from 'react-router-dom';
 
 class Categories extends Component {
 
+	static fetching ({ dispatch, path }) {
+    return [dispatch(actions.getCategories(config.productTypes[path.substr(1)]))];
+  }
+
+	componentDidMount() {
+    this.props.getCategories(config.productTypes[this.props.match.params.category])
+	}
+
 	componentWillReceiveProps(nextProps) {
     const { getCategories, match } = nextProps;
     if (match.url !== this.props.match.url) {
@@ -16,15 +24,9 @@ class Categories extends Component {
     }
   }
 
-	componentDidMount() {
-    this.props.getCategories(config.productTypes[this.props.match.params.category])
-	}
-
 	render() {
 
 		const { categories, fetching, errors } = this.props;
-
-		console.log(categories);
 
 		console.log('RENDER <Categories>')
 

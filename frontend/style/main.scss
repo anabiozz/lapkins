@@ -44,7 +44,9 @@ $content_width_2: ((($product_width * 3) + (2 * $content_gap))); //((($item_widt
 
 @import "mixins";
 @import "normalize";
+
 @import "common";
+
 @import "header";
 @import "content";
 @import "footer";
@@ -52,11 +54,16 @@ $content_width_2: ((($product_width * 3) + (2 * $content_gap))); //((($item_widt
 @import "products";
 @import "variant";
 @import "categories";
+@import "checkout";
+@import "wishlist";
+@import "registration";
+
 @import "carousel";
 @import "cart";
 @import "circle";
-@import "checkout";
+
 @import "animations";
+
 @import "../elements/common/components/button/button";
 @import "../elements/common/components/counter/counter";
 @import "../elements/common/components/search/search";

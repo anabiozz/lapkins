@@ -9,7 +9,28 @@ const config = {
         develope: 'localhost'
     },
     initialState: {
-        path: "",
+        cart: {
+            addedItems: [],
+            errors: "",
+            fetching: false,
+            isProductAdded: false,
+            total: 0,
+        },
+        categories: {
+            categories: {},
+            errors: "",
+            fetching: false,
+        },
+        products: {
+            errors: "",
+            fetching: false,
+            products: [],
+        },
+        variant: {
+            errors: "",
+            fetching: false,
+            variant: {},
+        },
     },
 }
 export default config;
