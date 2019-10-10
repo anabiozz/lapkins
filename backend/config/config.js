@@ -10,27 +10,39 @@ const config = {
     },
     initialState: {
         cart: {
-            addedItems: [],
-            errors: "",
-            fetching: false,
+            items: [],
             isProductAdded: false,
             total: 0,
+            errors: "",
+            fetching: false,
         },
         categories: {
-            categories: {},
+            item: {},
             errors: "",
             fetching: false,
         },
         products: {
+            items: [],
             errors: "",
             fetching: false,
-            products: [],
         },
         variant: {
+            item: {},
             errors: "",
             fetching: false,
-            variant: {},
         },
     },
+    variant: {
+        attributes: {},
+        description: "",
+        id: 0,
+        images: [],
+        name: "",
+        price_override: "",
+        product_id: 0,
+        size: "",
+        sizes: [],
+        quantity: 0,
+    }
 }
 export default config;

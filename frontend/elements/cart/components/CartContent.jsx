@@ -5,9 +5,9 @@ import { Link } from 'react-router-dom';
 import Button from '../../common/components/button';
 
 
-const CartContent = ({ addedItems, removeProductFromCart, increaseCartItem, decreaseCartItem, total }) => {
+const CartContent = ({ items, removeProductFromCart, increaseCartItem, decreaseCartItem, total }) => {
 
-  if (!addedItems.length) {
+  if (!items.length) {
     return <div> Корзина пуста </div>
   }
 
@@ -16,7 +16,7 @@ const CartContent = ({ addedItems, removeProductFromCart, increaseCartItem, decr
   return (
     <div className="cart__content">
       {
-        addedItems.map(addedItem => {
+        items.map(addedItem => {
           return <CartProductItem
             key={addedItem.id}
             addedItem={addedItem}
@@ -37,7 +37,7 @@ const CartContent = ({ addedItems, removeProductFromCart, increaseCartItem, decr
 }
 
 CartContent.propTypes = {
-  addedItems: PropTypes.array.isRequired
+  items: PropTypes.array.isRequired
 }
 
 export default CartContent

@@ -5,7 +5,7 @@ import {
   GET_PRODUCTS_SUCCESS,
 } from '../constants'
 import config from '../../../config';
-import fetch from 'isomorphic-fetch'
+import fetch from 'isomorphic-fetch';
 
 const receiveSuccess = response => ({ type: GET_PRODUCTS_SUCCESS, response })
 const receiveFail = error => ({ type: GET_PRODUCTS_ERROR, error })

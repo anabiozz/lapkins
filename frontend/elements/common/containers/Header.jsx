@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 import { slide as Menu } from 'react-burger-menu';
 import config from '../../../config';
 import { connect } from 'react-redux';
-import { reset } from '../../cart/actions';
+import { cartReset } from '../../cart/actions';
 
 class Header extends React.Component {
   constructor(props) {
@@ -63,7 +63,7 @@ class Header extends React.Component {
         });
       }, 1000)
      
-      this.props.reset()
+      this.props.cartReset()
     }
 
     return(
@@ -270,4 +270,4 @@ const mapStateToProps = state => ({
   isProductAdded: state.cart.isProductAdded,
 })
 
-export default connect(mapStateToProps, { reset })(Header)
+export default connect(mapStateToProps, { cartReset })(Header)

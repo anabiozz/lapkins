@@ -7,7 +7,7 @@ import {
 } from '../constants'
 
 import config from '../../../config'
-import 'isomorphic-fetch';
+import fetch from 'isomorphic-fetch';
 
 const receiveSuccess = response => ({
   type: GET_VARIANT_SUCCESS,

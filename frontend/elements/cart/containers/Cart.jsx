@@ -22,17 +22,16 @@ class Cart extends Component {
     console.log('RENDER <Cart>');
 
     const {
-      addedItems,
+      items,
       errors,
       fetching,
       removeProductFromCart,
       increaseCartItem,
       decreaseCartItem,
       total,
-      cookies
+      cookies,
+      cartSession
     } = this.props;
-
-    console.log("addedItems", cookies.get('addedItems'));
 
     return (
       <div className="cart">
@@ -55,10 +54,10 @@ class Cart extends Component {
             )
           }
           {
-            addedItems && !addedItems.length
+            items && !items.length
             ? <div className="cart__no__product">В вашей корзине пока нет товаров</div>
             : <CartContent
-                addedItems={this.props.addedItems}
+                items={this.props.items}
                 removeProductFromCart={removeProductFromCart}
                 increaseCartItem={increaseCartItem}
                 decreaseCartItem={decreaseCartItem}
@@ -73,7 +72,7 @@ class Cart extends Component {
 
 Cart.propTypes = {
   loadCart: PropTypes.func.isRequired,
-  addedItems: PropTypes.array.isRequired,
+  items: PropTypes.array.isRequired,
   removeProductFromCart: PropTypes.func.isRequired,
   addProductToCart: PropTypes.func.isRequired,
   increaseCartItem: PropTypes.func.isRequired,
@@ -83,11 +82,12 @@ Cart.propTypes = {
 };
 
 const mapStateToProps = (state, ownProps) => ({
-  addedItems: state.cart.addedItems,
+  items: state.cart.items,
   errors: state.cart.errors,
   fetching: state.cart.fetching,
   total: state.cart.total,
   cookies: ownProps.cookies,
+  cartSession: state.cart.cartSession,
 })
 
 export default withCookies(connect(mapStateToProps, { ...actions })(Cart));

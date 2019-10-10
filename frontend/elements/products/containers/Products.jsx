@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import Product from '../components/Product.jsx';
-import Breadcrumbs from '../../common/components/breadcrumbs'
+import Breadcrumbs from '../../common/components/breadcrumbs';
 import * as actions from '../actions';
 import config from '../../../config';
 import Loader from '../../common/components/Loader';
@@ -36,11 +36,11 @@ class Products extends Component {
   }
 
   render() {
-    const { products, errors, fetching, match } = this.props
+    const { items, errors, fetching, match } = this.props
 
     console.log('RENDER <Products>')
 
-    console.log(products);
+    console.log(items);
 
     return (
       <div className="products__catalog">
@@ -98,10 +98,10 @@ class Products extends Component {
             )
           }
           {
-            products && products.length === 0 && "Данная категория товара на данный момент отсутствует."
+            items && items.length === 0 && "Данная категория товара на данный момент отсутствует."
           }
           {
-            products.map(product => (
+            items.map(product => (
               <Product
                 key={product.id} 
                 imgUrl={`${config.imagePath.dev_path_preview}${product.name}/${product.size}/1_thumb.jpg`} 
@@ -116,14 +116,14 @@ class Products extends Component {
 }
 
 Products.propTypes = {
-  products: PropTypes.arrayOf(PropTypes.shape(productProp).isRequired).isRequired,
+  items: PropTypes.arrayOf(PropTypes.shape(productProp).isRequired).isRequired,
   errors: PropTypes.string.isRequired,
   fetching: PropTypes.bool.isRequired,
   getProducts: PropTypes.func.isRequired,
 }
 
 const mapStateToProps = state => ({
-  products: state.products.products,
+  items: state.products.items,
   errors: state.products.errors,
   fetching: state.products.fetching,
 })

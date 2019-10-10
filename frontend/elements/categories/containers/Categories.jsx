@@ -26,7 +26,7 @@ class Categories extends Component {
 
 	render() {
 
-		const { categories, fetching, errors } = this.props;
+		const { item, fetching, errors } = this.props;
 
 		console.log('RENDER <Categories>')
 
@@ -50,7 +50,7 @@ class Categories extends Component {
 						)
 					}
 					{
-						categories.categories && categories.categories.map((category, i) => (
+						item.categories && item.categories.map((category, i) => (
 							<div className="category" key={i}>
 								<h2 className="category__title">{category.category_name}</h2>
 								{
@@ -78,13 +78,13 @@ class Categories extends Component {
 }
 
 Categories.propTypes = {
-  categories: PropTypes.object.isRequired,
+  item: PropTypes.object.isRequired,
   errors: PropTypes.string.isRequired,
   fetching: PropTypes.bool.isRequired,
 }
 
 const mapStateToProps = state => ({
-  categories: state.categories.categories,
+  item: state.categories.item,
   errors: state.categories.errors,
   fetching: state.categories.fetching,
 })

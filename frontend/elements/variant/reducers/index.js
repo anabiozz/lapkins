@@ -7,8 +7,8 @@ import {
 } from '../constants'
 
 const initialState = {
-  variant: {},
-  errors: '',
+  item: {},
+  errors: "",
   fetching: false,
 }
 
@@ -17,11 +17,11 @@ export default function (state = initialState, action) {
     case GET_VARIANT_REQUEST:
       return { ...state, fetching: true }
     case GET_VARIANT_SUCCESS:
-      return Object.assign({}, state, { variant: action.response, fetching: false, errors: '' })
+      return Object.assign({}, state, { item: action.response, fetching: false, errors: '' })
     case GET_VARIANT_ERROR:
       return { ...state, errors: action.error, fetching: false }
     case GET_VARIANT_RESET:
-      return { ...state, variant: {} }
+      return { ...state, item: {} }
     case DISMISS_GET_VARIANT_ERROR:
       return { ...state, errors: '' }
     default:

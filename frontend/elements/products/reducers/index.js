@@ -7,8 +7,8 @@ import {
 } from '../constants'
 
 const initialState = {
-  products: [],
-  errors: '',
+  items: [],
+  errors: "",
   fetching: false,
 }
 
@@ -17,11 +17,11 @@ export default function products(state = initialState, action) {
     case GET_PRODUCTS_REQUEST:
       return { ...state, fetching: true }
     case GET_PRODUCTS_SUCCESS:
-      return Object.assign({}, state, { products: action.response ? action.response : [], fetching: false, errors: '' })
+      return Object.assign({}, state, { items: action.response ? action.response : [], fetching: false, errors: '' })
     case GET_PRODUCTS_ERROR:
       return { ...state, errors: action.error, fetching: false }
     case GET_PRODUCTS_RESET:
-      return { ...state, products: [] }
+      return { ...state, items: [] }
     case DISMISS_PRODUCTS_ERROR:
       return { ...state, errors: '' }
     default:
