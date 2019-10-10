@@ -1,2 +1,2 @@
 #!/bin/bash
-cd /root/lapkin; docker-compose stop && docker-compose pull && docker-compose up -d --build;
+cd /root/lapkins-client; docker-compose stop && docker-compose pull && docker-compose up -d --build;

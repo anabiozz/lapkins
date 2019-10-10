@@ -1,12 +1,17 @@
-FROM alpine as alpine
-RUN addgroup -S lapkin && adduser -S lapkin -G lapkin
+FROM node:8.9.0-alpine
 
-FROM scratch
-LABEL maintainer="alexeybezrukov2@gmail.com"
-WORKDIR /home/lapkin
-COPY --from=alpine /etc/passwd /etc/passwd
-COPY backend/lapkin .
-COPY backend/static ./static
-USER lapkin
-EXPOSE 8080
-ENTRYPOINT [ "./lapkin" ]
+RUN mkdir -p /srv/app/server
+WORKDIR /srv/app/server
+
+COPY package.json /srv/app/server
+COPY yarn.lock /srv/app/server
+
+RUN yarn
+
+COPY .babelrc /srv/app/server
+COPY backend/ /srv/app/server/backend
+COPY frontend/ /srv/app/server/frontend
+COPY webpack.dev.js /srv/app/server
+COPY webpack.prod.js /srv/app/server
+
+CMD ["yarn", "start-dev"]

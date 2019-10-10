@@ -81,13 +81,6 @@ module.exports = {
       },
     }),
   ],
-  // devServer: {
-	// 	port: 8080,
-	// 	host: 'localhost',
-	// 	publicPath: 'http://localhost:8080',
-	// 	hot: true,
-	// 	headers: {'Access-Control-Allow-Origin': '*'}
-	// },
   node: {
 		console: true // needed for html5-history package
 	}

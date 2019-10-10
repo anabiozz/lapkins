@@ -29,9 +29,7 @@ export const getCategories = (id = 1) => (dispatch) => {
     type: GET_CATEGORIES_REQUEST,
   })
 
-  let domain = config.apiDomain + process.env.CORE_URL
-
-  return fetch(`${domain}api/get-categories?category_id=${id}`)
+  return fetch(`${config.apiDomain}/api/get-categories?category_id=${id}`)
     .then((response) => {
       if (response.status === 200) {
         return response

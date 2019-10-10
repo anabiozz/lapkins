@@ -4,9 +4,9 @@ const port = 8080; //process.env.SERVER_PORT
 
 const config = {
     server: {
-        production: 'localhost',
+        production: '0.0.0.0',
         port: port,
-        develope: 'localhost'
+        develope: '0.0.0.0'
     },
     initialState: {
         cart: {

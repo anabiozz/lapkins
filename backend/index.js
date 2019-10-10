@@ -60,12 +60,18 @@ app.use(root + 'favicon.ico', express.static(__dirname + '/static/images/favicon
 app.get('*', async (req, res) => {
 	const initialState = JSON.parse(JSON.stringify(config.initialState));
 	const store = configureStore(initialState);
-	// initialState.path = req.path.split("/")[3].split("-")[0]
+	initialState.path = req.path
+
+	console.log(routes)
+
 	const actions = matchRoutes(routes, req.path)
 	.map(({route}) => route.component.fetching ? route.component.fetching({...store, path: req.path}) : null)
 	.map(async actions => await Promise.all(
 		(actions || []).map(p => p && new Promise(resolve => p.then(resolve).catch(resolve)))
 	));
+
+	
+
 	await Promise.all(actions);
 	const context = {};
 	const content = render(req.path, store, context, routes);

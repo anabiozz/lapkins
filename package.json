@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "private": true,
   "dependencies": {
-    "@babel/plugin-syntax-dynamic-import": "^7.2.0",
+    "@babel/plugin-syntax-dynamic-import": "7.2.0",
     "compression-webpack-plugin": "3.0.0",
     "express": "4.17.1",
     "html-webpack-plugin": "3.2.0",
@@ -14,9 +14,9 @@
     "react": "16.9.0",
     "react-burger-menu": "2.6.11",
     "react-content-loader": "4.2.2",
-    "react-cookie": "^4.0.1",
+    "react-cookie": "4.0.1",
     "react-dom": "16.9.0",
-    "react-localize-redux": "^3.5.3",
+    "react-localize-redux": "3.5.3",
     "react-redux": "7.1.1",
     "react-responsive-carousel": "3.1.50",
     "react-router-breadcrumbs-hoc": "3.2.3",
@@ -25,7 +25,7 @@
     "redux": "4.0.4",
     "redux-logger": "3.0.6",
     "redux-thunk": "2.3.0",
-    "uglifyjs-webpack-plugin": "^2.2.0"
+    "uglifyjs-webpack-plugin": "2.2.0"
   },
   "scripts": {
     "prebuild": "rimraf dist",
@@ -45,7 +45,7 @@
     "@babel/plugin-proposal-object-rest-spread": "7.6.2",
     "@babel/plugin-syntax-class-properties": "7.2.0",
     "@babel/plugin-transform-runtime": "7.6.2",
-    "@babel/polyfill": "^7.6.0",
+    "@babel/polyfill": "7.6.0",
     "@babel/preset-env": "7.6.2",
     "@babel/preset-react": "7.0.0",
     "@babel/runtime": "7.6.2",

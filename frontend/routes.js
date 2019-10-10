@@ -11,9 +11,9 @@ import Registration from './elements/registration/containers/Registration';
 
 export default [
   {
-    render: Home,
+    component: Home,
     path: '/',
-    exact: true
+		exact: true,
   },
   {
     component: Cart,

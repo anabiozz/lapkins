@@ -14,11 +14,11 @@ let state = store.getState();
 
 hydrate(
 	<CookiesProvider>
-		<Router location={state.path} >
-			<Provider store={store}>
+		<Provider store={store}>
+			<Router location={state.path} >
 				<App />
-			</Provider>
-		</Router>
+			</Router>
+		</Provider>,
 	</CookiesProvider>,
 	document.getElementById('root')
 );

@@ -13,7 +13,7 @@ const receiveFail = error => ({ type: GET_PRODUCTS_ERROR, error })
 export const reset = () => async dispatch => dispatch({ type: GET_REGIONS_RESET })
 export const dismissError = () => async dispatch => dispatch({ type: DISMISS_REGIONS_ERROR })
 
-export const getProducts = (type = 1) => async dispatch => {
+export const getProducts = (type) => async dispatch => {
   dispatch({
     type: GET_PRODUCTS_REQUEST,
   })

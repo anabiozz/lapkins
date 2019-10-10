@@ -247,7 +247,9 @@ class Header extends React.Component {
                 <li className="icon">
                   <NavLink to="/cart">
                     <span className="icon-cart">
-                      <img className={this.state.isProductAdded ? "product__added" : ""} src={`data:image/svg+xml;base64,${config.cart}`} />
+                      <img 
+                        className={this.state.isProductAdded ? "product__added" : ""} 
+                        src="/static/images/cart.png" />
                     </span>
                   </NavLink>
                 </li>

@@ -169,11 +169,19 @@ header {
         display: flex;
         align-items: center;
         justify-content: space-between;
-        min-width: 115px;
-        max-width: 115px;
+        min-width: 150px;
+        max-width: 150px;
 
         .icon * {
           display: inline-block;
+          
+        }
+
+        .icon {
+          .icon-cart {
+            width: 40px;
+            height: 40px;
+          }
         }
       }
     }
