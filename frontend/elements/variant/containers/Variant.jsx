@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import config from '../../../config';
 import * as actions from '../actions/actions';
-import { addItemToCart, increaseCartItemQuantity } from '../../cart/actions';
+import { addItemToCart, increaseCartItemQuantity, createCartSession } from '../../cart/actions';
 import Button from '../../common/components/button';
 import Select from '../../common/components/select';
 import Locale from '../../../utils/locale';
@@ -31,7 +31,7 @@ export class Variant extends Component {
         value: "",
         error: false,
       },
-      cartSession: cookies.get('cartSession') || ''
+      cartSession: cookies.get('cartSession') || undefined
     }
   }
 
@@ -40,7 +40,19 @@ export class Variant extends Component {
   }
 
   componentDidMount() {
+    
+    // this.props.cookies.remove('cartSession')
+
     this.props.getVariant(Number(this.props.match.params.productID.split("-")[0]), "")
+
+    if (!this.state.cartSession) {
+      this.props.createCartSession()
+      this.props.cookies.set('cartSession', this.props.cartSession);
+    } else {
+
+    }
+
+    console.log("cartSession", this.state.cartSession);
   }
 
 	handleSelect = (e, product_id) => {
@@ -61,9 +73,6 @@ export class Variant extends Component {
   }
   
   addToCart = (item) => {
-    const { cookies, cartSession } = this.props;
-
-    cookies.remove('cartSession')
 
     if (this.state.select.value == "") {
       this.setState(prevState => ({
@@ -87,11 +96,8 @@ export class Variant extends Component {
     } 
 
     if (!this.state.cartSession) {
-      cookies.set('cartSession', cartSession);
-      item.quantity++
-      this.props.addItemToCart(item)
+      this.props.addItemToCart(item.variant_id, this.state.cartSession)
     } else {
-      item.quantity++
       this.props.increaseCartItemQuantity(item.variant_id, this.state.cartSession)
     }
   }
@@ -223,4 +229,4 @@ const mapStateToProps = (state, ownProps) => ({
   cartSession: state.cart.cartSession,
 })
 
-export default withCookies(connect(mapStateToProps, { ...actions, addItemToCart, increaseCartItemQuantity })(Variant))
+export default withCookies(connect(mapStateToProps, { ...actions, addItemToCart, increaseCartItemQuantity, createCartSession })(Variant))
