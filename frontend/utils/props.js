@@ -5,7 +5,7 @@ export const matchProp = {
   params: PropTypes.object,
   path: PropTypes.string,
   url: PropTypes.string,
-}
+};
 
 export const productProp = {
   id: PropTypes.number,
@@ -17,4 +17,4 @@ export const productProp = {
   price: PropTypes.string,
   products_type: PropTypes.string,
   categories: PropTypes.array,
-}
+};

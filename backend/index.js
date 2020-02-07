@@ -11,7 +11,7 @@ import setBundleHeaders from './middleware/setBundleHeaders';
 
 const app = new express();
 
-const host = process.env.NODE_ENV === 'development' ? config.server.develope : config.server.production;
+const host = process.env.NODE_ENV === 'development' ? config.server.development : config.server.production;
 const port = config.server.port;
 
 let root = process.env.CORE_URL;
@@ -27,6 +27,7 @@ if (process.env.NODE_ENV === 'development') {
 	webpackConfig = require('../webpack.prod');
 }
 const compiler = webpack(webpackConfig);
+
 
 if (process.env.NODE_ENV === 'production') {
 	app.use('*.js', setBundleHeaders); // USE GZIP COMPRESSION FOR PRODUCTION BUNDLE
@@ -57,20 +58,16 @@ app.use(root + "css", express.static(__dirname + '/static'));
 app.use(root + "static/images", express.static(__dirname + '/static/images'));
 app.use(root + 'favicon.ico', express.static(__dirname + '/static/images/favicon.ico'));
 
-app.get('*', async (req, res) => {
+app.all('*', async (req, res) => {
 	const initialState = JSON.parse(JSON.stringify(config.initialState));
 	const store = configureStore(initialState);
 	initialState.path = req.path;
-
-	console.log(routes);
 
 	const actions = matchRoutes(routes, req.path)
 	.map(({route}) => route.component.fetching ? route.component.fetching({...store, path: req.path}) : null)
 	.map(async actions => await Promise.all(
 		(actions || []).map(p => p && new Promise(resolve => p.then(resolve).catch(resolve)))
 	));
-
-	
 
 	await Promise.all(actions);
 	const context = {};
@@ -86,8 +83,7 @@ app.get('*', async (req, res) => {
 const server = app.listen(port, host, function (error) {
 	server.keepAliveTimeout = 0;
 	if (error) {
-			console.error('APP ERROR:');
-			console.error(error);
+		throw error;
 	} else {
 			console.info('==> 🌎 Web APP listening on port %s. Open up http://%s:%s in your browser.', port, host, port);
 	}

@@ -18,7 +18,7 @@ hydrate(
 			<Router location={state.path} >
 				<App />
 			</Router>
-		</Provider>,
+		</Provider>
 	</CookiesProvider>,
 	document.getElementById('root')
 );

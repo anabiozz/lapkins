@@ -20,9 +20,11 @@ export default (path, store, context, routes) => {
       </Router>
     </Provider>
   );
+
   const jsBundle = process.env.NODE_ENV === 'production' ? 'bundle-prod.js' : 'bundle-dev.js';
+
   return `
-  <!DOCTYPE html>
+	<!DOCTYPE html>
   <html lang="en">
   <head>
     <meta charset="UTF-8">
@@ -37,7 +39,6 @@ export default (path, store, context, routes) => {
     </script>
     <script src="/${jsBundle}"></script>
   </body>
-  </html>
-  `;
+  </html>`;
 };
 

@@ -10,7 +10,7 @@ const TextArea = (props) => {
     value,
     handleChange,
     placeholder,
-  } = props
+  } = props;
 
   return (
     <div className="form-group">
@@ -26,7 +26,7 @@ const TextArea = (props) => {
       />
     </div>
   )
-}
+};
 
 TextArea.propTypes = {
   title: PropTypes.string.isRequired,
@@ -36,6 +36,6 @@ TextArea.propTypes = {
   value: PropTypes.string.isRequired,
   handleChange: PropTypes.string.isRequired,
   placeholder: PropTypes.string.isRequired,
-}
+};
 
 export default TextArea

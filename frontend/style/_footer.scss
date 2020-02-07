@@ -1,14 +1,14 @@
 /* FOOTER */
 
 footer {
-	clear: both;
 	height: 200px;
 	width: 100%;
 	margin: 0 auto;
 	position: relative;
-	z-index: 99;
+	//z-index: 99;
+	bottom: 0;
 	flex-direction: row;
-	font-size: 1.3rem;
+	font-size: 1.05rem;
 	background-color: $main_black_color;
 	color: #fff;
 
@@ -29,8 +29,6 @@ footer {
 			}
 		}
 	}
-
-
 }
 
 /* END FOOTER */

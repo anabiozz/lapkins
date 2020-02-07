@@ -4,7 +4,7 @@
   flex-direction: column;
   width: $content_width_1;
   margin: 0 auto;
-	@include  reveal(0.5s);
+  @include  reveal(0.5s);
 
   .products {
     width: (($product_width * 4) + (3 * $content_gap)); // (($product_width * 4) + (4 * $content_gap))
@@ -45,9 +45,9 @@
             object-fit: cover;
             height: 100%;
             width: 100%;
-            -webkit-box-shadow: 0px 0px 27px -16px rgba(0, 0, 0, 0.75);
-            -moz-box-shadow: 0px 0px 27px -16px rgba(0, 0, 0, 0.75);
-            box-shadow: 0px 0px 27px -16px rgba(0, 0, 0, 0.75);
+            -webkit-box-shadow: 0 0 27px -16px rgba(0, 0, 0, 0.75);
+            -moz-box-shadow: 0 0 27px -16px rgba(0, 0, 0, 0.75);
+            box-shadow: 0 0 27px -16px rgba(0, 0, 0, 0.75);
           }
 
           img:hover {
