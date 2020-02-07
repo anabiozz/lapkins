@@ -1,8 +1,8 @@
-var path = require('path');
-var webpack = require('webpack');
+const path = require('path');
+const webpack = require('webpack');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
-const coreUrl = process.env.CORE_URL ? process.env.CORE_URL : '/'
+const coreUrl = process.env.CORE_URL ? process.env.CORE_URL : '/';
 
 module.exports = {
   mode: 'development',
@@ -59,15 +59,6 @@ module.exports = {
         },
       }),
     ],
-    // splitChunks: {
-    //   cacheGroups: {
-    //     commons: {
-    //       test: /[\\/]node_modules[\\/]/, // Create a vendor chunk with all the imported node_modules in it
-    //       name: 'vendor',
-    //       chunks: 'all',
-    //     },
-    //   },
-    // },
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
@@ -84,4 +75,4 @@ module.exports = {
   node: {
 		console: true // needed for html5-history package
 	}
-}
+};

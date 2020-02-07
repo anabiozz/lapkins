@@ -25,16 +25,18 @@
     "redux": "4.0.4",
     "redux-logger": "3.0.6",
     "redux-thunk": "2.3.0",
-    "uglifyjs-webpack-plugin": "2.2.0"
+    "uglifyjs-webpack-plugin": "2.2.0",
+    "body-parser": "latest"
   },
   "scripts": {
     "prebuild": "rimraf dist",
     "start": "NODE_ENV=production babel-node backend/index.js",
-    "start-dev": "NODE_ENV=development SERVER_PORT=8080 nodemon backend/index.js --ignore 'frontend/*.js' --exec babel-node",
+    "nodemon": "NODE_ENV=development SERVER_PORT=8080 nodemon backend/index.js --ignore 'frontend/*.js' --exec babel-node",
     "watch": "webpack --watch --progress -p --colors --display-error-details --config webpack.dev.js",
     "build": "webpack --progress -p --colors --display-error-details --config webpack.prod.js",
     "build-dev": "webpack --progress -p --colors --display-error-details --config webpack.dev.js",
-    "start-forever": "NODE_ENV=production forever --max-old-space-size=1024 start -c babel-node backend/index.js"
+    "start-forever": "NODE_ENV=production forever --max-old-space-size=1024 start -c babel-node backend/index.js",
+    "dev": "yarn nodemon && yarn build-dev"
   },
   "devDependencies": {
     "@babel/cli": "7.6.2",

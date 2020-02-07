@@ -27,7 +27,7 @@ class Header extends React.Component {
         }
       }));
     }
-  }
+  };
 
   linkOnClick = (name) => {
     this.setState(prevState => ({
@@ -36,7 +36,7 @@ class Header extends React.Component {
         [name]: false,
       }
     }));
-  }
+  };
 
   mainLinkOnClick = (name) => {
     this.setState(prevState => ({
@@ -45,7 +45,7 @@ class Header extends React.Component {
         [name]: false,
       }
     }));
-  }
+  };
 
   render() {
 
@@ -61,7 +61,7 @@ class Header extends React.Component {
         this.setState({
           isProductAdded: false,
         });
-      }, 1000)
+      }, 1000);
      
       this.props.cartReset()
     }
@@ -227,27 +227,10 @@ class Header extends React.Component {
               </div>
 
               <ul className="icons">
-
-                <li className="icon">
-                  <NavLink to="/registration">
-                    <span className="icon-user">
-                      <img src={`data:image/svg+xml;base64,${config.user}`} />
-                    </span>
-                  </NavLink>
-                </li>
-
-                <li className="icon">
-                  <NavLink to="/wishlist">
-                    <span className="icon-heart">
-                      <img src={`data:image/svg+xml;base64,${config.search}`} />
-                    </span>
-                  </NavLink>
-                </li>
-
                 <li className="icon">
                   <NavLink to="/cart">
                     <span className="icon-cart">
-                      <img 
+                      <img
                         className={this.state.isProductAdded ? "product__added" : ""} 
                         src="/static/images/cart.png" />
                     </span>
@@ -268,6 +251,6 @@ class Header extends React.Component {
 
 const mapStateToProps = state => ({
   isProductAdded: state.cart.isProductAdded,
-})
+});
 
 export default connect(mapStateToProps, { cartReset })(Header)

@@ -3,29 +3,31 @@ import { NavLink } from 'react-router-dom';
 
 class Home extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
       elements: [],
-    }
+    };
   }
 
   add() {
     this.setState({
       elements: [...this.state.elements, this.state.elements.length++]
-    })
+    });
   }
 
   render() {
 
     return (
-      // style={this.state.elements.length === 3 ? {} : {display: 'none'}} 
+      // style={this.state.elements.length === 3 ? {} : {display: 'none'}}
       <div className="gallery">
 
         <NavLink to="/new" className="gallery__item gallery__item__1">
+
           <img 
             className="gallery__img"
             onLoad={() => this.add()}
             src="https://cdn.shopify.com/s/files/1/0077/8718/4241/files/Set_028_1950x.jpeg?v=1550063217" alt="Новое" />
+
           <div className="content">
             <h2>Новое</h2>
           </div>

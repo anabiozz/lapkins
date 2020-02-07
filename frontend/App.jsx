@@ -14,12 +14,12 @@ const App = () => (
     </section>
     <Footer />
   </Fragment>
-)
+);
 
 let ExportedApp = App;
 
 if (process.env.DEV) {
-  const { setConfig } = require('react-hot-loader')
+  const { setConfig } = require('react-hot-loader');
   setConfig({
     logLevel: 'debug',
     errorReporter: ErrorBoundary,

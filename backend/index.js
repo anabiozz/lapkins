@@ -9,9 +9,9 @@ import render from './render';
 import configureStore from '../frontend/_flax/store';
 import setBundleHeaders from './middleware/setBundleHeaders';
 
-var app = new express();
+const app = new express();
 
-const host = process.env.NODE_ENV == 'development' ? config.server.develope : config.server.production;
+const host = process.env.NODE_ENV === 'development' ? config.server.develope : config.server.production;
 const port = config.server.port;
 
 let root = process.env.CORE_URL;
@@ -20,15 +20,15 @@ if (!root) {
 	process.env['CORE_URL'] = root;
 }
 
-var webpackConfig = null;
-if (process.env.NODE_ENV == 'development') {
+let webpackConfig = null;
+if (process.env.NODE_ENV === 'development') {
 	webpackConfig = require('../webpack.dev');
 } else {
 	webpackConfig = require('../webpack.prod');
 }
-var compiler = webpack(webpackConfig);
+const compiler = webpack(webpackConfig);
 
-if (process.env.NODE_ENV == 'production') {
+if (process.env.NODE_ENV === 'production') {
 	app.use('*.js', setBundleHeaders); // USE GZIP COMPRESSION FOR PRODUCTION BUNDLE
 	app.use(root + 'dist', express.static(__dirname + '/../dist'));
 } else {
@@ -60,9 +60,9 @@ app.use(root + 'favicon.ico', express.static(__dirname + '/static/images/favicon
 app.get('*', async (req, res) => {
 	const initialState = JSON.parse(JSON.stringify(config.initialState));
 	const store = configureStore(initialState);
-	initialState.path = req.path
+	initialState.path = req.path;
 
-	console.log(routes)
+	console.log(routes);
 
 	const actions = matchRoutes(routes, req.path)
 	.map(({route}) => route.component.fetching ? route.component.fetching({...store, path: req.path}) : null)
@@ -77,7 +77,7 @@ app.get('*', async (req, res) => {
 	const content = render(req.path, store, context, routes);
 
 	if(context.status === 404) {
-			res.status(404);
+		res.status(404);
 	}
 
 	res.send(content);
