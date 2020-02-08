@@ -20,7 +20,7 @@ hydrate(
 			</Router>
 		</Provider>
 	</CookiesProvider>,
-	document.getElementById('root')
+	document.querySelector(".root")
 );
 
 if (module.hot) {

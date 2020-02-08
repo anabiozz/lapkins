@@ -1,7 +1,7 @@
 @mixin reveal($speed) {
   -webkit-animation: reveal $speed ease;
-	-webkit-animation-fill-mode: backwards;
-	animation: reveal $speed ease;
+  -webkit-animation-fill-mode: backwards;
+  animation: reveal $speed ease;
   animation-fill-mode: backwards;
 }
 

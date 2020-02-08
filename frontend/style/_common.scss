@@ -6,16 +6,7 @@
   box-sizing: border-box;
 }
 
-*,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-p,
-ul,
-a {
+* {
   margin: 0;
   padding: 0;
 }
@@ -25,10 +16,24 @@ ol {
   list-style: none;
 }
 
-// SCROLLBAR
+img, .img {
+  max-width: 100%;
+  transition: all 0.3s ease-out 0s;
+}
 
+a {
+  outline: none;
+  text-decoration: none;
+}
+
+html {
+  margin-left: calc(100vw - 100%);
+  margin-right: 0;
+}
+
+// SCROLLBAR
 body::-webkit-scrollbar {
-  width: 15px;
+  width: $scrollbar_width;
 }
 
 body::-webkit-scrollbar-track {
@@ -41,23 +46,27 @@ body::-webkit-scrollbar-thumb {
   outline: 1px solid slategrey;
 }
 
-html {
-  //margin-left: calc(100vw - 100%);
-  letter-spacing: 0.1px;
-  @include font(400);
-  padding: 0;
-  position: relative;
-  background-color: #fff;
-}
-
 body {
+  width: 100%;
+  // The text-size-adjust CSS property controls the text inflation algorithm
+  // used on some smartphones and tablets. Other browsers will ignore this property.
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
   text-size-adjust: 100%;
-  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+
+  // The font-smooth CSS property controls the application of anti-aliasing when fonts are rendered.
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  // Prevent any object from being highlighted upon touch event
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+
+  // The scroll-behavior CSS property sets the behavior for a scrolling box when
+  // scrolling is triggered by the navigation or CSSOM scrolling APIs.
   scroll-behavior: smooth;
+
+  overflow-y: auto;
+  -webkit-overflow-scrolling:touch;
 }
 
 ::selection {
@@ -66,59 +75,47 @@ body {
   text-shadow: none;
 }
 
-.container {
-  margin: 0 auto;
-}
-
-img,
-.img {
-  max-width: 100%;
-  transition: all 0.3s ease-out 0s;
-}
-
-a {
-  outline: none;
-  text-decoration: none;
-}
-
-#root {
+.root {
   display: flex;
   flex-direction: column;
+  letter-spacing: 0.3px;
   min-height: 100vh;
+  min-width: 100%;
+  @include font(400);
+  margin-left: -$scrollbar_width;
 
   section.content {
     flex: 1;
-    width: 100%;
   }
 
-  section.search_content {
-    width: 100%;
-    margin: 0 auto;
-    display: flex;
-
-    .search_wrapper {
-      width: $content_width_1;
-      margin: 0 auto;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-
-      .search {
-        width: 50%;
-        font-family: $primary_font;
-
-        .search__box__container input#search {
-          font-weight: 600;
-          font-size: 18px;
-        }
-
-        .search__box__container input#search::placeholder {
-          font-weight: 400;
-          font-size: 15px;
-        }
-      }
-    }
-  }
+  //section.search_content {
+  //  width: 100%;
+  //  margin: 0 auto;
+  //  display: flex;
+  //
+  //  .search_wrapper {
+  //    width: $content_width_1;
+  //    margin: 0 auto;
+  //    display: flex;
+  //    justify-content: space-between;
+  //    align-items: center;
+  //
+  //    .search {
+  //      width: 50%;
+  //      font-family: $primary_font;
+  //
+  //      .search__box__container input#search {
+  //        font-weight: 600;
+  //        font-size: 18px;
+  //      }
+  //
+  //      .search__box__container input#search::placeholder {
+  //        font-weight: 400;
+  //        font-size: 15px;
+  //      }
+  //    }
+  //  }
+  //}
 }
 
 @media all and (max-width: 1250px) {

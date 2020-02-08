@@ -7,7 +7,7 @@
 .box-2 { background-color: #3C3C3C; }
 
 $primary_font: 'Open Sans Condensed', sans-serif;
-$nav_links_font: 'NexaReplicaRU', sans-serif;
+$nav_links_font: 'Open Sans Condensed', sans-serif;
 $logo_font: 'NexaReplicaRU', sans-serif;
 
 $product_background_color: #ece8da;
@@ -16,13 +16,14 @@ $nav_links_color: #3d3d3d;
 $main_color: #464646;
 $logo_color: #181515;
 
-$logo_font_size: 2.3rem;
-$nav_links_font_size: 0.85rem;
+$logo_font_size: 1.5rem;
+$nav_links_font_size: 1rem;
+$scrollbar_width: 10px;
 
 // ******************* HEADER ********************** //
-$header_quicklist_b_color: #fff; //#b8b7ad
+$header_quicklist_background_color: #fff; //#b8b7ad
 $header_quicklist_color: $nav_links_color;
-$header_b_color: #fff;
+$header_background_color: #fff;
 
 // ******************* ELEMENTS ********************** //
 
@@ -35,7 +36,7 @@ $element_b_color: #66A182;
 // ******************* CONTENT ********************** //
 
 $content_gap: 25px;
-$product_width: 350px;
+$product_width: 250px;
 $product_height: $product_width * 1.414;
 $product_desc_width: 450px;
 $product_desc_height: $product_desc_width * 1.414;

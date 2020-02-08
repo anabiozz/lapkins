@@ -33,7 +33,7 @@ export default (path, store, context, routes) => {
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div id="root">${content}</div>
+    <div class="root">${content}</div>
     <script>
       window.__INITIAL_STATE__ = ${JSON.stringify(store.getState())}
     </script>

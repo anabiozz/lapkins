@@ -86,11 +86,14 @@ class Header extends React.Component {
                 <div className="logo">
                   <NavLink to="/">Лапкин Дом</NavLink>
                 </div>
+
                 <nav  className="quicklist">
-                  <ul>
+
+                  <ul className="quicklist_ul">
+
                     <li 
-                      onMouseEnter={() => this.hover("wallart", true)} 
-                      onMouseLeave={() => this.hover("wallart", false)} 
+                      // onMouseEnter={() => this.hover("wallart", true)}
+                      // onMouseLeave={() => this.hover("wallart", false)}
                       className="quicklist__has__dropdown quicklist__has__dropdown__centered">
 
                       <NavLink
@@ -98,7 +101,7 @@ class Header extends React.Component {
                         className="quicklist_main_link"
                         to="/wallart">Декор</NavLink>
 
-                      <div className={this.state.hover.wallart ? "quicklist__dropdown quicklist__dropdown__centered hover" : "quicklist__dropdown quicklist__dropdown__centered"}>
+                      <div className="quicklist__dropdown quicklist__dropdown__centered">
 
                         <div className="quicklist__childlist">
                           <ul className="quicklist__childlist__grid">
@@ -127,42 +130,24 @@ class Header extends React.Component {
                               
                               </ul>
                             </li>
-                          
-                            {/* <li className="quicklist__childlist__item">
-                              <div className="quicklist__childlist__item__title">
-                                Размеры
-                              </div>
-                              <ul>
-                              
-                                <li>
-                                  <NavLink to="/wallart/30x40-posters" className="quicklist__link">
-                                    30x40CM
-                                  </NavLink>
-                                </li>
-                              
-                                <li>
-                                  <NavLink to="/wallart/60x90-posters" className="quicklist__link">
-                                    60x90CM
-                                  </NavLink>
-                                </li>
-                              
-                              </ul>
-                            </li> */}
                           </ul>
                           
-                          {/* <div className="last-news-menu">
-                            <a href="/collections/new-arrivals">
-                              <div className="last-news-title">  
-                                New arrivals
-                              </div>
-                              <div className="last-news-image"> 
-                                <img src="//cdn.shopify.com/s/files/1/0077/8718/4241/collections/new-arrivals_500x500.jpg?v=1550078531/" />
-                              </div>
-                            </a>
-                          </div> */}
+                        {/* <div className="last-news-menu">*/}
+                        {/*    <a href="/collections/new-arrivals">*/}
+                        {/*      <div className="last-news-title">*/}
+                        {/*        New arrivals*/}
+                        {/*      </div>*/}
+                        {/*      <div className="last-news-image">*/}
+                        {/*        <img src="//cdn.shopify.com/s/files/1/0077/8718/4241/collections/new-arrivals_500x500.jpg?v=1550078531/" />*/}
+                        {/*      </div>*/}
+                        {/*    </a>*/}
+                        {/*  </div>*/}
                         </div>
+
                       </div>
+
                     </li>
+
                     <li 
                       className="quicklist__has__dropdown quicklist__has__dropdown__centered"
                       onMouseEnter={() => this.hover("stationery", true)}
