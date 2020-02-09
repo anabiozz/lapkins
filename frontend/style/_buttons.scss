@@ -1,4 +1,4 @@
-.box-3 { background-color: $element_b_color; }
+.box-3 { background-color: $element_background_color; }
 
 .btn {
 	line-height: $element_height;
@@ -7,7 +7,7 @@
 	width:$element_width;
 	font-size: $element_font_size;
 	cursor: pointer;
-	background-color: $element_b_color;
+	background-color: $element_background_color;
 	text-transform: $element_text_transform;
 }
 
@@ -16,6 +16,7 @@
 	transition: all 0.5s;
 	position: relative;
 }
+
 .btn-three::before {
 	content: '';
 	position: absolute;
@@ -27,10 +28,12 @@
 	background-color: rgba(255,255,255,0.1);
 	transition: all 0.5s;
 }
+
 .btn-three:hover::before {
 	opacity: 0 ;
 	transform: scale(0.5,0.5);
 }
+
 .btn-three::after {
 	content: '';
 	position: absolute;
@@ -44,6 +47,7 @@
 	transform: scale(1.2,1.2);
 	box-sizing: border-box;
 }
+
 .btn-three:hover::after {
 	opacity: 1;
 	transform: scale(1,1);

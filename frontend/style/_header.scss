@@ -4,153 +4,41 @@ header {
   position: sticky;
   top: 0;
   width: 100%;
-  z-index: 25;
+  line-height: 80px;
+  z-index: 100;
+  background-color: $header_background_color;
 
   .header__desktop {
 
     &__content {
       display: flex;
-      width: $content_width_1;
-      background-color: $header_background_color;
+      //background-color: $header_background_color;
       margin: 0 auto;
-
-      .left_content {
-        display: flex;
-        width: 100%;
+      justify-content: space-between;
 
         .logo {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          margin-right: 50px;
-
+          //display: grid;
           a {
             font-family: $logo_font;
-            color: $nav_links_color;
-            //text-transform: uppercase;
+            color: $logo_color;
             font-size:  $logo_font_size;
+            //margin: auto;
+            //display: block;
           }
         }
 
-        .quicklist {
-          font-family: $nav_links_font;
-          font-size: $nav_links_font_size;
-          width: auto;
-
-          .quicklist_ul {
-            display: flex;
-
-            .quicklist__has__dropdown {
-              position: relative;
-              //transition: 0s display;
-              //transition-delay: 1s;
-
-              .quicklist_main_link {
-                display: block;
-                line-height: 100px;
-                height: 100%;
-                width: 100%;
-                padding: 0 20px;
-                color: $nav_links_color;
-              }
-
-              .quicklist__dropdown {
-                display: none;
-                position: absolute;
-                left: 0;
-                text-align: left;
-                @include reveal(0.0s);
-
-                .quicklist__childlist {
-                  display: flex;
-                  justify-content: center;
-                  text-align: left;
-                  position: relative;
-
-                  .quicklist__childlist__grid {
-                    background: $header_quicklist_background_color;
-                    padding: 30px;
-
-                    .quicklist__childlist__item {
-
-                      .quicklist__childlist__item__title {
-                        font-weight: 700;
-                        color: $header_quicklist_color;
-                        text-transform: uppercase;
-                        font-family: $primary_font;
-                        font-size: 1.2rem;
-                      }
-
-                      ul {
-                        display: block;
-
-                        li {
-                          width: 100%;
-                          padding: 3px 0;
-
-                          .quicklist__link {
-                            font-weight: 400;
-                            text-align: left;
-                            color: $header_quicklist_color;
-                            font-family: $primary_font;
-                            font-size: 1.2rem;
-                          }
-
-                          .quicklist__link:hover {
-                            color: #00000050;
-                          }
-
-                          .quicklist__link:focus {
-                            color: #00000050;
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-
-              //.hover {
-              //  display: block;
-              //}
-
-              .quicklist__dropdown__centered {
-                width: 100%;
-                left: 0;
-                border: 0;
-                background: none;
-                padding: 0;
-              }
-            }
-
-            .quicklist__has__dropdown__centered {
-              position: static;
-            }
-
-            .quicklist__has__dropdown:hover .quicklist__dropdown {
-              display: block;
-            }
-
-            //.quicklist__has__dropdown__centered:hover {
-            //  background-color: #00000050;
-            //}
-          }
-        }
-      }
-
-      .icons {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
+      ul.icons {
 
         .icon * {
           display: inline-block;
         }
 
-        .icon {
+        li.icon {
+          //line-height: 100px;
+          width: 40px;
+          height: 40px;
           .icon-cart {
-            width: 40px;
-            height: 40px;
+
           }
         }
       }
@@ -256,18 +144,10 @@ Note: Beware of modifying this element as it can break the animations - you shou
       &__content {
         width: $content_width_2;
 
-        .left_content {
-          .quicklist {
-            .quicklist__childlist__grid {
-              width: $content_width_2;
-            }
-          }
-        }
-
-        .icons .icon span {
-          height: 25px;
-          width: 25px;
-        }
+        //.icons .icon span {
+        //  height: 25px;
+        //  width: 25px;
+        //}
       }
     }
   }
@@ -284,18 +164,11 @@ Note: Beware of modifying this element as it can break the animations - you shou
       &__content {
         width: $content_width_1;
 
-        .left_content {
-          .quicklist {
-            .quicklist__childlist__grid {
-              width: $content_width_1;
-            }
-          }
-        }
-
-        .icons .icon span {
-          height: 25px;
-          width: 25px;
-        }
+        //
+        //.icons .icon span {
+        //  height: 25px;
+        //  width: 25px;
+        //}
       }
     }
   }
@@ -311,18 +184,10 @@ Note: Beware of modifying this element as it can break the animations - you shou
       &__content {
         width: $content_width_1;
 
-        .left_content {
-          .quicklist {
-            .quicklist__childlist__grid {
-              width: $content_width_1;
-            }
-          }
-        }
-
-        .icons .icon span {
-          height: 25px;
-          width: 25px;
-        }
+        //.icons .icon span {
+        //  height: 25px;
+        //  width: 25px;
+        //}
       }
     }
   }

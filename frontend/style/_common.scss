@@ -78,14 +78,17 @@ body {
 .root {
   display: flex;
   flex-direction: column;
-  letter-spacing: 0.3px;
+  //letter-spacing: 0.4px;
   min-height: 100vh;
-  min-width: 100%;
+  //max-width: 100vw;
   @include font(400);
   margin-left: -$scrollbar_width;
+  position: relative;
 
   section.content {
     flex: 1;
+    margin: $content_gap 0;
+    z-index: -20;
   }
 
   //section.search_content {
@@ -119,7 +122,13 @@ body {
 }
 
 @media all and (max-width: 1250px) {
-
+  #root {
+    section.search_content {
+      .search_wrapper {
+        width: $content_width_2;
+      }
+    }
+  }
 }
 
 @media all and (max-width: 1575px) and (min-width: 1250px) {

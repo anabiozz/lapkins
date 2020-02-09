@@ -4,11 +4,13 @@ import { renderRoutes } from 'react-router-config';
 import routes from './routes';
 import Header from './elements/common/containers/Header';
 import Footer from './elements/common/components/Footer';
+import Quicklist from "./elements/common/components/Quicklist";
 import ErrorBoundary from './elements/common/components/ErrorBoundary';
 
 const App = () => (
   <Fragment>
     <Header />
+    <Quicklist />
     <section className="content">
       {renderRoutes(routes)}
     </section>

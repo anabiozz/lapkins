@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import Product from '../components/Product.jsx';
-import Breadcrumbs from '../../common/components/breadcrumbs';
+import Breadcrumbs from '../../common/components/Breadcrumbs';
 import * as actions from '../actions';
 import config from '../../../config';
 import Loader from '../../common/components/Loader';

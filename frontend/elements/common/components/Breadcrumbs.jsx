@@ -1,9 +1,10 @@
 import React from 'react';
 import withBreadcrumbs from "react-router-breadcrumbs-hoc";
 import { Link } from "react-router-dom";
-import Locale from '../../../../utils/locale';
-import routes from '../../../../routes'
-const locale = new Locale('RU').get()
+import Locale from '../../../utils/locale';
+import routes from '../../../routes';
+
+const locale = new Locale('RU').get();
 
 const excludePaths = [
   '/wallart/posters-without-frame/*', 
