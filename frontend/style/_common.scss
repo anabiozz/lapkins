@@ -16,7 +16,8 @@ ol {
   list-style: none;
 }
 
-img, .img {
+img,
+.img {
   max-width: 100%;
   transition: all 0.3s ease-out 0s;
 }
@@ -66,7 +67,9 @@ body {
   scroll-behavior: smooth;
 
   overflow-y: auto;
-  -webkit-overflow-scrolling:touch;
+  -webkit-overflow-scrolling: touch;
+
+  overflow-x: hidden;
 }
 
 ::selection {
@@ -88,7 +91,7 @@ body {
   section.content {
     flex: 1;
     margin: $content_gap 0;
-    z-index: -20;
+    // z-index: -60;
   }
 
   //section.search_content {
@@ -152,6 +155,4 @@ body {
   }
 }
 
-@media all and (max-width: 2560px) and (min-width: 1930px) {
-
-}
+@media all and (max-width: 2560px) and (min-width: 1930px) {}
