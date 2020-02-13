@@ -42,7 +42,7 @@
                 flex-direction: column;
                 align-items: center;
                 width: $order_tabs_with / 2;
-                border: 1px solid $element_b_color;
+                border: 1px solid $element_background_color;
                 transition: border-color .12s ease-out 0s;
                 cursor: pointer;
                 padding-top: 16px;
@@ -50,9 +50,9 @@
                 box-sizing: border-box;
 
                 &__active {
-                  border-color: $element_b_color;
+                  border-color: $element_background_color;
                   background-color: rgba(102, 161, 130, 0.07);
-                  box-shadow: 0 0 0 1px $element_b_color inset;
+                  box-shadow: 0 0 0 1px $element_background_color inset;
                   cursor: default;
                 }
 

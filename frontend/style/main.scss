@@ -7,8 +7,7 @@
 .box-2 { background-color: #3C3C3C; }
 
 $primary_font: 'Open Sans Condensed', sans-serif;
-$nav_links_font: 'NexaReplicaRU', sans-serif;
-$logo_font: 'NexaReplicaRU', sans-serif;
+$logo_font: 'Playfair Display', serif; //'NexaReplicaRU', sans-serif;
 
 $product_background_color: #ece8da;
 $main_black_color: #3d3d3d;
@@ -16,26 +15,35 @@ $nav_links_color: #3d3d3d;
 $main_color: #464646;
 $logo_color: #181515;
 
-$logo_font_size: 2.3rem;
-$nav_links_font_size: 0.85rem;
+$scrollbar_width: 10px;
 
 // ******************* HEADER ********************** //
-$header_quicklist_b_color: #fff; //#b8b7ad
-$header_quicklist_color: $nav_links_color;
-$header_b_color: #fff;
+
+$logo_font_size: 2.5rem;
+$logo_color: #3d3d3d;
+$header_background_color: #fff;
+
+// ******************* QUICKLIST ********************** //
+
+$quicklist_background_color: #3d3d3d;
+$quicklist_color: #fff;
+$quicklist_dropdown_color: $nav_links_color;
+$quicklist_dropdown_background_color: #fff; //#b8b7ad
+$quicklist_links_font: 'Open Sans Condensed', sans-serif;
+$quicklist_links_font_size: 1.1rem;
 
 // ******************* ELEMENTS ********************** //
 
-$element_width: 250px;
+$element_width: 350px;
 $element_height: 60px;
 $element_font_size: 1.2rem;
 $element_text_transform: uppercase;
-$element_b_color: #66A182;
+$element_background_color: #66A182;
 
 // ******************* CONTENT ********************** //
 
 $content_gap: 25px;
-$product_width: 350px;
+$product_width: 300px;
 $product_height: $product_width * 1.414;
 $product_desc_width: 450px;
 $product_desc_height: $product_desc_width * 1.414;
@@ -48,8 +56,9 @@ $content_width_2: ((($product_width * 3) + (2 * $content_gap))); //((($item_widt
 @import "common";
 
 @import "header";
-@import "content";
 @import "footer";
+@import "quicklist";
+
 @import "home";
 @import "products";
 @import "variant";
@@ -61,12 +70,10 @@ $content_width_2: ((($product_width * 3) + (2 * $content_gap))); //((($item_widt
 @import "carousel";
 @import "cart";
 @import "circle";
-
 @import "animations";
-
-@import "../elements/common/components/button/button";
-@import "../elements/common/components/counter/counter";
-@import "../elements/common/components/search/search";
-@import "../elements/common/components/breadcrumbs/breadcrumbs";
-@import "../elements/common/components/select/select";
-@import "../elements/common/components/input/input";
+@import "buttons";
+@import "counter";
+@import "search";
+@import "breadcrumbs";
+@import "select";
+@import "input";

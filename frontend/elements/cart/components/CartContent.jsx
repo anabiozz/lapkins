@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from "prop-types";
 import CartProductItem from './CartProductItem';
 import { Link } from 'react-router-dom';
-import Button from '../../common/components/button';
+import Button from '../../common/components/Button';
 
 
 const CartContent = ({ items, removeProductFromCart, increaseCartItem, decreaseCartItem, total }) => {

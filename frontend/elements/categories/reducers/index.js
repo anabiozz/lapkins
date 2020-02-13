@@ -10,20 +10,20 @@ const initialState = {
   item: {},
   errors: "",
   fetching: false,
-}
+};
 
 export default function (state = initialState, action) {
   switch (action.type) {
     case GET_CATEGORIES_REQUEST:
-      return { ...state, fetching: true }
+      return { ...state, fetching: true };
     case GET_CATEGORIES_SUCCESS:
-      return Object.assign({}, state, { item: action.response, fetching: false, errors: '' })
+      return Object.assign({}, state, { item: action.response, fetching: false, errors: '' });
     case GET_CATEGORIES_ERROR:
-      return { ...state, errors: action.error, fetching: false }
+      return { ...state, errors: action.error, fetching: false };
     case GET_CATEGORIES_RESET:
-      return { ...state, item: {} }
+      return { ...state, item: {} };
     case DISMISS_GET_CATEGORIES_ERROR:
-      return { ...state, errors: '' }
+      return { ...state, errors: '' };
     default:
       return state
   }

@@ -3,10 +3,8 @@
   grid-template-columns: repeat(4, [col] 1fr);
   grid-template-rows: repeat(2, [row] 60vh);
   grid-gap: $content_gap / 1.2;
-  width: $content_width_1;
   margin: 0 auto;
-  margin-bottom: $content_gap / 1.2;
-	@include  reveal(0.5s);
+  @include reveal(0.5s);
 
   &__item {
     position: relative;
@@ -38,7 +36,6 @@
 .gallery__item__1 {
   grid-column: col / span 4;
   grid-row: row;
-
   img {
     object-fit: cover;
   }
@@ -47,7 +44,6 @@
 .gallery__item__2 {
   grid-column: col 3 / span 2;
   grid-row: row 2;
-
   img {
     object-fit: cover;
   }
@@ -56,36 +52,10 @@
 .gallery__item__3 {
   grid-column: col / span 2;
   grid-row: row 2;
-
   img {
     object-fit: cover;
   }
 }
-
-// .gallery__item__1 {
-//   grid-column-start: 1;
-//   grid-column-end: 4;
-//   grid-row-start: 1;
-//   grid-row-end: 9;
-// }
-
-// .gallery__item__2 {
-//   grid-column-start: 4;
-//   grid-column-end: 9;
-//   grid-row-start: 1;
-//   grid-row-end: 5;
-// }
-
-// .gallery__item__3 {
-//   grid-column-start: 4;
-//   grid-column-end: 9;
-//   grid-row-start: 5;
-//   grid-row-end: 9;
-// }
-
-@media all and (min-width: 992px) {}
-
-@media all and (max-width: 1250px) {}
 
 @media all and (max-width: 1575px) and (min-width: 1250px) {
   .gallery {
@@ -93,7 +63,14 @@
   }
 }
 
+@media all and (max-width: 1930px) and (min-width: 1575px) {
+  .gallery {
+    width: $content_width_1;
+  }
+}
 
-@media all and (max-width: 1930px) and (min-width: 1575px) {}
-
-@media all and (max-width: 2560px) and (min-width: 1930px) {}
+@media all and (max-width: 2560px) and (min-width: 1930px) {
+  .gallery {
+    width: $content_width_1;
+  }
+}

@@ -5,6 +5,7 @@ import { StaticRouter as Router } from 'react-router-dom';
 import { renderRoutes } from 'react-router-config';
 import Header from '../frontend/elements/common/containers/Header';
 import Footer from '../frontend/elements/common/components/Footer';
+import Quicklist from "../frontend/elements/common/components/Quicklist";
 
 export default (path, store, context, routes) => {
   const content = renderToString(
@@ -12,6 +13,7 @@ export default (path, store, context, routes) => {
       <Router location={path} context={context}>
 				<Fragment>
 					<Header />
+					<Quicklist />
           <section className="content">
             {renderRoutes(routes)}
           </section>
@@ -20,24 +22,26 @@ export default (path, store, context, routes) => {
       </Router>
     </Provider>
   );
+
   const jsBundle = process.env.NODE_ENV === 'production' ? 'bundle-prod.js' : 'bundle-dev.js';
+
   return `
-  <!DOCTYPE html>
+	<!DOCTYPE html>
   <html lang="en">
   <head>
     <meta charset="UTF-8">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Playfair+Display&display=swap" rel="stylesheet">
     <title>Лапкин дом</title>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div id="root">${content}</div>
+    <div class="root">${content}</div>
     <script>
       window.__INITIAL_STATE__ = ${JSON.stringify(store.getState())}
     </script>
     <script src="/${jsBundle}"></script>
   </body>
-  </html>
-  `;
+  </html>`;
 };
 

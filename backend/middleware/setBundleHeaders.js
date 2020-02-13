@@ -3,4 +3,4 @@ module.exports = function (req, res, next) {
 	res.set('Content-Encoding', 'gzip');
 	res.set('Content-Type', 'application/javascript');
 	next();
-}
+};

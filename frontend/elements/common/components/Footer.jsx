@@ -1,10 +1,10 @@
 import React from 'react';
 
 const Footer = () => {
-	return <footer className='footer'>
+	return <footer>
 		<div className="footer__content">
 			<div className="footer__column">
-				<h5>LAPKIN HOME</h5>
+				<h5>LAPKINS HOME</h5>
 				<ul>
 					<li><a href="">Все продукты</a></li>
 					<li><a href="">Этика и Устойчивость</a></li>
@@ -29,6 +29,6 @@ const Footer = () => {
 			</div>
 		</div>
 	</footer>
-}
+};
 
 export default Footer

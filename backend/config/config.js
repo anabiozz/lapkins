@@ -1,12 +1,12 @@
 
 const host = process.env.SERVER;
-const port = 8080; //process.env.SERVER_PORT
+const port = 8080; //
 
 const config = {
     server: {
-        production: '0.0.0.0',
+        production: 'localhost',
         port: port,
-        develope: '0.0.0.0'
+        development: 'localhost'
     },
     initialState: {
         cart: {
@@ -44,5 +44,5 @@ const config = {
         sizes: [],
         quantity: 0,
     }
-}
+};
 export default config;

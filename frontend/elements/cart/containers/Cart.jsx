@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import * as actions from '../actions';
 import PropTypes from 'prop-types';
 import CartContent from "../components/CartContent";
-import Breadcrumbs from '../../common/components/breadcrumbs';
+import Breadcrumbs from '../../common/components/Breadcrumbs';
 import Loader from '../../common/components/Loader';
 import { withCookies } from 'react-cookie';
 

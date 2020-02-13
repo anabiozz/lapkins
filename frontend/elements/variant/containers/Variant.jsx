@@ -4,11 +4,11 @@ import { connect } from 'react-redux';
 import config from '../../../config';
 import * as actions from '../actions/actions';
 import { addItemToCart, increaseCartItemQuantity, createCartSession } from '../../cart/actions';
-import Button from '../../common/components/button';
-import Select from '../../common/components/select';
+import Button from '../../common/components/Button';
+import Select from '../../common/components/Select';
 import Locale from '../../../utils/locale';
 import { Carousel } from 'react-responsive-carousel';
-import Breadcrumbs from '../../common/components/breadcrumbs';
+import Breadcrumbs from '../../common/components/Breadcrumbs';
 import Loader from '../../common/components/Loader';
 import { withCookies, useCookies } from 'react-cookie';
 

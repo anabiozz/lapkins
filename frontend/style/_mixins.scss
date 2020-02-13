@@ -1,8 +1,62 @@
 @mixin reveal($speed) {
   -webkit-animation: reveal $speed ease;
-	-webkit-animation-fill-mode: backwards;
-	animation: reveal $speed ease;
+  -webkit-animation-fill-mode: backwards;
+  animation: reveal $speed ease;
   animation-fill-mode: backwards;
+}
+
+@mixin slidein($speed) {
+  -webkit-animation: fronte $speed ease;
+  -webkit-animation-fill-mode: backwards;
+  animation: fronte $speed ease;
+  animation-fill-mode: backwards;
+}
+
+@mixin slide($speed) {
+  transition: top 2s ease;
+  top: 50px; /* start out at position 0 */
+}
+
+@keyframes fronte {
+  from { 
+    z-index: -100;
+    // opacity: 0.5;
+    top: -1000px;
+  }
+
+  to { 
+    z-index: 0;
+    // opacity: 1;
+    top: 50px;
+   }
+}
+
+@keyframes bounceIn {
+  0% {
+    transform: scale(0.1);
+    opacity: 0;
+  }
+  60% {
+    transform: scale(1.2);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes slidein {
+  from {
+    top: -1000px;
+    // opacity: 0;
+    z-index: -10;
+  }
+
+  to {
+    top: 50px;
+    // opacity: 1;
+    z-index: 0;
+  }
 }
 
 @mixin font($weight) {

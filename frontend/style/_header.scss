@@ -4,184 +4,50 @@ header {
   position: sticky;
   top: 0;
   width: 100%;
-  z-index: 100;
-  box-sizing: border-box;
+  line-height: 80px;
+  z-index: 200;
+  background: $header_background_color;
 
   .header__desktop {
-
     &__content {
       display: flex;
-      width: $content_width_1;
-      background-color: $header_b_color;
-      justify-content: space-between;
+      width: 100%;
       margin: 0 auto;
-
-      .left_content {
-        display: flex;
-        width: 100%;
+      justify-content: space-between;
 
         .logo {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-
           a {
             font-family: $logo_font;
-            font-size: $logo_font_size;
-            color: $nav_links_color;
-            margin-top: 7px;
-            text-transform: uppercase;
+            color: $logo_color;
+            font-size:  $logo_font_size;
           }
         }
 
-        .quicklist {
-          margin: 0 20px;
-          font-family: $nav_links_font;
-
-          ul {
-            display: flex;
-            align-items: center;
-            height: 100%;
-
-            .quicklist__has__dropdown {
-              position: relative;
-
-              .quicklist_main_link {
-                line-height: 100px;
-                padding: 10px;
-                font-weight: 600;
-                text-align: center;
-                color: $nav_links_color;
-                text-transform: uppercase;
-                font-size: $nav_links_font_size;
-              }
-
-              .quicklist__dropdown {
-                display: none;
-                position: absolute;
-                left: 0;
-                z-index: 7;
-                text-align: left;
-                top: 50px;
-                @include reveal(0.2s);
-
-                .quicklist__childlist {
-                  display: inline-block;
-                  background: $header_quicklist_b_color;
-                  text-align: left;
-                  position: relative;
-                  top: $content_gap;
-                  width: 100%;
-                  box-sizing: border-box;
-
-                  .quicklist__childlist__grid {
-                    display: -webkit-flex;
-                    display: -ms-flexbox;
-                    display: flex;
-                    align-items: flex-start;
-                    -webkit-flex-wrap: wrap;
-                    -moz-flex-wrap: wrap;
-                    -ms-flex-wrap: wrap;
-                    flex-wrap: wrap;
-                    width: $content_width_1;
-                    margin: 0 auto;
-                    padding: 30px 0;
-                    // padding-left: 370px;
-                    box-sizing: border-box;
-
-                    .quicklist__childlist__item {
-                      display: -webkit-flex;
-                      display: -ms-flexbox;
-                      display: flex;
-                      flex-direction: column;
-
-                      .quicklist__childlist__item__title {
-                        font-weight: 700;
-                        text-align: left;
-                        color: $header_quicklist_color;
-                        text-transform: uppercase;
-                        font-family: $primary_font;
-                        font-size: 1.2rem;
-                      }
-
-                      ul {
-                        display: -webkit-flex;
-                        display: -ms-flexbox;
-                        display: flex;
-                        flex-direction: column;
-
-                        li {
-                          width: 100%;
-                          padding: 3px 0;
-                          box-sizing: border-box;
-
-                          .quicklist__link {
-                            font-weight: 400;
-                            text-align: left;
-                            color: $header_quicklist_color;
-                            text-transform: uppercase;
-                            font-family: $primary_font;
-                            font-size: 1.2rem;
-                          }
-
-                          .quicklist__link:hover {
-                            color: rgb(187, 25, 25);
-                          }
-
-                          .quicklist__link:focus {
-                            color: rgb(114, 39, 39);
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-
-              .hover {
-               display: block;
-              }
-
-              .quicklist__dropdown__centered {
-                width: 100%;
-                left: 0;
-                border: 0;
-                background: none;
-                padding: 0;
-                text-align: center
-              }
-            }
-
-            .quicklist__has__dropdown__centered {
-              position: static;
-            }
-
-            // .quicklist__has__dropdown:hover .quicklist__dropdown,
-            // .quicklist__has__dropdown:focus .quicklist__dropdown {
-            //   display: block;
-            // }
-          }
-        }
-
-      }
-
-      .icons {
+      ul.icons {
         display: flex;
+        justify-content: center;
         align-items: center;
-        justify-content: space-between;
-        min-width: 150px;
-        max-width: 150px;
 
         .icon * {
           display: inline-block;
-          
         }
 
-        .icon {
-          .icon-cart {
-            width: 40px;
-            height: 40px;
+        li.icon {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          a {
+            // width: 40px;
+            // height: 40px;
+            span.icon-cart {
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              width: 40px;
+              height: 40px;
+            }
           }
+          
         }
       }
     }
@@ -286,35 +152,10 @@ Note: Beware of modifying this element as it can break the animations - you shou
       &__content {
         width: $content_width_2;
 
-        .left_content {
-
-          .logo a {
-            font-size: 2.5rem;
-          }
-
-          .quicklist {
-
-            ul {
-              .quicklist__has__dropdown {
-
-                .quicklist__dropdown {
-
-                  .quicklist__childlist {
-
-                    .quicklist__childlist__grid {
-                      width: $content_width_2;
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-
-        .icons .icon span {
-          height: 25px;
-          width: 25px;
-        }
+        //.icons .icon span {
+        //  height: 25px;
+        //  width: 25px;
+        //}
       }
     }
   }
@@ -329,11 +170,13 @@ Note: Beware of modifying this element as it can break the animations - you shou
 
     .header__desktop {
       &__content {
+        width: $content_width_1;
 
-        .icons .icon span {
-          height: 25px;
-          width: 25px;
-        }
+        //
+        //.icons .icon span {
+        //  height: 25px;
+        //  width: 25px;
+        //}
       }
     }
   }
@@ -349,10 +192,10 @@ Note: Beware of modifying this element as it can break the animations - you shou
       &__content {
         width: $content_width_1;
 
-        .icons .icon span {
-          height: 25px;
-          width: 25px;
-        }
+        //.icons .icon span {
+        //  height: 25px;
+        //  width: 25px;
+        //}
       }
     }
   }

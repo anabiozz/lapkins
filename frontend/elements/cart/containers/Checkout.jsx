@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import Input from '../../common/components/input/Input'
-import Button from '../../common/components/button';
+import Input from '../../common/components/Input'
+import Button from '../../common/components/Button';
 import { loadCart } from '../actions';
 import { Link } from 'react-router-dom';
-import Breadcrumbs from '../../common/components/breadcrumbs';
+import Breadcrumbs from '../../common/components/Breadcrumbs';
 
 class Checkout extends Component {
 

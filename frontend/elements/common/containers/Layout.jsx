@@ -6,8 +6,8 @@ import Footer from '../components/Footer';
 
 class Layout extends React.Component {
 	render() {
-		const { user } = this.props
-		console.log('RENDER <Layout>')
+		const { user } = this.props;
+		console.log('RENDER <Layout>');
 
 		const childrenWithProps = React.Children.map(this.props.children, (child) => React.cloneElement(child));
 		return <div>

@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import * as actions from '../actions';
 import { connect } from 'react-redux';
-import Breadcrumbs from '../../common/components/breadcrumbs';
+import Breadcrumbs from '../../common/components/Breadcrumbs';
 import Loader from '../../common/components/Loader';
 import config from '../../../config';
 import PropTypes from 'prop-types';

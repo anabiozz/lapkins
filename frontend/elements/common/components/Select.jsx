@@ -1,5 +1,5 @@
-import React from 'react'
-import PropTypes from 'prop-types'
+import React from 'react';
+import PropTypes from 'prop-types';
 
 const Select = (props) => {
   const {
@@ -9,7 +9,7 @@ const Select = (props) => {
     handleChange,
     placeholder,
     options,
-  } = props
+  } = props;
 
   return (
    <div className="select-box">
@@ -24,7 +24,7 @@ const Select = (props) => {
       </select>
     </div> 
   )
-}
+};
 
 Select.propTypes = {
   error: PropTypes.bool.isRequired,
@@ -34,8 +34,8 @@ Select.propTypes = {
   title: PropTypes.string.isRequired,
   placeholder: PropTypes.string.isRequired,
   options: PropTypes.array.isRequired,
-}
+};
 
-export default Select
+export default Select;
 
 

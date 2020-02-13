@@ -18,9 +18,9 @@ hydrate(
 			<Router location={state.path} >
 				<App />
 			</Router>
-		</Provider>,
+		</Provider>
 	</CookiesProvider>,
-	document.getElementById('root')
+	document.querySelector(".root")
 );
 
 if (module.hot) {

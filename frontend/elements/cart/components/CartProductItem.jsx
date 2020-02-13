@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from "prop-types";
 import config from '../../../config';
-import Counter from '../../common/components/counter';
+import Counter from '../../common/components/Counter';
 
 const CartProductItem = ({ addedItem, removeProductFromCart, increaseCartItem, decreaseCartItem }) => {
 

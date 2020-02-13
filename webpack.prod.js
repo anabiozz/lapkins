@@ -1,7 +1,7 @@
-var path = require('path');
-var webpack = require('webpack');
-var CompressionPlugin = require('compression-webpack-plugin');
-const coreUrl = process.env.CORE_URL ? process.env.CORE_URL : '/'
+const path = require('path');
+const webpack = require('webpack');
+const CompressionPlugin = require('compression-webpack-plugin');
+const coreUrl = process.env.CORE_URL ? process.env.CORE_URL : '/';
 
 module.exports = {
 	entry: './frontend',

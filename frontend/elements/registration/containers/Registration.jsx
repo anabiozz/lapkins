@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Breadcrumbs from '../../common/components/breadcrumbs';
+import Breadcrumbs from '../../common/components/Breadcrumbs';
 
 export default class Registration extends Component {
 	render() {
