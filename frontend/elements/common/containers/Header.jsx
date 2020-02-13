@@ -30,7 +30,7 @@ class Header extends React.Component {
         });
       }, 1000);
      
-      this.props.cartReset()
+      this.props.cartReset();
     }
 
     return(
