@@ -65,8 +65,8 @@ const Quicklist = () => {
 				</li>
 			</ul>
 		</li>
-		<li><a href="#">Link 4</a></li>
-		<li><a href="#">Link 5</a></li>
+		<li><NavLink className="quicklist_main_link" to="/wallart">Link 1</NavLink></li>
+		<li><NavLink className="quicklist_main_link" to="/wallart">Link 2</NavLink></li>
 	</ul>
 </nav>
 };

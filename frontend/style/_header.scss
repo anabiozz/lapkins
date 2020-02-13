@@ -5,41 +5,49 @@ header {
   top: 0;
   width: 100%;
   line-height: 80px;
-  z-index: 100;
-  background-color: $header_background_color;
+  z-index: 200;
+  background: $header_background_color;
 
   .header__desktop {
-
     &__content {
       display: flex;
-      //background-color: $header_background_color;
+      width: 100%;
       margin: 0 auto;
       justify-content: space-between;
 
         .logo {
-          //display: grid;
           a {
             font-family: $logo_font;
             color: $logo_color;
             font-size:  $logo_font_size;
-            //margin: auto;
-            //display: block;
           }
         }
 
       ul.icons {
+        display: flex;
+        justify-content: center;
+        align-items: center;
 
         .icon * {
           display: inline-block;
         }
 
         li.icon {
-          //line-height: 100px;
-          width: 40px;
-          height: 40px;
-          .icon-cart {
-
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          a {
+            // width: 40px;
+            // height: 40px;
+            span.icon-cart {
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              width: 40px;
+              height: 40px;
+            }
           }
+          
         }
       }
     }
