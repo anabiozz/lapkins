@@ -2,12 +2,12 @@
 nav {
   width: 100%;
   line-height: 50px;
-  background: $quicklist_background_color;
+  background: $second_color;
   position: relative;
   z-index: 60;
 
   ul.nav {
-    background: $quicklist_background_color;
+    background: $second_color;
     margin: 0 auto;
     display: flex;
 
@@ -16,9 +16,11 @@ nav {
       padding-right: 50px;
 
       a.quicklist_main_link {
-        font-weight: 600;
+        font-weight: bold;
         text-transform: uppercase;
         color: #fff;
+        font-family: $quicklist_links_font;
+        font-size:  $quicklist_links_font_size;
       }
 
       ul {
@@ -27,18 +29,23 @@ nav {
         top: 50px;
         left: 0;
         background: #fff;
+        -webkit-box-shadow: 0px 3px 5px -1px rgba(0,0,0,0.47);
+        -moz-box-shadow: 0px 3px 5px -1px rgba(0,0,0,0.47);
+        box-shadow: 0px 3px 5px -1px rgba(0,0,0,0.47);
 
         li {
           margin: 0 auto;
+          line-height: 40px;
 
           a {
-            font-size: 1.15rem;
-            color: $main_black_color;
             width: 100%;
+            color: $main_black_color;
+            font-family: $quicklist_links_font;
+            font-size:  $quicklist_links_font_size;
           }
 
           a:hover {
-            color: #2e948b;
+            color: $second_color;
           }
         }
       }
@@ -69,7 +76,7 @@ nav {
     content: " ";
     width: 0;
     height: 0;
-    top: 50%;
+    top: 45%;
     vertical-align: middle;
     border-top: 4px solid;
     border-right: 4px solid transparent;
@@ -126,7 +133,7 @@ nav {
   }
 
   100% {
-    line-height: 50px;
+    line-height: 40px;
   }
 }
 

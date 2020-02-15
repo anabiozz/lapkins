@@ -13,7 +13,7 @@ import {
 
 class Products extends Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
       redirect: false
     }
@@ -31,14 +31,14 @@ class Products extends Component {
   }
 
   componentDidMount() {
-    const { getProducts, match } = this.props
+    const { getProducts, match } = this.props;
     getProducts(config.productTypes[match.params.categoryType])
   }
 
   render() {
-    const { items, errors, fetching, match } = this.props
+    const { items, errors, fetching, match } = this.props;
 
-    console.log('RENDER <Products>')
+    console.log('RENDER <Products>');
 
     console.log(items);
 

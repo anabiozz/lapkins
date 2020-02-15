@@ -4,6 +4,7 @@ import { slide as Menu } from 'react-burger-menu';
 import { connect } from 'react-redux';
 import { cartReset } from '../../cart/actions';
 import Icons from "../components/Icons";
+import Search from "../components/Search";
 
 class Header extends React.Component {
   constructor(props) {
@@ -50,6 +51,7 @@ class Header extends React.Component {
               <div className="logo">
                 <NavLink to="/">Lapkin's Home</NavLink>
               </div>
+              <Search/>
               <Icons/>
             </div>
           </div>

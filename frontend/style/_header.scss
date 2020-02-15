@@ -6,6 +6,7 @@ header {
   width: 100%;
   line-height: 80px;
   z-index: 200;
+  text-transform: uppercase;
   background: $header_background_color;
 
   .header__desktop {
@@ -37,8 +38,6 @@ header {
           justify-content: center;
           align-items: center;
           a {
-            // width: 40px;
-            // height: 40px;
             span.icon-cart {
               display: flex;
               justify-content: center;

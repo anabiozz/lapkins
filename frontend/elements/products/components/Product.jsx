@@ -20,16 +20,16 @@ const Product = ({ product, imgUrl, productType }) => {
         <div className="product__info__desc">{product.decription}</div>
         <div className="product__info__price">
           <span>от {product.price} руб.</span>
-          <img className="to__favorites" src={`data:image/svg+xml;base64,${config.heart}`} />
+          <img alt="img" className="to__favorites" src={`data:image/svg+xml;base64,${config.heart}`} />
           </div>
       </div>
     </div>
   )
-}
+};
 
 Product.propTypes = {
   product: PropTypes.shape(productProp).isRequired,
   imgUrl: PropTypes.string.isRequired,
-}
+};
 
 export default Product

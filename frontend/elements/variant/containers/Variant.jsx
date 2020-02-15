@@ -108,11 +108,7 @@ export class Variant extends Component {
 
     return (
       <div className="product__description">
-        <section className="search_content">
-          <div className="search_wrapper">
-            <Breadcrumbs />
-          </div>
-        </section>
+        <Breadcrumbs />
         <div className="product__description__content">
           {
             fetching && <Loader />
