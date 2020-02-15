@@ -44,10 +44,8 @@ class Products extends Component {
 
     return (
       <div className="products__catalog">
-        <section className="search_content">
-          <div className="search_wrapper">
-            <Breadcrumbs />
-          </div>
+        <section className="breadcrumbs_wrapper">
+          <Breadcrumbs />
         </section>
         {/* <div className="catalog">
           <ul className="cat-nav dt102_1">
@@ -120,12 +118,12 @@ Products.propTypes = {
   errors: PropTypes.string.isRequired,
   fetching: PropTypes.bool.isRequired,
   getProducts: PropTypes.func.isRequired,
-}
+};
 
 const mapStateToProps = state => ({
   items: state.products.items,
   errors: state.products.errors,
   fetching: state.products.fetching,
-})
+});
 
 export default connect(mapStateToProps, { ...actions })(Products);

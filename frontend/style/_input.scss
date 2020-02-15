@@ -7,15 +7,15 @@
   $input__height: 40px;
 
 	.input {
-    width: 100%;
-    box-sizing: border-box;
-    color: $main_black_color;
-    padding-left: 13px;
-    cursor: pointer;
-    position: relative;
-    font-size: 1.2rem;
-    line-height: $input__height;
-    height: $input__height;
-    outline-color: $element_background_color;
+      width: 100%;
+      box-sizing: border-box;
+      color: $main_black_color;
+      padding-left: 13px;
+      cursor: pointer;
+      position: relative;
+      font-size: 1.2rem;
+      line-height: $input__height;
+      height: $input__height;
+      outline-color: $input_background_color;
 	}
 }

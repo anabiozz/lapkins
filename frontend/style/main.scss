@@ -6,16 +6,17 @@
 .box-1 { background-color: #FF6766; }
 .box-2 { background-color: #3C3C3C; }
 
-$primary_font: 'Open Sans Condensed', sans-serif;
-$logo_font: 'Playfair Display', serif;
-$quicklist_font: 'Roboto', sans-serif; // 'Lato', sans-serif 'Roboto', sans-serif 'Roboto Mono', monospace
+$primary_font: 'Montserrat', sans-serif; // 'Oswald', sans-serif
+$logo_font: 'Oswald', sans-serif; // 'Roboto Mono', monospace; 'Montserrat', sans-serif;
+$quicklist_font: 'Fira Code', monospace; // 'Lato', sans-serif 'Roboto Mono', monospace
+$footer_font: 'Fira Code', monospace;
 
 $product_background_color: #ece8da;
 $main_black_color: #3d3d3d;
 $nav_links_color: #3d3d3d;
 $main_color: #464646;
 $logo_color: #181515;
-$second_color: #838164; // #4120ff // #c3cbcb 003960 1f4b83 2c5683 225c83 838072
+$second_color: #fff; // #4120ff // #c3cbcb 003960 1f4b83 2c5683 225c83 838072 838164
 
 $scrollbar_width: 10px;
 $scrollbar_track_color: #fff;
@@ -30,7 +31,7 @@ $header_background_color: #fff;
 // ******************* QUICKLIST ********************** //
 
 //$quicklist_background_color: $second_color;
-$quicklist_color: $product_background_color;
+$quicklist_color: $main_black_color;
 $quicklist_dropdown_color: $nav_links_color;
 $quicklist_dropdown_background_color: #fff; //#b8b7ad
 $quicklist_links_font: $quicklist_font;
@@ -38,11 +39,25 @@ $quicklist_links_font_size: 0.7rem;
 
 // ******************* ELEMENTS ********************** //
 
-$element_width: 350px;
-$element_height: 60px;
-$element_font_size: 1.2rem;
-$element_text_transform: uppercase;
-$element_background_color: #66A182;
+$select_width: 180px;
+$select_height: 40px;
+$select_font_size: 0.7rem;
+$select_text_transform: uppercase;
+
+
+$button_width: 180px;
+$button_height: 40px;
+$button_background_color: $main_black_color;
+$button_font_size: 0.7rem;
+$button_text_transform: uppercase;
+
+$checkout_background_color: $main_black_color;
+
+$counter_background_color: $main_black_color;
+
+$input_background_color: $main_black_color;
+
+
 
 // ******************* CONTENT ********************** //
 

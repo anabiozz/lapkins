@@ -17,12 +17,12 @@ import {
   matchProp,
 } from '../../../utils/props'
 
-const locale = new Locale('RU').get()
+const locale = new Locale('RU').get();
 
 export class Variant extends Component {
 
   constructor(props) {
-    super(props)
+    super(props);
 
     const { cookies } = this.props;
 
@@ -43,10 +43,10 @@ export class Variant extends Component {
     
     // this.props.cookies.remove('cartSession')
 
-    this.props.getVariant(Number(this.props.match.params.productID.split("-")[0]), "")
+    this.props.getVariant(Number(this.props.match.params.productID.split("-")[0]), "");
 
     if (!this.state.cartSession) {
-      this.props.createCartSession()
+      this.props.createCartSession();
       this.props.cookies.set('cartSession', this.props.cartSession);
     } else {
 
@@ -68,13 +68,13 @@ export class Variant extends Component {
 
     console.log(product_id);
     
-    this.props.reset()
+    this.props.reset();
     this.props.getVariant(product_id, value)
-  }
+  };
   
   addToCart = (item) => {
 
-    if (this.state.select.value == "") {
+    if (this.state.select.value === "") {
       this.setState(prevState => ({
         select: {
           ...prevState.select,
@@ -91,7 +91,7 @@ export class Variant extends Component {
           }
         }));
       
-      }, 1000)
+      }, 1000);
       return
     } 
 
@@ -100,7 +100,7 @@ export class Variant extends Component {
     } else {
       this.props.increaseCartItemQuantity(item.variant_id, this.state.cartSession)
     }
-  }
+  };
 
   render() {
 
@@ -108,7 +108,11 @@ export class Variant extends Component {
 
     return (
       <div className="product__description">
-        <Breadcrumbs />
+
+        <section className="breadcrumbs_wrapper">
+          <Breadcrumbs />
+        </section>
+
         <div className="product__description__content">
           {
             fetching && <Loader />
@@ -130,7 +134,7 @@ export class Variant extends Component {
                     {
                       item.images.map((image, index) => {
                         return <div key={index}>
-                            <img src={`${config.imagePath.dev_path_full}${image}.jpg`} />
+                            <img alt="img" src={`${config.imagePath.dev_path_full}${image}.jpg`} />
                             <p className="legend">Legend {index}</p>
                         </div>
                       })
@@ -141,7 +145,16 @@ export class Variant extends Component {
                 <div className="product__description__block">
 
                   <div className="information">
+
                     <div className="description">{item.decription}</div>
+
+                    <div className="price">
+                      {
+                        this.state.select.value === ""
+                          ? "от " + item.price_override + " руб."
+                          : item.price_override + " руб."
+                      }
+                    </div>
 
                     <table className="categories">
                       <tbody>
@@ -168,34 +181,24 @@ export class Variant extends Component {
                       </tbody>
                     </table>
 
-                    <div className="price">
-                      {
-                        this.state.select.value == "" 
-                        ? "от " + item.price_override + " руб." 
-                        : item.price_override + " руб."
-                      }
+                    <div className="size_select">
+                      <Select
+                        error={this.state.select.error}
+                        placeholder="Выбери размер"
+                        name="value"
+                        title="Выбери размер"
+                        options={item.sizes}
+                        value={this.state.select.value}
+                        handleChange={(e) => this.handleSelect(e, item.product_id)} />
                     </div>
 
-                    <div className="elements">
-
-                      <div className="size_select">
-                        <Select
-                          error={this.state.select.error}
-                          placeholder="Выбери размер"
-                          name="value"
-                          title="Выбери размер"
-                          options={item.sizes}
-                          value={this.state.select.value}
-                          handleChange={(e) => this.handleSelect(e, item.product_id)} />
-                      </div>
-
-                      <div className="add_to_cart">
-                        <Button
-                          title="Добавить в корзину"
-                          type="primary"
-                          action={() => this.addToCart(item)} />
-                      </div>
+                    <div className="add_to_cart">
+                      <Button
+                        title="Добавить в корзину"
+                        type="primary"
+                        action={() => this.addToCart(item)} />
                     </div>
+
                   </div>
                 </div>
               </Fragment>

@@ -3,18 +3,23 @@
 	align-items: center;
 	line-height: 40px;
 
+
 	&__box {
+		border: 1px solid $main_black_color;
+
 		&__container {
 			display: flex;
 			align-items: center;
 			border-radius: 10px;
 
 			input#search {
-				width: 250px;
+				width: 300px;
 				line-height: 40px;
-				//padding-left: 15px;
+				padding-left: 15px;
 				border: none;
 				background-color: #fff;
+				font-family: $quicklist_links_font;
+				font-size:  $quicklist_links_font_size;
 
 				::-webkit-input-placeholder {
 					color: #65737e;
@@ -37,7 +42,7 @@
 
 			button.icon {
 				border: none;
-				background: #65737e;
+				background: $main_black_color;
 				width: 50px;
 				color: #fff;
 				font-size: 10pt;

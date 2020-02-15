@@ -73,7 +73,7 @@ body {
 }
 
 ::selection {
-  background: $second_color;
+  background: $main_black_color;
   color: #fff;
   text-shadow: none;
 }
@@ -81,7 +81,7 @@ body {
 .root {
   display: flex;
   flex-direction: column;
-  //letter-spacing: 0.4px;
+  letter-spacing: 0.4px;
   min-height: 100vh;
   //max-width: 100vw;
   @include font(400);
@@ -96,20 +96,16 @@ body {
 
 @media all and (max-width: 1250px) {
   .root {
-    section.search_content {
-      .search_wrapper {
-        width: $content_width_2;
-      }
+    section.breadcrumbs_wrapper {
+      width: $content_width_2;
     }
   }
 }
 
 @media all and (max-width: 1575px) and (min-width: 1250px) {
   .root {
-    section.search_content {
-      .search_wrapper {
-        width: $content_width_2;
-      }
+    section.breadcrumbs_wrapper {
+      width: $content_width_2;
     }
   }
 }
@@ -117,10 +113,8 @@ body {
 
 @media all and (max-width: 1930px) and (min-width: 1575px) {
   .root {
-    section.search_content {
-      .search_wrapper {
-        width: $content_width_1;
-      }
+    section.breadcrumbs_wrapper {
+      width: $content_width_1;
     }
   }
 }

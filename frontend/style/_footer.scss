@@ -8,9 +8,10 @@ footer {
 	//z-index: 99;
 	bottom: 0;
 	flex-direction: row;
-	font-size: 1.05rem;
+	font-size: 0.8rem;
 	background: $second_color;
-	color: #fff;
+	color: $main_black_color;
+	font-family: $footer_font;
 
 	.footer__content {
 		display: flex;
@@ -25,8 +26,36 @@ footer {
 			flex-direction: column;
 
 			a {
-				color: #fff;
+				color: $main_black_color;
 			}
+		}
+	}
+}
+
+@media all and (max-width: 1575px) and (min-width: 1250px) {
+	footer {
+		width: 100%;
+		.footer__content {
+			width: $content_width_2;
+		}
+	}
+}
+
+
+@media all and (max-width: 1930px) and (min-width: 1575px) {
+	footer {
+		width: 100%;
+		.footer__content {
+			width: $content_width_1;
+		}
+	}
+}
+
+@media all and (max-width: 2560px) and (min-width: 1930px) {
+	footer {
+		width: 100%;
+		.footer__content {
+			width: $content_width_1;
 		}
 	}
 }

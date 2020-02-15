@@ -4,7 +4,7 @@ header {
   position: sticky;
   top: 0;
   width: 100%;
-  line-height: 80px;
+  line-height: 70px;
   z-index: 200;
   text-transform: uppercase;
   background: $header_background_color;
@@ -24,29 +24,37 @@ header {
           }
         }
 
-      ul.icons {
+
+      .right_header_wrapper {
         display: flex;
-        justify-content: center;
-        align-items: center;
 
-        .icon * {
-          display: inline-block;
-        }
+        @import "search";
 
-        li.icon {
+        ul.icons {
           display: flex;
           justify-content: center;
           align-items: center;
-          a {
-            span.icon-cart {
-              display: flex;
-              justify-content: center;
-              align-items: center;
-              width: 40px;
-              height: 40px;
-            }
+          margin-left: 50px;
+
+          .icon * {
+            display: inline-block;
           }
-          
+
+          li.icon {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            a {
+              span.icon-cart {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 40px;
+                height: 40px;
+              }
+            }
+
+          }
         }
       }
     }

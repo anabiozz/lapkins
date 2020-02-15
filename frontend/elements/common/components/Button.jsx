@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 const Button = ({ action, type, title }) => {
 
   return (
-    <div className="btn btn-three" onClick={action}>
+    <div className="btn btn-content" onClick={action}>
       <span>{title}</span>
     </div>
   )

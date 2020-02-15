@@ -1,23 +1,21 @@
-.box-3 { background-color: $element_background_color; }
-
 .btn {
-	line-height: $element_height;
-	height: $element_height;
+	width: $button_width;
+	height: $button_height;
+	line-height: $button_height;
 	text-align: center;
-	width:$element_width;
-	font-size: $element_font_size;
+	font-size: $button_font_size;
 	cursor: pointer;
-	background-color: $element_background_color;
-	text-transform: $element_text_transform;
+	background-color: $button_background_color;
+	text-transform: $button_text_transform;
 }
 
-.btn-three {
+.btn-content {
 	color: #FFF;
 	transition: all 0.5s;
 	position: relative;
 }
 
-.btn-three::before {
+.btn-content::before {
 	content: '';
 	position: absolute;
 	top: 0;
@@ -29,12 +27,12 @@
 	transition: all 0.5s;
 }
 
-.btn-three:hover::before {
-	opacity: 0 ;
+.btn-content:hover::before {
+	opacity: 0;
 	transform: scale(0.5,0.5);
 }
 
-.btn-three::after {
+.btn-content::after {
 	content: '';
 	position: absolute;
 	top: 0;
@@ -48,7 +46,7 @@
 	box-sizing: border-box;
 }
 
-.btn-three:hover::after {
+.btn-content:hover::after {
 	opacity: 1;
 	transform: scale(1,1);
 }

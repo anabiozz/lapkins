@@ -48,11 +48,16 @@ class Header extends React.Component {
 
           <div className="header__desktop">
             <div className="header__desktop__content">
+
               <div className="logo">
                 <NavLink to="/">Lapkin's Home</NavLink>
               </div>
-              <Search/>
-              <Icons/>
+
+              <div className="right_header_wrapper">
+                <Search/>
+                <Icons/>
+              </div>
+
             </div>
           </div>
 
