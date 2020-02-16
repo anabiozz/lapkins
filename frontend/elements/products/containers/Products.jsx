@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
+import PropTypes, {string} from 'prop-types';
 import Product from '../components/Product.jsx';
 import Breadcrumbs from '../../common/components/Breadcrumbs';
 import * as actions from '../actions';
@@ -15,7 +15,8 @@ class Products extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      redirect: false
+      redirect: false,
+      categoryType: this.props.categoryType,
     }
   }
 
@@ -23,16 +24,25 @@ class Products extends Component {
     return [dispatch(actions.getProducts(config.productTypes[path.substr(2)]))];
   }
 
-  componentWillReceiveProps(nextProps) {
-    const { getProducts, match } = nextProps;
-    if (match.url !== this.props.match.url) {
-      getProducts(config.productTypes[match.params.categoryType])
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.categoryType !== this.state.categoryType) {
+      const { getProducts, match, reset } = this.props;
+      reset();
+      getProducts(config.productTypes[this.state.categoryType]);
     }
   }
 
+  static getDerivedStateFromProps(nextProps, prevState){
+    if (nextProps.match.params.categoryType !== prevState.categoryType) {
+      return {categoryType : nextProps.match.params.categoryType}
+    }
+    else return null;
+  }
+
   componentDidMount() {
-    const { getProducts, match } = this.props;
-    getProducts(config.productTypes[match.params.categoryType])
+    const { getProducts, match, reset } = this.props;
+    reset();
+    getProducts(config.productTypes[match.params.categoryType]);
   }
 
   render() {
@@ -44,45 +54,11 @@ class Products extends Component {
 
     return (
       <div className="products__catalog">
+
         <section className="breadcrumbs_wrapper">
           <Breadcrumbs />
         </section>
-        {/* <div className="catalog">
-          <ul className="cat-nav dt102_1">
-            <li className="cat-nav-item dt102_li1">
-                <span className="cat-nav-item_li ">
-                  <a className="link dt102_bold">Женщинам</a> 
-                  <span className="cat-nav-cnt">226</span>
-                </span>  
-                <ul className="cat-nav cat-nav-sub dt102_2">
-                  <li className="cat-nav-item dt102_li2"> 
-                    <span className="cat-nav-item_li"> 
-                      <a className="link">Обувь</a> 
-                      <span className="cat-nav-cnt">107</span> 
-                    </span>  
-                  </li>
-                  <li className="cat-nav-item dt102_li2"> 
-                    <span className="cat-nav-item_li"> 
-                      <a className="link">Одежда</a> 
-                      <span className="cat-nav-cnt">75</span> 
-                    </span>  
-                  </li>
-                  <li className="cat-nav-item dt102_li2"> 
-                    <span className="cat-nav-item_li"> 
-                      <a className="link" >Аксессуары</a> 
-                     <span className="cat-nav-cnt">44</span> 
-                    </span>  
-                  </li>
-                  <li className="cat-nav-item dt102_li2"> 
-                    <span className="cat-nav-item_li"> 
-                      <a className="link" >Спорт</a> 
-                      <span className="cat-nav-cnt">11</span> 
-                    </span>  
-                  </li>
-                </ul>  
-            </li>
-          </ul>
-        </div> */}
+
         <div className="products">
           {
             fetching && <Loader />
@@ -96,15 +72,20 @@ class Products extends Component {
             )
           }
           {
-            items && items.length === 0 && "Данная категория товара на данный момент отсутствует."
+            !errors && items && items.length === 0 && (
+              <div style={{ marginTop: '200px' }}>
+                <span>Данная категория товара на данный момент отсутствует.</span>
+              </div>
+            )
           }
           {
-            items.map(product => (
+            !errors && items.map(product => (
               <Product
-                key={product.id} 
-                imgUrl={`${config.imagePath.dev_path_preview}${product.name}/${product.size}/1_thumb.jpg`} 
+                key={product.id}
+                imgUrl={`${config.imagePath.dev_path_preview}${product.name}/product_img/1_thumb.jpg`}
                 product={product}
-                productType={"/" + match.params.category+ "/" +match.params.categoryType} />
+                productType={"/" + match.params.category+ "/" +match.params.categoryType}
+              />
             ))
           }
         </div>
@@ -118,6 +99,7 @@ Products.propTypes = {
   errors: PropTypes.string.isRequired,
   fetching: PropTypes.bool.isRequired,
   getProducts: PropTypes.func.isRequired,
+  reset: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => ({

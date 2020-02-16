@@ -25,11 +25,8 @@ class Home extends React.Component {
 	render() {
 
 		return (
-			<div
-				style={this.state.elements.length === 3 ? {} : {display: 'none'}}
-				className="gallery">
-
-				<div className="gallery">
+			//{this.state.elements.length === 3 ? {} : {display: 'none'}}
+			<div className="gallery">
 
 					<NavLink to="/new" className="gallery__item gallery__item__1">
 						<img
@@ -62,9 +59,7 @@ class Home extends React.Component {
 						</div>
 					</NavLink>
 
-				</div>
 			</div>
-
 		)
 	}
 }

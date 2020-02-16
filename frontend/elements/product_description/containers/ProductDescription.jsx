@@ -19,7 +19,7 @@ import {
 
 const locale = new Locale('RU').get();
 
-export class Variant extends Component {
+export class ProductDescription extends Component {
 
   constructor(props) {
     super(props);
@@ -40,19 +40,22 @@ export class Variant extends Component {
   }
 
   componentDidMount() {
+
+    let { reset, getVariant, match, createCartSession, cookies, cartSession } = this.props;
+
+    reset();
     
     // this.props.cookies.remove('cartSession')
 
-    this.props.getVariant(Number(this.props.match.params.productID.split("-")[0]), "");
+    getVariant(Number(match.params.productID.split("-")[0]), "");
 
     if (!this.state.cartSession) {
-      this.props.createCartSession();
-      this.props.cookies.set('cartSession', this.props.cartSession);
+      createCartSession();
+      cookies.set('cartSession', cartSession);
     } else {
 
     }
-
-    console.log("cartSession", this.state.cartSession);
+    // console.log("cartSession", this.state.cartSession);
   }
 
 	handleSelect = (e, product_id) => {
@@ -66,8 +69,6 @@ export class Variant extends Component {
 			}
     }));
 
-    console.log(product_id);
-    
     this.props.reset();
     this.props.getVariant(product_id, value)
   };
@@ -106,6 +107,8 @@ export class Variant extends Component {
 
     const { item, errors, fetching } = this.props;
 
+    console.log("item.attributes", item.attributes)
+
     return (
       <div className="product__description">
 
@@ -129,6 +132,7 @@ export class Variant extends Component {
             Object.keys(item).length > 0 &&
             (
               <Fragment>
+
                 <div className="product__description__image">
                   <Carousel axis="horizontal">
                     {
@@ -143,7 +147,6 @@ export class Variant extends Component {
                 </div>
 
                 <div className="product__description__block">
-
                   <div className="information">
 
                     <div className="description">{item.decription}</div>
@@ -159,22 +162,10 @@ export class Variant extends Component {
                     <table className="categories">
                       <tbody>
                         {
-                          Object.keys(item.attributes) && Object.keys(item.attributes).map((category, i) => (
+                          item.attributes && item.attributes.map((attr, i) => (
                             <tr key={i}>
-                              <td className="pi_table_td">{locale.get(category)}</td>
-                              <td className="pi_table_td">
-                                {
-                                  locale.has(Array.isArray(item.attributes[category])
-                                  ? item.attributes[category].join(", ") 
-                                  : item.attributes[category])
-                                  ? locale.get(Array.isArray(item.attributes[category]) 
-                                  ? item.attributes[category].join(", ") 
-                                  : item.attributes[category])
-                                  : Array.isArray(item.attributes[category]) 
-                                  ? item.attributes[category].join(", ") 
-                                  : item.attributes[category] 
-                                }
-                              </td>
+                              <td className="pi_table_td">{JSON.parse(attr).key}</td>
+                              <td className="pi_table_td">{JSON.parse(attr).value}</td>
                             </tr>
                           ))
                         }
@@ -210,15 +201,15 @@ export class Variant extends Component {
   }
 }
 
-Variant.propTypes = {
-  item: PropTypes.PropTypes.shape(productProp).isRequired,
+ProductDescription.propTypes = {
+  item: PropTypes.shape(productProp).isRequired,
   errors: PropTypes.string.isRequired,
   fetching: PropTypes.bool.isRequired,
   getVariant: PropTypes.func.isRequired,
   reset: PropTypes.func.isRequired,
   match: PropTypes.shape(matchProp).isRequired,
   addItemToCart: PropTypes.func.isRequired,
-}
+};
 
 const mapStateToProps = (state, ownProps) => ({
   item: state.variant.item,
@@ -226,6 +217,7 @@ const mapStateToProps = (state, ownProps) => ({
   fetching: state.variant.fetching,
   cookies: ownProps.cookies,
   cartSession: state.cart.cartSession,
-})
+  reset: state.variant.reset,
+});
 
-export default withCookies(connect(mapStateToProps, { ...actions, addItemToCart, increaseCartItemQuantity, createCartSession })(Variant))
+export default withCookies(connect(mapStateToProps, { ...actions, addItemToCart, increaseCartItemQuantity, createCartSession })(ProductDescription))

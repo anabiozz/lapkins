@@ -4,26 +4,26 @@ import {
   GET_PRODUCTS_RESET,
   GET_PRODUCTS_ERROR,
   GET_PRODUCTS_SUCCESS,
-} from '../constants'
+} from '../constants';
 
 const initialState = {
   items: [],
   errors: "",
   fetching: false,
-}
+};
 
 export default function products(state = initialState, action) {
   switch (action.type) {
     case GET_PRODUCTS_REQUEST:
-      return { ...state, fetching: true }
+      return { ...state, fetching: true };
     case GET_PRODUCTS_SUCCESS:
-      return Object.assign({}, state, { items: action.response ? action.response : [], fetching: false, errors: '' })
+      return Object.assign({}, state, { items: action.response ? action.response : [], fetching: false, errors: '' });
     case GET_PRODUCTS_ERROR:
-      return { ...state, errors: action.error, fetching: false }
+      return { ...state, errors: action.error, fetching: false };
     case GET_PRODUCTS_RESET:
-      return { ...state, items: [] }
+      return { ...state, items: [] };
     case DISMISS_PRODUCTS_ERROR:
-      return { ...state, errors: '' }
+      return { ...state, errors: '' };
     default:
       return state
   }

@@ -88,6 +88,6 @@ const mapStateToProps = (state, ownProps) => ({
   total: state.cart.total,
   cookies: ownProps.cookies,
   cartSession: state.cart.cartSession,
-})
+});
 
 export default withCookies(connect(mapStateToProps, { ...actions })(Cart));

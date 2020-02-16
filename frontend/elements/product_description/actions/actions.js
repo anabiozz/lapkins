@@ -12,12 +12,12 @@ import fetch from 'isomorphic-fetch';
 const receiveSuccess = response => ({
   type: GET_VARIANT_SUCCESS,
   response,
-})
+});
 
 const receiveFail = error => ({
   type: GET_VARIANT_ERROR,
   error,
-})
+});
 
 export function reset() {
   return dispatch => dispatch({
@@ -34,7 +34,7 @@ export function dismissError() {
 export const getVariant = (variant_id, size) => (dispatch) => {
   dispatch({
     type: GET_VARIANT_REQUEST,
-  })
+  });
 
   fetch(`${config.apiDomain}/api/get-variant?variant_id=${variant_id}&size=${size}`)
     .then((response) => {
@@ -46,5 +46,5 @@ export const getVariant = (variant_id, size) => (dispatch) => {
     .then(response => response.json())
     .then(response => dispatch(receiveSuccess(response)))
     .catch(error => dispatch(receiveFail(error)))
-}
+};
 

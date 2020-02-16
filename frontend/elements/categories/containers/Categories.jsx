@@ -17,26 +17,26 @@ class Categories extends Component {
     this.props.getCategories(config.productTypes[this.props.match.params.category])
 	}
 
-	componentWillReceiveProps(nextProps) {
-    const { getCategories, match } = nextProps;
-    if (match.url !== this.props.match.url) {
-      getCategories(config.productTypes[match.params.category])
-    }
-  }
+	// componentWillReceiveProps(nextProps, nextContent) {
+  //   const { getCategories, match } = nextProps;
+  //   if (match.url !== this.props.match.url) {
+  //     getCategories(config.productTypes[match.params.category])
+  //   }
+  // }
 
 	render() {
 
 		const { item, fetching, errors } = this.props;
 
-		console.log('RENDER <Categories>')
+		console.log('RENDER <Categories>');
 
 		return (
 			<div className="product__categories">
-				<section className="search_content">
-          <div className="search_wrapper">
-            <Breadcrumbs />
-          </div>
-        </section>
+
+				<section className="breadcrumbs_wrapper">
+					<Breadcrumbs />
+				</section>
+
 				<div className="product__categories__content">
 					{
 						fetching && <Loader /> 
@@ -81,12 +81,12 @@ Categories.propTypes = {
   item: PropTypes.object.isRequired,
   errors: PropTypes.string.isRequired,
   fetching: PropTypes.bool.isRequired,
-}
+};
 
 const mapStateToProps = state => ({
   item: state.categories.item,
   errors: state.categories.errors,
   fetching: state.categories.fetching,
-})
+});
 
 export default connect(mapStateToProps, { ...actions })(Categories);
