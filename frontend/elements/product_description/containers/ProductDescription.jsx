@@ -15,7 +15,7 @@ import { withCookies, useCookies } from 'react-cookie';
 import {
   productProp,
   matchProp,
-} from '../../../utils/props'
+} from '../../../utils/props';
 
 const locale = new Locale('RU').get();
 
@@ -32,11 +32,12 @@ export class ProductDescription extends Component {
         error: false,
       },
       cartSession: cookies.get('cartSession') || undefined
-    }
+    };
   }
 
   static fetching ({ dispatch, path }) {
-    return [dispatch(actions.getVariant(path.split("/")[3].split("-")[0], ""))];
+    console.log("path", path);
+    return [dispatch(actions.getVariant(path, ""))];
   }
 
   componentDidMount() {
@@ -47,7 +48,7 @@ export class ProductDescription extends Component {
     
     // this.props.cookies.remove('cartSession')
 
-    getVariant(Number(match.params.productID.split("-")[0]), "");
+    getVariant(Number(match.params.productID));
 
     if (!this.state.cartSession) {
       createCartSession();
@@ -106,8 +107,6 @@ export class ProductDescription extends Component {
   render() {
 
     const { item, errors, fetching } = this.props;
-
-    console.log("item.attributes", item.attributes)
 
     return (
       <div className="product__description">

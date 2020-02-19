@@ -151,11 +151,11 @@ export default {
    }
   ],
   productTypes: {
-    "wallart": 1,
+    "posters-without-frame": 1,
     "stationery": 2,
     "gifts": 3, 
     "wraps": 4,
-    "posters-without-frame": 5,
+    "wallart": 5,
     "framed-posters-plastic": 6,
     "framed-posters-wood": 7,
     "postcards": 8,

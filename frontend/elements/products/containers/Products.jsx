@@ -17,14 +17,14 @@ class Products extends Component {
     this.state = {
       redirect: false,
       categoryType: this.props.categoryType,
-    }
+    };
   }
 
   static fetching ({ dispatch, path }) {
     return [dispatch(actions.getProducts(config.productTypes[path.substr(2)]))];
   }
 
-  componentDidUpdate(prevProps, prevState) {
+  componentDidUpdate(prevProps, prevState, snapshot) {
     if (prevState.categoryType !== this.state.categoryType) {
       const { getProducts, match, reset } = this.props;
       reset();
@@ -34,7 +34,7 @@ class Products extends Component {
 
   static getDerivedStateFromProps(nextProps, prevState){
     if (nextProps.match.params.categoryType !== prevState.categoryType) {
-      return {categoryType : nextProps.match.params.categoryType}
+      return {categoryType : nextProps.match.params.categoryType};
     }
     else return null;
   }
@@ -82,7 +82,7 @@ class Products extends Component {
             !errors && items.map(product => (
               <Product
                 key={product.id}
-                imgUrl={`${config.imagePath.dev_path_preview}${product.name}/product_img/1_thumb.jpg`}
+                imgUrl={`${config.imagePath.dev_path_preview}${product.article}/product_img/1_thumb.jpg`}
                 product={product}
                 productType={"/" + match.params.category+ "/" +match.params.categoryType}
               />
