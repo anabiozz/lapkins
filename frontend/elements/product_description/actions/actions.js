@@ -31,12 +31,12 @@ export function dismissError() {
   })
 }
 
-export const getVariant = (variant_id, size) => (dispatch) => {
+export const getVariant = (variant_id, size_option_id) => (dispatch) => {
   dispatch({
     type: GET_VARIANT_REQUEST,
   });
 
-  fetch(`${config.apiDomain}/api/get-variant?variant_id=${variant_id}&size=${size}`)
+  fetch(`${config.apiDomain}/api/get-variant?variant_id=${variant_id}&size_option_id=${size_option_id}`)
     .then((response) => {
       if (response.status === 200) {
         return response

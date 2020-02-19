@@ -18,7 +18,7 @@ const Select = (props) => {
         <option value="" disabled >{placeholder}</option> 
         {
           options && options.map((option, i) => (
-            <option key={i} value={option} label={option}>{option}</option>
+            <option key={option.key} value={option.key} label={option.value}>{option.value}</option>
           ))
         }
       </select>

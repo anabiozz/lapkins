@@ -48,21 +48,19 @@ export class ProductDescription extends Component {
     
     // this.props.cookies.remove('cartSession')
 
-    getVariant(Number(match.params.productID));
+    getVariant(Number(match.params.productID), 0);
 
     if (!this.state.cartSession) {
       createCartSession();
       cookies.set('cartSession', cartSession);
-    } else {
-
     }
     // console.log("cartSession", this.state.cartSession);
   }
 
 	handleSelect = (e, product_id) => {
-    const value = e.currentTarget.value;
+    let value = e.currentTarget.value;
 		const name = e.currentTarget.name;
-    
+
 		this.setState(prevState => ({
 			select: {
 				...prevState.select,
@@ -152,9 +150,7 @@ export class ProductDescription extends Component {
 
                     <div className="price">
                       {
-                        this.state.select.value === ""
-                          ? "от " + item.price_override + " руб."
-                          : item.price_override + " руб."
+                        this.state.select.value === "" ? "от " + item.price + " руб." : item.price + " руб."
                       }
                     </div>
 
@@ -163,8 +159,8 @@ export class ProductDescription extends Component {
                         {
                           item.attributes && item.attributes.map((attr, i) => (
                             <tr key={i}>
-                              <td className="pi_table_td">{JSON.parse(attr).key}</td>
-                              <td className="pi_table_td">{JSON.parse(attr).value}</td>
+                              <td className="pi_table_td">{attr.key}</td>
+                              <td className="pi_table_td">{attr.value}</td>
                             </tr>
                           ))
                         }
