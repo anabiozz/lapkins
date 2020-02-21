@@ -1,7 +1,7 @@
 import Home from './elements/home/containers/Home';
 import Products from './elements/products/containers/Products';
 import Cart from './elements/cart/containers/Cart';
-import Variant from './elements/product_description/containers/ProductDescription';
+import ProductDescription from './elements/product_description/containers/ProductDescription';
 import Checkout from './elements/cart/containers/Checkout';
 import NotFound from './elements/common/components/NotFound';
 import Categories from './elements/categories/containers/Categories';
@@ -53,19 +53,19 @@ export default [
 	},
 	{
     component: Categories,
-		path: '/:category',
+		path: '/catalog/:category',
+		exact: true,
+		strict: true,
+	},
+	{
+		component: ProductDescription,
+		path: '/catalog/:variationID/detail',
 		exact: true,
 		strict: true,
 	},
 	{
     component: Products,
-		path: '/:category/:categoryType',
-		exact: true,
-		strict: true,
-	},
-	{
-    component: Variant,
-		path: '/:category/:categoryType/:productID',
+		path: '/catalog/:category/:categoryType',
 		exact: true,
 		strict: true,
 	},

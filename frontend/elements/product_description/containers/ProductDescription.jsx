@@ -5,7 +5,6 @@ import config from '../../../config';
 import * as actions from '../actions/actions';
 import { addItemToCart, increaseCartItemQuantity, createCartSession } from '../../cart/actions';
 import Button from '../../common/components/Button';
-import Select from '../../common/components/Select';
 import Locale from '../../../utils/locale';
 import { Carousel } from 'react-responsive-carousel';
 import Breadcrumbs from '../../common/components/Breadcrumbs';
@@ -48,12 +47,20 @@ export class ProductDescription extends Component {
     
     // this.props.cookies.remove('cartSession')
 
-    getVariant(Number(match.params.productID), 0);
+    getVariant(Number(match.params.variationID), 0);
 
-    if (!this.state.cartSession) {
-      createCartSession();
-      cookies.set('cartSession', cartSession);
-    }
+    this.setState(prevState => ({
+      select: {
+        ...prevState.select,
+        value: 0,
+      }
+    }));
+
+
+    // if (!this.state.cartSession) {
+    //   createCartSession();
+    //   cookies.set('cartSession', cartSession);
+    // }
     // console.log("cartSession", this.state.cartSession);
   }
 
@@ -61,15 +68,17 @@ export class ProductDescription extends Component {
     let value = e.currentTarget.value;
 		const name = e.currentTarget.name;
 
-		this.setState(prevState => ({
-			select: {
-				...prevState.select,
-				[name]: value,
-			}
-    }));
+		if (value !== this.state.select.value) {
+      this.setState(prevState => ({
+        select: {
+          ...prevState.select,
+          [name]: value,
+        }
+      }));
 
-    this.props.reset();
-    this.props.getVariant(product_id, value)
+      this.props.reset();
+      this.props.getVariant(product_id, value)
+    }
   };
   
   addToCart = (item) => {
@@ -146,11 +155,11 @@ export class ProductDescription extends Component {
                 <div className="product__description__block">
                   <div className="information">
 
-                    <div className="description">{item.decription}</div>
+                    <div className="name">{item.name}</div>
 
                     <div className="price">
                       {
-                        this.state.select.value === "" ? "от " + item.price + " руб." : item.price + " руб."
+                        item.price + " руб."
                       }
                     </div>
 
@@ -167,15 +176,26 @@ export class ProductDescription extends Component {
                       </tbody>
                     </table>
 
-                    <div className="size_select">
-                      <Select
-                        error={this.state.select.error}
-                        placeholder="Выбери размер"
-                        name="value"
-                        title="Выбери размер"
-                        options={item.sizes}
-                        value={this.state.select.value}
-                        handleChange={(e) => this.handleSelect(e, item.product_id)} />
+                    <div className="size">
+                      <form>
+                        <div className="radio-group">
+                        {
+                          item.sizes && item.sizes.map((size, i) => (
+                            <Fragment key={i}>
+                              <input
+                                value={size.size_object.key}
+                                type="radio"
+                                id={`option-${i}`}
+                                onClick={(e) => this.handleSelect(e, item.variant_id)}
+                                name="value"
+                                checked={item.size === size.size_object.key}
+                              />
+                              <label htmlFor={`option-${i}`}>{size.size_object.value}</label>
+                            </Fragment>
+                          ))
+                        }
+                        </div>
+                      </form>
                     </div>
 
                     <div className="add_to_cart">

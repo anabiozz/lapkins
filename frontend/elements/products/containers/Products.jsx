@@ -50,8 +50,6 @@ class Products extends Component {
 
     console.log('RENDER <Products>');
 
-    console.log(items);
-
     return (
       <div className="products__catalog">
 

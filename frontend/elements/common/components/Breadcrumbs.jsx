@@ -7,24 +7,26 @@ import routes from '../../../routes';
 const locale = new Locale('RU').get();
 
 const excludePaths = [
-  '/wallart/posters-without-frame/*', 
-  '/wallart/framed-posters-wood/*', 
-  '/wallart/framed-posters-plastic/*',
-  '/stationery/postcards/*',
+  '/catalog/wallart/posters-without-frame/*',
+  '/catalog/wallart/posters-without-frame/*',
+  '/catalog/wallart/framed-posters-wood/*',
+  '/catalog/wallart/framed-posters-plastic/*',
+  '/catalog/stationery/postcards/*',
 ];
 
 const Breadcrumbs = ({ breadcrumbs }) => (
 
   <div className="breadcrumbs">
-    {breadcrumbs.map(({ breadcrumb, match }, index) => (
+    {breadcrumbs.filter(item =>  {
+      return item.breadcrumb.props.children && item.breadcrumb.props.children !== "Catalog"
+    }).map(({ breadcrumb, match }, index) => (
       <div className="bc" key={match.url}>
       {
-        <Link to={match.url || ""}>{locale.get(breadcrumb.props.children.toLowerCase())}</Link>
+        <Link to={match.url || ""}>{breadcrumb.props.children}</Link>
       }
       {
-        index < breadcrumbs.length - 1 && <span>></span>
+        index < breadcrumbs.length - 2 && <span>></span>
       }
-      
       </div>
     ))}
   </div>

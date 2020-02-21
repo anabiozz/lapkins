@@ -28,21 +28,21 @@ class Quicklist extends Component {
 						<ul>
 							<li>
 								<NavLink
-									to="/wallart/posters-without-frame"
+									to="/catalog/wallart/posters-without-frame"
 									className="quicklist__link">
 									Постеры без рамки
 								</NavLink>
 							</li>
 							<li>
 								<NavLink
-									to="/wallart/framed-posters-plastic"
+									to="/catalog/wallart/framed-posters-plastic"
 									className="quicklist__link">
 									Постеры с пластиковой рамкой
 								</NavLink>
 							</li>
 							<li>
 								<NavLink
-									to="/wallart/framed-posters-wood"
+									to="/catalog/wallart/framed-posters-wood"
 									className="quicklist__link">
 									Постеры с деревянной рамкой
 								</NavLink>
@@ -54,28 +54,28 @@ class Quicklist extends Component {
 						<ul>
 							<li>
 								<NavLink
-									to="/stationery/postcards"
+									to="/catalog/stationery/postcards"
 									className="quicklist__link">
 									Открытки
 								</NavLink>
 							</li>
 							<li>
 								<NavLink
-									to="/stationery/notebooks"
+									to="/catalog/stationery/notebooks"
 									className="quicklist__link">
 									Тетради
 								</NavLink>
 							</li>
 							<li>
 								<NavLink
-									to="/stationery/diaries"
+									to="/catalog/stationery/diaries"
 									className="quicklist__link">
 									Ежедневники
 								</NavLink>
 							</li>
 							<li>
 								<NavLink
-									to="/stationery/calendars"
+									to="/catalog/stationery/calendars"
 									className="quicklist__link">
 									Календари
 								</NavLink>

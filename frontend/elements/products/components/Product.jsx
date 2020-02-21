@@ -6,13 +6,11 @@ import {
 } from '../../../utils/props';
 
 const Product = ({ product, imgUrl, productType }) => {
-  console.log(productType);
-  console.log(product.name);
   return (
     <div className="product">
       <div className="product__image">
         <div className="product__image__inner">
-          <Link to={ `${productType}/${product.id}` }>
+          <Link to={ `/catalog/${product.id}/detail` }>
             <img src={imgUrl} alt="img" />
           </Link>
         </div>
