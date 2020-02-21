@@ -8,9 +8,6 @@ import {
 	INCREASE_CART_ITEM_REQUEST,
 	INCREASE_CART_ITEM_SUCCESS,
 	INCREASE_CART_ITEM_ERROR,
-	CREATE_CART_SESSION_SUCCESS,
-	CREATE_CART_SESSION_REQUEST,
-	CREATE_CART_SESSION_ERROR,
 } from '../constant';
 
 const initialState = {
@@ -19,7 +16,6 @@ const initialState = {
 	total: 0,
 	errors: "",
 	fetching: false,
-	cartSession: ""
 };
 
 export default function (state = initialState, action) {
@@ -28,10 +24,13 @@ export default function (state = initialState, action) {
 			return  { ...state, fetching: true };
 
 		case ADD_ITEM_TO_CART_SUCCESS:
-			return { ...state, fetching: false };
+			return { ...state, fetching: false, items: [...state.items, action.response] };
 			
 		case ADD_ITEM_TO_CART_ERROR:
 			return { ...state, errors: action.error, fetching: false };
+
+		case ADD_ITEM_TO_CART_RESET:
+			return { ...state, isProductAdded: false };
 
 		case INCREASE_CART_ITEM_REQUEST:
 			return { ...state, fetching: true };
@@ -59,18 +58,6 @@ export default function (state = initialState, action) {
 				} : addedItem;
 			});
 			return { ...state, items: newDecreaseState, total: Number(state.total) - Number(action.payload.price_override) };
-		
-		case CREATE_CART_SESSION_REQUEST:
-			return { ...state, fetching: true };
-
-		case CREATE_CART_SESSION_SUCCESS:
-			return { ...state, fetching: false, cartSession: action.response };
-
-		case CREATE_CART_SESSION_ERROR:
-			return { ...state, fetching: false, errors: action.error };
-
-		case ADD_ITEM_TO_CART_RESET:
-			return { ...state, isProductAdded: false, cartSession: "" };
 
 		default:
 			return state;

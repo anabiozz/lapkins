@@ -7,6 +7,6 @@ const Done = () => {
       <span>Заказ оформлен</span>
     </div>
   )
-}
+};
 
 export default Done

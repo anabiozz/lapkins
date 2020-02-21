@@ -3,20 +3,19 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import config from '../../../config';
 import * as actions from '../actions/actions';
-import { addItemToCart, increaseCartItemQuantity, createCartSession } from '../../cart/actions';
+import { addItemToCart, increaseCartItemQuantity } from '../../cart/actions';
 import Button from '../../common/components/Button';
-import Locale from '../../../utils/locale';
 import { Carousel } from 'react-responsive-carousel';
 import Breadcrumbs from '../../common/components/Breadcrumbs';
 import Loader from '../../common/components/Loader';
 import { withCookies, useCookies } from 'react-cookie';
+import v4 from 'uuid/v4';
 
 import {
   productProp,
   matchProp,
 } from '../../../utils/props';
-
-const locale = new Locale('RU').get();
+import Counter from "../../common/components/Counter";
 
 export class ProductDescription extends Component {
 
@@ -35,36 +34,29 @@ export class ProductDescription extends Component {
   }
 
   static fetching ({ dispatch, path }) {
-    console.log("path", path);
-    return [dispatch(actions.getVariant(path, ""))];
+    return [dispatch(actions.getVariation(path, ""))];
   }
 
   componentDidMount() {
-
-    let { reset, getVariant, match, createCartSession, cookies, cartSession } = this.props;
-
+    let { reset, getVariation, match, cookies, cartSession } = this.props;
     reset();
-    
-    // this.props.cookies.remove('cartSession')
 
-    getVariant(Number(match.params.variationID), 0);
+    // cookies.remove('cartSession');
 
-    this.setState(prevState => ({
-      select: {
-        ...prevState.select,
-        value: 0,
-      }
-    }));
-
-
-    // if (!this.state.cartSession) {
-    //   createCartSession();
-    //   cookies.set('cartSession', cartSession);
-    // }
-    // console.log("cartSession", this.state.cartSession);
+    getVariation(Number(match.params.variationID), 0);
+    if (!this.state.cartSession) {
+      const uuid = v4();
+      cookies.set('cartSession', uuid);
+      this.setState(prevState => ({
+        cartSession: {
+          ...prevState.cartSession,
+          uuid,
+        }
+      }));
+    }
   }
 
-	handleSelect = (e, product_id) => {
+	handleSelect = (e, variationID) => {
     let value = e.currentTarget.value;
 		const name = e.currentTarget.name;
 
@@ -77,43 +69,26 @@ export class ProductDescription extends Component {
       }));
 
       this.props.reset();
-      this.props.getVariant(product_id, value)
+      this.props.getVariation(variationID, value)
     }
   };
   
   addToCart = (item) => {
-
-    if (this.state.select.value === "") {
-      this.setState(prevState => ({
-        select: {
-          ...prevState.select,
-          error: true,
-        }
-      }));
-
-      setTimeout(() => {
-
-        this.setState(prevState => ({
-          select: {
-            ...prevState.select,
-            error: false,
-          }
-        }));
-      
-      }, 1000);
-      return
-    } 
-
-    if (!this.state.cartSession) {
-      this.props.addItemToCart(item.variant_id, this.state.cartSession)
-    } else {
-      this.props.increaseCartItemQuantity(item.variant_id, this.state.cartSession)
-    }
+    this.props.addItemToCart(item.variation_id, this.state.cartSession, item, item.size);
   };
 
   render() {
 
     const { item, errors, fetching } = this.props;
+
+    if (item.size && item.size !== "" && this.state.select.value === "") {
+      this.setState(prevState => ({
+        select: {
+          ...prevState.select,
+          value: item.size,
+        }
+      }));
+    }
 
     return (
       <div className="product__description">
@@ -186,7 +161,7 @@ export class ProductDescription extends Component {
                                 value={size.size_object.key}
                                 type="radio"
                                 id={`option-${i}`}
-                                onClick={(e) => this.handleSelect(e, item.variant_id)}
+                                onChange={(e) => this.handleSelect(e, item.variation_id)}
                                 name="value"
                                 checked={item.size === size.size_object.key}
                               />
@@ -220,19 +195,19 @@ ProductDescription.propTypes = {
   item: PropTypes.shape(productProp).isRequired,
   errors: PropTypes.string.isRequired,
   fetching: PropTypes.bool.isRequired,
-  getVariant: PropTypes.func.isRequired,
+  getVariation: PropTypes.func.isRequired,
   reset: PropTypes.func.isRequired,
   match: PropTypes.shape(matchProp).isRequired,
   addItemToCart: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state, ownProps) => ({
-  item: state.variant.item,
-  errors: state.variant.errors,
-  fetching: state.variant.fetching,
+  item: state.product_description.item,
+  errors: state.product_description.errors,
+  fetching: state.product_description.fetching,
   cookies: ownProps.cookies,
   cartSession: state.cart.cartSession,
-  reset: state.variant.reset,
+  reset: state.product_description.reset,
 });
 
-export default withCookies(connect(mapStateToProps, { ...actions, addItemToCart, increaseCartItemQuantity, createCartSession })(ProductDescription))
+export default withCookies(connect(mapStateToProps, { ...actions, addItemToCart, increaseCartItemQuantity })(ProductDescription))

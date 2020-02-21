@@ -26,23 +26,23 @@ const config = {
             errors: "",
             fetching: false,
         },
-        variant: {
+        variation: {
             item: {},
             errors: "",
             fetching: false,
         },
     },
-    variant: {
-        attributes: {},
-        description: "",
-        id: 0,
-        images: [],
-        name: "",
-        price_override: "",
-        product_id: 0,
-        size: "",
-        sizes: [],
-        quantity: 0,
-    }
+    // variation: {
+    //     attributes: {},
+    //     description: "",
+    //     id: 0,
+    //     images: [],
+    //     name: "",
+    //     price_override: "",
+    //     product_id: 0,
+    //     size: "",
+    //     sizes: [],
+    //     quantity: 0,
+    // }
 };
 export default config;

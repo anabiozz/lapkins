@@ -34,13 +34,13 @@ const CartProductItem = ({ addedItem, removeProductFromCart, increaseCartItem, d
 			</div>
 		</div>
 	</div>
-}
+};
 
 CartProductItem.propTypes = {
 	addedItem: PropTypes.object.isRequired,
 	removeProductFromCart: PropTypes.func.isRequired,
 	increaseCartItem: PropTypes.func.isRequired,
 	decreaseCartItem: PropTypes.func.isRequired,
-}
+};
 
 export default CartProductItem

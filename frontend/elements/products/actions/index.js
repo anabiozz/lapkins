@@ -13,11 +13,11 @@ const receiveFail = error => ({ type: GET_PRODUCTS_ERROR, error });
 export const reset = () => async dispatch => dispatch({ type: GET_PRODUCTS_RESET });
 export const dismissError = () => async dispatch => dispatch({ type: DISMISS_PRODUCTS_ERROR });
 
-export const getProducts = (type) => async dispatch => {
+export const getProducts = (subject_url) => async dispatch => {
   dispatch({
     type: GET_PRODUCTS_REQUEST,
   });
-  return fetch(`${config.apiDomain}/api/get-products?products_type=${type}`)
+  return fetch(`${config.apiDomain}/api/get-products?subject_url=${subject_url}`)
     .then((response) => {
       if (response.status === 200) {
         return response

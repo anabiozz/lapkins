@@ -1,9 +1,9 @@
 import {
-  DISMISS_GET_VARIANT_ERROR,
-  GET_VARIANT_ERROR,
-  GET_VARIANT_REQUEST,
-  GET_VARIANT_RESET,
-  GET_VARIANT_SUCCESS,
+  DISMISS_GET_VARIATION_ERROR,
+  GET_VARIATION_ERROR,
+  GET_VARIATION_REQUEST,
+  GET_VARIATION_RESET,
+  GET_VARIATION_SUCCESS,
 } from '../constants';
 
 const initialState = {
@@ -14,15 +14,15 @@ const initialState = {
 
 export default function (state = initialState, action) {
   switch (action.type) {
-    case GET_VARIANT_REQUEST:
+    case GET_VARIATION_REQUEST:
       return { ...state, fetching: true };
-    case GET_VARIANT_SUCCESS:
+    case GET_VARIATION_SUCCESS:
       return Object.assign({}, state, { item: action.response, fetching: false, errors: '' });
-    case GET_VARIANT_ERROR:
+    case GET_VARIATION_ERROR:
       return { ...state, errors: action.error, fetching: false };
-    case GET_VARIANT_RESET:
+    case GET_VARIATION_RESET:
       return { ...state, item: {} };
-    case DISMISS_GET_VARIANT_ERROR:
+    case DISMISS_GET_VARIATION_ERROR:
       return { ...state, errors: '' };
     default:
       return state

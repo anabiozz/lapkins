@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import PropTypes, {string} from 'prop-types';
+import PropTypes from 'prop-types';
 import Product from '../components/Product.jsx';
 import Breadcrumbs from '../../common/components/Breadcrumbs';
 import * as actions from '../actions';
@@ -15,20 +15,19 @@ class Products extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      redirect: false,
       categoryType: this.props.categoryType,
     };
   }
 
   static fetching ({ dispatch, path }) {
-    return [dispatch(actions.getProducts(config.productTypes[path.substr(2)]))];
+    return [dispatch(actions.getProducts(""))];
   }
 
   componentDidUpdate(prevProps, prevState, snapshot) {
     if (prevState.categoryType !== this.state.categoryType) {
       const { getProducts, match, reset } = this.props;
       reset();
-      getProducts(config.productTypes[this.state.categoryType]);
+      getProducts(match.params.categoryType);
     }
   }
 
@@ -42,11 +41,15 @@ class Products extends Component {
   componentDidMount() {
     const { getProducts, match, reset } = this.props;
     reset();
-    getProducts(config.productTypes[match.params.categoryType]);
+    getProducts(match.params.categoryType);
+  }
+
+  componentWillUnmount() {
+    this.props.reset();
   }
 
   render() {
-    const { items, errors, fetching, match } = this.props;
+    const { items, errors, fetching } = this.props;
 
     console.log('RENDER <Products>');
 
@@ -82,7 +85,6 @@ class Products extends Component {
                 key={product.id}
                 imgUrl={`${config.imagePath.dev_path_preview}${product.article}/product_img/1_thumb.jpg`}
                 product={product}
-                productType={"/" + match.params.category+ "/" +match.params.categoryType}
               />
             ))
           }

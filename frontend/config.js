@@ -150,19 +150,19 @@ export default {
       "price":50
    }
   ],
-  productTypes: {
-    "posters-without-frame": 1,
-    "postcards": 2,
-    "gifts": 3, 
-    "wraps": 4,
-    "wallart": 5,
-    "framed-posters-plastic": 6,
-    "framed-posters-wood": 7,
-    "stationery": 8,
-    "notebooks": 9,
-    "diaries": 10,
-    "calendars": 11,
-  },
+  // productTypes: {
+  //   "posters-without-frame": 1,
+  //   "framed-posters-wood": 5,
+  //   "postcards": 2,
+  //   "gifts": 3,
+  //   "wraps": 4,
+  //   "wallart": 5,
+  //   "framed-posters-plastic": 6,
+  //   "stationery": 8,
+  //   "notebooks": 9,
+  //   "diaries": 10,
+  //   "calendars": 11,
+  // },
   heart: `PHN2ZyB2aWV3Qm94PSIwIC0yOCA1MTIuMDAxIDUxMiIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBk
           PSJtMjU2IDQ1NS41MTU2MjVjLTcuMjg5MDYyIDAtMTQuMzE2NDA2LTIuNjQwNjI1LTE5Ljc5Mjk2OS03LjQzNzUtMjAuNjgzNTkz
           LTE4LjA4NTkzNy00MC42MjUtMzUuMDgyMDMxLTU4LjIxODc1LTUwLjA3NDIxOWwtLjA4OTg0My0uMDc4MTI1Yy01MS41ODIwMzIt

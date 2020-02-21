@@ -5,7 +5,7 @@ import {
   productProp,
 } from '../../../utils/props';
 
-const Product = ({ product, imgUrl, productType }) => {
+const Product = ({ product, imgUrl }) => {
   return (
     <div className="product">
       <div className="product__image">

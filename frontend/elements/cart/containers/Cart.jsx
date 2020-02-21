@@ -5,7 +5,6 @@ import PropTypes from 'prop-types';
 import CartContent from "../components/CartContent";
 import Breadcrumbs from '../../common/components/Breadcrumbs';
 import Loader from '../../common/components/Loader';
-import { withCookies } from 'react-cookie';
 
 class Cart extends Component {
 
@@ -35,11 +34,11 @@ class Cart extends Component {
 
     return (
       <div className="cart">
-        <section className="search_content">
-          <div className="search_wrapper">
-            <Breadcrumbs />
-          </div>
+
+        <section className="breadcrumbs_wrapper">
+          <Breadcrumbs />
         </section>
+
         <div className="cart__main">
           <h2 className="cart__title">ОФОРМЛЕНИЕ ЗАКАЗА</h2>
           {
@@ -54,15 +53,20 @@ class Cart extends Component {
             )
           }
           {
-            items && !items.length
-            ? <div className="cart__no__product">В вашей корзине пока нет товаров</div>
-            : <CartContent
-                items={this.props.items}
+            !errors && items && items.length === 0 && (
+              <div className="cart__no__product">В вашей корзине пока нет товаров</div>
+            )
+          }
+          {
+            !errors && items && items.length > 0 && (
+              <CartContent
+                items={items}
                 removeProductFromCart={removeProductFromCart}
                 increaseCartItem={increaseCartItem}
                 decreaseCartItem={decreaseCartItem}
                 total={total}
-              /> 
+              />
+            )
           }
         </div>
       </div>
@@ -74,8 +78,8 @@ Cart.propTypes = {
   loadCart: PropTypes.func.isRequired,
   items: PropTypes.array.isRequired,
   removeProductFromCart: PropTypes.func.isRequired,
-  addProductToCart: PropTypes.func.isRequired,
-  increaseCartItem: PropTypes.func.isRequired,
+  addItemToCart: PropTypes.func.isRequired,
+  increaseCartItemQuantity: PropTypes.func.isRequired,
   decreaseCartItem: PropTypes.func.isRequired,
   errors: PropTypes.string.isRequired,
   fetching: PropTypes.bool.isRequired,
@@ -86,8 +90,7 @@ const mapStateToProps = (state, ownProps) => ({
   errors: state.cart.errors,
   fetching: state.cart.fetching,
   total: state.cart.total,
-  cookies: ownProps.cookies,
   cartSession: state.cart.cartSession,
 });
 
-export default withCookies(connect(mapStateToProps, { ...actions })(Cart));
+export default connect(mapStateToProps, { ...actions })(Cart);

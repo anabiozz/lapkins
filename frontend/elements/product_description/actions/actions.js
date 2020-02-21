@@ -1,42 +1,42 @@
 import {
-  GET_VARIANT_REQUEST,
-  GET_VARIANT_SUCCESS,
-  GET_VARIANT_ERROR,
-  GET_VARIANT_RESET,
-  DISMISS_GET_VARIANT_ERROR,
+  GET_VARIATION_REQUEST,
+  GET_VARIATION_SUCCESS,
+  GET_VARIATION_ERROR,
+  GET_VARIATION_RESET,
+  DISMISS_GET_VARIATION_ERROR,
 } from '../constants'
 
 import config from '../../../config'
 import fetch from 'isomorphic-fetch';
 
 const receiveSuccess = response => ({
-  type: GET_VARIANT_SUCCESS,
+  type: GET_VARIATION_SUCCESS,
   response,
 });
 
 const receiveFail = error => ({
-  type: GET_VARIANT_ERROR,
+  type: GET_VARIATION_ERROR,
   error,
 });
 
 export function reset() {
   return dispatch => dispatch({
-    type: GET_VARIANT_RESET,
+    type: GET_VARIATION_RESET,
   })
 }
 
 export function dismissError() {
   return dispatch => dispatch({
-    type: DISMISS_GET_VARIANT_ERROR,
+    type: DISMISS_GET_VARIATION_ERROR,
   })
 }
 
-export const getVariant = (variant_id, size_option_id) => (dispatch) => {
+export const getVariation = (variationID, sizeOptionID) => (dispatch) => {
   dispatch({
-    type: GET_VARIANT_REQUEST,
+    type: GET_VARIATION_REQUEST,
   });
 
-  fetch(`${config.apiDomain}/api/get-variant?variant_id=${variant_id}&size_option_id=${size_option_id}`)
+  fetch(`${config.apiDomain}/api/get-variation?variation_id=${variationID}&size_option_id=${sizeOptionID}`)
     .then((response) => {
       if (response.status === 200) {
         return response

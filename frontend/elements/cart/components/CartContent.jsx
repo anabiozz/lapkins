@@ -7,10 +7,6 @@ import Button from '../../common/components/Button';
 
 const CartContent = ({ items, removeProductFromCart, increaseCartItem, decreaseCartItem, total }) => {
 
-  if (!items.length) {
-    return <div> Корзина пуста </div>
-  }
-
   console.log("total", total);
 
   return (
@@ -34,10 +30,10 @@ const CartContent = ({ items, removeProductFromCart, increaseCartItem, decreaseC
       </div>
     </div>
   )
-}
+};
 
 CartContent.propTypes = {
   items: PropTypes.array.isRequired
-}
+};
 
 export default CartContent
