@@ -153,7 +153,7 @@ export default {
   // productTypes: {
   //   "posters-without-frame": 1,
   //   "framed-posters-wood": 5,
-  //   "postcards": 2,
+  //   "postcards": 1,
   //   "gifts": 3,
   //   "wraps": 4,
   //   "wallart": 5,

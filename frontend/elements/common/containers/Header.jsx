@@ -2,7 +2,6 @@ import React, { Fragment } from 'react';
 import { NavLink } from 'react-router-dom';
 import { slide as Menu } from 'react-burger-menu';
 import { connect } from 'react-redux';
-import { cartReset } from '../../cart/actions';
 import Icons from "../components/Icons";
 import Search from "../components/Search";
 
@@ -16,23 +15,6 @@ class Header extends React.Component {
   }
 
   render() {
-
-    const { isProductAdded } = this.props;
-
-    if (isProductAdded) {
-     
-      this.setState({
-				isProductAdded: true,
-			});
-
-      setTimeout(() => {
-        this.setState({
-          isProductAdded: false,
-        });
-      }, 1000);
-     
-      this.props.cartReset();
-    }
 
     return(
       <Fragment>
@@ -72,4 +54,4 @@ const mapStateToProps = state => ({
   isProductAdded: state.cart.isProductAdded,
 });
 
-export default connect(mapStateToProps, { cartReset })(Header)
+export default connect(mapStateToProps)(Header)

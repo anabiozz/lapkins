@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Counter = ({ addedItem, increaseCartItem, decreaseCartItem }) => {
+const Counter = ({ value, minusFunc, plusFunc }) => {
 
 	let handleChange = (event) => {
 		// this.setState({quantity: event.target.value});
@@ -9,15 +9,17 @@ const Counter = ({ addedItem, increaseCartItem, decreaseCartItem }) => {
 
 	return (
 		<div className="counter">
-			<a onClick={() => decreaseCartItem(addedItem)} className="counter__minus"><span>-</span></a>
-			<input onChange={handleChange} name="counter" type="text" className="counter__input" value={addedItem.quantity} />
-			<a onClick = {() =>  increaseCartItem(addedItem)} className="counter__plus"><span>+</span></a>
+			<a onClick={minusFunc} className="counter__minus"><span>-</span></a>
+			<input onChange={handleChange} name="counter" type="text" className="counter__input" value={value} />
+			<a onClick = {plusFunc} className="counter__plus"><span>+</span></a>
 		</div>
 	)
 };
 
 Counter.propTypes = {
-  addedItem: PropTypes.object.isRequired,
+	minusFunc: PropTypes.func.isRequired,
+	plusFunc: PropTypes.func.isRequired,
+	value: PropTypes.number.isRequired,
 };
 
 export default Counter;

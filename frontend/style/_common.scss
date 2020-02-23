@@ -90,13 +90,16 @@ body {
 
   section.content {
     flex: 1;
-    margin: $content_gap 0;
+    margin: $content_gap auto;
   }
 }
 
 @media all and (max-width: 1250px) {
   .root {
     section.breadcrumbs_wrapper {
+      width: $content_width_2;
+    }
+    section.content {
       width: $content_width_2;
     }
   }
@@ -107,6 +110,9 @@ body {
     section.breadcrumbs_wrapper {
       width: $content_width_2;
     }
+    section.content {
+      width: $content_width_2;
+    }
   }
 }
 
@@ -114,6 +120,9 @@ body {
 @media all and (max-width: 1930px) and (min-width: 1575px) {
   .root {
     section.breadcrumbs_wrapper {
+      width: $content_width_1;
+    }
+    section.content {
       width: $content_width_1;
     }
   }

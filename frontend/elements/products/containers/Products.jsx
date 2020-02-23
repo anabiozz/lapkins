@@ -20,7 +20,7 @@ class Products extends Component {
   }
 
   static fetching ({ dispatch, path }) {
-    return [dispatch(actions.getProducts(""))];
+    // return [dispatch(actions.getProducts(""))];
   }
 
   componentDidUpdate(prevProps, prevState, snapshot) {
@@ -82,8 +82,8 @@ class Products extends Component {
           {
             !errors && items.map(product => (
               <Product
-                key={product.id}
-                imgUrl={`${config.imagePath.dev_path_preview}${product.article}/product_img/1_thumb.jpg`}
+                key={product.variation_id}
+                imgUrl={`${config.imagePath.dev_path_preview}${product.variation_id}/product_img/1_thumb.jpg`}
                 product={product}
               />
             ))

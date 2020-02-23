@@ -1,8 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { withCookies } from 'react-cookie';
 import { connect } from 'react-redux';
-import { createUserSessionRequest } from '../actions';
 
 class Home extends React.Component {
 	constructor(props) {
@@ -10,10 +8,6 @@ class Home extends React.Component {
 		this.state = {
 			elements: [],
 		};
-	}
-
-	componentDidMount() {
-
 	}
 
 	add() {
@@ -64,9 +58,5 @@ class Home extends React.Component {
 	}
 }
 
-const mapStateToProps = (state, ownProps) => ({
-	userSession: state.home.userSession,
-	cookies: ownProps.cookies,
-});
 
-export default withCookies(connect( mapStateToProps, { createUserSessionRequest } )(Home))
+export default connect( null )(Home)

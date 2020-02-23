@@ -26,16 +26,15 @@ class Checkout extends Component {
 	}
 
 	static fetching ({ dispatch }) {
-    return [dispatch(loadCart())];
+    // return [dispatch(loadCart())];
   }
 
 	componentDidMount() {
-		this.props.loadCart()
 	}
 
 	checkout = () => {
 
-  }
+  };
 
 	tabOnClick = (e) => {
 		if (!e.target.classList.contains('tabs__tab__active') && !this.state.isDelivery) {

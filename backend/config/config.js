@@ -26,7 +26,7 @@ const config = {
             errors: "",
             fetching: false,
         },
-        variation: {
+        product_description: {
             item: {},
             errors: "",
             fetching: false,

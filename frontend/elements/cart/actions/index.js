@@ -1,31 +1,31 @@
 import {
-  ADD_ITEM_TO_CART_RESET,
+  ADD_PRODUCT_RESET,
   DISMISS_ADD_PRODUCT_TO_CART_ERROR,
-  LOAD_CART,
-  ADD_ITEM_TO_CART_REQUEST,
-  ADD_ITEM_TO_CART_ERROR,
-  ADD_ITEM_TO_CART_SUCCESS,
-  INCREASE_CART_ITEM_REQUEST,
-  INCREASE_CART_ITEM_SUCCESS,
-  INCREASE_CART_ITEM_ERROR,
-  DECREASE_CART_ITEM_ERROR,
-  DECREASE_CART_ITEM_REQUEST,
-  DECREASE_CART_ITEM_SUCCESS,
-  REMOVE_CART_ITEM_ERROR,
-  REMOVE_CART_ITEM_REQUEST,
-  REMOVE_CART_ITEM_SUCCESS,
+  ADD_PRODUCT_REQUEST,
+  ADD_PRODUCT_ERROR,
+  ADD_PRODUCT_SUCCESS,
+  INCREASE_PRODUCT_QUANTITY_REQUEST,
+  INCREASE_PRODUCT_QUANTITY_SUCCESS,
+  INCREASE_PRODUCT_QUANTITY_ERROR,
+  DECREASE_PRODUCT_QUANTITY_ERROR,
+  DECREASE_PRODUCT_QUANTITY_REQUEST,
+  DECREASE_PRODUCT_QUANTITY_SUCCESS,
+  REMOVE_PRODUCT_ERROR,
+  REMOVE_PRODUCT_REQUEST,
+  REMOVE_PRODUCT_SUCCESS,
   LOAD_CART_ERROR,
   LOAD_CART_REQUEST,
   LOAD_CART_SUCCESS,
+  LOAD_CART_RESET,
 } from '../constant';
 import fetch from 'isomorphic-fetch';
 import config from '../../../config';
 
-const addItemToCartSuccess = response => ({ type: ADD_ITEM_TO_CART_SUCCESS, response });
-const addItemToCartFail = error => ({ type: ADD_ITEM_TO_CART_ERROR, error });
+const addProductSuccess = response => ({ type: ADD_PRODUCT_SUCCESS, response });
+const addProductFail = error => ({ type: ADD_PRODUCT_ERROR, error });
 
-export const addItemToCart = (variationID, cartSession, item, sizeOptionID) => dispatch => {
-  dispatch({ type: ADD_ITEM_TO_CART_REQUEST });
+export const addProduct = (variationID, cartSession, product, sizeOptionID) => dispatch => {
+  dispatch({ type: ADD_PRODUCT_REQUEST });
 
   fetch(`${config.apiDomain}/api/cart/add-product`, {
     method: 'POST',
@@ -47,19 +47,19 @@ export const addItemToCart = (variationID, cartSession, item, sizeOptionID) => d
     throw new Error(`Cannot load data from server. Response status ${response.status}`)
   })
   .then(response => response.json())
-  .then(dispatch(addItemToCartSuccess(item)))
-  .catch(error => dispatch(addItemToCartFail(error)));
+  .then(dispatch(addProductSuccess(product)))
+  .catch(error => dispatch(addProductFail(error)));
 };
 
-// increaseCartItemQuantity ***********************************
+// increaseProductQuantity ***********************************
 
-const increaseCartItemQuantitySuccess = response => ({ type: INCREASE_CART_ITEM_SUCCESS, response });
-const increaseCartItemQuantityFail = error => ({ type: INCREASE_CART_ITEM_ERROR, error });
+const increaseProductQuantitySuccess = response => ({ type: INCREASE_PRODUCT_QUANTITY_SUCCESS, response });
+const increaseProductQuantityFail = error => ({ type: INCREASE_PRODUCT_QUANTITY_ERROR, error });
 
-export const increaseCartItemQuantity = (variationID, cartSession, newQuantity) => async dispatch => {
-  dispatch({ type: INCREASE_CART_ITEM_REQUEST });
+export const increaseProductQuantity = (variationID, cartSession, sizeOptionID) => async dispatch => {
+  dispatch({ type: INCREASE_PRODUCT_QUANTITY_REQUEST });
 
-  fetch(`${config.apiDomain}/api/cart/change-quantity?cart_session=${cartSession}&variation_id=${variationID}&new_quantity=${newQuantity}`)
+  fetch(`${config.apiDomain}/api/cart/increase-product-quantity?cart_session=${cartSession}&variation_id=${variationID}&size_option_id=${sizeOptionID}`)
   .then((response) => {
     if (response.status === 200) {
       return response
@@ -67,19 +67,19 @@ export const increaseCartItemQuantity = (variationID, cartSession, newQuantity) 
     throw new Error(`Cannot load data from server. Response status ${response.status}`)
   })
   .then(response => response.json())
-  .then(response => dispatch(increaseCartItemQuantitySuccess(response)))
-  .catch(error => dispatch(increaseCartItemQuantityFail(error)));
+  .then(dispatch(increaseProductQuantitySuccess({variationID, sizeOptionID})))
+  .catch(error => dispatch(increaseProductQuantityFail(error)));
 };
 
-// decreaseCartItem ***********************************
+// decreaseProductQuantity ***********************************
 
-const decreaseCartItemQuantitySuccess = response => ({ type: DECREASE_CART_ITEM_SUCCESS, response });
-const decreaseCartItemQuantityFail = error => ({ type: DECREASE_CART_ITEM_ERROR, error });
+const decreaseProductQuantitySuccess = response => ({ type: DECREASE_PRODUCT_QUANTITY_SUCCESS, response });
+const decreaseProductQuantityFail = error => ({ type: DECREASE_PRODUCT_QUANTITY_ERROR, error });
 
-export const decreaseCartItem = (product, cartSession) => async dispatch => {
-  dispatch({ type: DECREASE_CART_ITEM_REQUEST });
+export const decreaseProductQuantity = (variationID, cartSession, sizeOptionID) => async dispatch => {
+  dispatch({ type: DECREASE_PRODUCT_QUANTITY_REQUEST });
 
-  fetch(`${config.apiDomain}/api/cart/change-product?cart_session=${cartSession}`)
+  fetch(`${config.apiDomain}/api/cart/decrease-product-quantity?cart_session=${cartSession}&variation_id=${variationID}&size_option_id=${sizeOptionID}`)
     .then((response) => {
       if (response.status === 200) {
         return response
@@ -87,19 +87,19 @@ export const decreaseCartItem = (product, cartSession) => async dispatch => {
       throw new Error(`Cannot load data from server. Response status ${response.status}`)
     })
     .then(response => response.json())
-    .then(response => dispatch(decreaseCartItemQuantitySuccess(response)))
-    .catch(error => dispatch(decreaseCartItemQuantityFail(error)));
+    .then(dispatch(decreaseProductQuantitySuccess({variationID, sizeOptionID})))
+    .catch(error => dispatch(decreaseProductQuantityFail(error)));
 };
 
-// removeProductFromCart ***********************************
+// removeProduct
 
-const removeCartItemSuccess = response => ({ type: REMOVE_CART_ITEM_SUCCESS, response });
-const removeCartItemFail = error => ({ type: REMOVE_CART_ITEM_ERROR, error });
+const removeProductSuccess = response => ({ type: REMOVE_PRODUCT_SUCCESS, response });
+const removeProductFail = error => ({ type: REMOVE_PRODUCT_ERROR, error });
 
-export const removeProductFromCart = (product, cartSession) => async dispatch => {
-  dispatch({ type: REMOVE_CART_ITEM_REQUEST });
+export const removeProduct = (product, variationID, cartSession, sizeOptionID) => async dispatch => {
+  dispatch({ type: REMOVE_PRODUCT_REQUEST });
 
-  fetch(`${config.apiDomain}/api/cart/remove-product?cart_session=${cartSession}`)
+  fetch(`${config.apiDomain}/api/cart/remove-product?cart_session=${cartSession}&variation_id=${variationID}&size_option_id=${sizeOptionID}`)
     .then((response) => {
       if (response.status === 200) {
         return response
@@ -107,16 +107,17 @@ export const removeProductFromCart = (product, cartSession) => async dispatch =>
       throw new Error(`Cannot load data from server. Response status ${response.status}`)
     })
     .then(response => response.json())
-    .then(response => dispatch(removeCartItemSuccess(response)))
-    .catch(error => dispatch(removeCartItemFail(error)));
+    .then(dispatch(removeProductSuccess(product)))
+    .catch(error => dispatch(removeProductFail(error)));
 };
 
 // loadCart ***********************************
 
 const loadCartSuccess = response => ({ type: LOAD_CART_SUCCESS, response });
 const loadCartFail = error => ({ type: LOAD_CART_ERROR, error });
+export const loadCartReset = () => async dispatch => dispatch({ type: LOAD_CART_RESET });
 
-export const loadCart = (product, cartSession) => async dispatch => {
+export const loadCart = (cartSession) => async dispatch => {
   dispatch({ type: LOAD_CART_REQUEST });
 
   fetch(`${config.apiDomain}/api/cart/load-cart?cart_session=${cartSession}`)
@@ -131,6 +132,4 @@ export const loadCart = (product, cartSession) => async dispatch => {
     .catch(error => dispatch(loadCartFail(error)));
 };
 
-
-export const cartReset = () => async dispatch => dispatch({ type: ADD_ITEM_TO_CART_RESET });
 export const dismissError = () => async dispatch => dispatch({ type: DISMISS_ADD_PRODUCT_TO_CART_ERROR });
