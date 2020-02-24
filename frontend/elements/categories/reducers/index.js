@@ -7,7 +7,7 @@ import {
 } from '../constants'
 
 const initialState = {
-  item: {},
+	items: [],
   errors: "",
   fetching: false,
 };
@@ -17,11 +17,11 @@ export default function (state = initialState, action) {
     case GET_CATEGORIES_REQUEST:
       return { ...state, fetching: true };
     case GET_CATEGORIES_SUCCESS:
-      return Object.assign({}, state, { item: action.response, fetching: false, errors: '' });
+			return Object.assign({}, state, { items: action.response ? action.response : [], fetching: false, errors: '' });
     case GET_CATEGORIES_ERROR:
       return { ...state, errors: action.error, fetching: false };
     case GET_CATEGORIES_RESET:
-      return { ...state, item: {} };
+      return { ...state, items: [] };
     case DISMISS_GET_CATEGORIES_ERROR:
       return { ...state, errors: '' };
     default:

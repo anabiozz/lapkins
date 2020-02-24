@@ -9,8 +9,8 @@ import {
 import config from '../../../config';
 import fetch from 'isomorphic-fetch'
 
-const receiveSuccess = response => ({ type: GET_CATEGORIES_SUCCESS, response })
-const receiveFail = error => ({ type: GET_CATEGORIES_ERROR, error })
+const receiveSuccess = response => ({ type: GET_CATEGORIES_SUCCESS, response });
+const receiveFail = error => ({ type: GET_CATEGORIES_ERROR, error });
 
 export function reset() {
   return dispatch => dispatch({
@@ -24,12 +24,12 @@ export function dismissError() {
   })
 }
 
-export const getCategories = (id = 1) => (dispatch) => {
+export const getCategories = (categoryURL) => (dispatch) => {
   dispatch({
     type: GET_CATEGORIES_REQUEST,
-  })
+  });
 
-  return fetch(`${config.apiDomain}/api/get-categories?category_id=${id}`)
+  return fetch(`${config.apiDomain}/api/get-categories?category_url=${categoryURL}`)
     .then((response) => {
       if (response.status === 200) {
         return response
@@ -39,4 +39,4 @@ export const getCategories = (id = 1) => (dispatch) => {
     .then(response => response.json())
     .then(response => dispatch(receiveSuccess(response)))
     .catch(error => dispatch(receiveFail(error)))
-}
+};

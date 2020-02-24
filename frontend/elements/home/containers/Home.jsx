@@ -33,7 +33,7 @@ class Home extends React.Component {
 						</div>
 					</NavLink>
 
-					<NavLink to="/wallart" className="gallery__item gallery__item__2">
+					<NavLink to="/catalog/wallart" className="gallery__item gallery__item__2">
 						<img
 							className="gallery__img"
 							onLoad={() => this.add()}
@@ -43,7 +43,7 @@ class Home extends React.Component {
 						</div>
 					</NavLink>
 
-					<NavLink to="/stationery" className="gallery__item gallery__item__3">
+					<NavLink to="/catalog/stationery" className="gallery__item gallery__item__3">
 						<img
 							className="gallery__img"
 							onLoad={() => this.add()}

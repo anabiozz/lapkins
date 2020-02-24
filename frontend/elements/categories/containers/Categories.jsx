@@ -1,32 +1,27 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import * as actions from '../actions';
 import { connect } from 'react-redux';
 import Breadcrumbs from '../../common/components/Breadcrumbs';
 import Loader from '../../common/components/Loader';
-import config from '../../../config';
 import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
 
 class Categories extends Component {
 
-	static fetching ({ dispatch, path }) {
-    return [dispatch(actions.getCategories(config.productTypes[path.substr(1)]))];
+	static fetching ({ dispatch }) {
+    // return [dispatch(actions.getCategories(config.productTypes[path.substr(1)]))];
   }
 
 	componentDidMount() {
-    this.props.getCategories(config.productTypes[this.props.match.params.category])
+		this.props.reset();
+    this.props.getCategories(this.props.match.params.category)
 	}
-
-	// componentWillReceiveProps(nextProps, nextContent) {
-  //   const { getCategories, match } = nextProps;
-  //   if (match.url !== this.props.match.url) {
-  //     getCategories(config.productTypes[match.params.category])
-  //   }
-  // }
 
 	render() {
 
-		const { item, fetching, errors } = this.props;
+		const { items, fetching, errors } = this.props;
+
+		console.log(items);
 
 		console.log('RENDER <Categories>');
 
@@ -50,25 +45,15 @@ class Categories extends Component {
 						)
 					}
 					{
-						item.categories && item.categories.map((category, i) => (
-							<div className="category" key={i}>
-								<h2 className="category__title">{category.category_name}</h2>
-								{
-								<div className="subcotegory__content">
-									{
-										category.sub_categories.map((sub_category, i) => (
-												<NavLink key={i} className="subcotegory__item" to={ `${this.props.match.params.category}/${sub_category.url}` }>
-													<img 
-														src="https://cdn.shopify.com/s/files/1/0077/8718/4241/files/Set_028_1950x.jpeg?v=1550063217" alt="Новое" />
-													<div className="subcotegory__name">
-														<h3>{sub_category.display}</h3>
-													</div>
-												</NavLink>
-										))
-									}
+						items && items.map((category, i) => (
+							<NavLink key={i} className="subcotegory__item" to={ `${this.props.match.params.category}/${category.url}` }>
+								<img src="https://cdn.shopify.com/s/files/1/0077/8718/4241/files/Set_028_1950x.jpeg?v=1550063217" alt="Новое" />
+								<div className="category" key={i}>
+									<h2 className="category__title">{category.name}</h2>
+									<h2 className="category__description">{category.description}</h2>
 								</div>
-								}
-							</div>
+							</NavLink>
+
 						))
 					}
 				</div>
@@ -78,13 +63,15 @@ class Categories extends Component {
 }
 
 Categories.propTypes = {
-  item: PropTypes.object.isRequired,
+	items: PropTypes.array.isRequired,
   errors: PropTypes.string.isRequired,
   fetching: PropTypes.bool.isRequired,
+	reset: PropTypes.func.isRequired,
+	getCategories: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => ({
-  item: state.categories.item,
+	items: state.categories.items,
   errors: state.categories.errors,
   fetching: state.categories.fetching,
 });

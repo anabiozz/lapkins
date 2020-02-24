@@ -4,7 +4,6 @@ import {
 } from "react-router-dom";
 import {connect} from "react-redux";
 import * as actions from '../../products/actions';
-import config from "../../../config";
 import PropTypes from 'prop-types';
 
 
@@ -24,7 +23,7 @@ class Quicklist extends Component {
 			<nav>
 				<ul className="nav">
 					<li>
-						<NavLink className="quicklist_main_link" to="/wallart">Декор</NavLink>
+						<NavLink className="quicklist_main_link" to="/catalog/wallart/posters-without-frame">Декор</NavLink>
 						<ul>
 							<li>
 								<NavLink
@@ -50,7 +49,7 @@ class Quicklist extends Component {
 						</ul>
 					</li>
 					<li>
-						<NavLink className="quicklist_main_link"  to="/stationery">Канцелярия</NavLink>
+						<NavLink className="quicklist_main_link"  to="/catalog/stationery">Канцелярия</NavLink>
 						<ul>
 							<li>
 								<NavLink
