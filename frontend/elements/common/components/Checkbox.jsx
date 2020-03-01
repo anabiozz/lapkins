@@ -6,7 +6,7 @@ const CheckBox = (props) => {
     name,
     handleChange,
     selectedOptions,
-  } = props
+  } = props;
 
   return(
     <div className="form-group">
@@ -30,12 +30,12 @@ const CheckBox = (props) => {
       </div>
     </div>
   )
-}
+};
 
 CheckBox.propTypes = {
   name: PropTypes.string.isRequired,
   handleChange: PropTypes.string.isRequired,
   selectedOptions: PropTypes.string.isRequired,
-}
+};
 
 export default CheckBox

@@ -8,19 +8,39 @@ import { withCookies } from 'react-cookie';
 import {Link} from "react-router-dom";
 import Button from "../../common/components/Button";
 import CartProductItem from "../components/CartProductItem";
+import CartDetailed from "../components/CartDetailed";
 
 class Cart extends Component {
   constructor(props) {
     super(props);
 
+    this.state = {
+      inputs: {
+        promocode: "",
+      }
+    };
+
     this.increase = this.increase.bind(this);
     this.decrease = this.decrease.bind(this);
     this.remove = this.remove.bind(this);
+    this.handleInputs = this.handleInputs.bind(this);
   }
 
   static fetching ({ dispatch }) {
     // return [dispatch(actions.loadCart())];
   }
+
+  handleInputs(e) {
+    const value = e.currentTarget.value;
+    const name = e.currentTarget.name;
+
+    this.setState(prevState => ({
+      inputs: {
+        ...prevState.inputs,
+        [name]: value,
+      }
+    }));
+  };
 
   componentDidMount() {
     this.props.loadCartReset();
@@ -60,7 +80,9 @@ class Cart extends Component {
   render() {
     console.log('RENDER <Cart>');
 
-    const { items, errors, fetching, removeProduct } = this.props;
+    const { items, errors, fetching } = this.props;
+
+    console.log(items)
 
     return (
       <div className="cart">
@@ -69,8 +91,8 @@ class Cart extends Component {
           <Breadcrumbs />
         </section>
 
-        <div className="cart__main">
-          <h3 className="cart__title">ОФОРМЛЕНИЕ ЗАКАЗА</h3>
+        <div className="cart-main">
+          <h3 className="cart-title">ОФОРМЛЕНИЕ ЗАКАЗА</h3>
           {
             fetching && <Loader />
           }
@@ -84,23 +106,31 @@ class Cart extends Component {
           }
           {
             !errors && items && items.length === 0 && (
-              <div className="cart__no__product">В вашей корзине пока нет товаров</div>
+              <div className="cart-no-product">В вашей корзине пока нет товаров</div>
             )
           }
           {
             !errors && items && items.length > 0 && (
               <Fragment>
-                {
-                  items && items.length > 0 && items.map((product, i) => {
-                    return <CartProductItem
-                      key={i}
-                      product={product}
-                      removeProduct={this.remove}
-                      increaseProductQuantity={this.increase}
-                      decreaseProductQuantity={this.decrease} />
-                  })
-                }
-                <div className="cart__content__order">
+                <div className="cart-content">
+                  <div className="cart-content-products">
+                    {
+                      items && items.length > 0 && items.map((product, i) => {
+                        return <CartProductItem
+                          key={i}
+                          product={product}
+                          removeProduct={this.remove}
+                          increaseProductQuantity={this.increase}
+                          decreaseProductQuantity={this.decrease} />
+                      })
+                    }
+                  </div>
+                  <CartDetailed
+                    numberOfItems={items.map(item => item.quantity).reduce((a, b) => a + b)}
+                    orderPrice={items.map(item => item.price).reduce((a, b) => a + b)}
+                  />
+                </div>
+                <div className="cart-content-order">
                   <Link to='/checkout'>
                     <Button
                       title="Продолжить оформление"

@@ -1,24 +1,24 @@
 import React from 'react';
 import PropTypes from "prop-types";
 import Counter from '../../common/components/Counter';
+import config from '../../../config';
 
 const CartProductItem = ({ product, removeProduct, increaseProductQuantity, decreaseProductQuantity }) => {
 
-	return <div className="cart__product__item">
+	return <div className="cart-product-item">
 
-		<div className="cart__content__item__image">
-			{/*<img src={`${config.imagePath.dev_path_preview}${addedItem.images[0]}_thumb.jpg`} alt="" />*/}
+		<div className="cart-product-item-image">
+			<img src={`${config.imagePath.dev_path_preview}1/product_img/1_thumb.jpg`} alt="" />
 		</div>
 
-		<div className="product__item__content">
-			<div className="left__content">
-				<div className="content">
-					<span className="decription">{product.name}</span>
-					<span>Размер: {product.size}</span>
-				</div>
+		<div className="cart-product-item-content">
+			<div className="left-content">
+				<span className="decription">{product.name}</span>
+				<span>Размер: {product.size}</span>
+				<div onClick={() => removeProduct(product)} className="remove">Удалить</div>
 			</div>
 
-			<div className="right__content">
+			<div className="right-content">
 
 				<Counter
 					value={product.quantity}
@@ -29,8 +29,6 @@ const CartProductItem = ({ product, removeProduct, increaseProductQuantity, decr
 				<div className="price">
 					Цена: {product.price} руб.
 				</div>
-
-				<div onClick={() => removeProduct(product)} className="remove">Удалить</div>
 
 			</div>
 		</div>

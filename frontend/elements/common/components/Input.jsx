@@ -9,11 +9,11 @@ const Input = (props) => {
     value,
     onChange,
     placeholder,
-  } = props
+  } = props;
 
   return (
-    <div className="input__element">
-      <label htmlFor={name} className="input__label">
+    <div className="input-element">
+      <label htmlFor={name} className="input-label">
         {title}
       </label>
       <input
@@ -28,7 +28,7 @@ const Input = (props) => {
       />
     </div>
   )
-}
+};
 
 Input.propTypes = {
   name: PropTypes.string.isRequired,
@@ -37,6 +37,6 @@ Input.propTypes = {
   title: PropTypes.string,
   onChange: PropTypes.func.isRequired,
   placeholder: PropTypes.string,
-}
+};
 
 export default Input

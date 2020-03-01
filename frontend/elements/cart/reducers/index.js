@@ -20,7 +20,6 @@ import {
 
 const initialState = {
 	items: [],
-	// isProductAdded: false,
 	errors: "",
 	fetching: false,
 };

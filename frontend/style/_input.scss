@@ -1,10 +1,6 @@
-.input__element {
-
-  .input__label {
-    font-size: 1.1rem;
-  }
-
-  $input__height: 40px;
+.input-element {
+    width: 100%;
+    $input__height: 40px;
 
 	.input {
       width: 100%;
@@ -13,7 +9,7 @@
       padding-left: 13px;
       cursor: pointer;
       position: relative;
-      font-size: 1.2rem;
+      //font-size: 1.2rem;
       line-height: $input__height;
       height: $input__height;
       outline-color: $input_background_color;

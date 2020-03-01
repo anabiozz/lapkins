@@ -1,8 +1,8 @@
 .counter {
 	display: flex;
-	
-	$counter_width: 35px;
-	$counter_height: 35px;
+	$value: 30px;
+	$counter_width: $value;
+	$counter_height: $value;
 
 	.counter__minus,
 	.counter__plus {
@@ -12,7 +12,7 @@
 		height: $counter_height;
 		line-height: $counter_height;
 		color: #fff;
-		font-size: 1.5rem;
+		font-size: 1rem;
 		font-family: 'Times New Roman', Times, serif;
 		text-align: center;
 		cursor: pointer;
