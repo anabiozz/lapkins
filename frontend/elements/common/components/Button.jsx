@@ -1,18 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Button = ({ action, type, title }) => {
+const Button = ({ action, title, value }) => {
 
   return (
-    <div className="btn btn-content" onClick={action}>
-      <span>{title}</span>
-    </div>
+    <button className="btn btn-content" onClick={action} value={value} id="submit" >{title}</button>
   )
 };
 
 Button.propTypes = {
   action: PropTypes.func,
-  type: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
 };
 

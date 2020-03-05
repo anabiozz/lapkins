@@ -20,16 +20,16 @@ const CheckoutDetailed = ({ numberOfItems, orderPrice, state, onChange }) => {
 					</div>
 				</div>
 
-				<div className="order-cost">
-					<Input
-						type="text"
-						name="promocode"
-						required=""
-						onChange={onChange}
-						value={state.inputs.promocode}
-						aria-required="true"
-						placeholder="Промокод" />
-				</div>
+				{/*<div className="order-cost">*/}
+				{/*	<Input*/}
+				{/*		type="text"*/}
+				{/*		name="promocode"*/}
+				{/*		required=""*/}
+				{/*		onChange={onChange}*/}
+				{/*		value={state.inputs.promocode}*/}
+				{/*		aria-required="true"*/}
+				{/*		placeholder="Промокод" />*/}
+				{/*</div>*/}
 
 				<div className="order-cost">
 					<div className="title">Итого:</div>

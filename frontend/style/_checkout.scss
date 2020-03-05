@@ -34,40 +34,6 @@
 
             @import "tabs";
           }
-
-          .data-inputs {
-            display: flex;
-
-            .personal-data,
-            .delivery-data {
-              display: flex;
-              flex-direction: column;
-              width: 40%;
-              margin-right: $content_gap;
-
-              .personal-data-title,
-              .delivery-data-title {
-                margin-bottom: $content_gap;
-                font-weight: bold;
-              }
-
-              .fields-line {
-                margin-bottom: 10px;
-              }
-
-              .field-group {
-                //width: $order_tabs_with / 2;
-              }
-            }
-
-            .hide {
-              display: none;
-              -webkit-animation: disappear 1s ease;
-              -webkit-animation-fill-mode: backwards;
-              animation: disappear 1s ease;
-              animation-fill-mode: backwards;
-            }
-          }
         }
 
         .order-container-right {

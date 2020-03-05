@@ -2,30 +2,20 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 const Input = (props) => {
-  const {
-    name,
-    title,
-    type,
-    value,
-    onChange,
-    placeholder,
-  } = props;
+  const { name, title, type, state, onChange, placeholder } = props;
 
   return (
     <div className="input-element">
-      <label htmlFor={name} className="input-label">
-        {title}
-      </label>
+      <label htmlFor={name} className="input-label">{title}</label>
       <input
-        className="input"
         id={name}
         name={name}
         type={type}
-        value={value}
-        onChange={onChange}
-        placeholder={placeholder}
-        {...props}
+        value={state.fields[name] || ''}
+        onChange={(e) => onChange(name, e)}
+        placeholder={state.errors[name] || placeholder }
       />
+      {/*<span className="error">{state.errors[name]}</span>*/}
     </div>
   )
 };
@@ -33,7 +23,6 @@ const Input = (props) => {
 Input.propTypes = {
   name: PropTypes.string.isRequired,
   type: PropTypes.string,
-  value: PropTypes.string.isRequired,
   title: PropTypes.string,
   onChange: PropTypes.func.isRequired,
   placeholder: PropTypes.string,
