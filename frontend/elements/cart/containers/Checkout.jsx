@@ -123,11 +123,6 @@ class Checkout extends Component {
 
     return (
 		<div className="checkout">
-
-			<section className="breadcrumbs_wrapper">
-				<Breadcrumbs />
-			</section>
-
 			<div className="checkout-main">
 				<h3 className="checkout-title">ОФОРМЛЕНИЕ ЗАКАЗА</h3>
 

@@ -82,66 +82,65 @@ class Cart extends Component {
 
     const { items, errors, fetching } = this.props;
 
-    console.log(items)
-
     return (
-      <div className="cart">
-
-        <section className="breadcrumbs_wrapper">
+      <Fragment>
+        <section className="breadcrumbs-wrapper">
           <Breadcrumbs />
         </section>
 
-        <div className="cart-main">
-          <h3 className="cart-title">ОФОРМЛЕНИЕ ЗАКАЗА</h3>
-          {
-            fetching && <Loader />
-          }
-          {
-            errors && (
-            <div style={{ marginTop: '200px' }}>
-              <strong>ERROR: </strong>
-              {errors.message}
-            </div>
-            )
-          }
-          {
-            !errors && items && items.length === 0 && (
-              <div className="cart-no-product">В вашей корзине пока нет товаров</div>
-            )
-          }
-          {
-            !errors && items && items.length > 0 && (
-              <Fragment>
-                <div className="cart-content">
-                  <div className="cart-content-products">
-                    {
-                      items && items.length > 0 && items.map((product, i) => {
-                        return <CartProductItem
-                          key={i}
-                          product={product}
-                          removeProduct={this.remove}
-                          increaseProductQuantity={this.increase}
-                          decreaseProductQuantity={this.decrease} />
-                      })
-                    }
+        <div className="cart">
+
+          <div className="cart-main">
+            {
+              fetching && <Loader />
+            }
+            {
+              errors && (
+                <div style={{ marginTop: '200px' }}>
+                  <strong>ERROR: </strong>
+                  {errors.message}
+                </div>
+              )
+            }
+            {
+              !errors && items && items.length === 0 && (
+                <div className="cart-no-product">В вашей корзине пока нет товаров</div>
+              )
+            }
+            {
+              !errors && items && items.length > 0 && (
+                <Fragment>
+                  <div className="cart-content">
+                    <div className="cart-content-products">
+                      {
+                        items && items.length > 0 && items.map((product, i) => {
+                          return <CartProductItem
+                            key={i}
+                            product={product}
+                            removeProduct={this.remove}
+                            increaseProductQuantity={this.increase}
+                            decreaseProductQuantity={this.decrease} />
+                        })
+                      }
+                    </div>
+                    <CartDetailed
+                      numberOfItems={items.map(item => item.quantity).reduce((a, b) => a + b)}
+                      orderPrice={items.map(item => item.price).reduce((a, b) => a + b)}
+                    />
                   </div>
-                  <CartDetailed
-                    numberOfItems={items.map(item => item.quantity).reduce((a, b) => a + b)}
-                    orderPrice={items.map(item => item.price).reduce((a, b) => a + b)}
-                  />
-                </div>
-                <div className="cart-content-order">
-                  <Link to='/checkout'>
-                    <Button
-                      title="Продолжить оформление"
-                      type="primary" />
-                  </Link>
-                </div>
-              </Fragment>
-            )
-          }
+                  <div className="cart-content-order">
+                    <Link to='/checkout'>
+                      <Button
+                        title="Продолжить оформление"
+                        type="primary" />
+                    </Link>
+                  </div>
+                </Fragment>
+              )
+            }
+          </div>
         </div>
-      </div>
+      </Fragment>
     )
   }
 }

@@ -6,9 +6,9 @@
 .box-1 { background-color: #FF6766; }
 .box-2 { background-color: #3C3C3C; }
 
-$primary_font: 'Montserrat', sans-serif; // 'Oswald', sans-serif
-$logo_font: 'Oswald', sans-serif; // 'Roboto Mono', monospace; 'Montserrat', sans-serif;
-$quicklist_font: 'Fira Code', monospace; // 'Lato', sans-serif 'Roboto Mono', monospace
+$primary_font: 'Montserrat', sans-serif;
+$logo_font: 'Oswald', sans-serif;
+$quicklist_font: 'Fira Code', monospace;
 $footer_font: 'Fira Code', monospace;
 
 $product_background_color: #ece8da;
@@ -16,7 +16,7 @@ $main_black_color: #3d3d3d;
 $nav_links_color: #3d3d3d;
 $main_color: #464646;
 $logo_color: #181515;
-$second_color: #fff; // #4120ff // #c3cbcb 003960 1f4b83 2c5683 225c83 838072 838164
+$second_color: #fff;
 
 $scrollbar_width: 10px;
 $scrollbar_track_color: #fff;
@@ -47,7 +47,8 @@ $select_text_transform: uppercase;
 
 $button_width: 180px;
 $button_height: 40px;
-$button_background_color: $main_black_color;
+$button_primary_color: $main_black_color;
+$button_secondary_color: $main_black_color;
 $button_font_size: 0.7rem;
 $button_text_transform: uppercase;
 
@@ -75,12 +76,13 @@ $content_width_2: ((($product_width * 3) + (2 * $content_gap))); //((($item_widt
 @import "common";
 
 @import "header";
-@import "footer";
 @import "quicklist";
+@import "breadcrumbs";
+@import "footer";
 
 @import "home";
-@import "products";
-@import "product_description";
+@import "catalog";
+@import "description";
 @import "categories";
 @import "checkout";
 @import "wishlist";
@@ -93,6 +95,7 @@ $content_width_2: ((($product_width * 3) + (2 * $content_gap))); //((($item_widt
 @import "buttons";
 @import "counter";
 @import "search";
-@import "breadcrumbs";
+
 @import "select";
 @import "input";
+@import "radio";

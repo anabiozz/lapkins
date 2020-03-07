@@ -1,20 +1,21 @@
-.product__description {
+.product-description {
   display: flex;
   align-items: center;
   flex-direction: column;
   margin: 0 auto;
   @include  reveal(0.5s);
 
-  .product__description__content {
+  .product-description-content {
     display: flex;
+    width: 100%;
     margin: $content_gap 0;
 
-    .product__description__image {
+    .product-description-image {
       max-width: 430px;
       width: 50%;
     }
   
-    .product__description__block {
+    .product-description-block {
       width: 100%;
       display: flex;
       justify-content: flex-end;
@@ -55,33 +56,6 @@
 
         .size {
           margin-bottom: $content_gap * 3;
-
-          input[type=radio] {
-            position: absolute;
-            visibility: hidden;
-            display: none;
-          }
-
-          label {
-            display: inline-block;
-            cursor: pointer;
-            font-weight: bold;
-            padding: 5px 20px;
-          }
-
-          input[type=radio]:checked + label{
-            color: #FFFFFF;
-            background: $main_black_color;
-          }
-
-          label + input[type=radio] + label {
-
-          }
-
-          .radio-group {
-            display: inline-block;
-            overflow: hidden;
-          }
         }
       }
     }

@@ -26,6 +26,6 @@ hydrate(
 if (module.hot) {
 	module.hot.accept('./App', () => {
 		const NextRootContainer = require('./App').default;
-		render(<NextRootContainer />, document.getElementById('root'));
+		render(<NextRootContainer />, document.querySelector('.root'));
 	})
 }

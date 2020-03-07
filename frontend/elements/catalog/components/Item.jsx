@@ -5,12 +5,12 @@ import {
   productProp,
 } from '../../../utils/props';
 
-const Product = ({ product, imgUrl }) => {
+const Item = ({ product, imgUrl, url }) => {
   return (
     <div className="product">
       <div className="product__image">
         <div className="product__image__inner">
-          <Link to={ `/catalog/${product.variation_id}/detail` }>
+          <Link to={ url + `/${product.variation_id}` }>
             <img src={imgUrl} alt="img" />
           </Link>
         </div>
@@ -25,9 +25,9 @@ const Product = ({ product, imgUrl }) => {
   )
 };
 
-Product.propTypes = {
+Item.propTypes = {
   product: PropTypes.shape(productProp).isRequired,
   imgUrl: PropTypes.string.isRequired,
 };
 
-export default Product
+export default Item

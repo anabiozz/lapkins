@@ -1,7 +1,7 @@
 import Home from './elements/home/containers/Home';
-import Products from './elements/products/containers/Products';
+import Catalog from './elements/catalog/containers/Catalog';
 import Cart from './elements/cart/containers/Cart';
-import ProductDescription from './elements/product_description/containers/ProductDescription';
+import ProductDescription from './elements/description/containers/ProductDescription';
 import Checkout from './elements/cart/containers/Checkout';
 import NotFound from './elements/common/components/NotFound';
 import Categories from './elements/categories/containers/Categories';
@@ -18,56 +18,41 @@ export default [
   {
     component: Cart,
 		path: '/cart',
-		exact: true,
-		strict: true,
 	},
 	{
     component: Checkout,
 		path: '/checkout',
-		exact: true,
-		strict: true,
 	},
 	{
     component: Done,
 		path: '/done',
-		exact: true,
-		strict: true,
 	},
 	{
     component: Wishlist,
 		path: '/wishlist',
-		exact: true,
-		strict: true,
 	},
 	{
     component: Registration,
 		path: '/registration',
-		exact: true,
-		strict: true,
 	},
 	{
-    component: Products,
+    component: Catalog,
 		path: '/new',
-		exact: true,
-		strict: true,
 	},
 	{
     component: Categories,
 		path: '/catalog/:category',
 		exact: true,
-		strict: true,
+	},
+	{
+    component: Catalog,
+		path: '/catalog/:category/:categoryType',
+		exact: true,
 	},
 	{
 		component: ProductDescription,
-		path: '/catalog/:variationID/detail',
+		path: '/catalog/:category/:categoryType/:variationID',
 		exact: true,
-		strict: true,
-	},
-	{
-    component: Products,
-		path: '/catalog/:category/:categoryType',
-		exact: true,
-		strict: true,
 	},
 	{
     component: NotFound,

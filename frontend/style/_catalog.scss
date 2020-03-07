@@ -1,16 +1,14 @@
-.products__catalog {
+.catalog {
   display: flex;
   flex-direction: column;
-  margin: 0 auto;
   @include  reveal(0.5s);
+  margin: $content_gap 0;
 
   .products {
-    width: (($product_width * 4) + (3 * $content_gap));
     display: grid;
     grid-template-columns: repeat(auto-fill, $product_width);
     grid-template-rows: auto;
     grid-gap: $content_gap;
-    margin: $content_gap 0;
 
     .product {
       display: flex;

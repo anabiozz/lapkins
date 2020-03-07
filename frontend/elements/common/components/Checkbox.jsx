@@ -2,31 +2,27 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 const CheckBox = (props) => {
-  const {
-    name,
-    handleChange,
-    selectedOptions,
-  } = props;
+  const { name, handleChange, selectedOptions } = props;
 
   return(
     <div className="form-group">
-      <label htmlFor={name} className="form-label">
-        {title}
-      </label>
+      <label htmlFor={name} className="form-label">{name}</label>
       <div className="checkbox">
-        {options.map(option => (
-          <label htmlFor={name} key={option} className="checkbox-inline">
-            <input
-              id={name}
-              name={name}
-              onChange={handleChange}
-              value={option}
-              checked={selectedOptions.indexOf(option) > -1}
-              type="checkbox"
-            />
-            {option}
-          </label>
-        ))}
+        {
+          options.map(option => (
+            <label htmlFor={name} key={option} className="checkbox-inline">
+              <input
+                id={name}
+                name={name}
+                onChange={handleChange}
+                value={option}
+                checked={selectedOptions.indexOf(option) > -1}
+                type="checkbox"
+              />
+              {option}
+            </label>
+          ))
+        }
       </div>
     </div>
   )

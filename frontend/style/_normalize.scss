@@ -5,7 +5,8 @@
  * 1. Prevent iOS text size adjust after orientation change, without disabling
  *    user zoom.
  */
-
+// The text-size-adjust CSS property controls the text inflation algorithm
+// used on some smartphones and tablets. Other browsers will ignore this property.
  html {
   -ms-text-size-adjust: 100%; /* 1 */
   -webkit-text-size-adjust: 100%; /* 1 */

@@ -2,9 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const Button = ({ action, title, value }) => {
-
   return (
-    <button className="btn btn-content" onClick={action} value={value} id="submit" >{title}</button>
+    <button className="btn-primary" onClick={action} value={value} id="submit" >{title}</button>
   )
 };
 

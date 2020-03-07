@@ -1,58 +1,60 @@
-.btn {
+%btn {
+	position: relative;
 	width: $button_width;
 	height: $button_height;
 	line-height: $button_height;
 	text-align: center;
 	font-size: $button_font_size;
-	cursor: pointer;
-	background-color: $button_background_color;
 	text-transform: $button_text_transform;
 	padding: 0;
 	border: none;
+
+	&::before {
+		content: '';
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		transition: all 0.5s;
+	}
+
+	&::after {
+		content: '';
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		opacity: 0;
+		transition: all 0.5s;
+		transform: scale(0.5, 0.5);
+		background-color: rgba(255,255,255,0.1);
+	}
+
+	&:focus {
+		outline: 0;
+	}
+
+	&:hover::before {
+		opacity: 0;
+		transform: scale(0.5, 0.5);
+	}
+
+	&:hover::after {
+		opacity: 1;
+		transform: scale(1, 1);
+	}
 }
 
-.btn-content {
+.btn-primary {
+	@extend %btn;
+	background-color: $button_primary_color;
 	color: #FFF;
-	transition: all 0.5s;
-	position: relative;
 }
 
-.btn-content::before {
-	content: '';
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	z-index: 1;
-	background-color: rgba(255,255,255,0.1);
-	transition: all 0.5s;
-}
-
-.btn-content:focus {
-	outline: 0;
-}
-
-.btn-content:hover::before {
-	opacity: 0;
-	transform: scale(0.5,0.5);
-}
-
-//.btn-content::after {
-//	content: '';
-//	position: absolute;
-//	top: 0;
-//	left: 0;
-//	width: 100%;
-//	height: 100%;
-//	z-index: 1;
-//	opacity: 0;
-//	transition: all 0.5s;
-//	transform: scale(1.2,1.2);
-//	box-sizing: border-box;
-//}
-
-.btn-content:hover::after {
-	opacity: 1;
-	transform: scale(1,1);
+.btn-secondary {
+	@extend %btn;
+	background-color: $button_secondary_color;
+	color: #FFF;
 }

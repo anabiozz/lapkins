@@ -28,7 +28,7 @@ header {
       .right_header_wrapper {
         display: flex;
 
-        @import "search";
+        @use "search";
 
         ul.icons {
           display: flex;

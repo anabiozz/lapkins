@@ -1,8 +1,7 @@
-import React, { Component } from 'react';
+import React, {Component, Fragment} from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import Product from '../components/Product.jsx';
-import Breadcrumbs from '../../common/components/Breadcrumbs';
+import Item from '../components/Item.jsx';
 import * as actions from '../actions';
 import config from '../../../config';
 import Loader from '../../common/components/Loader';
@@ -10,8 +9,9 @@ import Loader from '../../common/components/Loader';
 import {
   productProp,
 } from '../../../utils/props';
+import Breadcrumbs from "../../common/components/Breadcrumbs";
 
-class Products extends Component {
+class Catalog extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -49,52 +49,50 @@ class Products extends Component {
   }
 
   render() {
-    const { items, errors, fetching } = this.props;
+    const { items, errors, fetching, match } = this.props;
 
-    console.log('RENDER <Products>');
+    console.log('RENDER <Catalog>');
 
     return (
-      <div className="products__catalog">
-
-        <section className="breadcrumbs_wrapper">
+      <Fragment>
+        <section className="breadcrumbs-wrapper">
           <Breadcrumbs />
         </section>
 
-        <div className="products">
-          {
-            fetching && <Loader />
-          }
-          {
-            errors && (
-            <div style={{ marginTop: '200px' }}>
-              <strong>ERROR: </strong>
-              {errors.message}
-            </div>
-            )
-          }
-          {
-            !errors && items && items.length === 0 && (
-              <div style={{ marginTop: '200px' }}>
+        <div className="catalog">
+
+          <div className="products">
+            {
+              fetching && <Loader />
+            }
+            {
+              errors && (
+                <div><strong>ERROR:</strong>{errors.message}</div>
+              )
+            }
+            {
+              !errors && items && items.length === 0 && (
                 <span>Данная категория товара на данный момент отсутствует.</span>
-              </div>
-            )
-          }
-          {
-            !errors && items.map(product => (
-              <Product
-                key={product.variation_id}
-                imgUrl={`${config.imagePath.dev_path_preview}${product.variation_id}/product_img/1_thumb.jpg`}
-                product={product}
-              />
-            ))
-          }
+              )
+            }
+            {
+              !errors && items.map(product => (
+                <Item
+                  key={product.variation_id}
+                  imgUrl={`${config.imagePath.dev_path_preview}${product.variation_id}/product_img/1_thumb.jpg`}
+                  product={product}
+                  url={match.url}
+                />
+              ))
+            }
+          </div>
         </div>
-      </div>
+      </Fragment>
     )
   }
 }
 
-Products.propTypes = {
+Catalog.propTypes = {
   items: PropTypes.arrayOf(PropTypes.shape(productProp).isRequired).isRequired,
   errors: PropTypes.string.isRequired,
   fetching: PropTypes.bool.isRequired,
@@ -108,4 +106,4 @@ const mapStateToProps = state => ({
   fetching: state.products.fetching,
 });
 
-export default connect(mapStateToProps, { ...actions })(Products);
+export default connect(mapStateToProps, { ...actions })(Catalog);

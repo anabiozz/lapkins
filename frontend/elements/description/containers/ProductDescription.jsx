@@ -95,52 +95,53 @@ export class ProductDescription extends Component {
     const { item, errors, fetching } = this.props;
 
     return (
-      <div className="product__description">
-
-        <section className="breadcrumbs_wrapper">
+      <Fragment>
+        <section className="breadcrumbs-wrapper">
           <Breadcrumbs />
         </section>
 
-        <div className="product__description__content">
-          {
-            fetching && <Loader />
-          }
-          {
-            errors && (
-            <div style={{ marginTop: '200px' }}>
-              <strong>ERROR: </strong>
-              {errors.message}
-            </div>
-            )
-          }
-          {
-            Object.keys(item).length > 0 && (
-              <Fragment>
+        <div className="product-description">
 
-                <div className="product__description__image">
-                  <Carousel axis="horizontal">
-                    {
-                      item.images.map((image, index) => {
-                        return <div key={index}>
-                            <img alt="img" src={`${config.imagePath.dev_path_full}${image}.jpg`} />
-                            <p className="legend">Legend {index}</p>
-                        </div>
-                      })
-                    }
-                  </Carousel>
+          <div className="product-description-content">
+            {
+              fetching && <Loader />
+            }
+            {
+              errors && (
+                <div style={{ marginTop: '200px' }}>
+                  <strong>ERROR: </strong>
+                  {errors.message}
                 </div>
+              )
+            }
+            {
+              Object.keys(item).length > 0 && (
+                <Fragment>
 
-                <div className="product__description__block">
-                  <div className="information">
+                  <div className="product-description-image">
+                    <Carousel axis="horizontal">
+                      {
+                        item.images.map((image, index) => {
+                          return <div key={index}>
+                            <img alt="img" src={`${config.imagePath.dev_path_full}/1/300x450/1.jpg`} />
+                            <p className="legend">Legend {index}</p>
+                          </div>
+                        })
+                      }
+                    </Carousel>
+                  </div>
 
-                    <div className="name">{item.name}</div>
+                  <div className="product-description-block">
+                    <div className="information">
 
-                    <div className="price">
-                      { item.price + " руб." }
-                    </div>
+                      <div className="name">{item.name}</div>
 
-                    <table className="categories">
-                      <tbody>
+                      <div className="price">
+                        { item.price + " руб." }
+                      </div>
+
+                      <table className="categories">
+                        <tbody>
                         {
                           item.attributes && item.attributes.map((attr, i) => (
                             <tr key={i}>
@@ -149,45 +150,46 @@ export class ProductDescription extends Component {
                             </tr>
                           ))
                         }
-                      </tbody>
-                    </table>
+                        </tbody>
+                      </table>
 
-                    <div className="size">
-                      <form>
-                        <div className="radio-group">
-                        {
-                          item.sizes && item.sizes.map((size, i) => (
-                            <Fragment key={i}>
-                              <input
-                                value={size.size_object.key}
-                                type="radio"
-                                id={`option-${i}`}
-                                onChange={(e) => this.handleSelect(e, item.variation_id)}
-                                name="value"
-                                checked={item.size_option_id === size.size_object.key}
-                              />
-                              <label htmlFor={`option-${i}`}>{size.size_object.value}</label>
-                            </Fragment>
-                          ))
-                        }
-                        </div>
-                      </form>
+                      <div className="size">
+                        <form>
+                          <div className="radio-group">
+                            {
+                              item.sizes && item.sizes.map((size, i) => (
+                                <Fragment key={i}>
+                                  <input
+                                    value={size.size_object.key}
+                                    type="radio"
+                                    id={`option-${i}`}
+                                    onChange={(e) => this.handleSelect(e, item.variation_id)}
+                                    name="value"
+                                    checked={item.size_option_id === size.size_object.key}
+                                  />
+                                  <label htmlFor={`option-${i}`}>{size.size_object.value}</label>
+                                </Fragment>
+                              ))
+                            }
+                          </div>
+                        </form>
+                      </div>
+
+                      <div className="add_to_cart">
+                        <Button
+                          title="Добавить в корзину"
+                          type="primary"
+                          action={() => this.addToCart(item)} />
+                      </div>
+
                     </div>
-
-                    <div className="add_to_cart">
-                      <Button
-                        title="Добавить в корзину"
-                        type="primary"
-                        action={() => this.addToCart(item)} />
-                    </div>
-
                   </div>
-                </div>
-              </Fragment>
-            )
-          }
+                </Fragment>
+              )
+            }
+          </div>
         </div>
-      </div>
+      </Fragment>
     )
   }
 }

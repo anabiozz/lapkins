@@ -4,8 +4,9 @@ import { renderRoutes } from 'react-router-config';
 import routes from './routes';
 import Header from './elements/common/containers/Header';
 import Footer from './elements/common/components/Footer';
-import Quicklist from "./elements/common/containers/Quicklist";
+import Quicklist from "./elements/common/components/Quicklist";
 import ErrorBoundary from './elements/common/components/ErrorBoundary';
+import Breadcrumbs from "./elements/common/components/Breadcrumbs";
 
 const App = () => (
   <Fragment>

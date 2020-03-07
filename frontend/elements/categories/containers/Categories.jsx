@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, {Component, Fragment} from 'react';
 import * as actions from '../actions';
 import { connect } from 'react-redux';
 import Breadcrumbs from '../../common/components/Breadcrumbs';
@@ -26,38 +26,40 @@ class Categories extends Component {
 		console.log('RENDER <Categories>');
 
 		return (
-			<div className="product__categories">
-
-				<section className="breadcrumbs_wrapper">
+			<Fragment>
+				<section className="breadcrumbs-wrapper">
 					<Breadcrumbs />
 				</section>
 
-				<div className="product__categories__content">
-					{
-						fetching && <Loader /> 
-					}
-					{
-						errors && (
-						<div style={{ marginTop: '200px' }}>
-							<strong>ERROR: </strong>
-							{errors.message}
-						</div>
-						)
-					}
-					{
-						items && items.map((category, i) => (
-							<NavLink key={i} className="subcotegory__item" to={ `${this.props.match.params.category}/${category.url}` }>
-								<img src="https://cdn.shopify.com/s/files/1/0077/8718/4241/files/Set_028_1950x.jpeg?v=1550063217" alt="Новое" />
-								<div className="category" key={i}>
-									<h2 className="category__title">{category.name}</h2>
-									<h2 className="category__description">{category.description}</h2>
-								</div>
-							</NavLink>
+				<div className="product__categories">
 
-						))
-					}
+					<div className="product__categories__content">
+						{
+							fetching && <Loader />
+						}
+						{
+							errors && (
+								<div style={{ marginTop: '200px' }}>
+									<strong>ERROR: </strong>
+									{errors.message}
+								</div>
+							)
+						}
+						{
+							items && items.map((category, i) => (
+								<NavLink key={i} className="subcotegory__item" to={ `${this.props.match.params.category}/${category.url}` }>
+									<img src="https://cdn.shopify.com/s/files/1/0077/8718/4241/files/Set_028_1950x.jpeg?v=1550063217" alt="Новое" />
+									<div className="category" key={i}>
+										<h2 className="category__title">{category.name}</h2>
+										<h2 className="category__description">{category.description}</h2>
+									</div>
+								</NavLink>
+
+							))
+						}
+					</div>
 				</div>
-      </div>
+			</Fragment>
 		)
 	}
 }
