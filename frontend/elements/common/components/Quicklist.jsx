@@ -32,6 +32,7 @@ class Quicklist extends Component{
 				<ul>
 					<li >
 						<Link
+							onClick={() => this.handleChange()}
 							className="quicklist-main-link" to="/catalog/wallart/posters-without-frame">Декор</Link>
 						<ul className={state.isShow ? '' : 'hidden'}>
 							<li>
@@ -52,7 +53,9 @@ class Quicklist extends Component{
 						</ul>
 					</li>
 					<li>
-						<Link className="quicklist-main-link"  to="/catalog/stationery">Канцелярия</Link>
+						<Link
+							onClick={() => this.handleChange()}
+							className="quicklist-main-link"  to="/catalog/stationery">Канцелярия</Link>
 						<ul className={this.state.isShow ? '' : 'hidden'}>
 							<li>
 								<Link

@@ -1,8 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import Input from "../../common/components/Input";
+import CartProductItem from "./CartProductItem";
 
-const CheckoutDetailed = ({ numberOfItems, orderPrice, state, onChange }) => {
+const CheckoutDetailed = ({ numberOfItems, orderPrice, state }) => {
 
 	return(
 		<div className="checkout-detailed">
@@ -20,17 +21,6 @@ const CheckoutDetailed = ({ numberOfItems, orderPrice, state, onChange }) => {
 					</div>
 				</div>
 
-				{/*<div className="order-cost">*/}
-				{/*	<Input*/}
-				{/*		type="text"*/}
-				{/*		name="promocode"*/}
-				{/*		required=""*/}
-				{/*		onChange={onChange}*/}
-				{/*		value={state.inputs.promocode}*/}
-				{/*		aria-required="true"*/}
-				{/*		placeholder="Промокод" />*/}
-				{/*</div>*/}
-
 				<div className="order-cost">
 					<div className="title">Итого:</div>
 					<div className="value">{orderPrice}</div>
@@ -40,10 +30,10 @@ const CheckoutDetailed = ({ numberOfItems, orderPrice, state, onChange }) => {
 	)
 };
 
-// CartDetailed.propTypes = {
-// 	name: PropTypes.string.isRequired,
-// 	handleChange: PropTypes.string.isRequired,
-// 	selectedOptions: PropTypes.string.isRequired,
+// CartProductItem.propTypes = {
+// 	product: PropTypes.object.isRequired,
+// 	removeProduct: PropTypes.func.isRequired,
+// 	increaseProductQuantity: PropTypes.func.isRequired,
+// 	decreaseProductQuantity: PropTypes.func.isRequired,
 // };
-
 export default CheckoutDetailed

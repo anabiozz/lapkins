@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import Counter from '../../common/components/Counter';
 import Input from "../../common/components/Input";
 
-const PersonalData = ({ state, onChange }) => {
+const PersonalData = ({ errors, values, onChange }) => {
 
 	return <div className="personal-data">
 		<div className="personal-data-title">Введите данные покупателя</div>
@@ -14,8 +14,9 @@ const PersonalData = ({ state, onChange }) => {
 						title="Телефон"
 						type="number"
 						name="phone"
+						value={values["phone"]}
 						onChange={onChange}
-						state={state}
+						errors={errors}
 					/>
 				</div>
 			</div>
@@ -24,9 +25,10 @@ const PersonalData = ({ state, onChange }) => {
 					<Input
 						title="Имя"
 						type="text"
-						name="name"
+						name="firstName"
+						value={values["firstName"]}
 						onChange={onChange}
-						state={state}
+						errors={errors}
 					/>
 				</div>
 			</div>
@@ -35,9 +37,10 @@ const PersonalData = ({ state, onChange }) => {
 					<Input
 						title="Фамилия"
 						type="text"
-						name="surname"
+						name="lastName"
+						value={values["lastName"]}
 						onChange={onChange}
-						state={state}
+						errors={errors}
 					/>
 				</div>
 			</div>
@@ -45,10 +48,11 @@ const PersonalData = ({ state, onChange }) => {
 				<div className="field-group">
 					<Input
 						title="Email"
-						type="text"
+						type="email"
+						value={values["email"]}
 						onChange={onChange}
 						name="email"
-						state={state}
+						errors={errors}
 					/>
 				</div>
 			</div>

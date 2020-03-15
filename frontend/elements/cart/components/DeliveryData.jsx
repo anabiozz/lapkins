@@ -3,9 +3,9 @@ import PropTypes from "prop-types";
 import Counter from '../../common/components/Counter';
 import Input from "../../common/components/Input";
 
-const DeliveryData = ({ state, onChange }) => {
+const DeliveryData = ({ errors, values, onChange }) => {
 
-	return <div className={state.isDelivery ? 'delivery-data' : 'delivery-data hide'}>
+	return <div className='delivery-data'>
 		<div className="delivery-data-title">
 			Заполните адрес доставки
 		</div>
@@ -16,8 +16,9 @@ const DeliveryData = ({ state, onChange }) => {
 					title="Улица"
 					type="text"
 					name="street"
+					value={values["street"]}
 					onChange={onChange}
-					state={state}
+					errors={errors}
 				/>
 			</div>
 		</div>
@@ -28,8 +29,9 @@ const DeliveryData = ({ state, onChange }) => {
 					title="Кв."
 					type="text"
 					name="apartment"
+					value={values["apartment"]}
 					onChange={onChange}
-					state={state}
+					errors={errors}
 				/>
 			</div>
 		</div>
@@ -40,8 +42,9 @@ const DeliveryData = ({ state, onChange }) => {
 					title="Дом"
 					type="text"
 					name="house"
+					value={values["house"]}
 					onChange={onChange}
-					state={state}
+					errors={errors}
 				/>
 			</div>
 		</div>

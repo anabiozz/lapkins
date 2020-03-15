@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 const Input = (props) => {
-  const { name, title, type, state, onChange, placeholder } = props;
+  const { name, title, type, errors, value, onChange, placeholder } = props;
 
   return (
     <div className="input-element">
@@ -11,11 +11,11 @@ const Input = (props) => {
         id={name}
         name={name}
         type={type}
-        value={state.fields[name] || ''}
+        value={value || ''}
         onChange={(e) => onChange(name, e)}
-        placeholder={state.errors[name] || placeholder }
+        placeholder={placeholder}
       />
-      {/*<span className="error">{state.errors[name]}</span>*/}
+      <small className="error">{errors[name]}</small>
     </div>
   )
 };

@@ -1,56 +1,49 @@
-import React, { Component } from 'react';
+import React, {Component, Fragment} from 'react';
 import { connect } from 'react-redux';
-import Input from '../../common/components/Input';
 import Button from '../../common/components/Button';
-import { Link } from 'react-router-dom';
-import Breadcrumbs from '../../common/components/Breadcrumbs';
 import Tabs from "../components/Tabs";
 import PersonalData from "../components/PersonalData";
 import DeliveryData from "../components/DeliveryData";
-import CartDetailed from "../components/CartDetailed";
 import CheckoutDetailed from "../components/CheckoutDetailed";
+import PropTypes from "prop-types";
+import * as actions from '../actions';
+import Loader from "../../common/components/Loader";
+import {withCookies} from "react-cookie";
 
 class Checkout extends Component {
 
 	constructor(props) {
 		super(props);
 		this.state = {
-			// isDelivery: false,
+			activeTab: "Самовывоз",
 			fields: {},
 			errors: {},
-			// inputs: {
-			// 	phone: "",
-			// 	name: "",
-			// 	surname: "",
-			// 	email: "",
-			// 	street: "",
-			// 	apartment: "",
-			// 	house: "",
-			// 	promocode: "",
-			// }
 		};
 
-		this.tabOnClick = this.tabOnClick.bind((this));
 		this.handleInputs = this.handleInputs.bind((this));
-		this.contactSubmit = this.contactSubmit.bind(this);
+		this.submitForm = this.submitForm.bind(this);
 		this.handleChange = this.handleChange.bind(this);
+		this.onClickTabItem = this.onClickTabItem.bind(this);
 	}
+
+	componentDidMount() {
+		this.props.loadCartReset();
+		const session = this.props.cookies.get('cartSession');
+		this.props.loadCart(session);
+	}
+
 
 	static fetching ({ dispatch }) {
     // return [dispatch(loadCart())];
   }
 
-	tabOnClick(e) {
-		if (!e.target.classList.contains('tabs__tab__active') && !this.state.isDelivery) {
-			this.setState({
-				isDelivery: true,
-			});
-		} else {
-			this.setState({
-				isDelivery: false,
-			});
-		}
-	};
+	emailRegex = RegExp(
+		/^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
+	);
+
+	phoneRegex = RegExp(
+		/^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/
+	);
 
 	handleInputs(e) {
     const value = e.currentTarget.value;
@@ -69,45 +62,85 @@ class Checkout extends Component {
 		let errors = {};
 		let formIsValid = true;
 
-		if(!fields["name"]){
+		if(!fields["firstName"]){
 			formIsValid = false;
-			errors["name"] = "Должно быть заполнено";
+			errors["firstName"] = "должно быть заполнено";
 		}
 
-		if(typeof fields["name"] !== "undefined"){
-			if(!fields["name"].match(/^[a-zA-Z]+$/)){
+		if(typeof fields["firstName"] !== "undefined"){
+			if(!fields["firstName"].match(/^[a-zA-Zа-яА-Я]+$/)){
 				formIsValid = false;
-				errors["name"] = "Только буквы";
+				errors["firstName"] = "только буквы";
+			}
+		}
+
+		if(!fields["lastName"]){
+			formIsValid = false;
+			errors["lastName"] = "должно быть заполнено";
+		}
+
+		if(typeof fields["lastName"] !== "undefined"){
+			if(!fields["lastName"].match(/^[a-zA-Zа-яА-Я]+$/)){
+				formIsValid = false;
+				errors["lastName"] = "только буквы";
 			}
 		}
 
 		if(!fields["email"]){
 			formIsValid = false;
-			errors["name"] = "Должно быть заполнено";
+			errors["email"] = "должно быть заполнено";
 		}
 
 		if(typeof fields["email"] !== "undefined"){
-			let lastAtPos = fields["email"].lastIndexOf('@');
-			let lastDotPos = fields["email"].lastIndexOf('.');
-
-			if (!(lastAtPos < lastDotPos && lastAtPos > 0 && fields["email"].indexOf('@@') === -1 && lastDotPos > 2 && (fields["email"].length - lastDotPos) > 2)) {
-				formIsValid = false;
-				errors["email"] = "Email не валиден";
-			}
+			formIsValid = false;
+			errors["email"] = this.emailRegex.test(fields.email) ? "" : "email не валиден";
 		}
 
+		if(!fields["phone"]){
+			formIsValid = false;
+			errors["phone"] = "должно быть заполнено";
+		}
 
+		if(typeof fields["phone"] !== "undefined"){
+			formIsValid = false;
+			errors["phone"] = this.phoneRegex.test(fields.phone) ? "" : "телефон не валиден";
+		}
+
+		if (this.state.activeTab === "Доставка по адресу") {
+			if(!fields["street"]){
+				formIsValid = false;
+				errors["street"] = "должно быть заполнено";
+			}
+
+			if(!fields["apartment"]){
+				formIsValid = false;
+				errors["apartment"] = "должно быть заполнено";
+			}
+
+			if(!fields["house"]){
+				formIsValid = false;
+				errors["house"] = "должно быть заполнено";
+			}
+		}
 
 		this.setState({errors: errors});
 		return formIsValid;
 	}
 
-	contactSubmit(e){
+	submitForm(e){
 		e.preventDefault();
 		if(this.handleValidation()){
-			alert("Form submitted");
+			console.log(`
+        --SUBMITTING--
+        First Name: ${this.state.fields.firstName}
+        Last Name: ${this.state.fields.lastName}
+        Email: ${this.state.fields.email}
+        phone: ${this.state.fields.phone}
+        street: ${this.state.fields.street}
+        apartment: ${this.state.fields.apartment}
+        house: ${this.state.fields.house}
+      `);
 		}else{
-			alert("Form has errors.")
 		}
 	}
 
@@ -117,59 +150,108 @@ class Checkout extends Component {
 		this.setState({fields});
 	}
 
-  render() {
+	onClickTabItem(tab) {
+		this.setState({ activeTab: tab })
+	};
+
+	render() {
 
 		console.log('RENDER <Checkout>');
+
+		const { items, errors, fetching } = this.props;
 
     return (
 		<div className="checkout">
 			<div className="checkout-main">
-				<h3 className="checkout-title">ОФОРМЛЕНИЕ ЗАКАЗА</h3>
-
-				<article className="order">
-					<div className="order-container">
-
-						<div className="order-container-left">
-							<div className="order-type">
-								<div className="order-type-title">Выберите, как хотите получить заказ</div>
-								<Tabs state={this.state} onClick={this.tabOnClick}>
-									<div label="Самовывоз">
-										<PersonalData state={this.state} onChange={this.handleChange} />
-									</div>
-									<div label="Доставка по адресу">
-										<PersonalData state={this.state} onChange={this.handleChange}/>
-										<DeliveryData state={this.state} onChange={this.handleChange}/>
-									</div>
-								</Tabs>
-							</div>
+				{
+					fetching && <Loader />
+				}
+				{
+					errors && (
+						<div style={{ marginTop: '200px' }}>
+							<strong>ERROR: </strong>
+							{errors.message}
 						</div>
+					)
+				}
+				{
+					!errors && items && items.length === 0 && (
+						<div className="cart-no-product">В вашей корзине пока нет товаров</div>
+					)
+				}
+				{
+					!errors && items && items.length > 0 && (
+						<Fragment>
+							<h3 className="checkout-title">ОФОРМЛЕНИЕ ЗАКАЗА</h3>
 
-						<div className="order-container-right">
-							<CheckoutDetailed
-								state={this.state}
-								onChange={this.handleChange}
-								orderPrice={0}
-								numberOfItems={0}
-							/>
-						</div>
-					</div>
+							<article className="order">
+								<div className="order-container">
 
-					<Button title="Оформить заказ" action={this.contactSubmit} />
+									<div className="order-container-left">
+										<div className="order-type">
+											<div className="order-type-title">Выберите, как хотите получить заказ</div>
+											<Tabs onClick={this.onClickTabItem} activeTab={this.state.activeTab}>
+												<div label="Самовывоз">
+													<PersonalData
+														errors={this.state.errors}
+														values={this.state.fields}
+														onChange={this.handleChange}
+													/>
+												</div>
+												<div label="Доставка по адресу">
+													<PersonalData
+														errors={this.state.errors}
+														values={this.state.fields}
+														onChange={this.handleChange}
+													/>
+													<DeliveryData
+														errors={this.state.errors}
+														values={this.state.fields}
+														onChange={this.handleChange}
+													/>
+												</div>
+											</Tabs>
+										</div>
+									</div>
 
-					<div className="cart-section-note">
-						Поможем оформить заказ, если что-то пошло не так. Звоните
-						<a href="tel:89202937264">+7 (920) 293-72-64</a>
-					</div>
-				</article>
+									<div className="order-container-right">
+										<CheckoutDetailed
+											state={this.state}
+											numberOfItems={items.map(item => item.quantity).reduce((a, b) => a + b)}
+											orderPrice={items.map(item => item.price).reduce((a, b) => a + b)}
+										/>
+									</div>
+								</div>
 
+								<Button title="Оформить заказ" action={this.submitForm} />
+
+								<div className="cart-section-note">
+									Поможем оформить заказ, если что-то пошло не так. Звоните
+									<a href="tel:89202937264">+7 (920) 293-72-64</a>
+								</div>
+							</article>
+						</Fragment>
+					)
+				}
 			</div>
 		</div>
     )
   }
 }
 
-const mapStateToProps = state => ({
-  // total: state.cart.total,
+Checkout.propTypes = {
+	loadCart: PropTypes.func.isRequired,
+	items: PropTypes.array.isRequired,
+	errors: PropTypes.string.isRequired,
+	fetching: PropTypes.bool.isRequired,
+	loadCartReset: PropTypes.func.isRequired,
+};
+
+const mapStateToProps = (state, ownProps) => ({
+	items: state.cart.items,
+	errors: state.cart.errors,
+	fetching: state.cart.fetching,
+	cookies: ownProps.cookies,
 });
 
-export default connect(mapStateToProps, null )(Checkout)
+export default withCookies(connect(mapStateToProps, { ...actions })(Checkout));

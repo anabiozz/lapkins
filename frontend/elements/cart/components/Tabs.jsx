@@ -3,21 +3,10 @@ import PropTypes from "prop-types";
 import Tab from "./Tab";
 
 class Tabs extends Component {
-	constructor(props) {
-		super(props);
-
-		this.state = {
-			activeTab: this.props.children[0].props.label,
-		}
-	}
-
-	onClickTabItem = (tab) => {
-		this.setState({ activeTab: tab })
-	};
 
 	render() {
 
-		const {onClickTabItem, props: { children }, state: { activeTab }} = this;
+		const {props: { children, onClick, activeTab }} = this;
 
 		return (
 			<div className="order-type-tabs">
@@ -28,7 +17,7 @@ class Tabs extends Component {
 							const { label } = child.props;
 
 							return (
-								<Tab activeTab={activeTab} key={label} label={label} onClick={onClickTabItem} />
+								<Tab activeTab={activeTab} key={label} label={label} onClick={onClick} />
 							);
 						})}
 				</div>
