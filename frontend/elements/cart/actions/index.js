@@ -17,6 +17,10 @@ import {
   LOAD_CART_REQUEST,
   LOAD_CART_SUCCESS,
   LOAD_CART_RESET,
+  CREATE_ORDER_SUCCESS,
+  CREATE_ORDER_ERROR,
+  CREATE_ORDER_RESET,
+  CREATE_ORDER_REQUEST,
 } from '../constant';
 import fetch from 'isomorphic-fetch';
 import config from '../../../config';
@@ -130,6 +134,39 @@ export const loadCart = (cartSession) => async dispatch => {
     .then(response => response.json())
     .then(response => dispatch(loadCartSuccess(response)))
     .catch(error => dispatch(loadCartFail(error)));
+};
+
+// CreateOrder ***********************************
+
+const createOrderSuccess = response => ({ type: CREATE_ORDER_SUCCESS, response });
+const createOrderFail = error => ({ type: CREATE_ORDER_ERROR, error });
+export const createOrderReset = () => async dispatch => dispatch({ type: CREATE_ORDER_RESET });
+
+export const createOrder = (cartSession) => async dispatch => {
+  dispatch({ type: CREATE_ORDER_REQUEST });
+
+  fetch(`${config.apiDomain}/api/cart/create-order`, {
+    method: 'POST',
+      headers: {
+      // Check what headers the API needs. A couple of usual right below
+      'Accept': 'application/json',
+        'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      "variation_id": variationID,
+      "cart_session": cartSession,
+      "size_option_id": sizeOptionID,
+    })
+  })
+  .then((response) => {
+    if (response.status === 200) {
+      return response
+    }
+    throw new Error(`Cannot load data from server. Response status ${response.status}`)
+  })
+  .then(response => response.json())
+  .then(response => dispatch(createOrderSuccess(response)))
+  .catch(error => dispatch(createOrderFail(error)));
 };
 
 export const dismissError = () => async dispatch => dispatch({ type: DISMISS_ADD_PRODUCT_TO_CART_ERROR });

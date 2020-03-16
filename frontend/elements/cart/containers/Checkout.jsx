@@ -32,7 +32,6 @@ class Checkout extends Component {
 		this.props.loadCart(session);
 	}
 
-
 	static fetching ({ dispatch }) {
     // return [dispatch(loadCart())];
   }
