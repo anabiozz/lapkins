@@ -26,7 +26,7 @@ module.exports = {
     rules: [
       {
         test: /\.(js|jsx)$/,
-        // exclude: '/node_modules/',
+        exclude: '/node_modules/',
         loader: ['babel-loader'],
         include: path.join(__dirname, 'frontend')
       },
@@ -34,7 +34,6 @@ module.exports = {
         test: /\.(s*)css$/,
         exclude: /node_modules/,
         use: ['style-loader', 'css-loader', 'sass-loader'],
-
       },
       {
         test: /\.(eot|woff|woff2|svg|ttf|otf)([?]?.*)$/,

@@ -1,5 +1,5 @@
 import React from 'react';
-import { hydrate } from "react-dom";
+import { hydrate } from 'react-dom';
 import { Provider } from 'react-redux';
 import App from './App';
 import configureStore from './_flax/store';
@@ -20,12 +20,12 @@ hydrate(
 			</Router>
 		</Provider>
 	</CookiesProvider>,
-	document.querySelector(".root")
+	document.querySelector('.root')
 );
 
-if (module.hot) {
-	module.hot.accept('./App', () => {
-		const NextRootContainer = require('./App').default;
-		render(<NextRootContainer />, document.querySelector('.root'));
-	})
-}
+// if (module.hot) {
+// 	module.hot.accept('./App', () => {
+// 		const NextRootContainer = require('./App').default;
+// 		render(<NextRootContainer />, document.querySelector('.root'));
+// 	});
+// }

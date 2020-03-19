@@ -9,7 +9,7 @@ import Loader from '../../common/components/Loader';
 import {
   productProp,
 } from '../../../utils/props';
-import Breadcrumbs from "../../common/components/Breadcrumbs";
+import Breadcrumbs from '../../common/components/Breadcrumbs';
 
 class Catalog extends Component {
   constructor(props) {
@@ -88,7 +88,7 @@ class Catalog extends Component {
           </div>
         </div>
       </Fragment>
-    )
+    );
   }
 }
 
@@ -98,6 +98,7 @@ Catalog.propTypes = {
   fetching: PropTypes.bool.isRequired,
   getProducts: PropTypes.func.isRequired,
   reset: PropTypes.func.isRequired,
+  categoryType: PropTypes.string.isRequired,
 };
 
 const mapStateToProps = state => ({

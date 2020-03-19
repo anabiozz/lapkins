@@ -54,9 +54,9 @@ class Home extends React.Component {
 					</NavLink>
 
 			</div>
-		)
+		);
 	}
 }
 
 
-export default connect( null )(Home)
+export default connect( null )(Home);

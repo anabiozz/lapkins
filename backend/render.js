@@ -5,7 +5,7 @@ import { StaticRouter as Router } from 'react-router-dom';
 import { renderRoutes } from 'react-router-config';
 import Header from '../frontend/elements/common/containers/Header';
 import Footer from '../frontend/elements/common/components/Footer';
-import Quicklist from "../frontend/elements/common/components/Quicklist";
+import Quicklist from '../frontend/elements/common/components/Quicklist';
 
 export default (path, store, context, routes) => {
   const content = renderToString(

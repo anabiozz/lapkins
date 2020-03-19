@@ -1,59 +1,22 @@
 {
-  "parser": "babel-eslint",
-  "extends": "airbnb",
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended"
+  ],
+  "parserOptions": {
+    "ecmaVersion": 2018,
+    "sourceType": "module"
+  },
   "env": {
-    "browser": true
+    "browser": true,
+    "es6": true,
+    "node": true
   },
   "plugins": [
-    "react",
-    "jsx-a11y",
-    "import"
+    "react"
   ],
   "rules": {
-    "import/no-extraneous-dependencies": [
-      "error",
-      {
-        "devDependencies": false,
-        "optionalDependencies": false,
-        "peerDependencies": false
-      }
-    ],
-    "max-len": [1, 120, 2, {
-      "ignoreComments": true
-    }],
-    "no-debugger": 0,
-    "no-console": 0,
-    "new-cap": 0,
-    "strict": 1,
-    "semi": [2, "never"],
-    "no-underscore-dangle": 0,
-    "no-use-before-define": 0,
-    "eol-last": 0,
-    "no-undef": 0,
-    "quotes": [2, "single", {
-      "avoidEscape": true
-    }],
-    "jsx-a11y/label-has-for": [2, {
-      "required": {
-        "every": ["id"]
-      }
-    }],
-    "react/jsx-filename-extension": [1, {
-      "extensions": [".js", ".jsx"]
-    }],
-    "directive-selector": [
-      true,
-      "attribute",
-      "app",
-      "camelCase"
-    ],
-    "component-selector": [
-      true,
-      "element",
-      "app",
-      "kebab-case"
-    ],
-    "max-line-length": [false],
-    "import/no-named-as-default": 0
+    "semi": ["error", "always"],
+    "quotes": ["error", "single"]
   }
 }
