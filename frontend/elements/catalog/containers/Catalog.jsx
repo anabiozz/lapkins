@@ -20,7 +20,7 @@ class Catalog extends Component {
   }
 
   static fetching ({ dispatch, path }) {
-    // return [dispatch(actions.getProducts(""))];
+    return [dispatch(actions.getProducts(path))];
   }
 
   componentDidUpdate(prevProps, prevState, snapshot) {

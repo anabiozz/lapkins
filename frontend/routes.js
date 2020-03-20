@@ -2,7 +2,6 @@ import Home from './elements/home/containers/Home';
 import Catalog from './elements/catalog/containers/Catalog';
 import Cart from './elements/cart/containers/Cart';
 import ProductDescription from './elements/description/containers/ProductDescription';
-import Checkout from './elements/cart/containers/Checkout';
 import NotFound from './elements/common/components/NotFound';
 import Categories from './elements/categories/containers/Categories';
 import Done from './elements/cart/components/Done';
@@ -18,10 +17,6 @@ export default [
   {
     component: Cart,
 		path: '/cart',
-	},
-	{
-    component: Checkout,
-		path: '/checkout',
 	},
 	{
     component: Done,

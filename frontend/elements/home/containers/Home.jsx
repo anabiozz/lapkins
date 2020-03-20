@@ -11,8 +11,9 @@ class Home extends React.Component {
 	}
 
 	add() {
+		let el = this.state.elements.length
 		this.setState({
-			elements: [...this.state.elements, this.state.elements.length++]
+			elements: [...this.state.elements, el++]
 		});
 	}
 

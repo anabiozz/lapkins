@@ -4,9 +4,9 @@ import {
   GET_VARIATION_ERROR,
   GET_VARIATION_RESET,
   DISMISS_GET_VARIATION_ERROR,
-} from '../constants'
+} from '../constants';
 
-import config from '../../../config'
+import config from '../../../config';
 import fetch from 'isomorphic-fetch';
 
 const receiveSuccess = response => ({
@@ -22,13 +22,13 @@ const receiveFail = error => ({
 export function reset() {
   return dispatch => dispatch({
     type: GET_VARIATION_RESET,
-  })
+  });
 }
 
 export function dismissError() {
   return dispatch => dispatch({
     type: DISMISS_GET_VARIATION_ERROR,
-  })
+  });
 }
 
 export const getVariation = (variationID, sizeOptionID) => (dispatch) => {
@@ -39,12 +39,12 @@ export const getVariation = (variationID, sizeOptionID) => (dispatch) => {
   fetch(`${config.apiDomain}/api/get-variation?variation_id=${variationID}&size_option_id=${sizeOptionID}`)
     .then((response) => {
       if (response.status === 200) {
-        return response
+        return response;
       }
-      throw new Error(`Cannot load data from server. Response status ${response.status}`)
+      throw new Error(`Cannot load data from server. Response status ${response.status}`);
     })
     .then(response => response.json())
     .then(response => dispatch(receiveSuccess(response)))
-    .catch(error => dispatch(receiveFail(error)))
+    .catch(error => dispatch(receiveFail(error)));
 };
 

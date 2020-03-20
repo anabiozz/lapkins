@@ -1,7 +1,6 @@
 import React from 'react';
-import PropTypes from "prop-types";
-import Counter from '../../common/components/Counter';
-import Input from "../../common/components/Input";
+import PropTypes from 'prop-types';
+import Input from '../../common/components/Input';
 
 const PersonalData = ({ errors, values, onChange }) => {
 
@@ -12,9 +11,10 @@ const PersonalData = ({ errors, values, onChange }) => {
 				<div className="field-group">
 					<Input
 						title="Телефон"
-						type="number"
+						type="tel"
+						pattern="^\d{1}(\d{3})\d{3}-\d{2}-\d{2}$"
 						name="phone"
-						value={values["phone"]}
+						value={'+7' + (values['phone'] || '')}
 						onChange={onChange}
 						errors={errors}
 					/>
@@ -26,7 +26,7 @@ const PersonalData = ({ errors, values, onChange }) => {
 						title="Имя"
 						type="text"
 						name="firstName"
-						value={values["firstName"]}
+						value={values['firstName'] || ''}
 						onChange={onChange}
 						errors={errors}
 					/>
@@ -38,7 +38,7 @@ const PersonalData = ({ errors, values, onChange }) => {
 						title="Фамилия"
 						type="text"
 						name="lastName"
-						value={values["lastName"]}
+						value={values['lastName'] || ''}
 						onChange={onChange}
 						errors={errors}
 					/>
@@ -49,7 +49,7 @@ const PersonalData = ({ errors, values, onChange }) => {
 					<Input
 						title="Email"
 						type="email"
-						value={values["email"]}
+						value={values['email'] || ''}
 						onChange={onChange}
 						name="email"
 						errors={errors}
@@ -57,7 +57,13 @@ const PersonalData = ({ errors, values, onChange }) => {
 				</div>
 			</div>
 		</form>
-	</div>
+	</div>;
 };
 
-export default PersonalData
+PersonalData.propTypes = {
+	errors: PropTypes.object.isRequired,
+	values: PropTypes.object.isRequired,
+	onChange: PropTypes.func.isRequired,
+};
+
+export default PersonalData;

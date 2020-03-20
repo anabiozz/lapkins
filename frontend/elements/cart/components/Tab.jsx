@@ -1,5 +1,5 @@
-import React, {Component} from "react";
-import PropTypes from "prop-types";
+import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 
 class Tab extends Component{
 
@@ -11,7 +11,7 @@ class Tab extends Component{
 	render() {
 		const { onClick, props: { activeTab, label } } = this;
 
-		let className = "tab";
+		let className = 'tab';
 
 		if (activeTab === label) {
 			className += ' tab-active';
@@ -31,11 +31,11 @@ class Tab extends Component{
 		return (
 			<div className={className} onClick={onClick}>
 				<div className="tab-icon">
-					{ label === "Самовывоз" ? pickupSvg : deliverySvg }
+					{ label === 'Самовывоз' ? pickupSvg : deliverySvg }
 				</div>
 				<div className="tab-text">{label}</div>
 			</div>
-		)
+		);
 	}
 }
 

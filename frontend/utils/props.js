@@ -1,4 +1,4 @@
-import PropTypes from 'prop-types'
+import PropTypes from 'prop-types';
 
 export const matchProp = {
   isExact: PropTypes.bool,
@@ -11,7 +11,7 @@ export const productProp = {
   id: PropTypes.number,
   name: PropTypes.string,
   currency: PropTypes.string,
-  decription: PropTypes.string,
+  description: PropTypes.string,
   ext: PropTypes.string,
   is_available: PropTypes.bool,
   price: PropTypes.string,

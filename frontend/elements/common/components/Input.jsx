@@ -1,5 +1,5 @@
-import React from 'react'
-import PropTypes from 'prop-types'
+import React from 'react';
+import PropTypes from 'prop-types';
 
 const Input = (props) => {
   const { name, title, type, errors, value, onChange, placeholder } = props;
@@ -17,7 +17,7 @@ const Input = (props) => {
       />
       <small className="error">{errors[name]}</small>
     </div>
-  )
+  );
 };
 
 Input.propTypes = {
@@ -26,6 +26,8 @@ Input.propTypes = {
   title: PropTypes.string,
   onChange: PropTypes.func.isRequired,
   placeholder: PropTypes.string,
+  errors: PropTypes.object.isRequired,
+  value: PropTypes.string.isRequired,
 };
 
-export default Input
+export default Input;

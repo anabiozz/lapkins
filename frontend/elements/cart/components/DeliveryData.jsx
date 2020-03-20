@@ -1,7 +1,6 @@
 import React from 'react';
-import PropTypes from "prop-types";
-import Counter from '../../common/components/Counter';
-import Input from "../../common/components/Input";
+import PropTypes from 'prop-types';
+import Input from '../../common/components/Input';
 
 const DeliveryData = ({ errors, values, onChange }) => {
 
@@ -16,7 +15,7 @@ const DeliveryData = ({ errors, values, onChange }) => {
 					title="Улица"
 					type="text"
 					name="street"
-					value={values["street"]}
+					value={values['street'] || ''}
 					onChange={onChange}
 					errors={errors}
 				/>
@@ -29,7 +28,7 @@ const DeliveryData = ({ errors, values, onChange }) => {
 					title="Кв."
 					type="text"
 					name="apartment"
-					value={values["apartment"]}
+					value={values['apartment'] || ''}
 					onChange={onChange}
 					errors={errors}
 				/>
@@ -42,7 +41,7 @@ const DeliveryData = ({ errors, values, onChange }) => {
 					title="Дом"
 					type="text"
 					name="house"
-					value={values["house"]}
+					value={values['house'] || ''}
 					onChange={onChange}
 					errors={errors}
 				/>
@@ -53,7 +52,13 @@ const DeliveryData = ({ errors, values, onChange }) => {
 				<p>При заказе от 4000 руб. доставка по всей России бесплатная.</p>
 		</div>
 		<div>В данный момент доставка осуществляется только в пределах Москвы</div>
-	</div>
+	</div>;
 };
 
-export default DeliveryData
+DeliveryData.propTypes = {
+	errors: PropTypes.object.isRequired,
+	values: PropTypes.object.isRequired,
+	onChange: PropTypes.func.isRequired,
+};
+
+export default DeliveryData;

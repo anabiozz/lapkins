@@ -1,5 +1,5 @@
 import React from 'react';
-import PropTypes from "prop-types";
+import PropTypes from 'prop-types';
 import Counter from '../../common/components/Counter';
 import config from '../../../config';
 
@@ -13,7 +13,7 @@ const CartProductItem = ({ product, removeProduct, increaseProductQuantity, decr
 
 		<div className="cart-product-item-content">
 			<div className="left-content">
-				<span className="decription">{product.name}</span>
+				<span className="description">{product.name}</span>
 				<span>Размер: {product.size}</span>
 				<div onClick={() => removeProduct(product)} className="remove">Удалить</div>
 			</div>
@@ -32,7 +32,7 @@ const CartProductItem = ({ product, removeProduct, increaseProductQuantity, decr
 
 			</div>
 		</div>
-	</div>
+	</div>;
 };
 
 CartProductItem.propTypes = {
@@ -42,4 +42,4 @@ CartProductItem.propTypes = {
 	decreaseProductQuantity: PropTypes.func.isRequired,
 };
 
-export default CartProductItem
+export default CartProductItem;

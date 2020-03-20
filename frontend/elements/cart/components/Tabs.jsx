@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import PropTypes from "prop-types";
-import Tab from "./Tab";
+import PropTypes from 'prop-types';
+import Tab from './Tab';
 
 class Tabs extends Component {
 
@@ -32,12 +32,14 @@ class Tabs extends Component {
 				</div>
 
 			</div>
-		)
+		);
 	}
 }
 
 Tabs.propTypes = {
 	children: PropTypes.instanceOf(Array).isRequired,
+	onClick: PropTypes.func.isRequired,
+	activeTab: PropTypes.string.isRequired,
 };
 
-export default Tabs
+export default Tabs;

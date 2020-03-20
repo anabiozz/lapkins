@@ -6,7 +6,7 @@ const Done = () => {
     <div className="done">
       <span>Заказ оформлен</span>
     </div>
-  )
+  );
 };
 
-export default Done
+export default Done;

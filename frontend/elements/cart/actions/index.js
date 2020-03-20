@@ -1,5 +1,4 @@
 import {
-  ADD_PRODUCT_RESET,
   DISMISS_ADD_PRODUCT_TO_CART_ERROR,
   ADD_PRODUCT_REQUEST,
   ADD_PRODUCT_ERROR,
@@ -39,16 +38,16 @@ export const addProduct = (variationID, cartSession, product, sizeOptionID) => d
         'Content-Type': 'application/json'
     },
     body: JSON.stringify({
-      "variation_id": variationID,
-      "cart_session": cartSession,
-      "size_option_id": sizeOptionID,
+      'variation_id': variationID,
+      'cart_session': cartSession,
+      'size_option_id': sizeOptionID,
     })
   })
   .then((response) => {
     if (response.status === 200) {
-      return response
+      return response;
     }
-    throw new Error(`Cannot load data from server. Response status ${response.status}`)
+    throw new Error(`Cannot load data from server. Response status ${response.status}`);
   })
   .then(response => response.json())
   .then(dispatch(addProductSuccess(product)))
@@ -66,9 +65,9 @@ export const increaseProductQuantity = (variationID, cartSession, sizeOptionID) 
   fetch(`${config.apiDomain}/api/cart/increase-product-quantity?cart_session=${cartSession}&variation_id=${variationID}&size_option_id=${sizeOptionID}`)
   .then((response) => {
     if (response.status === 200) {
-      return response
+      return response;
     }
-    throw new Error(`Cannot load data from server. Response status ${response.status}`)
+    throw new Error(`Cannot load data from server. Response status ${response.status}`);
   })
   .then(response => response.json())
   .then(dispatch(increaseProductQuantitySuccess({variationID, sizeOptionID})))
@@ -86,9 +85,9 @@ export const decreaseProductQuantity = (variationID, cartSession, sizeOptionID) 
   fetch(`${config.apiDomain}/api/cart/decrease-product-quantity?cart_session=${cartSession}&variation_id=${variationID}&size_option_id=${sizeOptionID}`)
     .then((response) => {
       if (response.status === 200) {
-        return response
+        return response;
       }
-      throw new Error(`Cannot load data from server. Response status ${response.status}`)
+      throw new Error(`Cannot load data from server. Response status ${response.status}`);
     })
     .then(response => response.json())
     .then(dispatch(decreaseProductQuantitySuccess({variationID, sizeOptionID})))
@@ -106,9 +105,9 @@ export const removeProduct = (product, variationID, cartSession, sizeOptionID) =
   fetch(`${config.apiDomain}/api/cart/remove-product?cart_session=${cartSession}&variation_id=${variationID}&size_option_id=${sizeOptionID}`)
     .then((response) => {
       if (response.status === 200) {
-        return response
+        return response;
       }
-      throw new Error(`Cannot load data from server. Response status ${response.status}`)
+      throw new Error(`Cannot load data from server. Response status ${response.status}`);
     })
     .then(response => response.json())
     .then(dispatch(removeProductSuccess(product)))
@@ -127,9 +126,9 @@ export const loadCart = (cartSession) => async dispatch => {
   fetch(`${config.apiDomain}/api/cart/load-cart?cart_session=${cartSession}`)
     .then((response) => {
       if (response.status === 200) {
-        return response
+        return response;
       }
-      throw new Error(`Cannot load data from server. Response status ${response.status}`)
+      throw new Error(`Cannot load data from server. Response status ${response.status}`);
     })
     .then(response => response.json())
     .then(response => dispatch(loadCartSuccess(response)))
@@ -153,16 +152,16 @@ export const createOrder = (cartSession) => async dispatch => {
         'Content-Type': 'application/json'
     },
     body: JSON.stringify({
-      "variation_id": variationID,
-      "cart_session": cartSession,
-      "size_option_id": sizeOptionID,
+      'variation_id': variationID,
+      'cart_session': cartSession,
+      'size_option_id': sizeOptionID,
     })
   })
   .then((response) => {
     if (response.status === 200) {
-      return response
+      return response;
     }
-    throw new Error(`Cannot load data from server. Response status ${response.status}`)
+    throw new Error(`Cannot load data from server. Response status ${response.status}`);
   })
   .then(response => response.json())
   .then(response => dispatch(createOrderSuccess(response)))
