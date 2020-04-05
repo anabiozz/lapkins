@@ -2,28 +2,21 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const Select = (props) => {
-  const {
-    error,
-    name,
-    value,
-    handleChange,
-    placeholder,
-    options,
-  } = props;
+  const { error, name, value, handleChange, placeholder, options, title } = props;
 
   return (
    <div className="select-box">
-      {/* <label htmlFor={name}>{title}</label> */}
-      <select className={error ? "select__error" : ""} id={name} name={name} value={value} onChange={handleChange} >
-        <option value="" disabled >{placeholder}</option> 
+      <label htmlFor={name}>{title}</label>
+      <select className={error ? 'select__error' : ''} id={name} name={name} value={value} onChange={handleChange} >
+        <option value="" disabled >{placeholder}</option>
         {
           options && options.map((option, i) => (
-            <option key={option.key} value={option.key} label={option.value}>{option.value}</option>
+            <option key={i} value={option.key} label={option.value}>{option.value}</option>
           ))
         }
       </select>
-    </div> 
-  )
+    </div>
+  );
 };
 
 Select.propTypes = {

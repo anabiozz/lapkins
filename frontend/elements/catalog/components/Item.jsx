@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import {
   productProp,
-} from '../../../utils/props';
+} from '../../../_helpers/props';
 
 const Item = ({ product, imgUrl, url }) => {
   return (

@@ -8,6 +8,8 @@ import { matchRoutes } from 'react-router-config';
 import render from './render';
 import configureStore from '../frontend/_flax/store';
 import setBundleHeaders from './middleware/setBundleHeaders';
+import cors from 'cors';
+
 
 const app = new express();
 
@@ -37,16 +39,49 @@ if (process.env.NODE_ENV === 'production') {
 		publicPath: webpackConfig.output.publicPath,
 		serverSideRender: true
 	}));
-	app.use(require("webpack-hot-middleware")(compiler));
+	app.use(require('webpack-hot-middleware')(compiler));
 }
 
+var whitelist = ['http://localhost:8080'];
+var corsOptions = {
+	origin: function (origin, callback) {
+		console.log('origin', origin)
+		if (whitelist.indexOf(origin) !== -1) {
+			callback(null, true);
+		} else {
+			callback(new Error('Not allowed by CORS'));
+		}
+	}
+};
+
 // TO DELETE IN PRODUCTION!!!
-app.use(function (req, res, next) {
-	console.log('TRY ADD HEADERS FOR REQUEST ' + req.url);
-	res.header('Access-Control-Allow-Origin', '*');
-	res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
-	next();
-});
+// app.use(function (req, res, next) {
+// 	console.log('TRY ADD HEADERS FOR REQUEST ' + req.url);
+// 	res.header('Access-Control-Allow-Origin', '*');
+// 	res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+//
+// 	if (req.method == 'OPTIONS') {
+// 		w.WriteHeader(http.StatusOK);
+// 		return;
+// 	}
+// 	next();
+// });
+
+
+var allowedOrigins = ['http://localhost:8080', 'http://localhost:8085'];
+// app.use(cors({
+// 	origin: function(origin, callback){
+// 		console.log(origin)
+// 		// allow requests with no origin
+// 		// (like mobile apps or curl requests)
+// 		if(!origin) return callback(null, true);
+// 		if(allowedOrigins.indexOf(origin) === -1){
+// 			var msg = 'The CORS policy for this site does not allow access from the specified Origin.';
+// 			return callback(new Error(msg), false);
+// 		}
+// 		return callback(null, true);
+// 	}
+// }));
 
 app.use(logger('dev'));
 app.use(bodyParser.json());
@@ -54,9 +89,13 @@ app.use(bodyParser.urlencoded({
     extended: false
 }));
 
-app.use(root + "css", express.static(__dirname + '/static'));
-app.use(root + "static/images", express.static(__dirname + '/static/images'));
+app.use(root + 'css', express.static(__dirname + '/static'));
+app.use(root + 'static/images', express.static(__dirname + '/static/images'));
 app.use(root + 'favicon.ico', express.static(__dirname + '/static/images/favicon.ico'));
+
+app.use(cors({
+	credentials: true,
+}));
 
 app.all('*', async (req, res) => {
 	const initialState = JSON.parse(JSON.stringify(config.initialState));

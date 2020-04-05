@@ -5,11 +5,9 @@ import PropTypes from 'prop-types';
 import Breadcrumbs from '../../common/components/Breadcrumbs';
 import Loader from '../../common/components/Loader';
 import { withCookies } from 'react-cookie';
-import {Link} from 'react-router-dom';
-import Button from '../../common/components/Button';
 import CartProductItem from '../components/CartProductItem';
 import CartDetailed from '../components/CartDetailed';
-import Tabs from '../components/Tabs';
+import Tabs from '../../common/components/Tabs';
 import PersonalData from '../components/PersonalData';
 import DeliveryData from '../components/DeliveryData';
 
@@ -91,8 +89,10 @@ class Cart extends Component {
     }
 
     if(typeof fields['email'] !== 'undefined'){
-      formIsValid = false;
-      errors['email'] = this.emailRegex.test(fields.email) ? '' : 'email не валиден';
+      if(!this.emailRegex.test(fields.email)){
+        formIsValid = false;
+        errors['email'] = 'email не валиден';
+      }
     }
 
     if(!fields['phone']){
@@ -246,7 +246,7 @@ class Cart extends Component {
                       <div className="order-container-left">
                         <div className="order-type">
                           <div className="order-type-title">Выберите, как хотите получить заказ</div>
-                          <Tabs onClick={this.onClickTabItem} activeTab={this.state.activeTab}>
+                          <Tabs onClick={this.onClickTabItem} activeTab={this.state.activeTab} >
                             <div label="Самовывоз">
                               <PersonalData
                                 errors={this.state.errors}

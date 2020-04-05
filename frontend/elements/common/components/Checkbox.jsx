@@ -1,8 +1,8 @@
-import React from 'react'
-import PropTypes from 'prop-types'
+import React from 'react';
+import PropTypes from 'prop-types';
 
 const CheckBox = (props) => {
-  const { name, handleChange, selectedOptions } = props;
+  const { name, handleChange, selectedOptions, options } = props;
 
   return(
     <div className="form-group">
@@ -25,13 +25,32 @@ const CheckBox = (props) => {
         }
       </div>
     </div>
-  )
+  );
 };
 
 CheckBox.propTypes = {
   name: PropTypes.string.isRequired,
   handleChange: PropTypes.string.isRequired,
-  selectedOptions: PropTypes.string.isRequired,
+  selectedOptions: PropTypes.array.isRequired,
+  options: PropTypes.array.isRequired,
 };
 
-export default CheckBox
+export default CheckBox;
+
+
+// handleSkillsCheckBox(e) {
+//
+//   const newSelection = e.target.value;
+//   let newSelectionArray;
+//
+//   if(this.state.newUser.skills.indexOf(newSelection) > -1) {
+//     newSelectionArray = this.state.newUser.skills.filter(s => s !== newSelection)
+//   } else {
+//     newSelectionArray = [...this.state.newUser.skills, newSelection];
+//   }
+//
+//   this.setState( prevState => ({ newUser:
+//         {...prevState.newUser, skills: newSelectionArray }
+//     })
+//   )
+// }

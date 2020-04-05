@@ -14,7 +14,7 @@ import v4 from 'uuid/v4';
 import {
   productProp,
   matchProp,
-} from '../../../utils/props';
+} from '../../../_helpers/props';
 
 export class ProductDescription extends Component {
 
@@ -23,7 +23,7 @@ export class ProductDescription extends Component {
 
     this.state = {
       select: {
-        value: "",
+        value: '',
         error: false,
       },
     };
@@ -33,7 +33,7 @@ export class ProductDescription extends Component {
   }
 
   static fetching ({ dispatch, path }) {
-    let variationID = path.split("/");
+    let variationID = path.split('/');
     return [dispatch(actions.getVariation(variationID[2], 0))];
   }
 
@@ -42,7 +42,7 @@ export class ProductDescription extends Component {
 
     reset();
 
-    if (item.size_option_id && item.size_option_id !== "" && this.state.select.value === "") {
+    if (item.size_option_id && item.size_option_id !== '' && this.state.select.value === '') {
       this.setState(prevState => ({
         select: {
           ...prevState.select,
@@ -57,7 +57,7 @@ export class ProductDescription extends Component {
       const uuid = v4();
       let d = new Date();
       d.setTime(d.getTime() + (7*24*60*60*1000));
-      cookies.set('cartSession', uuid, {path: "/", expires: d});
+      cookies.set('cartSession', uuid, {path: '/', expires: d});
       console.log(`Создана сессия: ${uuid}`);
     }
 
@@ -77,18 +77,18 @@ export class ProductDescription extends Component {
       }));
 
       this.props.reset();
-      this.props.getVariation(variationID, value)
+      this.props.getVariation(variationID, value);
     }
-  };
-  
+  }
+
   addToCart (item) {
     const session = this.props.cookies.get('cartSession');
     if (session) {
       this.props.addProduct(item.variation_id, session, item, item.size_option_id);
     } else {
-      console.error("Сессия не создана")
+      console.error('Сессия не создана');
     }
-  };
+  }
 
   render() {
 
@@ -125,7 +125,7 @@ export class ProductDescription extends Component {
                           return <div key={index}>
                             <img alt="img" src={`${config.imagePath.dev_path_full}/1/300x450/1.jpg`} />
                             <p className="legend">Legend {index}</p>
-                          </div>
+                          </div>;
                         })
                       }
                     </Carousel>
@@ -137,7 +137,7 @@ export class ProductDescription extends Component {
                       <div className="name">{item.name}</div>
 
                       <div className="price">
-                        { item.price + " руб." }
+                        { item.price + ' руб.' }
                       </div>
 
                       <table className="categories">
@@ -190,7 +190,7 @@ export class ProductDescription extends Component {
           </div>
         </div>
       </Fragment>
-    )
+    );
   }
 }
 
@@ -202,6 +202,7 @@ ProductDescription.propTypes = {
   reset: PropTypes.func.isRequired,
   match: PropTypes.shape(matchProp).isRequired,
   addProduct: PropTypes.func.isRequired,
+  cookies: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = (state, ownProps) => ({
@@ -212,4 +213,4 @@ const mapStateToProps = (state, ownProps) => ({
   reset: state.product_description.reset,
 });
 
-export default withCookies(connect(mapStateToProps, { ...actions, addProduct })(ProductDescription))
+export default withCookies(connect(mapStateToProps, { ...actions, addProduct })(ProductDescription));

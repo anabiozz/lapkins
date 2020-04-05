@@ -8,7 +8,7 @@ const Search = () => {
 				<button className="icon">Поиск</button>
 			</div>
 		</div>
-	</div>
+	</div>;
 };
 
 export default Search;

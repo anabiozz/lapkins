@@ -2,8 +2,8 @@ import React, { Fragment } from 'react';
 import { NavLink } from 'react-router-dom';
 import { slide as Menu } from 'react-burger-menu';
 import { connect } from 'react-redux';
-import Icons from "../components/Icons";
-import Search from "../components/Search";
+import Icons from '../components/Icons';
+import Search from '../components/Search';
 
 class Header extends React.Component {
   constructor(props) {
@@ -46,7 +46,7 @@ class Header extends React.Component {
         </header>
       </Fragment>
       
-    )
+    );
   }
 }
 
@@ -54,4 +54,4 @@ const mapStateToProps = state => ({
   isProductAdded: state.cart.isProductAdded,
 });
 
-export default connect(mapStateToProps)(Header)
+export default connect(mapStateToProps)(Header);

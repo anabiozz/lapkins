@@ -36,7 +36,7 @@ export const getVariation = (variationID, sizeOptionID) => (dispatch) => {
     type: GET_VARIATION_REQUEST,
   });
 
-  fetch(`${config.apiDomain}/api/get-variation?variation_id=${variationID}&size_option_id=${sizeOptionID}`)
+  fetch(`${config.apiDomain}/api/v1/products/get-variation?variation_id=${variationID}&size_option_id=${sizeOptionID}`)
     .then((response) => {
       if (response.status === 200) {
         return response;

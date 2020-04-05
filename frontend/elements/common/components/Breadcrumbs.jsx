@@ -1,10 +1,10 @@
 import React from 'react';
-import withBreadcrumbs from "react-router-breadcrumbs-hoc";
-import { Link } from "react-router-dom";
+import withBreadcrumbs from 'react-router-breadcrumbs-hoc';
+import { Link } from 'react-router-dom';
 
 const categories = {
   'stationery': 'Канцтовары',
-  "wallart": 'Декор',
+  'wallart': 'Декор',
 };
 
 const dynamicCategoriesBreadcrumb = ({ match }) => (
@@ -24,16 +24,16 @@ const dynamicCategoryTypeBreadcrumb = ({ match }) => (
 );
 
 const routes = [
-  { path: '/', breadcrumb: "Домой" },
+  { path: '/', breadcrumb: 'Домой' },
   { path: '/cart', breadcrumb: 'Корзина' },
-  { path: '/checkout', breadcrumb: "Оформление заказа" },
+  { path: '/checkout', breadcrumb: 'Оформление заказа' },
   { path: '/catalog/:category', breadcrumb: dynamicCategoriesBreadcrumb },
   { path: '/catalog/:category/:categoryType', breadcrumb: dynamicCategoryTypeBreadcrumb },
 ];
 
 const options = {
   excludePaths: [
-    "/catalog",
+    '/catalog',
     '/catalog/wallart/posters-without-frame/*',
     '/catalog/wallart/posters-without-frame/*',
     '/catalog/wallart/framed-posters-wood/*',

@@ -41,7 +41,7 @@ export default (path, store, context, routes) => {
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div class="root">${content}</div>
     <script>
-      window.__INITIAL_STATE__ = ${JSON.stringify(store.getState())}
+      window.__INITIAL_STATE__ = ${JSON.stringify(store.getState()).replace(/</g, '\\\u003c')}
     </script>
     <script src="/${jsBundle}"></script>
   </body>

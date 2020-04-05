@@ -1,5 +1,5 @@
 import React from 'react';
-import {NavLink} from "react-router-dom";
+import {NavLink} from 'react-router-dom';
 
 const Icons = () => {
 	return <ul className="icons">
@@ -9,8 +9,13 @@ const Icons = () => {
 					<img src="/static/images/cart.png" alt="cart"/>
 				</span>
 			</NavLink>
+			<NavLink to="/login">
+				<span className="icon-cart">
+					<img src="/static/images/user.svg" alt="user"/>
+				</span>
+			</NavLink>
 		</li>
-	</ul>
+	</ul>;
 };
 
-export default Icons
+export default Icons;

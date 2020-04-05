@@ -8,7 +8,7 @@ import Loader from '../../common/components/Loader';
 
 import {
   productProp,
-} from '../../../utils/props';
+} from '../../../_helpers/props';
 import Breadcrumbs from '../../common/components/Breadcrumbs';
 
 class Catalog extends Component {

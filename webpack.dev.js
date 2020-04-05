@@ -2,13 +2,11 @@ const path = require('path');
 const webpack = require('webpack');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
-const coreUrl = process.env.CORE_URL ? process.env.CORE_URL : '/';
-
 module.exports = {
   mode: 'development',
   devtool: 'inline-source-map',
   entry: [
-    "@babel/polyfill",
+    '@babel/polyfill',
     'react-hot-loader/patch',
     'webpack-hot-middleware/client',
     './frontend'
@@ -66,12 +64,12 @@ module.exports = {
     new webpack.DefinePlugin({
       'process.env': {
         HOME: JSON.stringify(process.env.HOME),
-        CORE_URL: JSON.stringify(coreUrl),
-        DEV: JSON.stringify(process.env.NODE_ENV === "development"),
+        CORE_URL: JSON.stringify(process.env.CORE_URL ? process.env.CORE_URL : '/'),
+        DEV: JSON.stringify(process.env.NODE_ENV === 'development'),
       },
     }),
   ],
   node: {
-		console: true // needed for html5-history package
+		// console: true
 	}
 };

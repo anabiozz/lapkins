@@ -6,7 +6,7 @@ import NotFound from './elements/common/components/NotFound';
 import Categories from './elements/categories/containers/Categories';
 import Done from './elements/cart/components/Done';
 import Wishlist from './elements/wishlist/containers/Wishlist';
-import Registration from './elements/registration/containers/Registration';
+import Auth from './elements/auth/containers/Auth';
 
 export default [
   {
@@ -27,8 +27,8 @@ export default [
 		path: '/wishlist',
 	},
 	{
-    component: Registration,
-		path: '/registration',
+    component: Auth,
+		path: '/login',
 	},
 	{
     component: Catalog,

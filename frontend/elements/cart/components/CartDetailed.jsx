@@ -21,7 +21,7 @@ const CartDetailed = ({ numberOfItems, orderPrice, checkout }) => {
 				</div>
 
 				<div className="order-cost">
-					<Button title="Оформить заказ" action={(e) => checkout(e)} />
+					<Button title="Оформить заказ" action={checkout} />
 				</div>
 
 			</div>

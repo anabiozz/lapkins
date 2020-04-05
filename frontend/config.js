@@ -1,7 +1,8 @@
 
 export default {
-  baseDomain: 'http://0.0.0.0:8080',
-  apiDomain: 'http://0.0.0.0:8081',
+  baseDomain: 'http://localhost:8080',
+  apiDomain: 'http://localhost:8081',
+  authDomain: 'http://localhost:8085',
   imagePath: {
     'full': process.env.HOME + '/images/full/',
     'preview': process.env.HOME + '/images/preview/',

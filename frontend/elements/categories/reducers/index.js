@@ -4,11 +4,11 @@ import {
 	GET_CATEGORIES_REQUEST,
 	GET_CATEGORIES_RESET,
 	GET_CATEGORIES_SUCCESS,
-} from '../constants'
+} from '../constants';
 
 const initialState = {
 	items: [],
-  errors: "",
+  errors: '',
   fetching: false,
 };
 
@@ -25,6 +25,6 @@ export default function (state = initialState, action) {
     case DISMISS_GET_CATEGORIES_ERROR:
       return { ...state, errors: '' };
     default:
-      return state
+      return state;
   }
 }

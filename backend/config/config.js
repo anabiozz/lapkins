@@ -1,5 +1,6 @@
+import state from './config.state';
 
-const host = process.env.SERVER;
+// const host = process.env.SERVER;
 const port = 8080; //
 
 const config = {
@@ -8,41 +9,7 @@ const config = {
         port: port,
         development: 'localhost'
     },
-    initialState: {
-        cart: {
-            items: [],
-            isProductAdded: false,
-            total: 0,
-            errors: '',
-            fetching: false,
-        },
-        categories: {
-            item: {},
-            errors: '',
-            fetching: false,
-        },
-        products: {
-            items: [],
-            errors: '',
-            fetching: false,
-        },
-        product_description: {
-            item: {},
-            errors: '',
-            fetching: false,
-        },
-    },
-    // variation: {
-    //     attributes: {},
-    //     description: "",
-    //     id: 0,
-    //     images: [],
-    //     name: "",
-    //     price_override: "",
-    //     product_id: 0,
-    //     size: "",
-    //     sizes: [],
-    //     quantity: 0,
-    // }
+    initialState: state,
+
 };
 export default config;

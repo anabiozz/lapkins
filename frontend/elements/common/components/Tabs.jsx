@@ -6,10 +6,10 @@ class Tabs extends Component {
 
 	render() {
 
-		const {props: { children, onClick, activeTab }} = this;
+		const { children, onClick, activeTab } = this.props;
 
 		return (
-			<div className="order-type-tabs">
+			<div className="tabs-wrapper">
 
 				<div className="tabs">
 					{

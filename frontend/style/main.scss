@@ -84,9 +84,8 @@ $content_width_2: ((($product_width * 3) + (2 * $content_gap))); //((($item_widt
 @import "catalog";
 @import "description";
 @import "categories";
-@import "checkout";
 @import "wishlist";
-@import "registration";
+@import "auth";
 
 @import "carousel";
 @import "cart";

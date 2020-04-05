@@ -30,7 +30,7 @@ const addProductFail = error => ({ type: ADD_PRODUCT_ERROR, error });
 export const addProduct = (variationID, cartSession, product, sizeOptionID) => dispatch => {
   dispatch({ type: ADD_PRODUCT_REQUEST });
 
-  fetch(`${config.apiDomain}/api/cart/add-product`, {
+  fetch(`${config.apiDomain}/api/v1/cart/add-product`, {
     method: 'POST',
     headers: {
         // Check what headers the API needs. A couple of usual right below
@@ -62,7 +62,7 @@ const increaseProductQuantityFail = error => ({ type: INCREASE_PRODUCT_QUANTITY_
 export const increaseProductQuantity = (variationID, cartSession, sizeOptionID) => async dispatch => {
   dispatch({ type: INCREASE_PRODUCT_QUANTITY_REQUEST });
 
-  fetch(`${config.apiDomain}/api/cart/increase-product-quantity?cart_session=${cartSession}&variation_id=${variationID}&size_option_id=${sizeOptionID}`)
+  fetch(`${config.apiDomain}/api/v1/cart/increase-product-quantity?cart_session=${cartSession}&variation_id=${variationID}&size_option_id=${sizeOptionID}`)
   .then((response) => {
     if (response.status === 200) {
       return response;
@@ -82,7 +82,7 @@ const decreaseProductQuantityFail = error => ({ type: DECREASE_PRODUCT_QUANTITY_
 export const decreaseProductQuantity = (variationID, cartSession, sizeOptionID) => async dispatch => {
   dispatch({ type: DECREASE_PRODUCT_QUANTITY_REQUEST });
 
-  fetch(`${config.apiDomain}/api/cart/decrease-product-quantity?cart_session=${cartSession}&variation_id=${variationID}&size_option_id=${sizeOptionID}`)
+  fetch(`${config.apiDomain}/api/v1/cart/decrease-product-quantity?cart_session=${cartSession}&variation_id=${variationID}&size_option_id=${sizeOptionID}`)
     .then((response) => {
       if (response.status === 200) {
         return response;
@@ -102,7 +102,7 @@ const removeProductFail = error => ({ type: REMOVE_PRODUCT_ERROR, error });
 export const removeProduct = (product, variationID, cartSession, sizeOptionID) => async dispatch => {
   dispatch({ type: REMOVE_PRODUCT_REQUEST });
 
-  fetch(`${config.apiDomain}/api/cart/remove-product?cart_session=${cartSession}&variation_id=${variationID}&size_option_id=${sizeOptionID}`)
+  fetch(`${config.apiDomain}/api/v1/cart/remove-product?cart_session=${cartSession}&variation_id=${variationID}&size_option_id=${sizeOptionID}`)
     .then((response) => {
       if (response.status === 200) {
         return response;
@@ -123,7 +123,7 @@ export const loadCartReset = () => async dispatch => dispatch({ type: LOAD_CART_
 export const loadCart = (cartSession) => async dispatch => {
   dispatch({ type: LOAD_CART_REQUEST });
 
-  fetch(`${config.apiDomain}/api/cart/load-cart?cart_session=${cartSession}`)
+  fetch(`${config.apiDomain}/api/v1/cart/load-cart?cart_session=${cartSession}`)
     .then((response) => {
       if (response.status === 200) {
         return response;
@@ -144,7 +144,7 @@ export const createOrderReset = () => async dispatch => dispatch({ type: CREATE_
 export const createOrder = (cartSession) => async dispatch => {
   dispatch({ type: CREATE_ORDER_REQUEST });
 
-  fetch(`${config.apiDomain}/api/cart/create-order`, {
+  fetch(`${config.apiDomain}/api/v1/cart/create-order`, {
     method: 'POST',
       headers: {
       // Check what headers the API needs. A couple of usual right below

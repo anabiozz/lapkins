@@ -20,9 +20,13 @@ import {
 
 const initialState = {
 	items: [],
-	errors: "",
+	errors: '',
 	fetching: false,
 };
+
+let removedProductState = [];
+let decreasedState = [];
+let increasedState = [];
 
 export default function (state = initialState, action) {
 	switch (action.type) {
@@ -31,7 +35,7 @@ export default function (state = initialState, action) {
 
 		case ADD_PRODUCT_SUCCESS:
 			return { ...state, fetching: false, items: [...state.items, action.response] };
-			
+
 		case ADD_PRODUCT_ERROR:
 			return { ...state, errors: action.error, fetching: false };
 
@@ -40,15 +44,14 @@ export default function (state = initialState, action) {
 
 		case INCREASE_PRODUCT_QUANTITY_REQUEST:
 			return { ...state, fetching: true };
-		
+
 		case INCREASE_PRODUCT_QUANTITY_SUCCESS:
-				const increasedState = state.items.map(product => {
-					return product.variation_id === action.response.variationID
-					&& product.size_option_id === action.response.sizeOptionID
+				increasedState = state.items.map(product => {
+					return product.variation_id === action.response.variationID && product.size_option_id === action.response.sizeOptionID
 					? { ...product, quantity: product.quantity + 1, price: product.price + product.price_per_item } : product;
 				});
 			return { ...state, items: increasedState, fetching: false };
-			
+
 		case INCREASE_PRODUCT_QUANTITY_ERROR:
 			return { ...state, errors: action.error, fetching: false };
 
@@ -56,10 +59,9 @@ export default function (state = initialState, action) {
 			return { ...state, fetching: true };
 
 		case DECREASE_PRODUCT_QUANTITY_SUCCESS:
-			const decreasedState = state.items.map(product => {
-				return product.variation_id === action.response.variationID
-				&& product.size_option_id === action.response.sizeOptionID
-					? { ...product, quantity: product.quantity - 1, price: product.price - product.price_per_item } : product;
+			decreasedState = state.items.map(product => {
+				return product.variation_id === action.response.variationID && product.size_option_id === action.response.sizeOptionID
+				? { ...product, quantity: product.quantity - 1, price: product.price - product.price_per_item } : product;
 			});
 			return { ...state, items: decreasedState, fetching: false };
 
@@ -73,8 +75,8 @@ export default function (state = initialState, action) {
 			return { ...state, errors: action.error, fetching: false };
 
 		case REMOVE_PRODUCT_SUCCESS:
-			const removedProductState = state.items.filter(product => {
-				return product.variation_id !== action.response.variation_id && product.size_option_id !== action.response.size_option_id
+			removedProductState = state.items.filter(product => {
+				return product.variation_id !== action.response.variation_id && product.size_option_id !== action.response.size_option_id;
 			});
 			return { ...state, fetching: false, items: removedProductState };
 

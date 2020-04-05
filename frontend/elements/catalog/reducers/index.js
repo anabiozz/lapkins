@@ -8,7 +8,7 @@ import {
 
 const initialState = {
   items: [],
-  errors: "",
+  errors: '',
   fetching: false,
 };
 
@@ -25,6 +25,6 @@ export default function products(state = initialState, action) {
     case DISMISS_PRODUCTS_ERROR:
       return { ...state, errors: '' };
     default:
-      return state
+      return state;
   }
 }

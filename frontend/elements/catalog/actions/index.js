@@ -3,7 +3,7 @@ import {
   GET_PRODUCTS_REQUEST,
   GET_PRODUCTS_ERROR,
   GET_PRODUCTS_SUCCESS, GET_PRODUCTS_RESET, DISMISS_PRODUCTS_ERROR,
-} from '../constants'
+} from '../constants';
 import config from '../../../config';
 import fetch from 'isomorphic-fetch';
 
@@ -17,14 +17,14 @@ export const getProducts = (category_url) => async dispatch => {
   dispatch({
     type: GET_PRODUCTS_REQUEST,
   });
-  return fetch(`${config.apiDomain}/api/get-products?category_url=${category_url}`)
+  return fetch(`${config.apiDomain}/api/v1/products/get-products?category_url=${category_url}`)
     .then((response) => {
       if (response.status === 200) {
-        return response
+        return response;
       }
-      throw new Error(`Cannot load data from server. Response status ${response.status}`)
+      throw new Error(`Cannot load data from server. Response status ${response.status}`);
     })
     .then(response => response.json())
     .then(response => dispatch(receiveSuccess(response)))
-    .catch(error => dispatch(receiveFail(error)))
+    .catch(error => dispatch(receiveFail(error)));
 };
