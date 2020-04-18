@@ -1,26 +1,16 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import { renderToString } from 'react-dom/server';
-import { Provider } from 'react-redux';
 import { StaticRouter as Router } from 'react-router-dom';
-import { renderRoutes } from 'react-router-config';
-import Header from '../frontend/elements/common/containers/Header';
-import Footer from '../frontend/elements/common/components/Footer';
-import Quicklist from '../frontend/elements/common/components/Quicklist';
+import App from '../frontend/App';
+import { CookiesProvider } from 'react-cookie';
 
-export default (path, store, context, routes) => {
+export default (path, context) => {
   const content = renderToString(
-    <Provider store={store}>
+    <CookiesProvider>
       <Router location={path} context={context}>
-				<Fragment>
-					<Header />
-					<Quicklist />
-          <section className="content">
-            {renderRoutes(routes)}
-          </section>
-					<Footer />
-				</Fragment>
+       <App />
       </Router>
-    </Provider>
+    </CookiesProvider>
   );
 
   const jsBundle = process.env.NODE_ENV === 'production' ? 'bundle-prod.js' : 'bundle-dev.js';
@@ -36,13 +26,35 @@ export default (path, store, context, routes) => {
 		<link href="https://fonts.googleapis.com/css?family=Oswald&display=swap" rel="stylesheet">
 		<link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
     <title>Лапкин дом</title>
+    
+    <style>
+    .svgLoader {
+      animation: spin 0.5s linear infinite;
+      margin: auto;
+    }
+    .divLoader {
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+  </style>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div class="root">${content}</div>
-    <script>
-      window.__INITIAL_STATE__ = ${JSON.stringify(store.getState()).replace(/</g, '\\\u003c')}
-    </script>
+<!--    <div class="divLoader">-->
+<!--      <svg class="svgLoader" viewBox="0 0 1024 1024" width="10em" height="10em">-->
+<!--        <path fill="lightblue"-->
+<!--          m="PATH FOR THE LOADER ICON"-->
+<!--        />-->
+<!--      </svg>-->
+<!--    </div>-->
     <script src="/${jsBundle}"></script>
   </body>
   </html>`;

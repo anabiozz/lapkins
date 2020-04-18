@@ -78,6 +78,7 @@ body::-webkit-scrollbar-thumb {
 
   section.content {
     flex: 1;
+    height: 100vh;
     margin: $content_gap auto;
   }
 }

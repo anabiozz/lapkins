@@ -14,7 +14,7 @@ class Categories extends Component {
 
 	componentDidMount() {
 		this.props.reset();
-    this.props.getCategories(this.props.match.params.category)
+    this.props.getCategories(this.props.match.params.category);
 	}
 
 	render() {
@@ -60,7 +60,7 @@ class Categories extends Component {
 					</div>
 				</div>
 			</Fragment>
-		)
+		);
 	}
 }
 
@@ -69,6 +69,7 @@ Categories.propTypes = {
   errors: PropTypes.string.isRequired,
   fetching: PropTypes.bool.isRequired,
 	reset: PropTypes.func.isRequired,
+	match: PropTypes.object.isRequired,
 	getCategories: PropTypes.func.isRequired,
 };
 

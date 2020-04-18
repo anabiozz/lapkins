@@ -9,4 +9,8 @@ export default {
     'dev_path_preview': '/static/images/preview/',
     'dev_path_full': '/static/images/full/',
   },
+  cookies: {
+    tmpUserID: 'tmp-user-id',
+    token: 'token',
+  }
 };

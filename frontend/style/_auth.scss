@@ -13,55 +13,16 @@
     position: relative;
     width: 500px;
 
-    .tabs-wrapper {
-      display: flex;
-      flex-direction: column;
-      margin-bottom: $content_gap;
+    .login {
+      width: 500px;
+    }
+    .registry {
+      width: 500px;
+    }
 
-      .tabs {
-        display: flex;
-
-        .tab {
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          width: 50%;
-          transition: border-color .12s ease-out 0s;
-          cursor: pointer;
-          padding-top: 16px;
-          padding-bottom: 16px;
-          box-sizing: border-box;
-
-          &-active {
-            border-bottom: 2px solid $checkout_background_color;
-            cursor: default;
-          }
-
-          .tab-icon {
-            box-sizing: content-box;
-            height: 30px;
-            padding: 5px 0 10px;
-            color: #abbbc8;
-            transition: color .12s linear 0s;
-          }
-        }
-      }
-
-      .tab-content {
-        display: flex;
-
-        .login {
-          width: 500px;
-        }
-        .registry {
-          width: 500px;
-        }
-
-        form {
-          > div {
-            padding: 10px 0;
-          }
-        }
+    form {
+      > div {
+        padding: 10px 0;
       }
     }
 

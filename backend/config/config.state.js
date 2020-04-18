@@ -1,10 +1,4 @@
 export default {
-  user: {
-    _id: null,
-    name: 'Unknown',
-    errors: '',
-    success: false
-  },
   cart: {
     items: [],
     errors: '',
@@ -17,7 +11,7 @@ export default {
   },
   catalog: {
     items: [],
-    errors: '',
+    error: '',
     fetching: false,
   },
   description: {
@@ -25,11 +19,10 @@ export default {
     errors: '',
     fetching: false,
   },
-  auth: {
+  user: {
+    name: 'Unknown',
     token: '',
-    subject: '',
     error: '',
     fetching: false,
-    redirect: false,
   }
 };
