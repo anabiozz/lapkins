@@ -1,28 +1,32 @@
 export default {
   cart: {
-    items: [],
-    errors: '',
+    products: [],
+    error: null,
     fetching: false,
   },
   categories: {
-    items: [],
-    errors: '',
+    products: [],
+    error: null,
     fetching: false,
   },
   catalog: {
-    items: [],
-    error: '',
+    products: [],
+    error: null,
     fetching: false,
   },
   description: {
-    item: {},
-    errors: '',
+    product: {},
+    error: null,
     fetching: false,
+  },
+  headerCartInfo: {
+    quantity: 0,
+    price: 0
   },
   user: {
     name: 'Unknown',
     token: '',
-    error: '',
+    error: null,
     fetching: false,
-  }
+  },
 };

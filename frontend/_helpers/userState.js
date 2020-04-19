@@ -6,33 +6,28 @@ export const Context = createContext({});
 
 export const Provider = props => {
   // Initial values are obtained from the props
-  const { login: initialLogin, children } = props;
+  const { user: initialLogin, children } = props;
 
 
   // Use State to keep the values
-  const [login, setLogin] = useState(initialLogin);
-
-  const addNewLogin = value => {
-    setLogin(value);
-  };
+  const [user, setUser, ] = useState(initialLogin);
 
   // Make the context object:
-  const loginContext = {
-    login,
-    setLogin,
-    addNewLogin
+  const userContext = {
+    user,
+    setUser
   };
 
   // pass the value in provider and return
-  return <Context.Provider value={loginContext}>{children}</Context.Provider>;
+  return <Context.Provider value={userContext}>{children}</Context.Provider>;
 };
 
 export const { Consumer } = Context;
 
 Provider.propTypes = {
-  login: PropTypes.bool,
+  user: PropTypes.bool,
 };
 
 Provider.defaultProps = {
-  login: false,
+  user: false,
 };

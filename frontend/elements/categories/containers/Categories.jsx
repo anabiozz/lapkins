@@ -1,6 +1,4 @@
 import React, {Component, Fragment} from 'react';
-import * as actions from '../actions';
-import { connect } from 'react-redux';
 import Breadcrumbs from '../../common/components/Breadcrumbs';
 import Loader from '../../common/components/Loader';
 import PropTypes from 'prop-types';
@@ -73,10 +71,4 @@ Categories.propTypes = {
 	getCategories: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = state => ({
-	items: state.categories.items,
-  errors: state.categories.errors,
-  fetching: state.categories.fetching,
-});
-
-export default connect(mapStateToProps, { ...actions })(Categories);
+export default Categories;

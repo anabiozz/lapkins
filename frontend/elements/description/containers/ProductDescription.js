@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect, useState } from 'react';
+import React, { Fragment, useContext, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import config from '../../../config';
 import Button from '../../common/components/Button';
@@ -8,30 +8,37 @@ import Loader from '../../common/components/Loader';
 import fetch from 'isomorphic-fetch';
 import {addProduct} from '../../cart/fetch';
 import {loadCartInfo} from '../../header/fetch';
+import {useHistory, useParams, useLocation} from 'react-router-dom';
+import { useCookies } from 'react-cookie';
+import { store } from '../../../store';
 
 const ProductDescription = props => {
 
-  const [select, setSelect] = useState({});
+  const [cookie, setCookie, removeCookie] = useCookies([config.cookies.token, config.cookies.tmpUserID]);
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
-  const [variation, setVariation] = useState({});
+  const [desc, setDesc] = useState(null);
+  const history = useHistory();
+  const location = useLocation();
+  const {sku} = useParams();
+  const globalState = useContext(store);
+  const { state, dispatch } = globalState;
 
   const fetchDesc = () => {
-    fetch(`${config.apiDomain}/api/v1/products/get-variation?sku=${props.match.params.sku}`)
+    fetch(`${config.apiDomain}/api/v1/products/get-variation?sku=${sku}`)
       .then((response) => {
         if (!response.ok) {
-          throw new Error('Could not fetch person!');
+          throw new Error('Could not fetch product description.');
         }
         return response.json();
       })
-      .then(variation => {
-        setVariation(variation);
-        setLoading(false);
+      .then(desc => {
+        setDesc(desc);
       })
       .catch(error => {
-        setError(error);
-        setLoading(false);
+        console.error(error);
       });
+
+    setLoading(false);
   };
 
   // static fetching ({ dispatch, path }) {
@@ -41,24 +48,45 @@ const ProductDescription = props => {
 
   useEffect(() => {
     fetchDesc();
-  }, [props.match.params.sku]);
+  }, [sku]);
 
 	const handleSelect = (e, sku) => {
-    const value = e.currentTarget.value;
-		const name = e.currentTarget.name;
-
-		if (value !== select.value) {
-      setSelect({[name]: value})
-      let splitURL = props.match.url.split('/');
-      splitURL.pop();
-      props.history.replace(splitURL.join('/') + '/' +  sku);
-    }
+    let splitURL = location.pathname.split('/');
+    splitURL.pop();
+    history.replace(splitURL.join('/') + '/' +  sku);
   };
 
   const addToCart = (sku) => {
-    addProduct(sku);
-    loadCartInfo();
+    addProduct(sku)
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error('Could not added product to cart.');
+        }
+        return response.json();
+      })
+      .then(() => {
+        loadCartInfo()
+          .then((response) => {
+            if (!response.ok) {
+              throw new Error('Could not fetch cart info!');
+            }
+            return response.json();
+          })
+          .then(data => {
+            dispatch({type: 'SET_CART_INFO', value: data});
+          })
+          .catch(error => {
+            console.error(error);
+          });
+      })
+      .catch(error => {
+        console.error(error);
+      });
+
+
   };
+
+  console.log('RENDER <Description>');
 
   return (
     <Fragment>
@@ -73,21 +101,18 @@ const ProductDescription = props => {
             loading && <Loader />
           }
           {
-            error && (
-              <div style={{ marginTop: '200px' }}>
-                <strong>ERROR: </strong>
-                {error.message}
-              </div>
+            !loading && !desc && (
+              <span>Данный товар отсутствует.</span>
             )
           }
           {
-            Object.keys(variation).length > 0 && (
+            !loading && desc && (
               <Fragment>
 
                 <div className="product-description-image">
                   <Carousel axis="horizontal">
                     {
-                      variation.variation.photos.map((image, index) => {
+                      desc.variation.photos.map((image, index) => {
                         return <div key={index}>
                           <img alt="img" src={`${config.imagePath.dev_path_full}/1/300x450/1.jpg`} />
                           <p className="legend">Legend {index}</p>
@@ -100,16 +125,16 @@ const ProductDescription = props => {
                 <div className="product-description-block">
                   <div className="information">
 
-                    <div className="name">{variation.name}</div>
+                    <div className="name">{desc.name}</div>
 
                     <div className="price">
-                      { variation.variation.pricing.retail + ' руб.' }
+                      { desc.variation.pricing.retail + ' руб.' }
                     </div>
 
                     <table className="categories">
                       <tbody>
                       {
-                        variation.attributes && variation.attributes.map((attr, i) => (
+                        desc.attributes && desc.attributes.map((attr, i) => (
                           <tr key={i}>
                             <td className="pi_table_td">{attr.key}</td>
                             <td className="pi_table_td">{attr.value}</td>
@@ -123,7 +148,7 @@ const ProductDescription = props => {
                       <form>
                         <div className="radio-group">
                           {
-                            variation.sizes && variation.sizes.map((size, index) => (
+                            desc.sizes && desc.sizes.map((size, index) => (
                               <Fragment key={index}>
                                 <input
                                   value={size.key}
@@ -131,7 +156,7 @@ const ProductDescription = props => {
                                   id={`option-${index}`}
                                   onChange={(e) => handleSelect(e, size.key)}
                                   name="value"
-                                  checked={variation.variation.dimensions.width + 'x' + variation.variation.dimensions.height === size.value}
+                                  checked={desc.variation.dimensions.width + 'x' + desc.variation.dimensions.height === size.value}
                                 />
                                 <label htmlFor={`option-${index}`}>{size.value}</label>
                               </Fragment>
@@ -142,7 +167,7 @@ const ProductDescription = props => {
                     </div>
 
                     <div className="add_to_cart">
-                      <Button title="Добавить в корзину" type="primary" action={() => addToCart(variation.variation.sku)} />
+                      <Button title="Добавить в корзину" type="primary" action={() => addToCart(desc.variation.sku)} />
                     </div>
 
                   </div>
@@ -158,8 +183,6 @@ const ProductDescription = props => {
 
 ProductDescription.propTypes = {
   match: PropTypes.object.isRequired,
-  history: PropTypes.object.isRequired,
-  cookies: PropTypes.object.isRequired,
 };
 
 export default ProductDescription;

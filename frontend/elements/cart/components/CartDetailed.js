@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Button from '../../common/components/Button';
 
-const CartDetailed = ({ numberOfItems, orderPrice, checkout }) => {
+const CartDetailed = ({ qty, price, checkout }) => {
 
 	return(
 		<div className="cart-detailed">
@@ -12,12 +12,12 @@ const CartDetailed = ({ numberOfItems, orderPrice, checkout }) => {
 
 				<div className="order-cost">
 					<div className="title">Кол-во товаров:</div>
-					<div className="value">{numberOfItems}</div>
+					<div className="value">{qty}</div>
 				</div>
 
 				<div className="order-cost">
 					<div className="title">Сумма заказа:</div>
-					<div className="value">{orderPrice}</div>
+					<div className="value">{price}</div>
 				</div>
 
 				<div className="order-cost">
@@ -30,8 +30,8 @@ const CartDetailed = ({ numberOfItems, orderPrice, checkout }) => {
 };
 
 CartDetailed.propTypes = {
-	numberOfItems: PropTypes.number.isRequired,
-	orderPrice: PropTypes.number.isRequired,
+	qty: PropTypes.number.isRequired,
+	price: PropTypes.number.isRequired,
 	checkout: PropTypes.func.isRequired,
 };
 

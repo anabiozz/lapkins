@@ -2,17 +2,19 @@ import React, { Component, Fragment, useContext, useState } from 'react';
 import RegisterForm from '../components/RegisterForm';
 import * as actions from '../fetch';
 import PropTypes from 'prop-types';
-import { withRouter } from 'react-router-dom';
-import { Context } from '../../../_helpers/login';
+import { useHistory } from 'react-router-dom';
+import { Context } from '../../../_helpers/userState';
+import { store } from '../../../store';
 
-const Registration = props => {
+const Registration = () => {
 
   const [fields, setFields] = useState({});
   const [formErrors, setFormErrors] = useState({});
   const [error, serError] = useState(null);
+  let history = useHistory();
 
-  const usersContext = useContext(Context);
-  const { login, setLogin } = usersContext;
+  const globalState = useContext(store);
+  const { dispatch } = globalState;
 
   const emailRegex = RegExp(
     /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
@@ -60,8 +62,8 @@ const Registration = props => {
           return response.json();
         })
         .then(() => {
-          setLogin(true);
-          props.history.push('/');
+          dispatch({type: 'SET_USER', value: {isLoggedIn: true}});
+          history.push('/');
         })
         .catch(error => {
           serError(error);
@@ -105,4 +107,4 @@ Registration.propTypes = {
   cookies: PropTypes.object.isRequired,
 };
 
-export default withRouter(Registration);
+export default Registration;

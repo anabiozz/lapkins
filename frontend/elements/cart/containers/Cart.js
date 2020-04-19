@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect, useState } from 'react';
+import React, { Fragment, useContext, useEffect, useState } from 'react';
 import * as actions from '../fetch';
 import Breadcrumbs from '../../common/components/Breadcrumbs';
 import Loader from '../../common/components/Loader';
@@ -9,16 +9,18 @@ import Tabs from '../../common/components/Tabs';
 import PersonalData from '../components/PersonalData';
 import DeliveryData from '../components/DeliveryData';
 import config from '../../../config';
+import { store } from '../../../store';
 
-const Cart = props =>{
+const Cart = () =>{
 
   const [activeTab, setActiveTab] = useState('Самовывоз');
   const [fields, setFields] = useState({});
   const [formErrors, setFormErrors] = useState({});
-  const [error, setError] = useState('');
-  const [cookie, setCookie, removeCookie] = useCookies([config.cookies.token, config.cookies.tmpUserID]);
   const [loading, setLoading] = useState(false);
   const [cart, setCart] = useState([]);
+
+  const globalState = useContext(store);
+  const { state, dispatch } = globalState;
 
   // static fetching ({ dispatch }) {
   //   return [dispatch(actions.loadCart())];
@@ -130,18 +132,18 @@ const Cart = props =>{
     actions.loadCart()
       .then((response) => {
         if (!response.ok) {
-          throw new Error('Could not fetch person!');
+          throw new Error('Could not fetch cart');
         }
         return response.json();
       })
       .then(data => {
         setCart(data);
-        setLoading(false);
       })
       .catch(error => {
-        setError(error);
-        setLoading(false);
+        console.error(error);
       });
+
+    setLoading(false);
   }, []);
 
   const remove = (product) => {
@@ -149,12 +151,48 @@ const Cart = props =>{
   };
 
   const increase = (product) => {
-    actions.increaseProductQuantity(product.sku);
+    actions.increaseProductQuantity(product.sku)
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error('Could not increase product ' + product.sku);
+      }
+      return response.json();
+    })
+    .then(() => {
+      const updatedCartInfo = cart.map(p =>
+        p.sku === product.sku ? { ...p, quantity: product.quantity + 1 } : p
+      );
+      setCart(updatedCartInfo);
+      const totalQuantity = updatedCartInfo.map(product => product.quantity).reduce((a, b) => a + b);
+      const totalPrice = updatedCartInfo.map(product => product.price * product.quantity).reduce((a, b) => a + b);
+      dispatch({type: 'SET_CART_INFO', value: {price: totalPrice, quantity: totalQuantity}});
+    })
+    .catch(error => {
+      console.error(error);
+    });
   };
 
   const decrease = (product) => {
-    if (product.quantity > 0) {
-      actions.decreaseProductQuantity(product.sku);
+    if (product.quantity > 1) {
+      actions.decreaseProductQuantity(product.sku)
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error('Could not increase product ' + product.sku);
+        }
+        return response.json();
+      })
+      .then(() => {
+        const updatedCartInfo = cart.map(p =>
+          p.sku === product.sku ? { ...p, quantity: product.quantity - 1 } : p
+        );
+        setCart(updatedCartInfo);
+        const totalQuantity = updatedCartInfo.map(product => product.quantity).reduce((a, b) => a + b);
+        const totalPrice = updatedCartInfo.map(product => product.price * product.quantity).reduce((a, b) => a + b);
+        dispatch({type: 'SET_CART_INFO', value: {price: totalPrice, quantity: totalQuantity}});
+      })
+      .catch(error => {
+        console.error(error);
+      });
     }
   };
 
@@ -174,20 +212,12 @@ const Cart = props =>{
             loading && <Loader />
           }
           {
-            error && (
-              <div style={{ marginTop: '200px' }}>
-                <strong>ERROR: </strong>
-                {error.message}
-              </div>
-            )
-          }
-          {
-            !error && cart && cart.length === 0 && (
+            !cart || cart.length === 0 && (
               <div className="cart-no-product">В вашей корзине пока нет товаров</div>
             )
           }
           {
-            !error && cart && cart.length > 0 && (
+              cart && cart.length > 0 && (
               <Fragment>
                 <div className="cart-content">
                   <div className="cart-content-products">
@@ -203,8 +233,8 @@ const Cart = props =>{
                     }
                   </div>
                   <CartDetailed
-                    numberOfItems={cart.map(item => item.quantity).reduce((a, b) => a + b)}
-                    orderPrice={cart.map(item => item.price).reduce((a, b) => a + b)}
+                    qty={state.headerCartInfo.quantity}
+                    price={state.headerCartInfo.price}
                     checkout={submitForm}
                   />
                 </div>

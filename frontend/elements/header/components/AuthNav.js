@@ -2,18 +2,18 @@ import React, {Fragment} from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-const AuthNav = ({ isLogin, handleLogout }) => {
+const AuthNav = ({ isLoggedIn, handleLogout }) => {
   return (
     <div className="auth-nav">
       {
-        isLogin && (
+        isLoggedIn && (
           <Link onClick={handleLogout} to="">
             <p>Выйти</p>
           </Link>
         )
       }
       {
-        !isLogin && (
+        !isLoggedIn && (
           <Fragment>
             <NavLink to="/login">
               <p>Войти</p>
@@ -28,10 +28,10 @@ const AuthNav = ({ isLogin, handleLogout }) => {
   );
 };
 
-// AuthNav.propTypes = {
-//   isLogin: PropTypes.bool.isRequired,
-//   handleLogout: PropTypes.func.isRequired,
-// };
+AuthNav.propTypes = {
+  isLoggedIn: PropTypes.bool.isRequired,
+  handleLogout: PropTypes.func.isRequired,
+};
 
 
 export default AuthNav;

@@ -8,7 +8,7 @@ import { matchRoutes } from 'react-router-config';
 import render from './render';
 import setBundleHeaders from './middleware/setBundleHeaders';
 import cors from 'cors';
-
+var path = require('path');
 
 const app = new express();
 
@@ -69,28 +69,32 @@ app.use(cors({
 	credentials: true,
 }));
 
-app.all('*', async (req, res) => {
-	//
-	// const store = configureStore(initialState);
-	// initialState.path = req.path;
-
-	const actions = matchRoutes(routes, req.path)
-	.map(({route}) => route.component.fetching ? route.component.fetching({path: req.path}) : null)
-	.map(async actions => await Promise.all(
-		(actions || []).map(p => p && new Promise(resolve => p.then(resolve).catch(resolve)))
-	));
-
-	await Promise.all(actions);
-	const context = {};
-	const content = render(req.path, context);
-
-	if(context.status === 404) {
-		res.status(404);
-	}
-
-	res.send(content);
+app.get('*', function(request, response){
+	response.sendFile(path.join(__dirname + '/index.html'));
 });
 
+// app.all('*', async (req, res) => {
+// 	//
+// 	// const store = configureStore(initialState);
+// 	// initialState.path = req.path;
+//
+// 	const actions = matchRoutes(routes, req.path)
+// 	.map(({route}) => route.component.fetching ? route.component.fetching({path: req.path}) : null)
+// 	.map(async actions => await Promise.all(
+// 		(actions || []).map(p => p && new Promise(resolve => p.then(resolve).catch(resolve)))
+// 	));
+//
+// 	await Promise.all(actions);
+// 	const context = {};
+// 	const content = render(req.path, context);
+//
+// 	if(context.status === 404) {
+// 		res.status(404);
+// 	}
+//
+// 	res.send(content);
+// });
+//
 const server = app.listen(port, host, function (error) {
 	server.keepAliveTimeout = 0;
 	if (error) {

@@ -1,23 +1,24 @@
-import React, {Fragment} from 'react';
+import React from 'react';
 import Header from '../../header/containers/Header';
 import Quicklist from '../components/Quicklist';
 import Footer from '../components/Footer';
 import PropTypes from 'prop-types';
 import { renderRoutes } from 'react-router-config';
+import { StateProvider } from '../../../store';
 
 const Layout = props => {
 
   console.log('RENDER <Layout>');
 
   return (
-    <Fragment>
-    <Header/>
-    <Quicklist />
-    <section className="content">
-      {renderRoutes(props.route.routes)}
-    </section>
-    <Footer />
-    </Fragment>
+    <StateProvider>
+      <Header/>
+      <Quicklist />
+      <section className="content">
+        {renderRoutes(props.route.routes)}
+      </section>
+      <Footer />
+    </StateProvider>
   );
 };
 

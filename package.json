@@ -30,14 +30,9 @@
     "react-router-breadcrumbs-hoc": "3.2.3",
     "react-router-config": "5.1.1",
     "react-router-dom": "5.1.2",
-    "redux": "4.0.4",
-    "redux-devtools-extension": "^2.13.8",
-    "redux-logger": "3.0.6",
-    "redux-thunk": "2.3.0",
     "uglifyjs-webpack-plugin": "2.2.0",
     "universal-cookie": "latest",
-    "uuid": "^3.4.0",
-    "yarn": "^1.22.4"
+    "uuid": "^3.4.0"
   },
   "scripts": {
     "prebuild": "rimraf dist",

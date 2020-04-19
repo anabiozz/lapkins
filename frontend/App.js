@@ -3,12 +3,9 @@ import { hot } from 'react-hot-loader/root';
 import { renderRoutes } from 'react-router-config';
 import routes from './routes';
 import ErrorBoundary from './elements/common/components/ErrorBoundary';
-import { Provider } from './_helpers/login';
 
 const App = () => (
-  <Provider login={false}>
-    {renderRoutes(routes)}
-  </Provider>
+  renderRoutes(routes)
 );
 
 let ExportedApp = App;

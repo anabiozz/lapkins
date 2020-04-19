@@ -7,20 +7,21 @@ import * as fetch from '../fetch';
 import { useCookies } from 'react-cookie';
 import config from '../../../config';
 import Loader from '../../common/components/Loader';
-import { Context } from '../../../_helpers/login';
+import { store } from '../../../store';
+import {useHistory} from 'react-router-dom';
 
 const Header = () => {
 
-  const [cartInfo, setCartInfo] = useState({});
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
   const [cookie, setCookie, removeCookie] = useCookies([config.cookies.token, config.cookies.tmpUserID]);
-  const usersContext = useContext(Context);
-  const { login, setLogin } = usersContext;
+  const globalState = useContext(store);
+  const { state, dispatch } = globalState;
+  const history = useHistory();
 
   useEffect(() => {
+    console.log('START 1');
     if (cookie[config.cookies.token]) {
-      console.log('cookie[config.cookies.token]');
+      console.log('NOW 1');
       setLoading(true);
       fetch.loadCartInfo()
         .then((response) => {
@@ -30,21 +31,21 @@ const Header = () => {
           return response.json();
         })
         .then(data => {
-          setCartInfo(data);
-          setLogin(true);
-          setLoading(false);
+          dispatch({type: 'SET_CART_INFO', value: data});
+          dispatch({type: 'SET_USER', value: true});
         })
         .catch(error => {
-          setError(error);
-          setLogin(false);
-          setLoading(false);
+          console.error(error);
         });
+
+      setLoading(false);
     }
   }, [cookie[config.cookies.token]]);
 
   useEffect(() => {
-    if (login && !cookie[config.cookies.token]) {
-      console.log('login');
+    console.log('START 2');
+    if (state.user.isLoggedIn && !cookie[config.cookies.token]) {
+      console.log('NOW 2');
       setLoading(true);
       fetch.loadCartInfo()
         .then((response) => {
@@ -54,23 +55,23 @@ const Header = () => {
           return response.json();
         })
         .then(data => {
-          setCartInfo(data);
-          setLogin(true);
-          setLoading(false);
+          dispatch({type: 'SET_CART_INFO', value: data});
+          dispatch({type: 'SET_USER', value: true});
         })
         .catch(error => {
-          setError(error);
-          setLogin(false);
-          setLoading(false);
+          console.error(error);
         });
+
+      setLoading(false);
     }
-  }, [login]);
+  }, [state.user.isLoggedIn && !cookie[config.cookies.token]]);
 
   function handleLogout(e) {
     e.preventDefault();
-    setCartInfo({});
+    dispatch({type: 'RESET_CART_INFO'});
+    dispatch({type: 'RESET_USER'});
     removeCookie(config.cookies.token);
-    setLogin(false);
+    history.replace('/', state);
   }
 
   console.log('RENDER <Header>');
@@ -87,16 +88,7 @@ const Header = () => {
           )
         }
         {
-          !loading && error && (
-          <div className="header-desktop">
-            <div className="content">
-              <strong>ERROR:</strong>{error.message}
-            </div>
-          </div>
-          )
-        }
-        {
-          !loading && !error && (
+          !loading && (
             <Fragment>
               <div className="header__mobile">
                 <Menu right width={ '50%' }>
@@ -115,8 +107,8 @@ const Header = () => {
 
                   <div className="right-wrapper">
                     {/*<Search/>*/}
-                    <AuthNav handleLogout={handleLogout} isLogin={login} />
-                    <CartInfo info={cartInfo}  />
+                    <AuthNav handleLogout={handleLogout} isLoggedIn={state.user.isLoggedIn} />
+                    <CartInfo info={state.headerCartInfo}  />
                   </div>
 
                 </div>

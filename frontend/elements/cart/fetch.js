@@ -16,7 +16,7 @@ export const addProduct = (sku) => {
 };
 
 export const increaseProductQuantity = (sku) => {
-  fetch(`${config.apiDomain}/api/v1/carts/increase-product-quantity`,{
+  return fetch(`${config.apiDomain}/api/v1/carts/increase-product-quantity`,{
     method: 'PUT',
     credentials: 'include',
     headers: {
@@ -30,7 +30,7 @@ export const increaseProductQuantity = (sku) => {
 };
 
 export const decreaseProductQuantity = (sku) => {
-  fetch(`${config.apiDomain}/api/v1/carts/decrease-product-quantity`, {
+  return fetch(`${config.apiDomain}/api/v1/carts/decrease-product-quantity`, {
     method: 'PUT',
     credentials: 'include',
     headers: {
@@ -44,7 +44,7 @@ export const decreaseProductQuantity = (sku) => {
 };
 
 export const removeProduct = (sku) => {
-  fetch(`${config.apiDomain}/api/v1/carts/remove-product`, {
+  return fetch(`${config.apiDomain}/api/v1/carts/remove-product`, {
     method: 'DELETE',
     credentials: 'include',
     headers: {

@@ -27,7 +27,7 @@ const CartProductItem = ({ product, removeProduct, increaseProductQuantity, decr
 				/>
 
 				<div className="price">
-					Цена: {product.price} руб.
+					Цена: {product.price * product.quantity} руб.
 				</div>
 
 			</div>

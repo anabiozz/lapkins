@@ -3,14 +3,15 @@ import Item from '../components/Item.js';
 import config from '../../../config';
 import Loader from '../../common/components/Loader';
 import Breadcrumbs from '../../common/components/Breadcrumbs';
-import PropTypes from 'prop-types';
 import fetch from 'isomorphic-fetch';
+import {useParams, useLocation} from 'react-router-dom';
 
-const Catalog = props => {
+const Catalog = () => {
 
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
+  const {subcategory} = useParams();
+  const location = useLocation();
 
   //  fetching ({ dispatch, path }) {
   //   return [dispatch(actions.getProducts(path))];
@@ -18,7 +19,7 @@ const Catalog = props => {
 
   const fetchProducts = () => {
     setLoading(true);
-    fetch(`${config.apiDomain}/api/v1/products/get-products?category=${props.match.params.subcategory}`)
+    fetch(`${config.apiDomain}/api/v1/products/get-products?category=${subcategory}`)
       .then((response) => {
         if (!response.ok) {
           throw new Error('Could not fetch person!');
@@ -27,12 +28,12 @@ const Catalog = props => {
       })
       .then(products => {
         setProducts(products);
-        setLoading(false);
       })
       .catch(error => {
-        setError(error);
-        setLoading(false);
+        console.error(error);
       });
+
+    setLoading(false);
   };
 
   useEffect(() => {
@@ -40,7 +41,7 @@ const Catalog = props => {
     return () => {
       console.log('Cleaning up...');
     };
-  }, [props.match.params.subcategory]);
+  }, [subcategory]);
 
 
   console.log('RENDER <Catalog>');
@@ -58,29 +59,19 @@ const Catalog = props => {
             loading && <Loader />
           }
           {
-            !loading && error && (
-              <div><strong>ERROR:</strong>{error.message}</div>
-            )
-          }
-          {
-            !loading && !error && products && products.length === 0 && (
+            !loading && products && products.length === 0 && (
               <span>Данная категория товара на данный момент отсутствует.</span>
             )
           }
           {
-            !loading && !error && products.map((product, i) => (
-              <Item key={i} imgUrl={`${config.imagePath.dev_path_preview}${i+1}/product_img/1_thumb.jpg`} product={product} url={props.match.url} />
+            !loading && products && products.map((product, i) => (
+              <Item key={i} imgUrl={`${config.imagePath.dev_path_preview}${i+1}/product_img/1_thumb.jpg`} product={product} url={location.pathname} />
             ))
           }
         </div>
       </div>
     </Fragment>
   );
-};
-
-Catalog.propTypes = {
-  // subcategory: PropTypes.string.isRequired,
-  match: PropTypes.object.isRequired,
 };
 
 export default Catalog;
