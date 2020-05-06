@@ -2,7 +2,7 @@ import fetch from 'isomorphic-fetch';
 import config from '../../config';
 
 export const addProduct = (sku) => {
-  return fetch(`${config.apiDomain}/api/v1/carts/add-product`, {
+  return fetch(`${config.apiDomain}/api/v1/carts/add`, {
     method: 'POST',
     credentials: 'include',
     headers: {
@@ -16,7 +16,7 @@ export const addProduct = (sku) => {
 };
 
 export const increaseProductQuantity = (sku) => {
-  return fetch(`${config.apiDomain}/api/v1/carts/increase-product-quantity`,{
+  return fetch(`${config.apiDomain}/api/v1/carts/increase`,{
     method: 'PUT',
     credentials: 'include',
     headers: {
@@ -30,7 +30,7 @@ export const increaseProductQuantity = (sku) => {
 };
 
 export const decreaseProductQuantity = (sku) => {
-  return fetch(`${config.apiDomain}/api/v1/carts/decrease-product-quantity`, {
+  return fetch(`${config.apiDomain}/api/v1/carts/decrease`, {
     method: 'PUT',
     credentials: 'include',
     headers: {
@@ -44,7 +44,7 @@ export const decreaseProductQuantity = (sku) => {
 };
 
 export const removeProduct = (sku) => {
-  return fetch(`${config.apiDomain}/api/v1/carts/remove-product`, {
+  return fetch(`${config.apiDomain}/api/v1/carts/remove`, {
     method: 'DELETE',
     credentials: 'include',
     headers: {
@@ -58,7 +58,7 @@ export const removeProduct = (sku) => {
 };
 
 export const loadCart = () => {
-  return fetch(`${config.apiDomain}/api/v1/carts/load-cart`,{
+  return fetch(`${config.apiDomain}/api/v1/carts/get`,{
     credentials: 'include',
     headers: {
       'Accept': 'application/json',
@@ -66,35 +66,9 @@ export const loadCart = () => {
   });
 };
 
-// CreateOrder ***********************************
-
-// const createOrderSuccess = response => ({ type: CREATE_ORDER_SUCCESS, response });
-// const createOrderFail = error => ({ type: CREATE_ORDER_ERROR, error });
-// export const createOrderReset = () => async dispatch => dispatch({ type: CREATE_ORDER_RESET });
-//
-// export const createOrder = (cartSession) => async dispatch => {
-//   dispatch({ type: CREATE_ORDER_REQUEST });
-//
-//   fetch(`${config.apiDomain}/api/v1/carts/create-order`, {
-//     method: 'POST',
-//       headers: {
-//       // Check what headers the API needs. A couple of usual right below
-//       'Accept': 'application/json',
-//         'Content-Type': 'application/json'
-//     },
-//     body: JSON.stringify({
-//       'variation_id': variationID,
-//       'cart_session': cartSession,
-//       'size_option_id': sizeOptionID,
-//     })
-//   })
-//   .then((response) => {
-//     if (response.status === 200) {
-//       return response;
-//     }
-//     throw new Error(`Cannot load data from server. Response status ${response.status}`);
-//   })
-//   .then(response => response.json())
-//   .then(response => dispatch(createOrderSuccess(response)))
-//   .catch(error => dispatch(createOrderFail(error)));
-// };
+export function getSummary() {
+  return fetch(`${config.apiDomain}/api/v1/carts/get-summary`, {
+    method: 'GET',
+    credentials: 'include',
+  });
+}

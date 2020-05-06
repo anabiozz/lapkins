@@ -1,8 +1,13 @@
 .gallery {
+  //display: grid;
+  //grid-template-columns: repeat(4, [col] 1fr);
+  //grid-template-rows: repeat(2, [row] 60vh);
+  //grid-gap: $content_gap / 1.2;
+
   display: grid;
-  grid-template-columns: repeat(4, [col] 1fr);
-  grid-template-rows: repeat(2, [row] 60vh);
   grid-gap: $content_gap / 1.2;
+  grid-template-columns: [col1-start] auto [col2-start] auto  [col3-start] auto [col3-end];
+  grid-template-rows: [row1-start] auto [row2-start] auto [row2-end];
   margin: 0 auto;
   @include reveal(0.5s);
 
@@ -34,24 +39,43 @@
 }
 
 .gallery__item__1 {
-  grid-column: col / span 4;
-  grid-row: row;
+  grid-column: col1-start / col3-start;
+  grid-row: row1-start ;
+
+  //grid-column: col / span 4;
+  //grid-row: row;
   img {
     object-fit: cover;
   }
 }
 
 .gallery__item__2 {
-  grid-column: col 3 / span 2;
-  grid-row: row 2;
+  grid-column: col3-start ;
+  grid-row: row1-start / row2-end;
+
+  //grid-column: col 3 / span 2;
+  //grid-row: row 2;
   img {
     object-fit: cover;
   }
 }
 
 .gallery__item__3 {
-  grid-column: col / span 2;
-  grid-row: row 2;
+  grid-column: col1-start;
+  grid-row: row2-start ;
+
+  //grid-column: col / span 2;
+  //grid-row: row 2;
+  img {
+    object-fit: cover;
+  }
+}
+.gallery__item__4 {
+  grid-column: col2-start ;
+  grid-row: row2-start ;
+
+  //grid-column: col / span 2;
+  //grid-row: row 2;
   img {
     object-fit: cover;
   }

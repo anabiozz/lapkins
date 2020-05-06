@@ -47,11 +47,6 @@ const DeliveryData = ({ errors, values, onChange }) => {
 				/>
 			</div>
 		</div>
-
-		<div className="order-delivery">
-				<p>При заказе от 4000 руб. доставка по всей России бесплатная.</p>
-		</div>
-		<div>В данный момент доставка осуществляется только в пределах Москвы</div>
 	</div>;
 };
 

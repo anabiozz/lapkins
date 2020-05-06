@@ -13,16 +13,11 @@ const Catalog = () => {
   const {subcategory} = useParams();
   const location = useLocation();
 
-  //  fetching ({ dispatch, path }) {
-  //   return [dispatch(actions.getProducts(path))];
-  // }
-
   const fetchProducts = () => {
-    setLoading(true);
-    fetch(`${config.apiDomain}/api/v1/products/get-products?category=${subcategory}`)
+    fetch(`${config.apiDomain}/api/v1/products/get-catalog?category=${subcategory}`)
       .then((response) => {
         if (!response.ok) {
-          throw new Error('Could not fetch person!');
+          throw new Error('Could not fetch catalog');
         }
         return response.json();
       })
@@ -32,15 +27,12 @@ const Catalog = () => {
       .catch(error => {
         console.error(error);
       });
-
-    setLoading(false);
   };
 
   useEffect(() => {
+    setLoading(true);
     fetchProducts();
-    return () => {
-      console.log('Cleaning up...');
-    };
+    setLoading(false);
   }, [subcategory]);
 
 
@@ -53,23 +45,25 @@ const Catalog = () => {
       </section>
 
       <div className="catalog">
-
-        <div className="products">
           {
             loading && <Loader />
           }
           {
-            !loading && products && products.length === 0 && (
-              <span>Данная категория товара на данный момент отсутствует.</span>
+            !loading && (!products || products.length === 0) && (
+              <span>Данные товары на данный момент отсутствуют</span>
             )
           }
           {
-            !loading && products && products.map((product, i) => (
-              <Item key={i} imgUrl={`${config.imagePath.dev_path_preview}${i+1}/product_img/1_thumb.jpg`} product={product} url={location.pathname} />
-            ))
+            <div className="products">
+              {
+                !loading && products && products.map((product, i) => (
+                  <Item key={i} imgUrl={`${config.imagePath.dev_path_preview}${i+1}/product_img/1_thumb.jpg`} product={product} url={location.pathname} />
+                ))
+              }
+            </div>
           }
         </div>
-      </div>
+
     </Fragment>
   );
 };

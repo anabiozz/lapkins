@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 import { slide as Menu } from 'react-burger-menu';
 import CartInfo from '../components/CartInfo';
 import AuthNav from '../components/AuthNav';
-import * as fetch from '../fetch';
+import {getSummary} from '../../cart/fetch';
 import { useCookies } from 'react-cookie';
 import config from '../../../config';
 import Loader from '../../common/components/Loader';
@@ -23,7 +23,7 @@ const Header = () => {
     if (cookie[config.cookies.token]) {
       console.log('NOW 1');
       setLoading(true);
-      fetch.loadCartInfo()
+      getSummary()
         .then((response) => {
           if (!response.ok) {
             throw new Error('Could not fetch cart info!');
@@ -47,7 +47,7 @@ const Header = () => {
     if (state.user.isLoggedIn && !cookie[config.cookies.token]) {
       console.log('NOW 2');
       setLoading(true);
-      fetch.loadCartInfo()
+      getSummary()
         .then((response) => {
           if (!response.ok) {
             throw new Error('Could not fetch cart info!');

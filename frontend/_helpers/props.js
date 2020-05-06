@@ -19,4 +19,4 @@ export const productProp = {
 //   is_available: PropTypes.bool,
 //   price: PropTypes.number,
 //   products_type: PropTypes.string,
-//   categories: PropTypes.array,
+//   category: PropTypes.array,

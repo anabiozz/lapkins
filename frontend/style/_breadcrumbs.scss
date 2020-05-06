@@ -16,7 +16,6 @@ section.breadcrumbs-wrapper {
 
       a {
         color: $main_black_color;
-        padding-right: 10px;
       }
 
       span{
@@ -27,12 +26,6 @@ section.breadcrumbs-wrapper {
       span:last-child {
         padding: 0 0 0 0;
       }
-
-      // li+li:before {
-      //   padding: 8px;
-      //   color: #fff;
-      //   content: "/\00a0";
-      // }
     }
   }
 }

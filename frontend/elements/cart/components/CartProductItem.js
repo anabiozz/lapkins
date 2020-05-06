@@ -14,6 +14,7 @@ const CartProductItem = ({ product, removeProduct, increaseProductQuantity, decr
 		<div className="cart-product-item-content">
 			<div className="left-content">
 				<span className="description">{product.name}</span>
+				<span>Цена за шт: {product.price} руб.</span>
 				<span>Размер: {product.size}</span>
 				<div onClick={() => removeProduct(product)} className="remove">Удалить</div>
 			</div>
@@ -27,7 +28,7 @@ const CartProductItem = ({ product, removeProduct, increaseProductQuantity, decr
 				/>
 
 				<div className="price">
-					Цена: {product.price * product.quantity} руб.
+					{product.price * product.quantity} руб.
 				</div>
 
 			</div>

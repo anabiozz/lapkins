@@ -43,7 +43,7 @@ module.exports = {
 				exclude: '/node_modules/',
 				loader: 'babel-loader',
 				include: [
-					path.resolve(__dirname, "frontend"),
+					path.resolve(__dirname, 'frontend'),
 				],
 			},
 			{

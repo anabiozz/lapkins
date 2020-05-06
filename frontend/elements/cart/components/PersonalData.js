@@ -14,7 +14,7 @@ const PersonalData = ({ errors, values, onChange }) => {
 						type="tel"
 						pattern="^\d{1}(\d{3})\d{3}-\d{2}-\d{2}$"
 						name="phone"
-						value={'+7' + (values['phone'])}
+						value={values['phone']}
 						onChange={onChange}
 						error={errors['phone']}
 					/>

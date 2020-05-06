@@ -1,9 +1,9 @@
 import Home from './elements/home/containers/Home';
 import Catalog from './elements/catalog/containers/Catalog';
 import Cart from './elements/cart/containers/Cart';
-import ProductDescription from './elements/description/containers/ProductDescription';
+import Description from './elements/description/containers/Description';
 import NotFound from './elements/common/components/NotFound';
-import Categories from './elements/categories/containers/Categories';
+import Category from './elements/category/containers/Category';
 import Done from './elements/cart/components/Done';
 import Wishlist from './elements/wishlist/containers/Wishlist';
 import Login from './elements/users/containers/Login';
@@ -45,7 +45,7 @@ export default [
 				path: '/new',
 			},
 			{
-				component: Categories,
+				component: Category,
 				path: '/catalog/:category',
 				exact: true,
 			},
@@ -55,7 +55,7 @@ export default [
 				exact: true,
 			},
 			{
-				component: ProductDescription,
+				component: Description,
 				path: '/catalog/:category/:subcategory/:sku',
 				exact: true,
 			},

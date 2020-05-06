@@ -17,6 +17,9 @@ const categoryTypeByCategoryType = {
   'framed-posters-wood': 'Постеры с деревянной рамкой',
   'canvas': 'Картины на холсте',
   'postcards': 'Открытки',
+  'diaries': 'Дневники',
+  'notebooks': 'Тетради',
+  'calendars': 'Календари',
 };
 
 const dynamicCategoryTypeBreadcrumb = ({ match }) => (

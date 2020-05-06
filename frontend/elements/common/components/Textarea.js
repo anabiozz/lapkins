@@ -1,5 +1,5 @@
-import React from 'react'
-import PropTypes from 'prop-types'
+import React from 'react';
+import PropTypes from 'prop-types';
 
 const Textarea = (props) => {
   const {
@@ -25,7 +25,7 @@ const Textarea = (props) => {
         placeholder={placeholder}
       />
     </div>
-  )
+  );
 };
 
 Textarea.propTypes = {
@@ -38,4 +38,4 @@ Textarea.propTypes = {
   placeholder: PropTypes.string.isRequired,
 };
 
-export default Textarea
+export default Textarea;

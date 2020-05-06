@@ -46,6 +46,16 @@ const Home = () => {
 					</div>
 				</NavLink>
 
+			<NavLink to="/catalog/stationery" className="gallery__item gallery__item__4">
+				<img
+					className="gallery__img"
+					onLoad={() => add()}
+					src="https://cdn.shopify.com/s/files/1/0077/8718/4241/files/Set_028_1950x.jpeg?v=1550063217" alt="Канцелярия" />
+				<div className="content">
+					<h2>Открытки</h2>
+				</div>
+			</NavLink>
+
 		</div>
 	);
 };

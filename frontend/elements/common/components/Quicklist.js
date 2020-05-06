@@ -79,8 +79,8 @@ class Quicklist extends Component{
 							</li>
 						</ul>
 					</li>
-					<li><Link className="quicklist-main-link" to="/wallart">Link 1</Link></li>
-					<li><Link className="quicklist-main-link" to="/wallart">Link 2</Link></li>
+					{/*<li><Link className="quicklist-main-link" to="/wallart">Link 1</Link></li>*/}
+					{/*<li><Link className="quicklist-main-link" to="/wallart">Link 2</Link></li>*/}
 				</ul>
 			</nav>
 		);

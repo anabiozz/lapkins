@@ -35,20 +35,17 @@ header {
 
         .auth-nav {
           display: flex;
-          //padding: 15px;
-          a * {
-            //margin: 15px;
-          }
+          color: $main_black_color;
           p {
             font-size: 11px;
             margin-right: 15px;
+            color: #000000;
           }
         }
 
         .cart-info {
-          border: 1px solid $main_black_color;
-          border-radius: 15px;
-
+          //border: 2px solid $main_black_color;
+          //border-radius: 15px;
           a * {
             padding: 5px;
           }
@@ -56,6 +53,7 @@ header {
             display: flex;
             justify-content: center;
             align-items: center;
+
             img {
               width: 40px;
               height: 40px;
@@ -63,47 +61,10 @@ header {
 
             p {
               font-size: 11px;
+              color: #000000;
             }
           }
         }
-
-        //ul {
-        //  display: flex;
-        //  justify-content: center;
-        //  align-items: center;
-        //  margin-left: 50px;
-        //
-        //  li {
-        //    display: flex;
-        //    justify-content: center;
-        //    align-items: center;
-        //    height: 40px;
-        //
-        //    a * {
-        //      padding: 5px;
-        //    }
-        //
-        //    a {
-        //      display: flex;
-        //      justify-content: center;
-        //      align-items: center;
-        //      padding: 5px;
-        //      img {
-        //        width: 40px;
-        //        height: 40px;
-        //      }
-        //
-        //      p {
-        //        font-size: 11px;
-        //      }
-        //    }
-        //
-        //    &.icon-cart {
-        //      border: 1px solid $main_black_color;
-        //      border-radius: 5px;
-        //    }
-        //  }
-        //}
       }
     }
   }

@@ -7,16 +7,14 @@ import Breadcrumbs from '../../common/components/Breadcrumbs';
 import Loader from '../../common/components/Loader';
 import fetch from 'isomorphic-fetch';
 import {addProduct} from '../../cart/fetch';
-import {loadCartInfo} from '../../header/fetch';
+import {getSummary} from '../../cart/fetch';
 import {useHistory, useParams, useLocation} from 'react-router-dom';
-import { useCookies } from 'react-cookie';
 import { store } from '../../../store';
 
-const ProductDescription = props => {
+const Description = props => {
 
-  const [cookie, setCookie, removeCookie] = useCookies([config.cookies.token, config.cookies.tmpUserID]);
   const [loading, setLoading] = useState(false);
-  const [desc, setDesc] = useState(null);
+  const [product, setProduct] = useState(null);
   const history = useHistory();
   const location = useLocation();
   const {sku} = useParams();
@@ -24,15 +22,15 @@ const ProductDescription = props => {
   const { state, dispatch } = globalState;
 
   const fetchDesc = () => {
-    fetch(`${config.apiDomain}/api/v1/products/get-variation?sku=${sku}`)
+    fetch(`${config.apiDomain}/api/v1/products/get-product?sku=${sku}`)
       .then((response) => {
         if (!response.ok) {
-          throw new Error('Could not fetch product description.');
+          throw new Error('Could not fetch product description');
         }
         return response.json();
       })
-      .then(desc => {
-        setDesc(desc);
+      .then(product => {
+        setProduct(product);
       })
       .catch(error => {
         console.error(error);
@@ -40,11 +38,6 @@ const ProductDescription = props => {
 
     setLoading(false);
   };
-
-  // static fetching ({ dispatch, path }) {
-  //   let sku = path.split('/');
-  //   return [dispatch(actions.getVariation(sku[2]))];
-  // }
 
   useEffect(() => {
     fetchDesc();
@@ -60,15 +53,15 @@ const ProductDescription = props => {
     addProduct(sku)
       .then((response) => {
         if (!response.ok) {
-          throw new Error('Could not added product to cart.');
+          throw new Error('Could not added product to cart');
         }
         return response.json();
       })
       .then(() => {
-        loadCartInfo()
+        getSummary()
           .then((response) => {
             if (!response.ok) {
-              throw new Error('Could not fetch cart info!');
+              throw new Error('Could not fetch cart info');
             }
             return response.json();
           })
@@ -101,18 +94,18 @@ const ProductDescription = props => {
             loading && <Loader />
           }
           {
-            !loading && !desc && (
-              <span>Данный товар отсутствует.</span>
+            !loading && !product && (
+              <span>Данный товар отсутствует</span>
             )
           }
           {
-            !loading && desc && (
+            !loading && product && (
               <Fragment>
 
                 <div className="product-description-image">
                   <Carousel axis="horizontal">
                     {
-                      desc.variation.photos.map((image, index) => {
+                      product.variations[0].photos.map((image, index) => {
                         return <div key={index}>
                           <img alt="img" src={`${config.imagePath.dev_path_full}/1/300x450/1.jpg`} />
                           <p className="legend">Legend {index}</p>
@@ -125,16 +118,16 @@ const ProductDescription = props => {
                 <div className="product-description-block">
                   <div className="information">
 
-                    <div className="name">{desc.name}</div>
+                    <div className="name">{product.name}</div>
 
                     <div className="price">
-                      { desc.variation.pricing.retail + ' руб.' }
+                      { product.variations[0].pricing.retail + ' руб.' }
                     </div>
 
                     <table className="categories">
                       <tbody>
                       {
-                        desc.attributes && desc.attributes.map((attr, i) => (
+                        product.attributes && product.attributes.map((attr, i) => (
                           <tr key={i}>
                             <td className="pi_table_td">{attr.key}</td>
                             <td className="pi_table_td">{attr.value}</td>
@@ -145,10 +138,11 @@ const ProductDescription = props => {
                     </table>
 
                     <div className="size">
+                      {/*TODO: возможно добавить на кнопки колчество добавленных товаров*/}
                       <form>
                         <div className="radio-group">
                           {
-                            desc.sizes && desc.sizes.map((size, index) => (
+                            product.sizes && product.sizes.map((size, index) => (
                               <Fragment key={index}>
                                 <input
                                   value={size.key}
@@ -156,7 +150,7 @@ const ProductDescription = props => {
                                   id={`option-${index}`}
                                   onChange={(e) => handleSelect(e, size.key)}
                                   name="value"
-                                  checked={desc.variation.dimensions.width + 'x' + desc.variation.dimensions.height === size.value}
+                                  checked={product.variations[0].dimensions.width + 'x' + product.variations[0].dimensions.height === size.value}
                                 />
                                 <label htmlFor={`option-${index}`}>{size.value}</label>
                               </Fragment>
@@ -167,7 +161,7 @@ const ProductDescription = props => {
                     </div>
 
                     <div className="add_to_cart">
-                      <Button title="Добавить в корзину" type="primary" action={() => addToCart(desc.variation.sku)} />
+                      <Button title="Добавить в корзину" type="primary" action={() => addToCart(product.variations[0].sku)} />
                     </div>
 
                   </div>
@@ -181,8 +175,8 @@ const ProductDescription = props => {
     );
 };
 
-ProductDescription.propTypes = {
+Description.propTypes = {
   match: PropTypes.object.isRequired,
 };
 
-export default ProductDescription;
+export default Description;

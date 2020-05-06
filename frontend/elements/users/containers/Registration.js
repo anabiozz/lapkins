@@ -3,7 +3,6 @@ import RegisterForm from '../components/RegisterForm';
 import * as actions from '../fetch';
 import PropTypes from 'prop-types';
 import { useHistory } from 'react-router-dom';
-import { Context } from '../../../_helpers/userState';
 import { store } from '../../../store';
 
 const Registration = () => {
@@ -100,11 +99,6 @@ const Registration = () => {
       </div>
     </Fragment>
   );
-};
-
-Registration.propTypes = {
-  history: PropTypes.object.isRequired,
-  cookies: PropTypes.object.isRequired,
 };
 
 export default Registration;
