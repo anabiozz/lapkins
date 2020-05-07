@@ -65,7 +65,7 @@ module.exports = {
       'process.env': {
         HOME: JSON.stringify(process.env.HOME),
         CORE_URL: JSON.stringify(process.env.CORE_URL ? process.env.CORE_URL : '/'),
-        DEV: JSON.stringify(process.env.NODE_ENV === 'development'),
+        DEV: JSON.stringify(true),
       },
     }),
   ],

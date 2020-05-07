@@ -35,7 +35,7 @@ $quicklist_color: $main_black_color;
 $quicklist_dropdown_color: $nav_links_color;
 $quicklist_dropdown_background_color: #fff; //#b8b7ad
 $quicklist_links_font: $quicklist_font;
-$quicklist_links_font_size: 0.8rem;
+$quicklist_links_font_size: 0.75rem;
 
 // ******************* ELEMENTS ********************** //
 
@@ -43,7 +43,6 @@ $select_width: 180px;
 $select_height: 40px;
 $select_font_size: 0.7rem;
 $select_text_transform: uppercase;
-
 
 $button_width: 180px;
 $button_height: 40px;
@@ -54,11 +53,12 @@ $button_text_transform: uppercase;
 
 $checkout_background_color: $main_black_color;
 
-$counter_background_color: $main_black_color;
-
 $input_background_color: $main_black_color;
 
-
+$elements_background: rgb(101,132,192);
+$elements_hover_background: rgba(100, 96, 96, 0.1);
+$elements_font_size: 0.8rem;
+$elements_color: #fff;
 
 // ******************* CONTENT ********************** //
 

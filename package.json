@@ -37,7 +37,7 @@
   "scripts": {
     "prebuild": "rimraf dist",
     "start": "NODE_ENV=production babel-node backend/index.js",
-    "nodemon": "NODE_ENV=development nodemon backend/index.js --ignore 'frontend/*.js' --exec babel-node",
+    "nodemon": "nodemon backend/index.js --ignore 'frontend/*.js' --exec babel-node",
     "watch": "webpack --watch --progress -p --colors --display-error-details --config webpack.dev.js",
     "build": "webpack --progress -p --colors --display-error-details --config webpack.prod.js",
     "build-dev": "webpack --progress -p --colors --display-error-details --config webpack.dev.js",

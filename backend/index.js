@@ -21,25 +21,33 @@ if (!root) {
 	process.env['CORE_URL'] = root;
 }
 
-let webpackConfig = null;
-if (process.env.NODE_ENV === 'development') {
-	webpackConfig = require('../webpack.dev');
-} else {
-	webpackConfig = require('../webpack.prod');
-}
+// let webpackConfig = null;
+// if (process.env.NODE_ENV === 'development') {
+// 	webpackConfig = require('../webpack.dev');
+// } else {
+// 	webpackConfig = require('../webpack.prod');
+// }
+
+let webpackConfig = require('../webpack.dev');
 const compiler = webpack(webpackConfig);
 
 
-if (process.env.NODE_ENV === 'production') {
-	app.use('*.js', setBundleHeaders); // USE GZIP COMPRESSION FOR PRODUCTION BUNDLE
-	app.use(root + 'dist', express.static(__dirname + '/../dist'));
-} else {
-	app.use(require('webpack-dev-middleware')(compiler, {
-		publicPath: webpackConfig.output.publicPath,
-		serverSideRender: true
-	}));
-	app.use(require('webpack-hot-middleware')(compiler));
-}
+// if (process.env.NODE_ENV === 'production') {
+// 	app.use('*.js', setBundleHeaders); // USE GZIP COMPRESSION FOR PRODUCTION BUNDLE
+// 	app.use(root + 'dist', express.static(__dirname + '/../dist'));
+// } else {
+// 	app.use(require('webpack-dev-middleware')(compiler, {
+// 		publicPath: webpackConfig.output.publicPath,
+// 		serverSideRender: true
+// 	}));
+// 	app.use(require('webpack-hot-middleware')(compiler));
+// }
+
+app.use(require('webpack-dev-middleware')(compiler, {
+	publicPath: webpackConfig.output.publicPath,
+	serverSideRender: true
+}));
+app.use(require('webpack-hot-middleware')(compiler));
 
 // TO DELETE IN PRODUCTION!!!
 // app.use(function (req, res, next) {

@@ -10,13 +10,13 @@ nav {
 
     li {
       display: flex;
-      padding-right: 30px;
+      margin-right: $content_gap;
 
       a.quicklist-main-link {
         //font-weight: bold;
-        background-color: #efefef;
-        text-transform: uppercase;
-        color: $quicklist_color;
+        background-color: $elements_background;
+        //text-transform: uppercase;
+        color: $elements_color;
         font-family: $quicklist_links_font;
         font-size:  $quicklist_links_font_size;
         padding: 10px;
@@ -31,6 +31,7 @@ nav {
         -moz-box-shadow: 0 5px 6px 0 rgba(0,0,0,0.22);
         box-shadow: 0 5px 6px 0 rgba(0,0,0,0.22);
         padding: 20px;
+        //background: #818181;
 
         li {
           margin: 0 auto;
@@ -38,18 +39,19 @@ nav {
           padding: 5px 0;
 
           a {
+            position: relative;
             font-family: $quicklist_links_font;
             font-size:  $quicklist_links_font_size;
-            background-color: #efefef;
+            //background-color: $elements_background;
             color: $main_black_color;
-            padding: 10px;
+            padding: 5px;
             width: 20%;
           }
 
-          a:hover {
-            color: $main_black_color;
-            background-color: #dedede;
-          }
+          //a:hover {
+          //  //color: $main_black_color;
+          //  background-color: #dedede;
+          //}
         }
       }
     }

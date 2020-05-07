@@ -1,11 +1,11 @@
-%btn {
+%button {
 	position: relative;
 	width: $button_width;
 	height: $button_height;
 	line-height: $button_height;
 	text-align: center;
-	font-size: $button_font_size;
-	text-transform: $button_text_transform;
+	font-size: $elements_font_size;
+	//text-transform: $button_text_transform;
 	padding: 0;
 	border: none;
 
@@ -50,13 +50,13 @@
 }
 
 .btn-primary {
-	@extend %btn;
-	background-color: $button_primary_color;
+	@extend %button;
+	background-color: $elements_background;
 	color: #FFF;
 }
 
 .btn-secondary {
-	@extend %btn;
-	background-color: $button_secondary_color;
+	@extend %button;
+	background-color: $elements_background;
 	color: #FFF;
 }
