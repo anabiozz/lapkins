@@ -42,16 +42,23 @@ nav {
             position: relative;
             font-family: $quicklist_links_font;
             font-size:  $quicklist_links_font_size;
-            //background-color: $elements_background;
             color: $main_black_color;
             padding: 5px;
             width: 20%;
-          }
 
-          //a:hover {
-          //  //color: $main_black_color;
-          //  background-color: #dedede;
-          //}
+            &:after {
+              content: '';
+              display: block;
+              width: 0;
+              height: 1px;
+              background:  $elements_background;
+              transition: width .5s;
+            }
+
+            &:hover::after {
+              width: 100%;
+            }
+          }
         }
       }
     }

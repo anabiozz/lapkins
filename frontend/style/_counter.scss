@@ -11,12 +11,12 @@
 		width: $counter_width;
 		height: $counter_height;
 		line-height: $counter_height;
-		color: #fff;
+		color: $elements_color;
 		font-size: 1rem;
 		font-family: 'Times New Roman', Times, serif;
 		text-align: center;
 		cursor: pointer;
-		background-color: $elements_color;
+		background-color: $elements_background;
 		transition: all 0.5s;
 	}
 
