@@ -14,7 +14,7 @@ const Catalog = () => {
   const location = useLocation();
 
   const fetchProducts = () => {
-    fetch(`${config.apiDomain}/api/v1/products/get-catalog?category=${subcategory}`)
+    fetch(`${config.apiDomain}/api/v1/products/catalog?subject=2`)
       .then((response) => {
         if (!response.ok) {
           throw new Error('Could not fetch catalog');
