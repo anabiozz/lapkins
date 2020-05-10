@@ -1,6 +1,6 @@
 import React from 'react';
 import Header from '../../header/containers/Header';
-import Quicklist from '../components/Quicklist';
+import Quicklist from './Quicklist';
 import Footer from '../components/Footer';
 import PropTypes from 'prop-types';
 import { renderRoutes } from 'react-router-config';

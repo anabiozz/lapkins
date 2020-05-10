@@ -10,11 +10,11 @@ const Catalog = () => {
 
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(false);
-  const {subcategory} = useParams();
+  const {category, subcategory} = useParams();
   const location = useLocation();
 
   const fetchProducts = () => {
-    fetch(`${config.apiDomain}/api/v1/products/catalog?subject=2`)
+    fetch(`${config.apiDomain}/api/v1/products/catalog?dep=${category}&category=${subcategory}`)
       .then((response) => {
         if (!response.ok) {
           throw new Error('Could not fetch catalog');
@@ -57,7 +57,7 @@ const Catalog = () => {
             <div className="products">
               {
                 !loading && products && products.map((product, i) => (
-                  <Item key={i} imgUrl={`${config.imagePath.dev_path_preview}${i+1}/product_img/1_thumb.jpg`} product={product} url={location.pathname} />
+                  <Item key={i} imgUrl={product.thumbnail} product={product} url={location.pathname} />
                 ))
               }
             </div>
