@@ -29,6 +29,7 @@ const Quicklist = () => {
 				return response.json();
 			})
 			.then(categories => {
+				console.log(categories);
 				setCategories(categories);
 			})
 			.catch(error => {
@@ -51,12 +52,12 @@ const Quicklist = () => {
 				{
 					!loading && categories && categories.map((category, i) => (
 						<li key={i}>
-							<Link onClick={handleChange} className="quicklist-main-link" to={'/catalog/wallart/' + category.id}>{category.name['ru']}</Link>
-							<ul className={isShow ? '' : 'hidden'}>
+							<Link onClick={handleChange} className="quicklist-main-link" to={'/' + category.id}>{category.name.filter(obj => {return obj.lang === 'ru';})[0].value}</Link>
+							<ul>
 								{
 									category.ancestors.map((ancestor, i) => (
 										<li key={i}>
-											<Link onClick={handleChange} to={'/catalog/wallart/' + ancestor.id}>{ancestor.name['ru']}</Link>
+											<Link onClick={handleChange} to={'/' + category.id + '/' + ancestor.id}>{ancestor.name.filter(obj => {return obj.lang === 'ru';})[0].value}</Link>
 										</li>
 									))
 								}

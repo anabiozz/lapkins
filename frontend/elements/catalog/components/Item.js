@@ -10,7 +10,7 @@ const Item = ({ product, imgUrl, url }) => {
     <div className="product">
       <div className="product__image">
         <div className="product__image__inner">
-          <Link to={ url + `/${product.sku}` }>
+          <Link to={ `/product/${product.id}` }>
             <img src={imgUrl} alt="img" />
           </Link>
         </div>

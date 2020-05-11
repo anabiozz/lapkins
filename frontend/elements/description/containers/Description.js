@@ -22,7 +22,8 @@ const Description = props => {
   const { state, dispatch } = globalState;
 
   const fetchDesc = () => {
-    fetch(`${config.apiDomain}/api/v1/products/get-product?sku=${sku}`)
+      setLoading(true);
+    fetch(`${config.apiDomain}/api/v1/products/product?sku=${sku}`)
       .then((response) => {
         if (!response.ok) {
           throw new Error('Could not fetch product description');
@@ -43,10 +44,24 @@ const Description = props => {
     fetchDesc();
   }, [sku]);
 
-	const handleSelect = (e, sku) => {
-    let splitURL = location.pathname.split('/');
-    splitURL.pop();
-    history.replace(splitURL.join('/') + '/' +  sku);
+	const handleSelect = (e, attr) => {
+        console.log(attr);
+        setLoading(true);
+        fetch(`${config.apiDomain}/api/v1/products/product?sku=${sku}&attr=${attr}`)
+            .then((response) => {
+                if (!response.ok) {
+                    throw new Error('Could not fetch product description');
+                }
+                return response.json();
+            })
+            .then(product => {
+                setProduct(product);
+            })
+            .catch(error => {
+                console.error(error);
+            });
+
+        setLoading(false);
   };
 
   const addToCart = (sku) => {
@@ -105,9 +120,9 @@ const Description = props => {
                 <div className="product-description-image">
                   <Carousel axis="horizontal">
                     {
-                      product.variations[0].photos.map((image, index) => {
+                      product.variation.assets.imgs.map((image, index) => {
                         return <div key={index}>
-                          <img alt="img" src={`${config.imagePath.dev_path_full}/1/300x450/1.jpg`} />
+                          <img alt="img" src={image.src} />
                           <p className="legend">Legend {index}</p>
                         </div>;
                       })
@@ -121,43 +136,38 @@ const Description = props => {
                     <div className="name">{product.name}</div>
 
                     <div className="price">
-                      { product.variations[0].pricing.retail + ' руб.' }
+                      { product.variation.pricing.price + ' руб.' }
                     </div>
 
-                    <table className="categories">
-                      <tbody>
-                      {
-                        product.attributes && product.attributes.map((attr, i) => (
-                          <tr key={i}>
-                            <td className="pi_table_td">{attr.key}</td>
-                            <td className="pi_table_td">{attr.value}</td>
-                          </tr>
-                        ))
-                      }
-                      </tbody>
-                    </table>
+                    <div className="description">
+                        { product.desc.filter(obj => {return obj.lang === 'en';})[0].value }
+                    </div>
 
-                    <div className="size">
-                      {/*TODO: возможно добавить на кнопки колчество добавленных товаров*/}
-                      <form>
-                        <div className="radio-group">
-                          {
-                            product.sizes && product.sizes.map((size, index) => (
-                              <Fragment key={index}>
-                                <input
-                                  value={size.key}
-                                  type="radio"
-                                  id={`option-${index}`}
-                                  onChange={(e) => handleSelect(e, size.key)}
-                                  name="value"
-                                  checked={product.variations[0].dimensions.width + 'x' + product.variations[0].dimensions.height === size.value}
-                                />
-                                <label htmlFor={`option-${index}`}>{size.value}</label>
-                              </Fragment>
+                    <div className="variations">
+                        {
+                            product.variation_types.map((type, i) => (
+                                <form key={i}>
+                                    <div>{type.display}</div>
+                                    <div className="radio-group">
+                                        {
+                                            type.attrs && type.attrs.map((attr, j) => (
+                                                <Fragment key={j}>
+                                                    <input
+                                                        value={attr}
+                                                        type="radio"
+                                                        id={`option-${i}-${j}`}
+                                                        onChange={(e) => handleSelect(e, attr)}
+                                                        name={type.name}
+                                                        checked={product.variation.attributes[i].value === attr}
+                                                    />
+                                                    <label htmlFor={`option-${i}-${j}`}>{attr}</label>
+                                                </Fragment>
+                                            ))
+                                        }
+                                    </div>
+                                </form>
                             ))
-                          }
-                        </div>
-                      </form>
+                        }
                     </div>
 
                     <div className="add_to_cart">

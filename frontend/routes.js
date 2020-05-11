@@ -45,18 +45,17 @@ export default [
 				path: '/new',
 			},
 			{
+				component: Description,
+				path: '/product/:sku',
+			},
+			{
 				component: Category,
-				path: '/catalog/:category',
+				path: '/:category',
 				exact: true,
 			},
 			{
 				component: Catalog,
-				path: '/catalog/:category/:subcategory',
-				exact: true,
-			},
-			{
-				component: Description,
-				path: '/catalog/:category/:subcategory/:sku',
+				path: '/:category/:subcategory',
 				exact: true,
 			},
 			{

@@ -41,22 +41,11 @@
           margin-bottom: $content_gap;
         }
 
-        .categories {
-          margin-bottom: $content_gap;
-
-          tbody {
-            tr {
-              td:first-child {
-                font-weight: 600;
-                padding: 5px 10px 5px 0;
-              }
-            }
-          }
-        }
-
-        .size {
+        .variations {
           margin-bottom: 15px;
-          //border: 1px solid #818181;
+          > * {
+            margin: 20px 0;
+          }
         }
       }
     }
