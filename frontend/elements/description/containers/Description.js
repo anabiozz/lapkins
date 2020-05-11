@@ -13,13 +13,14 @@ import { store } from '../../../store';
 
 const Description = props => {
 
-  const [loading, setLoading] = useState(false);
-  const [product, setProduct] = useState(null);
-  const history = useHistory();
-  const location = useLocation();
-  const {sku} = useParams();
-  const globalState = useContext(store);
-  const { state, dispatch } = globalState;
+    const [loading, setLoading] = useState(false);
+    const [product, setProduct] = useState(null);
+    const [attributes, setAttributes] = useState([]);
+    const history = useHistory();
+    const location = useLocation();
+    const {sku} = useParams();
+    const globalState = useContext(store);
+    const { state, dispatch } = globalState;
 
   const fetchDesc = () => {
       setLoading(true);
@@ -32,6 +33,9 @@ const Description = props => {
       })
       .then(product => {
         setProduct(product);
+          product.variation.attributes.map((attribute => {
+              setAttributes(attributes => [...attributes, (attribute.name.toLowerCase() + '=' + attribute.value)]);
+          }));
       })
       .catch(error => {
         console.error(error);
@@ -44,24 +48,34 @@ const Description = props => {
     fetchDesc();
   }, [sku]);
 
-	const handleSelect = (e, attr) => {
-        console.log(attr);
-        setLoading(true);
-        fetch(`${config.apiDomain}/api/v1/products/product?sku=${sku}&attr=${attr}`)
-            .then((response) => {
-                if (!response.ok) {
-                    throw new Error('Could not fetch product description');
-                }
-                return response.json();
-            })
-            .then(product => {
-                setProduct(product);
-            })
-            .catch(error => {
-                console.error(error);
-            });
+const handleSelect = (e, attr) => {
+    setLoading(true);
 
-        setLoading(false);
+    let attributes = product.variation.attributes;
+    let result = [];
+    attributes.map(attribute => {
+        if (attribute.name.toLowerCase() === attr.name.toLowerCase()) {
+            console.log(attribute.name.toLowerCase())
+            console.log( attr.name.toLowerCase())
+            attribute.value = attr.value;
+        }
+        result.push(attribute.name.toLowerCase() + '=' + attribute.value);
+    });
+
+    fetch(`${config.apiDomain}/api/v1/products/product?sku=${sku}&attr=${result}`)
+    .then((response) => {
+        if (!response.ok) {
+            throw new Error('Could not fetch product description');
+        }
+        return response.json();
+    })
+    .then(product => {
+        setProduct(product);
+    })
+    .catch(error => {
+        console.error(error);
+    });
+    setLoading(false);
   };
 
   const addToCart = (sku) => {
@@ -145,7 +159,7 @@ const Description = props => {
 
                     <div className="variations">
                         {
-                            product.variation_types.map((type, i) => (
+                            product.variation_types && product.variation_types.map((type, i) => (
                                 <form key={i}>
                                     <div>{type.display}</div>
                                     <div className="radio-group">
@@ -156,7 +170,7 @@ const Description = props => {
                                                         value={attr}
                                                         type="radio"
                                                         id={`option-${i}-${j}`}
-                                                        onChange={(e) => handleSelect(e, attr)}
+                                                        onChange={(e) => handleSelect(e, {name: type.name, value: attr})}
                                                         name={type.name}
                                                         checked={product.variation.attributes[i].value === attr}
                                                     />
