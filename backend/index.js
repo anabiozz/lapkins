@@ -3,12 +3,9 @@ import webpack from 'webpack';
 import bodyParser from 'body-parser';
 import config from './config/config';
 import logger from 'morgan';
-import routes from '../frontend/routes';
-import { matchRoutes } from 'react-router-config';
-import render from './render';
-import setBundleHeaders from './middleware/setBundleHeaders';
 import cors from 'cors';
-var path = require('path');
+
+const path = require('path');
 
 const app = new express();
 
@@ -21,49 +18,15 @@ if (!root) {
 	process.env['CORE_URL'] = root;
 }
 
-// let webpackConfig = null;
-// if (process.env.NODE_ENV === 'development') {
-// 	webpackConfig = require('../webpack.dev');
-// } else {
-// 	webpackConfig = require('../webpack.prod');
-// }
-
 let webpackConfig = require('../webpack.dev');
 const compiler = webpack(webpackConfig);
 
-
-// if (process.env.NODE_ENV === 'production') {
-// 	app.use('*.js', setBundleHeaders); // USE GZIP COMPRESSION FOR PRODUCTION BUNDLE
-// 	app.use(root + 'dist', express.static(__dirname + '/../dist'));
-// } else {
-// 	app.use(require('webpack-dev-middleware')(compiler, {
-// 		publicPath: webpackConfig.output.publicPath,
-// 		serverSideRender: true
-// 	}));
-// 	app.use(require('webpack-hot-middleware')(compiler));
-// }
-
 app.use(require('webpack-dev-middleware')(compiler, {
 	publicPath: webpackConfig.output.publicPath,
-	serverSideRender: true
+	serverSideRender: false
 }));
-app.use(require('webpack-hot-middleware')(compiler));
+// app.use(require('webpack-hot-middleware')(compiler));
 
-// TO DELETE IN PRODUCTION!!!
-// app.use(function (req, res, next) {
-// 	console.log('TRY ADD HEADERS FOR REQUEST ' + req.url);
-// 	res.header('Access-Control-Allow-Origin', '*');
-// 	res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
-//
-// 	if (req.method == 'OPTIONS') {
-// 		w.WriteHeader(http.StatusOK);
-// 		return;
-// 	}
-// 	next();
-// });
-
-
-app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
     extended: false

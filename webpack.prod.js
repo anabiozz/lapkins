@@ -16,6 +16,16 @@ module.exports = {
 	optimization: {
 		minimize: true //Update this to true or false
 	},
+	// optimization: {
+	// 	minimizer: [
+	// 		new UglifyJsPlugin({
+	// 			uglifyOptions: {
+	// 				toplevel: true,
+	// 				mangle: true,
+	// 			},
+	// 		}),
+	// 	],
+	// },
 	plugins: [
 		new webpack.optimize.OccurrenceOrderPlugin(),
 		new webpack.LoaderOptionsPlugin({

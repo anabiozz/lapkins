@@ -1,15 +1,21 @@
 import React from 'react';
 import { renderToString } from 'react-dom/server';
 import { StaticRouter as Router } from 'react-router-dom';
-import App from '../frontend/App';
 import { CookiesProvider } from 'react-cookie';
+import { ConnectedRouter } from 'connected-react-router';
+import { renderRoutes } from 'react-router-config';
+import routes from '../../frontend/routes';
+import { Provider } from 'react-redux';
 
 export default (path, context) => {
+
+  // const store = configureStore(initialState);
+
   const content = renderToString(
     <CookiesProvider>
-      <Router location={path} context={context}>
-       <App />
-      </Router>
+      <Provider store={''}>
+        <ConnectedRouter history={history} >{renderRoutes(routes)}</ConnectedRouter>
+      </Provider>
     </CookiesProvider>
   );
 

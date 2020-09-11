@@ -1,9 +1,8 @@
 import React, { Fragment, useEffect, useState } from 'react';
 import Breadcrumbs from '../../common/components/Breadcrumbs';
 import Loader from '../../common/components/Loader';
-import { NavLink } from 'react-router-dom';
 import * as fetch from '../fetch';
-import {useParams} from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 
 const Category = () => {
 
@@ -49,13 +48,13 @@ const Category = () => {
 					}
 					{
 						!loading && subcategories && subcategories.map((subcategory, i) => (
-							<NavLink key={i} className="subcategory" to={ `${category}/${subcategory.id}` }>
+							<Link key={i} className="subcategory" to={ `${category}/${subcategory.id}` }>
 								<div className="subcategory-content" key={i}>
 									<h2 className="subcategory-title">{subcategory.name}</h2>
 									<h2 className="subcategory-description">{subcategory.description}</h2>
 								</div>
 								<img src="https://cdn.shopify.com/s/files/1/0077/8718/4241/files/Set_028_1950x.jpeg?v=1550063217" alt="Новое" />
-							</NavLink>
+							</Link>
 
 						))
 					}

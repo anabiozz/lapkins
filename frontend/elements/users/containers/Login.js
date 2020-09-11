@@ -12,8 +12,8 @@ const Login = props => {
   const [error, serError] = useState(null);
   let history = useHistory();
 
-  const globalState = useContext(store);
-  const { dispatch } = globalState;
+  // const globalState = useContext(store);
+  // const { dispatch } = globalState;
 
   const emailRegex = RegExp(
     /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
@@ -61,7 +61,7 @@ const Login = props => {
           return response.json();
         })
         .then(() => {
-          dispatch({type: 'SET_USER', value: true});
+          // dispatch({type: 'SET_USER', value: true});
           history.push('/');
         })
         .catch(error => {

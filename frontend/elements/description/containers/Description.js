@@ -1,15 +1,15 @@
 import React, { Fragment, useContext, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import config from '../../../config';
-import Button from '../../common/components/Button';
+import {useHistory, useParams, useLocation} from 'react-router-dom';
+
 import { Carousel } from 'react-responsive-carousel';
 import Breadcrumbs from '../../common/components/Breadcrumbs';
 import Loader from '../../common/components/Loader';
-import fetch from 'isomorphic-fetch';
 import {addProduct} from '../../cart/fetch';
 import {getSummary} from '../../cart/fetch';
-import {useHistory, useParams, useLocation} from 'react-router-dom';
 import { store } from '../../../store';
+import Button from '../../common/components/Button';
+import {fetchProduct, fetchProductByAttribute} from '../../../api';
 
 const Description = props => {
 
@@ -19,62 +19,29 @@ const Description = props => {
     const history = useHistory();
     const location = useLocation();
     const {sku} = useParams();
-    const globalState = useContext(store);
-    const { state, dispatch } = globalState;
+    // const globalState = useContext(store);
+    // const { state, dispatch } = globalState;
 
-  const fetchDesc = () => {
-      setLoading(true);
-    fetch(`${config.apiDomain}/api/v1/products/product?sku=${sku}`)
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error('Could not fetch product description');
-        }
-        return response.json();
-      })
-      .then(product => {
-        setProduct(product);
-          product.variation.attributes.map((attribute => {
-              setAttributes(attributes => [...attributes, (attribute.name.toLowerCase() + '=' + attribute.value)]);
-          }));
-      })
-      .catch(error => {
-        console.error(error);
-      });
-
+  const fetch = async () => {
+    setLoading(true);
+    let product = await fetchProduct(sku);
+    setProduct(product);
+    setAttributes([...product.variation.attributes]);
     setLoading(false);
   };
 
   useEffect(() => {
-    fetchDesc();
+    fetch();
   }, [sku]);
 
-const handleSelect = (e, attr) => {
+  const handleSelect = async (product_id, newAttr) => {
     setLoading(true);
-
-    let attributes = product.variation.attributes;
-    let result = [];
-    attributes.map(attribute => {
-        if (attribute.name.toLowerCase() === attr.name.toLowerCase()) {
-            console.log(attribute.name.toLowerCase())
-            console.log( attr.name.toLowerCase())
-            attribute.value = attr.value;
-        }
-        result.push(attribute.name.toLowerCase() + '=' + attribute.value);
-    });
-
-    fetch(`${config.apiDomain}/api/v1/products/product?sku=${sku}&attr=${result}`)
-    .then((response) => {
-        if (!response.ok) {
-            throw new Error('Could not fetch product description');
-        }
-        return response.json();
-    })
-    .then(product => {
-        setProduct(product);
-    })
-    .catch(error => {
-        console.error(error);
-    });
+    attributes[attributes.findIndex(el => el.name === newAttr.name)] = newAttr;
+    let newProduct = await fetchProductByAttribute(product_id, attributes);
+    setProduct(newProduct);
+    let arr = location.pathname.split('/');
+    arr[arr.length-1] = newProduct.variation.sku;
+    history.push(arr.join('/'));
     setLoading(false);
   };
 
@@ -95,7 +62,7 @@ const handleSelect = (e, attr) => {
             return response.json();
           })
           .then(data => {
-            dispatch({type: 'SET_CART_INFO', value: data});
+            // dispatch({type: 'SET_CART_INFO', value: data});
           })
           .catch(error => {
             console.error(error);
@@ -104,8 +71,6 @@ const handleSelect = (e, attr) => {
       .catch(error => {
         console.error(error);
       });
-
-
   };
 
   console.log('RENDER <Description>');
@@ -134,7 +99,7 @@ const handleSelect = (e, attr) => {
                 <div className="product-description-image">
                   <Carousel axis="horizontal">
                     {
-                      product.variation.assets.imgs.map((image, index) => {
+                      product.variation.images.map((image, index) => {
                         return <div key={index}>
                           <img alt="img" src={image.src} />
                           <p className="legend">Legend {index}</p>
@@ -150,28 +115,28 @@ const handleSelect = (e, attr) => {
                     <div className="name">{product.name}</div>
 
                     <div className="price">
-                      { product.variation.pricing.price + ' руб.' }
+                      { product.variation.price + ' руб.' }
                     </div>
 
                     <div className="description">
-                        { product.desc.filter(obj => {return obj.lang === 'en';})[0].value }
+                        { product.info.description }
                     </div>
 
                     <div className="variations">
                         {
-                            product.variation_types && product.variation_types.map((type, i) => (
+                            product.info.attributes && product.info.attributes.map((attribute, i) => (
                                 <form key={i}>
-                                    <div>{type.display}</div>
+                                    <div>{attribute.name}</div>
                                     <div className="radio-group">
                                         {
-                                            type.attrs && type.attrs.map((attr, j) => (
+                                          attribute.value && attribute.value.map((attr, j) => (
                                                 <Fragment key={j}>
                                                     <input
                                                         value={attr}
                                                         type="radio"
                                                         id={`option-${i}-${j}`}
-                                                        onChange={(e) => handleSelect(e, {name: type.name, value: attr})}
-                                                        name={type.name}
+                                                        onChange={() => handleSelect(product.info.id, {name: attribute.name, value: attr})}
+                                                        name={attribute.name}
                                                         checked={product.variation.attributes[i].value === attr}
                                                     />
                                                     <label htmlFor={`option-${i}-${j}`}>{attr}</label>

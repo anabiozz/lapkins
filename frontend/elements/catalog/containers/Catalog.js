@@ -1,71 +1,70 @@
-import React, { Fragment, useEffect, useState } from 'react';
-import Item from '../components/Item.js';
-import config from '../../../config';
+import React, { Component, Fragment } from 'react';
+import { connect } from 'react-redux';
+
+import Product from '../components/Product.js';
 import Loader from '../../common/components/Loader';
 import Breadcrumbs from '../../common/components/Breadcrumbs';
-import fetch from 'isomorphic-fetch';
-import {useParams, useLocation} from 'react-router-dom';
+import { fetchProducts } from '../../../actions';
+import {getProducts} from '../../../selectors';
+import PropTypes from 'prop-types';
+import Layout from '../../layout/containers/Layout';
 
-const Catalog = () => {
+class Catalog extends Component {
+  componentDidMount() {
+    this.props.fetchProducts();
+  }
 
-  const [products, setProducts] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const {category, subcategory} = useParams();
-  const location = useLocation();
+  render() {
+    console.log('RENDER <Catalog>');
 
-  const fetchProducts = () => {
-    fetch(`${config.apiDomain}/api/v1/products/catalog?dep=${category}&category=${subcategory}`)
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error('Could not fetch catalog');
-        }
-        return response.json();
-      })
-      .then(products => {
-        setProducts(products);
-      })
-      .catch(error => {
-        console.error(error);
-      });
-  };
+    const { catalog } = this.props;
 
-  useEffect(() => {
-    setLoading(true);
-    fetchProducts();
-    setLoading(false);
-  }, [subcategory]);
+    console.log(catalog);
 
+    return (
+      <Layout>
+        <Fragment>
+          <section className="breadcrumbs-wrapper">
+            <Breadcrumbs />
+          </section>
 
-  console.log('RENDER <Catalog>');
+          <div className="catalog">
+            {
+              catalog.fetching && <Loader />
+            }
+            {
+              !catalog.fetching && (!catalog.data || catalog.data.length === 0) && (
+                <span>Данные товары на данный момент отсутствуют</span>
+              )
+            }
+            {
+              <div className="products">
+                {
+                  !catalog.fetching && catalog.data && catalog.data.map((product, i) => (
+                    <Product key={i} product={product} />
+                  ))
+                }
+              </div>
+            }
+          </div>
+        </Fragment>
+      </Layout>
+    );
+  }
+}
 
-  return (
-    <Fragment>
-      <section className="breadcrumbs-wrapper">
-        <Breadcrumbs />
-      </section>
-
-      <div className="catalog">
-          {
-            loading && <Loader />
-          }
-          {
-            !loading && (!products || products.length === 0) && (
-              <span>Данные товары на данный момент отсутствуют</span>
-            )
-          }
-          {
-            <div className="products">
-              {
-                !loading && products && products.map((product, i) => (
-                  <Item key={i} imgUrl={product.thumbnail} product={product} url={location.pathname} />
-                ))
-              }
-            </div>
-          }
-        </div>
-
-    </Fragment>
-  );
+Catalog.propTypes = {
+  catalog: PropTypes.object.isRequired,
+  fetchProducts: PropTypes.func.isRequired,
 };
 
-export default Catalog;
+const mapDispatchToProps = {
+  fetchProducts,
+};
+
+const mapStateToProps = (state, ownProps) => ({
+  catalog: state.catalog,
+  // products: getProducts(state, ownProps),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Catalog);

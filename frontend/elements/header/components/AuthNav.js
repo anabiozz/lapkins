@@ -1,5 +1,5 @@
 import React, {Fragment} from 'react';
-import { Link, NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 const AuthNav = ({ isLoggedIn, handleLogout }) => {
@@ -15,12 +15,12 @@ const AuthNav = ({ isLoggedIn, handleLogout }) => {
       {
         !isLoggedIn && (
           <Fragment>
-            <NavLink to="/login">
+            <Link to="/login">
               <p>Войти</p>
-            </NavLink>
-            <NavLink to="/register">
+            </Link>
+            <Link to="/register">
              <p>Зарегистрироваться</p>
-            </NavLink>
+            </Link>
           </Fragment>
         )
       }

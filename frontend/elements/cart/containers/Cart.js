@@ -17,8 +17,8 @@ const Cart = () =>{
   const [loading, setLoading] = useState(false);
   const [cart, setCart] = useState([]);
 
-  const globalState = useContext(store);
-  const { state, dispatch } = globalState;
+  // const globalState = useContext(store);
+  // const { state, dispatch } = globalState;
 
   const emailRegex = RegExp(
     /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
@@ -156,7 +156,7 @@ const Cart = () =>{
         setCart(newCart);
         const totalQuantity = newCart.length ? newCart.map(p => p.quantity).reduce((a, b) => a + b) : 0;
         const totalPrice = newCart.length ? newCart.map(p => p.price * p.quantity).reduce((a, b) => a + b) : 0;
-        dispatch({type: 'SET_CART_INFO', value: {price: totalPrice, quantity: totalQuantity}});
+        // dispatch({type: 'SET_CART_INFO', value: {price: totalPrice, quantity: totalQuantity}});
 
       })
       .catch(error => {
@@ -180,7 +180,7 @@ const Cart = () =>{
       setCart(updatedCartInfo);
       const totalQuantity = updatedCartInfo.map(product => product.quantity).reduce((a, b) => a + b);
       const totalPrice = updatedCartInfo.map(product => product.price * product.quantity).reduce((a, b) => a + b);
-      dispatch({type: 'SET_CART_INFO', value: {price: totalPrice, quantity: totalQuantity}});
+      // dispatch({type: 'SET_CART_INFO', value: {price: totalPrice, quantity: totalQuantity}});
     })
     .catch(error => {
       console.error(error);
@@ -203,7 +203,7 @@ const Cart = () =>{
         setCart(updatedCartInfo);
         const totalQuantity = updatedCartInfo.map(product => product.quantity).reduce((a, b) => a + b);
         const totalPrice = updatedCartInfo.map(product => product.price * product.quantity).reduce((a, b) => a + b);
-        dispatch({type: 'SET_CART_INFO', value: {price: totalPrice, quantity: totalQuantity}});
+        // dispatch({type: 'SET_CART_INFO', value: {price: totalPrice, quantity: totalQuantity}});
       })
       .catch(error => {
         console.error(error);
@@ -249,7 +249,7 @@ const Cart = () =>{
                   </div>
 
                   <div className="cart-summary-order">
-                    <CartDetailed qty={state.headerCartInfo.quantity} price={state.headerCartInfo.price} checkout={submitForm}/>
+                    {/*<CartDetailed qty={state.headerCartInfo.quantity} price={state.headerCartInfo.price} checkout={submitForm}/>*/}
 
                     <div className="order">
                       <div className="order-container">

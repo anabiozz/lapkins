@@ -8,15 +8,6 @@ export const matchProp = {
 };
 
 export const productProp = {
-  sku: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
-  price: PropTypes.number.isRequired
+  price: PropTypes.string.isRequired
 };
-
-// currency: PropTypes.string,
-//   description: PropTypes.string,
-//   ext: PropTypes.string,
-//   is_available: PropTypes.bool,
-//   price: PropTypes.number,
-//   products_type: PropTypes.string,
-//   category: PropTypes.array,

@@ -1,21 +1,19 @@
 nav {
   background: $second_color;
-  position: relative;
   z-index: 60;
+  position: relative;
 
   ul {
     background: $second_color;
     display: flex;
     margin: 0 auto;
 
-    li {
+    li.main-li {
       display: flex;
       margin-right: $content_gap;
 
       a.quicklist-main-link {
-        //font-weight: bold;
         background-color: $elements_background;
-        //text-transform: uppercase;
         color: $elements_color;
         font-family: $quicklist_links_font;
         font-size:  $quicklist_links_font_size;
@@ -27,60 +25,75 @@ nav {
         display: none;
         top: 35px;
         left: 0;
-        -webkit-box-shadow: 0 5px 6px 0 rgba(0,0,0,0.22);
-        -moz-box-shadow: 0 5px 6px 0 rgba(0,0,0,0.22);
-        box-shadow: 0 5px 6px 0 rgba(0,0,0,0.22);
-        padding: 20px;
-        //background: #818181;
 
-        li {
-          margin: 0 auto;
-          line-height: 20px;
-          padding: 5px 0;
+        .wrapper {
+          position: sticky;
 
-          a {
-            position: relative;
-            font-family: $quicklist_links_font;
-            font-size:  $quicklist_links_font_size;
-            color: $main_black_color;
-            padding: 5px;
-            width: 20%;
+          .inner_ul {
+            position: sticky;
 
-            &:after {
-              content: '';
-              display: block;
-              width: 0;
-              height: 1px;
-              background:  $elements_background;
-              transition: width .5s;
-            }
+            .inner_li {
+              line-height: 30px;
+              display: flex;
+              flex-direction: column;
+              word-wrap: break-word;
+              padding: 20px;
 
-            &:hover::after {
-              width: 100%;
+              a {
+                font-family: $quicklist_links_font;
+                font-size:  $quicklist_links_font_size;
+                color: $main_black_color;
+                padding: 5px 5px 5px 0;
+
+                &:after {
+                  content: '';
+                  display: block;
+                  width: 0;
+                  height: 1px;
+                  background:  $elements_background;
+                  transition: width .5s;
+                }
+
+                &:hover::after {
+                  width: 100%;
+                }
+              }
             }
           }
         }
       }
     }
 
-    li:hover>ul {
+    li.main-li:hover>ul {
       display: flex;
-      flex-direction: column;
       width: 100%;
+      justify-content: center;
 
-      li {
-        -webkit-animation: nav-anim-left 0.5s ease-in-out;
-        -moz-animation: nav-anim-left 0.5s ease-in-out;
-        -o-animation: nav-anim-left 0.5s ease-in-out;
-        animation: nav-anim-left 0.5s ease-in-out;
+      .wrapper {
+        height: 100%;
 
-        a {
-          overflow: hidden;
+        .inner_ul {
+          display: flex;
+          height: 100%;
+
+          .inner_li {
+            -webkit-animation: nav-anim-left 0.5s ease-in-out;
+            -moz-animation: nav-anim-left 0.5s ease-in-out;
+            -o-animation: nav-anim-left 0.5s ease-in-out;
+            animation: nav-anim-left 0.5s ease-in-out;
+            height: 100%;
+            font-weight: bold;
+
+            a {
+              height: 100%;
+              overflow: hidden;
+            }
+          }
         }
       }
     }
 
-    li:hover .hidden {
+    li.main-li:hover .hidden {
       display: none;
     }
   }
@@ -91,7 +104,7 @@ nav {
     line-height: 0px;
   }
   100% {
-    line-height: 20px;
+    line-height: 30px;
   }
 }
 
@@ -100,7 +113,7 @@ nav {
     width: 100%;
     ul {
       width: $content_width_2;
-      li ul li {
+      li.main-li ul .wrapper {
         width: $content_width_2;
       }
     }
@@ -113,7 +126,7 @@ nav {
     width: 100%;
     ul {
       width: $content_width_1;
-      li ul li {
+      li.main-li ul .wrapper {
         width: $content_width_1;
       }
     }
@@ -125,7 +138,7 @@ nav {
     width: 100%;
     ul {
       width: $content_width_1;
-      li ul li {
+      li.main-li ul .wrapper {
         width: $content_width_1;
       }
     }

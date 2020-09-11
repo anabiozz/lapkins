@@ -1,3 +1,6 @@
+import React from 'react';
+import {Switch, Route} from 'react-router';
+
 import Home from './elements/home/containers/Home';
 import Catalog from './elements/catalog/containers/Catalog';
 import Cart from './elements/cart/containers/Cart';
@@ -8,62 +11,22 @@ import Done from './elements/cart/components/Done';
 import Wishlist from './elements/wishlist/containers/Wishlist';
 import Login from './elements/users/containers/Login';
 import Registration from './elements/users/containers/Registration';
-import Layout from './elements/common/containers/Layout';
 
-
-export default [
-	{
-		component: Layout,
-		routes: [
-			{
-				component: Home,
-				path: '/',
-				exact: true,
-			},
-			{
-				component: Cart,
-				path: '/cart',
-			},
-			{
-				component: Done,
-				path: '/done',
-			},
-			{
-				component: Wishlist,
-				path: '/wishlist',
-			},
-			{
-				component: Login,
-				path: '/login',
-			},
-			{
-				component: Registration,
-				path: '/register',
-			},
-			{
-				component: Catalog,
-				path: '/new',
-			},
-			{
-				component: Description,
-				path: '/product/:sku',
-			},
-			{
-				component: Category,
-				path: '/:category',
-				exact: true,
-			},
-			{
-				component: Catalog,
-				path: '/:category/:subcategory',
-				exact: true,
-			},
-			{
-				component: NotFound,
-				path: '*',
-			},
-		]
-	},
-];
+export default (
+	<Switch>
+		<Route path='/' component={Home} exact />
+		<Route path='/cart' component={Cart} />
+		<Route path='/done' component={Done} />
+		<Route path='/wishlist' component={Wishlist} />
+		<Route path='/login' component={Login} />
+		<Route path='/register' component={Registration} />
+		<Route path='/new' component={Catalog} />
+		<Route path='/product/:sku' component={Description} />
+		{/*<Route path='/:category' component={Category} exact />*/}
+		<Route path='/catalog/:category' component={Catalog} exact />
+		<Route path='/catalog/:category/:subcategory' component={Catalog} exact />
+		<Route path='*' component={NotFound} />
+	</Switch>
+);
 
 

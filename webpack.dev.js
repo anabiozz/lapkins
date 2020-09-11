@@ -1,16 +1,10 @@
 const path = require('path');
 const webpack = require('webpack');
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 module.exports = {
   mode: 'development',
   devtool: 'inline-source-map',
-  entry: [
-    '@babel/polyfill',
-    'react-hot-loader/patch',
-    'webpack-hot-middleware/client',
-    './frontend'
-  ],
+  entry: ['@babel/polyfill', './frontend'],
   output: {
     filename: 'bundle-dev.js',
     path: path.resolve(__dirname, 'backend/static'),
@@ -47,18 +41,8 @@ module.exports = {
       },
     ],
   },
-  optimization: {
-    minimizer: [
-      new UglifyJsPlugin({
-        uglifyOptions: {
-          toplevel: true,
-          mangle: true,
-        },
-      }),
-    ],
-  },
+
   plugins: [
-    new webpack.HotModuleReplacementPlugin(),
     new webpack.NamedModulesPlugin(),
     new webpack.NoEmitOnErrorsPlugin(),
     new webpack.DefinePlugin({
@@ -69,7 +53,4 @@ module.exports = {
       },
     }),
   ],
-  node: {
-		// console: true
-	}
 };
