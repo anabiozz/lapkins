@@ -2,20 +2,21 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-const CartInfo = ({ info }) => {
+const CartInfo = ({ totalQuantity, totalPrice }) => {
 	return (
 		<div className="cart-info">
 			<Link to="/cart">
 				<img src="/static/images/cart.svg" alt="cart"/>
-				<p>{ info ? info.quantity : 0} шт.</p>
-				<p>{ info ? info.price : 0} руб.</p>
+				<p>{ totalQuantity } шт.</p>
+				<p>{ totalPrice } руб.</p>
 			</Link>
 		</div>
 	);
 };
 
 CartInfo.propTypes = {
-	info: PropTypes.object,
+	totalPrice: PropTypes.number,
+	totalQuantity: PropTypes.number,
 };
 
 export default CartInfo;

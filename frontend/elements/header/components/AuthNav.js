@@ -1,19 +1,20 @@
 import React, {Fragment} from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import * as R from 'ramda';
 
-const AuthNav = ({ isLoggedIn, handleLogout }) => {
+const AuthNav = ({ user, handleLogout }) => {
   return (
     <div className="auth-nav">
       {
-        isLoggedIn && (
+        !R.isEmpty(user) && (
           <Link onClick={handleLogout} to="">
             <p>Выйти</p>
           </Link>
         )
       }
       {
-        !isLoggedIn && (
+        R.isEmpty(user) && (
           <Fragment>
             <Link to="/login">
               <p>Войти</p>
@@ -29,7 +30,7 @@ const AuthNav = ({ isLoggedIn, handleLogout }) => {
 };
 
 AuthNav.propTypes = {
-  isLoggedIn: PropTypes.bool.isRequired,
+  user: PropTypes.object.isRequired,
   handleLogout: PropTypes.func.isRequired,
 };
 

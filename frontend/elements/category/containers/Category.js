@@ -1,6 +1,6 @@
 import React, { Fragment, useEffect, useState } from 'react';
-import Breadcrumbs from '../../common/components/Breadcrumbs';
-import Loader from '../../common/components/Loader';
+import Breadcrumbs from '../../common/Breadcrumbs';
+import Loader from '../../common/Loader';
 import * as fetch from '../fetch';
 import { Link, useParams } from 'react-router-dom';
 

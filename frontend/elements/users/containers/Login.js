@@ -1,25 +1,28 @@
-import React, { Fragment, useState, useContext } from 'react';
-import * as actions from '../fetch';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import * as R from 'ramda';
+
 import PropTypes from 'prop-types';
 import LoginForm from '../components/LoginForm';
-import { useHistory } from 'react-router-dom';
-import { store } from '../../../store';
+import { setUserFields, setUserFormErrors, login, resetUserFormErrors } from '../../../actions';
+import Layout from '../../layout/containers/Layout';
 
-const Login = props => {
+class Login extends Component {
+  constructor(props) {
+    super(props);
 
-  const [fields, setFields] = useState({});
-  const [formErrors, setFormErrors] = useState({});
-  const [error, serError] = useState(null);
-  let history = useHistory();
+    this.handleValidation = this.handleValidation.bind(this);
+    this.handleLogin = this.handleLogin.bind(this);
+    this.handleLoginChange = this.handleLoginChange.bind(this);
+  }
 
-  // const globalState = useContext(store);
-  // const { dispatch } = globalState;
-
-  const emailRegex = RegExp(
+  emailRegex = RegExp(
     /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
   );
 
-  const handleValidation = () => {
+  handleValidation () {
+    const {fields, resetUserFormErrors, formErrors} = this.props;
+    resetUserFormErrors();
     let formIsValid = true;
 
     if(!fields['subject']){
@@ -28,7 +31,7 @@ const Login = props => {
     }
 
     if(typeof fields['subject'] !== 'undefined'){
-      if(!emailRegex.test(fields.subject)){
+      if(!this.emailRegex.test(fields.subject)){
         formIsValid = false;
         formErrors['subject'] = 'email не валиден';
       }
@@ -46,62 +49,83 @@ const Login = props => {
     // 	}
     // }
 
-    setFormErrors(formErrors);
-    return formIsValid;
-  };
-
-  const handleLogin = (e) => {
-    e.preventDefault();
-    if(handleValidation()){
-      actions.login(fields.subject, fields.password)
-        .then((response) => {
-          if (!response.ok) {
-            throw new Error('Could not login');
-          }
-          return response.json();
-        })
-        .then(() => {
-          // dispatch({type: 'SET_USER', value: true});
-          history.push('/');
-        })
-        .catch(error => {
-          serError(error);
-        });
+    if (!formIsValid) {
+      this.props.setUserFormErrors(formErrors);
     }
-  };
 
-  const handleLoginChange = (field, e) => {
-    setFields({...fields, [field]: e.target.value });
-  };
+    return formIsValid;
+  }
 
-  const getLoginField = (field) => {
-    return field || '';
-  };
+  handleLogin (e) {
+    e.preventDefault();
+    if(this.handleValidation()){
+      const {fields, history, login} = this.props;
+      login(fields.subject, fields.password);
+      history.push('/');
+    }
+  }
 
-  return (
-    <Fragment>
-      <div className="auth">
-        <div className="auth-content">
-          <LoginForm
-            subjectValue={getLoginField(fields['subject'])}
-            subjectError={getLoginField(formErrors['subject'])}
-            passwordValue={getLoginField(fields['password'])}
-            passwordError={getLoginField(formErrors['password'])}
-            handleChange={handleLoginChange}
-            handleSubmit={handleLogin}
-          />
-          <div className="error">
-            <small>{error ? `Произошла ошибка: ${error}` : null}</small>
+  handleLoginChange (field, e) {
+    this.props.setUserFields({...this.props.fields, [field]: e.target.value });
+  }
+
+  render() {
+    console.log('RENDER <Login>');
+
+    const { fields, formErrors } = this.props;
+
+    return (
+      <Layout>
+        <div className="auth">
+          <div className="auth-content">
+            {/*{*/}
+            {/*  !R.isEmpty(formErrors) && <div className="error">*/}
+            {/*    <small>*/}
+            {/*      {*/}
+            {/*        Object.keys(formErrors).map((key, i) => (*/}
+            {/*          <div key={i}>{`Произошла ошибка: ${formErrors[key]}\n`}</div>*/}
+            {/*        ))*/}
+            {/*      }*/}
+            {/*    </small>*/}
+            {/*  </div>*/}
+            {/*}*/}
+            {
+              <LoginForm
+                subjectValue={fields['subject']}
+                subjectError={formErrors['subject']}
+                passwordValue={fields['password']}
+                passwordError={formErrors['password']}
+                handleChange={this.handleLoginChange}
+                handleSubmit={this.handleLogin}
+              />
+            }
           </div>
         </div>
-      </div>
-    </Fragment>
-  );
+      </Layout>
+    );
+  }
+}
+
+Login.propTypes = {
+  fields: PropTypes.object.isRequired,
+  formErrors: PropTypes.object.isRequired,
+  setUserFields: PropTypes.func.isRequired,
+  setUserFormErrors: PropTypes.func.isRequired,
+  login: PropTypes.func.isRequired,
+  resetUserFormErrors: PropTypes.func.isRequired,
+  history: PropTypes.object.isRequired,
 };
 
-// Login.propTypes = {
-//   history: PropTypes.object.isRequired,
-//   cookies: PropTypes.object.isRequired,
-// };
+const mapDispatchToProps = {
+  setUserFields,
+  setUserFormErrors,
+  login,
+  resetUserFormErrors,
+};
 
-export default Login;
+const mapStateToProps = (state, ownProps) => ({
+  formErrors: state.user.formErrors,
+  fields: state.user.fields,
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login);

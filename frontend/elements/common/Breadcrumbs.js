@@ -30,18 +30,18 @@ const routes = [
   { path: '/', breadcrumb: 'Домой' },
   { path: '/cart', breadcrumb: 'Корзина' },
   { path: '/checkout', breadcrumb: 'Оформление заказа' },
-  { path: '/catalog/:category', breadcrumb: dynamicCategoriesBreadcrumb },
-  { path: '/catalog/:category/:categoryType', breadcrumb: dynamicCategoryTypeBreadcrumb },
+  { path: '/products/:category', breadcrumb: dynamicCategoriesBreadcrumb },
+  { path: '/products/:category/:categoryType', breadcrumb: dynamicCategoryTypeBreadcrumb },
 ];
 
 const options = {
   excludePaths: [
-    '/catalog',
-    '/catalog/wallart/posters-without-frame/*',
-    '/catalog/wallart/posters-without-frame/*',
-    '/catalog/wallart/framed-posters-wood/*',
-    '/catalog/wallart/framed-posters-plastic/*',
-    '/catalog/stationery/postcards/*',
+    '/products',
+    '/products/wallart/posters-without-frame/*',
+    '/products/wallart/posters-without-frame/*',
+    '/products/wallart/framed-posters-wood/*',
+    '/products/wallart/framed-posters-plastic/*',
+    '/products/stationery/postcards/*',
   ],
   disableDefaults: false,
 };

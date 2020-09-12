@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Counter from '../../common/components/Counter';
+import Counter from '../../common/Counter';
 import config from '../../../config';
 
 const CartProductItem = ({ product, removeProduct, increaseProductQuantity, decreaseProductQuantity }) => {

@@ -1,6 +1,6 @@
 import React from 'react';
-import Input from '../../common/components/Input';
-import Button from '../../common/components/Button';
+import Input from '../../common/Input';
+import Button from '../../common/Button';
 import PropTypes from 'prop-types';
 
 const RegisterForm = ({
@@ -38,7 +38,7 @@ const RegisterForm = ({
         </div>
         <div className="input-field">
           <Input
-            title="Потвердить пароль"
+            title="Подтвердить пароль"
             type="pass_confirm"
             name="pass_confirm"
             value={passConfirmValue}

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Breadcrumbs from '../../common/components/Breadcrumbs';
+import Breadcrumbs from '../../common/Breadcrumbs';
 
 export default class Wishlist extends Component {
 	render() {

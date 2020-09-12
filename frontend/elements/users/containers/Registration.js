@@ -1,25 +1,19 @@
-import React, { Component, Fragment, useContext, useState } from 'react';
-import RegisterForm from '../components/RegisterForm';
-import * as actions from '../fetch';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { useHistory } from 'react-router-dom';
-import { store } from '../../../store';
+import { connect } from 'react-redux';
 
-const Registration = () => {
+import RegisterForm from '../components/RegisterForm';
+import Layout from '../../layout/containers/Layout';
+import { registration, resetUserFormErrors, setUserFields, setUserFormErrors } from '../../../actions';
 
-  const [fields, setFields] = useState({});
-  const [formErrors, setFormErrors] = useState({});
-  const [error, serError] = useState(null);
-  let history = useHistory();
+class Registration extends Component {
 
-  // const globalState = useContext(store);
-  // const { dispatch } = globalState;
-
-  const emailRegex = RegExp(
+  emailRegex = RegExp(
     /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
   );
 
-  const handleValidation = () => {
+  handleValidation = () => {
+    const {fields, formErrors} = this.props;
     let formIsValid = true;
 
     if(!fields['subject']){
@@ -28,7 +22,7 @@ const Registration = () => {
     }
 
     if(typeof fields['subject'] !== 'undefined'){
-      if(!emailRegex.test(fields.subject)){
+      if(!this.emailRegex.test(fields.subject)){
         formIsValid = false;
         formErrors['subject'] = 'email не валиден';
       }
@@ -46,59 +40,75 @@ const Registration = () => {
     // 	}
     // }
 
-    setFormErrors(formErrors);
+    this.props.setUserFormErrors(formErrors);
     return formIsValid;
   };
 
-  const handleRegistration = (e) => {
+  handleRegistration = (e) => {
     e.preventDefault();
-    if(handleValidation()){
-      actions.register(fields.subject, fields.password)
-        .then((response) => {
-          if (!response.ok) {
-            throw new Error('Could not login');
-          }
-          return response.json();
-        })
-        .then(() => {
-          // dispatch({type: 'SET_USER', value: {isLoggedIn: true}});
-          history.push('/');
-        })
-        .catch(error => {
-          serError(error);
-        });
+    if(this.handleValidation()){
+      const {fields, history, registration} = this.props;
+      registration(fields.subject, fields.password);
+      history.push('/');
     }
   };
 
-  const handleChange = (field, e) => {
-    setFields({...fields, [field] :e.target.value});
+  handleChange = (field, e) => {
+    this.props.setUserFields({...this.props.fields, [field] :e.target.value});
   };
 
-  const getField = (field) => {
+  getField = (field) => {
     return field || '';
   };
 
-  return (
-    <Fragment>
-      <div className="auth">
-        <div className="auth-content">
-          <RegisterForm
-            subjectValue={getField(fields['subject'])}
-            subjectError={getField(formErrors['subject'])}
-            passwordValue={getField(fields['password'])}
-            passwordError={getField(formErrors['password'])}
-            passConfirmValue={getField(fields['pass_confirm'])}
-            passConfirmError={getField(formErrors['pass_confirm'])}
-            handleSubmit={handleRegistration}
-            handleChange={handleChange}
-          />
-          <div className="error">
-            <small>{error ? `Произошла ошибка: ${error}` : null}</small>
+  render() {
+    console.log('RENDER <Registration>');
+
+    const { fields, formErrors } = this.props;
+
+    return (
+      <Layout>
+        <div className="auth">
+          <div className="auth-content">
+            <RegisterForm
+              subjectValue={this.getField(fields['subject'])}
+              subjectError={this.getField(formErrors['subject'])}
+              passwordValue={this.getField(fields['password'])}
+              passwordError={this.getField(formErrors['password'])}
+              passConfirmValue={this.getField(fields['pass_confirm'])}
+              passConfirmError={this.getField(formErrors['pass_confirm'])}
+              handleSubmit={this.handleRegistration}
+              handleChange={this.handleChange}
+            />
           </div>
         </div>
-      </div>
-    </Fragment>
-  );
+      </Layout>
+    );
+  }
+}
+
+Registration.propTypes = {
+  fields: PropTypes.object.isRequired,
+  formErrors: PropTypes.object.isRequired,
+  setUserFields: PropTypes.func.isRequired,
+  setUserFormErrors: PropTypes.func.isRequired,
+  registration: PropTypes.func.isRequired,
+  user: PropTypes.object.isRequired,
+  resetUserFormErrors: PropTypes.func.isRequired,
+  history: PropTypes.object.isRequired,
 };
 
-export default Registration;
+const mapDispatchToProps = {
+  setUserFields,
+  setUserFormErrors,
+  registration,
+  resetUserFormErrors,
+};
+
+const mapStateToProps = (state, ownProps) => ({
+  formErrors: state.user.formErrors,
+  fields: state.user.fields,
+  user: state.user.data,
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Registration);

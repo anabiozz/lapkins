@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Button from '../../common/components/Button';
+import Button from '../../common/Button';
 
 const CartDetailed = ({ qty, price, checkout, deliveryPrice }) => {
 
@@ -42,7 +42,7 @@ CartDetailed.propTypes = {
 	qty: PropTypes.number.isRequired,
 	price: PropTypes.number.isRequired,
 	checkout: PropTypes.func.isRequired,
-	deliveryPrice: PropTypes.number.isRequired,
+	// deliveryPrice: PropTypes.number.isRequired,
 };
 
 export default CartDetailed;

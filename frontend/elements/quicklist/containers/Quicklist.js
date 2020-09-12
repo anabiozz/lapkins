@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-import Loader from '../../common/components/Loader';
+import Loader from '../../common/Loader';
 import {getCategories} from '../../../api';
 import PropTypes from 'prop-types';
 import { fetchCategories } from '../../../actions';
@@ -78,7 +78,6 @@ const mapDispatchToProps = {
 
 const mapStateToProps = (state, ownProps) => ({
 	categories: state.categories,
-	// products: getProducts(state, ownProps),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Quicklist);

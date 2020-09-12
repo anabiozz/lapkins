@@ -11,7 +11,7 @@ const Input = (props) => {
         id={name}
         name={name}
         type={type}
-        value={value}
+        value={value ? value : ''}
         onChange={(e) => onChange(name, e)}
         placeholder={placeholder}
       />

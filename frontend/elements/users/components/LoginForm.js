@@ -1,6 +1,6 @@
 import React from 'react';
-import Input from '../../common/components/Input';
-import Button from '../../common/components/Button';
+import Input from '../../common/Input';
+import Button from '../../common/Button';
 import PropTypes from 'prop-types';
 
 const LoginForm = ({ handleSubmit, subjectValue, passwordValue, subjectError, passwordError, handleChange }) => {
@@ -40,10 +40,10 @@ const LoginForm = ({ handleSubmit, subjectValue, passwordValue, subjectError, pa
 
 LoginForm.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
-  subjectValue: PropTypes.string.isRequired,
-  passwordValue: PropTypes.string.isRequired,
-  subjectError: PropTypes.string.isRequired,
-  passwordError: PropTypes.string.isRequired,
+  subjectValue: PropTypes.string,
+  passwordValue: PropTypes.string,
+  subjectError: PropTypes.string,
+  passwordError: PropTypes.string,
   handleChange: PropTypes.func.isRequired,
 };
 
