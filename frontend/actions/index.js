@@ -14,15 +14,9 @@ import {
   FETCH_CART_START,
   FETCH_CART_SUCCESS,
   FETCH_CART_FAILURE,
-  SET_CART_ACTIVE_TAB,
-  SET_CART_FIELDS,
-  SET_CART_FORM_ERRORS,
-  SET_USER_FORM_ERRORS,
-  SET_USER_FIELDS,
   USER_LOGIN_START,
   USER_LOGIN_SUCCESS,
   USER_LOGIN_FAILURE,
-  RESET_USER_FORM_ERRORS,
   USER_REGISTRATION_START,
   USER_REGISTRATION_SUCCESS,
   USER_REGISTRATION_FAILURE,
@@ -32,7 +26,11 @@ import {
   DECREASE_CART_PRODUCT_QTY_START,
   DECREASE_CART_PRODUCT_QTY_SUCCESS,
   DECREASE_CART_PRODUCT_QTY_FAILURE,
-  INCREASE_CART_PRODUCT_QTY_START, INCREASE_CART_PRODUCT_QTY_SUCCESS, INCREASE_CART_PRODUCT_QTY_FAILURE,
+  INCREASE_CART_PRODUCT_QTY_START,
+  INCREASE_CART_PRODUCT_QTY_SUCCESS,
+  INCREASE_CART_PRODUCT_QTY_FAILURE,
+  USER_LOGOUT,
+  RESET_CART, ADD_TO_CART_START, ADD_TO_CART_SUCCESS, ADD_TO_CART_FAILURE,
 } from '../actionTypes';
 
 import {fetchProducts as fetchProductsAPI} from '../api';
@@ -42,6 +40,7 @@ import {fetchVariations as fetchVariationsAPI} from '../api';
 import {fetchCart as fetchCartAPI} from '../api';
 import {login as loginAPI} from '../api';
 import {registration as registrationAPI} from '../api';
+import {addToCart as addToCartAPI} from '../api';
 
 import {increaseCartProductQty as increaseCartProductQtyAPI} from '../api';
 import {decreaseCartProductQty as decreaseCartProductQtyAPI} from '../api';
@@ -147,45 +146,30 @@ export const fetchCart = () => async dispatch => {
   }
 };
 
-export const setCartActiveTab = (activeTab) => async dispatch => {
+export const resetCart = () => async dispatch => {
   dispatch({
-    type: SET_CART_ACTIVE_TAB,
-    payload: {activeTab: activeTab},
+    type: RESET_CART,
   });
 };
 
-export const setCartFields = (fields) => async dispatch => {
+export const addToCart = (product) => async dispatch => {
   dispatch({
-    type: SET_CART_FIELDS,
-    payload: {fields: fields},
+    type: ADD_TO_CART_START,
   });
-};
 
-export const setCartFormErrors = (formErrors) => async dispatch => {
-  dispatch({
-    type: SET_CART_FORM_ERRORS,
-    payload: {formErrors: formErrors},
-  });
-};
-
-export const setUserFields = (fields) => async dispatch => {
-  dispatch({
-    type: SET_USER_FIELDS,
-    payload: {fields: fields},
-  });
-};
-
-export const resetUserFormErrors = () => async dispatch => {
-  dispatch({
-    type: RESET_USER_FORM_ERRORS,
-  });
-};
-
-export const setUserFormErrors = (formErrors) => async dispatch => {
-  dispatch({
-    type: SET_USER_FORM_ERRORS,
-    payload: {formErrors: formErrors},
-  });
+  try {
+    const cart = await addToCartAPI(product);
+    dispatch({
+      type: ADD_TO_CART_SUCCESS,
+      payload: {data: cart},
+    });
+  } catch (err) {
+    dispatch({
+      type: ADD_TO_CART_FAILURE,
+      payload: err,
+      error: true,
+    });
+  }
 };
 
 export const login = (subject, password) => async dispatch => {
@@ -206,6 +190,12 @@ export const login = (subject, password) => async dispatch => {
       error: true,
     });
   }
+};
+
+export const logout = () => async dispatch => {
+  dispatch({
+    type: USER_LOGOUT,
+  });
 };
 
 export const registration = (subject, password) => async dispatch => {

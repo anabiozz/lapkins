@@ -4,16 +4,20 @@ import { connect } from 'react-redux';
 
 import RegisterForm from '../components/RegisterForm';
 import Layout from '../../layout/containers/Layout';
-import { registration, resetUserFormErrors, setUserFields, setUserFormErrors } from '../../../actions';
+import { registration } from '../../../actions';
 
 class Registration extends Component {
+  state = {
+    formErrors: {},
+    fields: {},
+  };
 
   emailRegex = RegExp(
     /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
   );
 
   handleValidation = () => {
-    const {fields, formErrors} = this.props;
+    const { fields, formErrors } = this.state;
     let formIsValid = true;
 
     if(!fields['subject']){
@@ -40,21 +44,28 @@ class Registration extends Component {
     // 	}
     // }
 
-    this.props.setUserFormErrors(formErrors);
+    if (!formIsValid) {
+      this.setState({
+        formErrors: formErrors,
+      });
+    }
     return formIsValid;
   };
 
   handleRegistration = (e) => {
     e.preventDefault();
     if(this.handleValidation()){
-      const {fields, history, registration} = this.props;
+      const { history, registration } = this.props;
+      const { fields } = this.state;
       registration(fields.subject, fields.password);
       history.push('/');
     }
   };
 
   handleChange = (field, e) => {
-    this.props.setUserFields({...this.props.fields, [field] :e.target.value});
+    this.setState({
+      fields: {...this.state.fields, [field] :e.target.value},
+    });
   };
 
   getField = (field) => {
@@ -64,7 +75,7 @@ class Registration extends Component {
   render() {
     console.log('RENDER <Registration>');
 
-    const { fields, formErrors } = this.props;
+    const { fields, formErrors } = this.state;
 
     return (
       <Layout>
@@ -88,26 +99,16 @@ class Registration extends Component {
 }
 
 Registration.propTypes = {
-  fields: PropTypes.object.isRequired,
-  formErrors: PropTypes.object.isRequired,
-  setUserFields: PropTypes.func.isRequired,
-  setUserFormErrors: PropTypes.func.isRequired,
   registration: PropTypes.func.isRequired,
   user: PropTypes.object.isRequired,
-  resetUserFormErrors: PropTypes.func.isRequired,
   history: PropTypes.object.isRequired,
 };
 
 const mapDispatchToProps = {
-  setUserFields,
-  setUserFormErrors,
   registration,
-  resetUserFormErrors,
 };
 
 const mapStateToProps = (state, ownProps) => ({
-  formErrors: state.user.formErrors,
-  fields: state.user.fields,
   user: state.user.data,
 });
 

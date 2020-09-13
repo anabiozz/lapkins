@@ -8,20 +8,20 @@ import {
   REMOVE_CART_PRODUCT_FAILURE,
   REMOVE_CART_PRODUCT_START,
   REMOVE_CART_PRODUCT_SUCCESS,
-  SET_CART_ACTIVE_TAB,
-  SET_CART_FIELDS,
-  SET_CART_FORM_ERRORS,
+  RESET_CART,
+  ADD_TO_CART_START,
+  ADD_TO_CART_SUCCESS,
+  ADD_TO_CART_FAILURE,
 } from '../actionTypes';
+import * as R from "ramda";
+import {cart} from "../api/mockCart";
 
 const initialState = {
-  data: {},
+  data: [],
   errors: null,
   fetching: false,
   totalQuantity: 0,
   totalPrice: 0,
-  activeTab: 'Самовывоз',
-  fields: {},
-  formErrors: {},
 };
 
 export default (state = initialState, {type, payload}) => {
@@ -32,6 +32,8 @@ export default (state = initialState, {type, payload}) => {
       return Object.assign({}, state, payload, {fetching: false, errors: null});
     case FETCH_CART_FAILURE:
       return { ...state, errors: payload, fetching: false };
+    case RESET_CART:
+      return { ...state, data: [], fetching: false };
     case REMOVE_CART_PRODUCT_START:
       return { ...state, fetching: true };
     case REMOVE_CART_PRODUCT_SUCCESS:
@@ -50,12 +52,27 @@ export default (state = initialState, {type, payload}) => {
       return Object.assign({}, state, payload, {fetching: false, errors: null});
     case DECREASE_CART_PRODUCT_QTY_FAILURE:
       return { ...state, errors: payload, fetching: false };
-    case SET_CART_ACTIVE_TAB:
+    case ADD_TO_CART_START:
+      return { ...state, fetching: true };
+    case ADD_TO_CART_SUCCESS:
+      // eslint-disable-next-line no-case-declarations
+      const cartProduct = R.find(R.propEq('id', product.id), cart);
+      if (cartProduct) {
+        cartProduct.quantity += 1;
+      } else {
+        let newCartProduct = {
+          id: product.id,
+          name: product.name,
+          price: product.variation.price,
+          size: '123',
+          quantity: 1,
+        };
+        cart = R.append(newCartProduct, cart);
+      }
+      console.log('cart', cart)
       return Object.assign({}, state, payload, {fetching: false, errors: null});
-    case SET_CART_FIELDS:
-      return Object.assign({}, state, payload, {fetching: false, errors: null});
-    case SET_CART_FORM_ERRORS:
-      return Object.assign({}, state, payload, {fetching: false, errors: null});
+    case ADD_TO_CART_FAILURE:
+      return { ...state, errors: payload, fetching: false };
     default:
       return state;
   }

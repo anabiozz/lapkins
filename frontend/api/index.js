@@ -77,6 +77,26 @@ export const registration = (subject, password) => {
   }));
 };
 
+export const addToCart = (product) => {
+  return new Promise(((resolve, reject) => {
+    let cartProduct = R.find(R.propEq('id', product.id), cart);
+    if (cartProduct) {
+      cartProduct.quantity += 1;
+    } else {
+      let newCartProduct = {
+        id: product.id,
+        name: product.name,
+        price: product.variation.price,
+        size: '123',
+        quantity: 1,
+      };
+      cart = R.append(newCartProduct, cart);
+    }
+    console.log('cart', cart)
+    resolve(cart);
+  }));
+};
+
 export const increaseCartProductQty = (product) => {
   return new Promise(((resolve, reject) => {
     let cartProduct = R.find(R.propEq('id', product.id), cart);

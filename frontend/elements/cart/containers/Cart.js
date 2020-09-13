@@ -1,4 +1,7 @@
 import React, { Component, Fragment } from 'react';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import * as R from 'ramda';
 
 import Breadcrumbs from '../../common/Breadcrumbs';
 import Loader from '../../common/Loader';
@@ -8,22 +11,38 @@ import Tabs from '../../common/Tabs';
 import PersonalData from '../components/PersonalData';
 import DeliveryData from '../components/DeliveryData';
 import Layout from '../../layout/containers/Layout';
-import PropTypes from 'prop-types';
 import {
   fetchCart,
-  setCartActiveTab,
-  setCartFields,
-  setCartFormErrors,
   removeCartProduct,
   increaseCartProductQty,
   decreaseCartProductQty,
 } from '../../../actions';
-import { connect } from 'react-redux';
 import { getTotalCartProductQty, getTotalCartProductPrice } from '../../../selectors';
 
 class Cart extends Component{
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      activeTab: 'Самовывоз',
+      formErrors: {},
+      fields: {},
+    };
+
+    this.handleValidation = this.handleValidation.bind(this);
+    this.submitForm = this.submitForm.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+    this.onClickTabItem = this.onClickTabItem.bind(this);
+    this.remove = this.remove.bind(this);
+    this.increase = this.increase.bind(this);
+    this.decrease = this.decrease.bind(this);
+  }
+
   componentDidMount() {
-    this.props.fetchCart();
+    const { fetchCart, user } = this.props;
+    if (!R.isEmpty(user)) {
+      fetchCart();
+    }
   }
 
   emailRegex = RegExp(
@@ -35,7 +54,7 @@ class Cart extends Component{
   );
 
   handleValidation = () => {
-    const { fields, formErrors, activeTab } = this.props;
+    const { fields, formErrors, activeTab } = this.state;
     let formIsValid = true;
 
     if(!fields['firstName']){
@@ -101,12 +120,14 @@ class Cart extends Component{
       }
     }
 
-    this.props.setCartFormErrors(formErrors);
+    this.setState({
+      formErrors: formErrors,
+    });
     return formIsValid;
   };
 
   submitForm = (e) => {
-    const { fields } = this.props;
+    const { fields } = this.state;
     e.preventDefault();
     if(this.handleValidation()){
       console.log(`
@@ -123,12 +144,15 @@ class Cart extends Component{
   };
 
   handleChange = (field, e) => {
-    const { fields } = this.props;
-    this.props.setCartFields({...fields, [field]: e.target.value});
+    this.setState({
+      fields: {...this.state, [field]: e.target.value},
+    });
   };
 
   onClickTabItem = (activeTab) => {
-    this.props.setCartActiveTab(activeTab);
+    this.setState({
+      activeTab: activeTab,
+    });
   };
 
   remove = (product) => {
@@ -149,10 +173,8 @@ class Cart extends Component{
 
     console.log('RENDER <Cart>');
 
-    const { cart, fetching, activeTab, formErrors, fields, totalQuantity, totalPrice } = this.props;
-
-    console.log('totalPrice', totalPrice);
-    console.log('totalQuantity', totalQuantity);
+    const { cart, fetching, totalQuantity, totalPrice } = this.props;
+    const { formErrors, fields } = this.state;
 
     return (
       <Layout>
@@ -163,7 +185,7 @@ class Cart extends Component{
               fetching && <Loader />
             }
             {
-              !fetching && (!cart || cart.length === 0) && (
+              !fetching && (!cart || R.isEmpty(cart)) && (
                 <div className="cart-no-product">В вашей корзине пока нет товаров</div>
               )
             }
@@ -191,7 +213,7 @@ class Cart extends Component{
                         <div className="order-container">
                           <div className="order-type">
                             <div className="order-type-title">Выберите, как хотите получить заказ</div>
-                            <Tabs onClick={this.onClickTabItem} activeTab={activeTab} >
+                            <Tabs onClick={this.onClickTabItem} activeTab={this.state.activeTab} >
                               <div label="Самовывоз">
                                 <PersonalData errors={formErrors} values={fields} onChange={this.handleChange}/>
                               </div>
@@ -221,15 +243,10 @@ class Cart extends Component{
 }
 
 Cart.propTypes = {
-  cart: PropTypes.any.isRequired,
+  cart: PropTypes.array.isRequired,
+  user: PropTypes.object.isRequired,
   fetching: PropTypes.bool.isRequired,
-  activeTab: PropTypes.string.isRequired,
-  fields: PropTypes.object.isRequired,
-  formErrors: PropTypes.object.isRequired,
   fetchCart: PropTypes.func.isRequired,
-  setCartActiveTab: PropTypes.func.isRequired,
-  setCartFields: PropTypes.func.isRequired,
-  setCartFormErrors: PropTypes.func.isRequired,
   totalQuantity: PropTypes.number.isRequired,
   totalPrice: PropTypes.number.isRequired,
   removeCartProduct: PropTypes.func.isRequired,
@@ -239,9 +256,6 @@ Cart.propTypes = {
 
 const mapDispatchToProps = {
   fetchCart,
-  setCartActiveTab,
-  setCartFields,
-  setCartFormErrors,
   removeCartProduct,
   increaseCartProductQty,
   decreaseCartProductQty,
@@ -249,11 +263,9 @@ const mapDispatchToProps = {
 
 const mapStateToProps = (state, ownProps) => ({
   cart: state.cart.data,
+  user: state.user.data,
   fetching: state.cart.fetching,
   errors: state.cart.errors,
-  activeTab: state.cart.activeTab,
-  formErrors: state.cart.formErrors,
-  fields: state.cart.fields,
   totalQuantity: getTotalCartProductQty(state),
   totalPrice: getTotalCartProductPrice(state),
 });

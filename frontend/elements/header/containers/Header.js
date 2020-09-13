@@ -3,20 +3,25 @@ import { Link } from 'react-router-dom';
 import { slide as Menu } from 'react-burger-menu';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import * as R from 'ramda';
+// import { useCookies } from 'react-cookie';
 
 import CartInfo from '../components/CartInfo';
 import AuthNav from '../components/AuthNav';
-// import { useCookies } from 'react-cookie';
-import { fetchProducts, fetchVariations, fetchCart } from '../../../actions';
+import { fetchProducts, fetchVariations, resetCart, logout } from '../../../actions';
 import { getTotalCartProductPrice, getTotalCartProductQty } from '../../../selectors';
 
 class Header extends Component {
-  componentDidMount() {
-    this.props.fetchCart();
+  constructor(props) {
+    super(props);
+    this.handleLogout = this.handleLogout.bind(this);
   }
 
   handleLogout(e) {
     e.preventDefault();
+    const { logout, resetCart } = this.props;
+    logout();
+    resetCart();
   }
 
   render() {
@@ -57,13 +62,16 @@ Header.propTypes = {
   user: PropTypes.object.isRequired,
   totalPrice: PropTypes.number.isRequired,
   totalQuantity: PropTypes.number.isRequired,
-  fetchCart: PropTypes.func.isRequired,
+  resetCart: PropTypes.func.isRequired,
+  logout: PropTypes.func.isRequired,
+  history: PropTypes.object,
 };
 
 const mapDispatchToProps = {
   fetchProducts,
   fetchVariations,
-  fetchCart
+  logout,
+  resetCart,
 };
 
 const mapStateToProps = (state, ownProps) => ({

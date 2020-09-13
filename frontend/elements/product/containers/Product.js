@@ -1,13 +1,13 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import * as R from 'ramda';
+import { connect } from 'react-redux';
 
 import { Carousel } from 'react-responsive-carousel';
 import Breadcrumbs from '../../common/Breadcrumbs';
 import Loader from '../../common/Loader';
 import Button from '../../common/Button';
-import { fetchProduct } from '../../../actions';
-import { connect } from 'react-redux';
+import { fetchProduct, addToCart } from '../../../actions';
 import Layout from '../../layout/containers/Layout';
 
 class Product extends Component {
@@ -15,6 +15,7 @@ class Product extends Component {
     super(props);
 
     this.handleSelect = this.handleSelect.bind(this);
+    this.addToCart = this.addToCart.bind(this);
   }
 
   componentDidMount() {
@@ -22,7 +23,7 @@ class Product extends Component {
     this.props.fetchProduct(this.props.match.params.sku);
   }
 
-  async handleSelect (e, sku, newAttr) {
+  handleSelect (e, sku, newAttr) {
     const { product, history } = this.props;
 
     let currentAttrs = R.find(R.propEq('sku', sku), product.data.attrs);
@@ -40,36 +41,11 @@ class Product extends Component {
     history.push('/product/' + newAttrs.sku);
   }
 
-  addToCart = (sku) => {
-    // addProduct(sku)
-    //   .then((response) => {
-    //     if (!response.ok) {
-    //       throw new Error('Could not added product to cart');
-    //     }
-    //     return response.json();
-    //   })
-    //   .then(() => {
-    //     getSummary()
-    //       .then((response) => {
-    //         if (!response.ok) {
-    //           throw new Error('Could not fetch cart info');
-    //         }
-    //         return response.json();
-    //       })
-    //       .then(data => {
-    //         // dispatch({type: 'SET_CART_INFO', value: data});
-    //       })
-    //       .catch(error => {
-    //         console.error(error);
-    //       });
-    //   })
-    //   .catch(error => {
-    //     console.error(error);
-    //   });
-  };
+  addToCart(product) {
+    this.props.addToCart(product);
+  }
 
   render() {
-
     console.log('RENDER <Product>');
 
     const { product } = this.props;
@@ -144,7 +120,7 @@ class Product extends Component {
                       </div>
 
                       <div className="add_to_cart">
-                        <Button title="Добавить в корзину" type="primary" action={() => this.addToCart(product.data.variations[0].sku)} />
+                        <Button title="Добавить в корзину" type="primary" action={() => this.addToCart(product.data)} />
                       </div>
 
                     </div>
@@ -162,12 +138,14 @@ class Product extends Component {
 Product.propTypes = {
   product: PropTypes.object.isRequired,
   fetchProduct: PropTypes.func.isRequired,
+  addToCart: PropTypes.func.isRequired,
   match: PropTypes.object.isRequired,
   history: PropTypes.object.isRequired,
 };
 
 const mapDispatchToProps = {
   fetchProduct,
+  addToCart,
 };
 
 const mapStateToProps = (state, ownProps) => ({

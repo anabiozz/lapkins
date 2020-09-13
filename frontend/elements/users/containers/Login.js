@@ -4,12 +4,17 @@ import * as R from 'ramda';
 
 import PropTypes from 'prop-types';
 import LoginForm from '../components/LoginForm';
-import { setUserFields, setUserFormErrors, login, resetUserFormErrors } from '../../../actions';
+import { login, fetchCart } from '../../../actions';
 import Layout from '../../layout/containers/Layout';
 
 class Login extends Component {
   constructor(props) {
     super(props);
+
+    this.state = {
+      formErrors: {},
+      fields: {},
+    };
 
     this.handleValidation = this.handleValidation.bind(this);
     this.handleLogin = this.handleLogin.bind(this);
@@ -21,8 +26,10 @@ class Login extends Component {
   );
 
   handleValidation () {
-    const {fields, resetUserFormErrors, formErrors} = this.props;
-    resetUserFormErrors();
+    const {fields, formErrors} = this.state;
+    this.setState({
+      formErrors: {},
+    });
     let formIsValid = true;
 
     if(!fields['subject']){
@@ -50,7 +57,9 @@ class Login extends Component {
     // }
 
     if (!formIsValid) {
-      this.props.setUserFormErrors(formErrors);
+     this.setState({
+       formErrors: formErrors,
+     });
     }
 
     return formIsValid;
@@ -59,20 +68,24 @@ class Login extends Component {
   handleLogin (e) {
     e.preventDefault();
     if(this.handleValidation()){
-      const {fields, history, login} = this.props;
+      const { history, login, fetchCart } = this.props;
+      const { fields } = this.state;
       login(fields.subject, fields.password);
+      fetchCart();
       history.push('/');
     }
   }
 
   handleLoginChange (field, e) {
-    this.props.setUserFields({...this.props.fields, [field]: e.target.value });
+    this.setState({
+      fields: {...this.state.fields, [field]: e.target.value }
+    });
   }
 
   render() {
     console.log('RENDER <Login>');
 
-    const { fields, formErrors } = this.props;
+    const { fields, formErrors } = this.state;
 
     return (
       <Layout>
@@ -107,25 +120,14 @@ class Login extends Component {
 }
 
 Login.propTypes = {
-  fields: PropTypes.object.isRequired,
-  formErrors: PropTypes.object.isRequired,
-  setUserFields: PropTypes.func.isRequired,
-  setUserFormErrors: PropTypes.func.isRequired,
   login: PropTypes.func.isRequired,
-  resetUserFormErrors: PropTypes.func.isRequired,
   history: PropTypes.object.isRequired,
+  fetchCart: PropTypes.func.isRequired,
 };
 
 const mapDispatchToProps = {
-  setUserFields,
-  setUserFormErrors,
   login,
-  resetUserFormErrors,
+  fetchCart,
 };
 
-const mapStateToProps = (state, ownProps) => ({
-  formErrors: state.user.formErrors,
-  fields: state.user.fields,
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(Login);
+export default connect(null, mapDispatchToProps)(Login);
