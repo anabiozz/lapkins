@@ -4,7 +4,6 @@ import * as R from 'ramda';
 import { connect } from 'react-redux';
 
 import { Carousel } from 'react-responsive-carousel';
-import Breadcrumbs from '../../common/Breadcrumbs';
 import Loader from '../../common/Loader';
 import Button from '../../common/Button';
 import { fetchProduct, addToCart } from '../../../actions';
@@ -19,7 +18,6 @@ class Product extends Component {
   }
 
   componentDidMount() {
-    console.log('componentDidMount');
     this.props.fetchProduct(this.props.match.params.sku);
   }
 
@@ -96,7 +94,7 @@ class Product extends Component {
                         {
                           product.data.info.attributes && product.data.info.attributes.map((attribute, i) => (
                             <form key={i}>
-                              <div>{attribute.name}</div>
+                              <div className='radio-group-title'>{attribute.name}</div>
                               <div className="radio-group">
                                 {
                                   attribute.value && attribute.value.map((attr, j) => (

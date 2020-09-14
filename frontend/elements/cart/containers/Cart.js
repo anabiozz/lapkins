@@ -40,9 +40,10 @@ class Cart extends Component{
 
   componentDidMount() {
     const { fetchCart, user } = this.props;
-    if (!R.isEmpty(user)) {
-      fetchCart();
-    }
+    // if (!R.isEmpty(user)) {
+    //   fetchCart();
+    // }
+    fetchCart();
   }
 
   emailRegex = RegExp(

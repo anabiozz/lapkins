@@ -79,20 +79,21 @@ export const registration = (subject, password) => {
 
 export const addToCart = (product) => {
   return new Promise(((resolve, reject) => {
-    let cartProduct = R.find(R.propEq('id', product.id), cart);
+    let cartProduct = R.find(R.propEq('id', product.variation.id), cart);
+    console.log(product);
     if (cartProduct) {
       cartProduct.quantity += 1;
     } else {
       let newCartProduct = {
-        id: product.id,
-        name: product.name,
+        id: product.variation.id,
+        name: product.info.name,
         price: product.variation.price,
         size: '123',
         quantity: 1,
       };
-      cart = R.append(newCartProduct, cart);
+      cart.push(newCartProduct);
     }
-    console.log('cart', cart)
+    console.log('cart', cart);
     resolve(cart);
   }));
 };

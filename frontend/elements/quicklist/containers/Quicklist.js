@@ -8,14 +8,25 @@ import PropTypes from 'prop-types';
 import { fetchCategories } from '../../../actions';
 
 class Quicklist extends Component{
+	constructor(props) {
+		super(props);
+		this.state = {
+			hidden: false,
+		};
+
+		this.handleChange = this.handleChange.bind(this);
+	}
+
 	componentDidMount() {
 		this.props.fetchCategories();
 	}
 
-	handleChange = () => {
-		// setHide(true);
-		// setTimeout(function() {setHide(false);}.bind(this), 100);
-	};
+	handleChange (){
+		this.setState({
+			hidden: true,
+		});
+		setTimeout(function() {this.setState({hidden: false});}.bind(this), 100);
+	}
 
 	render() {
 
@@ -38,7 +49,7 @@ class Quicklist extends Component{
 								<Link onClick={this.handleChange} className="quicklist-main-link" to={'/catalog/' + category.url} >
 									{category.display}
 								</Link>
-								<ul>
+								<ul className={this.state.hidden ? 'hidden' : ''}>
 									<li className='wrapper'>
 										<ul className='inner_ul'>
 											{
