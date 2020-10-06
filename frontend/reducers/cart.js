@@ -12,12 +12,17 @@ import {
   ADD_TO_CART_START,
   ADD_TO_CART_SUCCESS,
   ADD_TO_CART_FAILURE,
+  ORDER_SUCCESS,
+  ORDER_FAILURE,
+  ORDER_START, RESET_IS_DONE,
 } from '../actionTypes';
-import * as R from "ramda";
-import {cart} from "../api/mockCart";
+
+import * as R from 'ramda';
+import { cart } from '../api/mockCart';
 
 const initialState = {
   data: [],
+  isDone: false,
   errors: null,
   fetching: false,
   totalQuantity: 0,
@@ -55,24 +60,30 @@ export default (state = initialState, {type, payload}) => {
     case ADD_TO_CART_START:
       return { ...state, fetching: true };
     case ADD_TO_CART_SUCCESS:
-      // eslint-disable-next-line no-case-declarations
-      const cartProduct = R.find(R.propEq('id', product.id), cart);
-      if (cartProduct) {
-        cartProduct.quantity += 1;
-      } else {
-        let newCartProduct = {
-          id: product.id,
-          name: product.name,
-          price: product.variation.price,
-          size: '123',
-          quantity: 1,
-        };
-        cart = R.append(newCartProduct, cart);
-      }
-      console.log('cart', cart)
+      // const cartProduct = R.find(R.propEq('id', product.id), cart);
+      // if (cartProduct) {
+      //   cartProduct.quantity += 1;
+      // } else {
+      //   let newCartProduct = {
+      //     id: product.id,
+      //     name: product.name,
+      //     price: product.variation.price,
+      //     size: '123',
+      //     quantity: 1,
+      //   };
+      //   cart = R.append(newCartProduct, cart);
+      // }
       return Object.assign({}, state, payload, {fetching: false, errors: null});
     case ADD_TO_CART_FAILURE:
       return { ...state, errors: payload, fetching: false };
+    case ORDER_START:
+      return { ...state, fetching: true };
+    case ORDER_SUCCESS:
+      return Object.assign({}, state, payload, {fetching: false, errors: null});
+    case ORDER_FAILURE:
+      return { ...state, errors: payload, fetching: false };
+    case RESET_IS_DONE:
+      return { ...state, isDone: false, fetching: false };
     default:
       return state;
   }

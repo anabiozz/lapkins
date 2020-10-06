@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Input from '../../common/Input';
 
-const DeliveryData = ({ errors, values, onChange }) => {
+const DeliveryData = ({ errors, values, onChange, onLoad }) => {
 
 	return <div className='delivery-data'>
 		<div className="delivery-data-title">
@@ -17,6 +17,7 @@ const DeliveryData = ({ errors, values, onChange }) => {
 					name="street"
 					value={values['street']}
 					onChange={onChange}
+					onLoad={onLoad}
 					error={errors['street']}
 				/>
 			</div>
@@ -30,6 +31,7 @@ const DeliveryData = ({ errors, values, onChange }) => {
 					name="apartment"
 					value={values['apartment']}
 					onChange={onChange}
+					onLoad={onLoad}
 					error={errors['apartment']}
 				/>
 			</div>
@@ -43,6 +45,7 @@ const DeliveryData = ({ errors, values, onChange }) => {
 					name="house"
 					value={values['house']}
 					onChange={onChange}
+					onLoad={onLoad}
 					error={errors['house']}
 				/>
 			</div>

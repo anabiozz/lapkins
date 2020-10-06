@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import { slide as Menu } from 'react-burger-menu';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import * as R from 'ramda';
 // import { useCookies } from 'react-cookie';
 
 import CartInfo from '../components/CartInfo';

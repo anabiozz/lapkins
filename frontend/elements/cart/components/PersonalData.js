@@ -2,8 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Input from '../../common/Input';
 
-const PersonalData = ({ errors, values, onChange }) => {
-
+const PersonalData = ({ errors, values, onChange, onLoad }) => {
 	return <div className="personal-data">
 		<div className="personal-data-title">Введите данные покупателя</div>
 		<form name="contact-form" className="contact-form">
@@ -12,10 +11,10 @@ const PersonalData = ({ errors, values, onChange }) => {
 					<Input
 						title="Телефон"
 						type="tel"
-						pattern="^\d{1}(\d{3})\d{3}-\d{2}-\d{2}$"
 						name="phone"
 						value={values['phone']}
 						onChange={onChange}
+						onLoad={onLoad}
 						error={errors['phone']}
 					/>
 				</div>
@@ -28,6 +27,7 @@ const PersonalData = ({ errors, values, onChange }) => {
 						name="firstName"
 						value={values['firstName']}
 						onChange={onChange}
+						onLoad={onLoad}
 						error={errors['firstName']}
 					/>
 				</div>
@@ -40,6 +40,7 @@ const PersonalData = ({ errors, values, onChange }) => {
 						name="lastName"
 						value={values['lastName']}
 						onChange={onChange}
+						onLoad={onLoad}
 						error={errors['lastName']}
 					/>
 				</div>
@@ -51,6 +52,7 @@ const PersonalData = ({ errors, values, onChange }) => {
 						type="email"
 						value={values['email']}
 						onChange={onChange}
+						onLoad={onLoad}
 						name="email"
 						error={errors['email']}
 					/>

@@ -27,7 +27,14 @@ import {
   INCREASE_CART_PRODUCT_QTY_SUCCESS,
   INCREASE_CART_PRODUCT_QTY_FAILURE,
   USER_LOGOUT,
-  RESET_CART, ADD_TO_CART_START, ADD_TO_CART_SUCCESS, ADD_TO_CART_FAILURE,
+  RESET_CART,
+  ADD_TO_CART_START,
+  ADD_TO_CART_SUCCESS,
+  ADD_TO_CART_FAILURE,
+  ORDER_START,
+  ORDER_FAILURE,
+  ORDER_SUCCESS,
+  RESET_IS_DONE,
 } from '../actionTypes';
 
 import {fetchProducts as fetchProductsAPI} from '../api';
@@ -37,7 +44,7 @@ import {fetchCart as fetchCartAPI} from '../api';
 import {login as loginAPI} from '../api';
 import {registration as registrationAPI} from '../api';
 import {addToCart as addToCartAPI} from '../api';
-
+import {order as orderAPI} from '../api';
 import {increaseCartProductQty as increaseCartProductQtyAPI} from '../api';
 import {decreaseCartProductQty as decreaseCartProductQtyAPI} from '../api';
 import {removeCartProduct as removeCartProductAPI} from '../api';
@@ -254,6 +261,33 @@ export const increaseCartProductQty = (product) => async dispatch => {
     });
   }
 };
+
+export const order = (personInfo, cart) => async dispatch => {
+  dispatch({
+    type: ORDER_START,
+  });
+
+  try {
+    const result = await orderAPI(personInfo, cart);
+    dispatch({
+      type: ORDER_SUCCESS,
+      payload: {isDone: result, data: []}
+    });
+  } catch (err) {
+    dispatch({
+      type: ORDER_FAILURE,
+      payload: err,
+      error: true,
+    });
+  }
+};
+
+export const resetIsDone = () => async dispatch => {
+  dispatch({
+    type: RESET_IS_DONE,
+  });
+};
+
 
 // export const getProducts = (category) => {
 //   return fetch(`${config.apiDomain}/api/v1/products/get-products?category=${category}`)

@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import * as R from 'ramda';
 
-import Breadcrumbs from '../../common/Breadcrumbs';
 import Loader from '../../common/Loader';
 import CartProductItem from '../components/CartProductItem';
 import CartDetailed from '../components/CartDetailed';
@@ -16,26 +15,38 @@ import {
   removeCartProduct,
   increaseCartProductQty,
   decreaseCartProductQty,
+  order,
+  resetIsDone,
 } from '../../../actions';
 import { getTotalCartProductQty, getTotalCartProductPrice } from '../../../selectors';
+import Done from '../components/Done';
 
 class Cart extends Component{
   constructor(props) {
     super(props);
 
     this.state = {
-      activeTab: 'Самовывоз',
-      formErrors: {},
-      fields: {},
+      activeTab: 'person',
+      formErrors: {
+        person: {},
+        delivery: {}
+      },
+      fields: {
+        person: {},
+        delivery: {}
+      },
     };
 
     this.handleValidation = this.handleValidation.bind(this);
     this.submitForm = this.submitForm.bind(this);
-    this.handleChange = this.handleChange.bind(this);
     this.onClickTabItem = this.onClickTabItem.bind(this);
     this.remove = this.remove.bind(this);
     this.increase = this.increase.bind(this);
     this.decrease = this.decrease.bind(this);
+    this.handlePersonData = this.handlePersonData.bind(this);
+    this.handleDeliveryData = this.handleDeliveryData.bind(this);
+    this.handleLoadPersonData = this.handleLoadPersonData.bind(this);
+    this.handleLoadDeliveryData = this.handleLoadDeliveryData.bind(this);
   }
 
   componentDidMount() {
@@ -46,113 +57,102 @@ class Cart extends Component{
     fetchCart();
   }
 
+  componentWillUnmount() {
+    this.props.resetIsDone();
+  }
+
   emailRegex = RegExp(
     /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
   );
 
   phoneRegex = RegExp(
-    /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/
+      /^[0-9\b]+$/
   );
 
   handleValidation = () => {
     const { fields, formErrors, activeTab } = this.state;
     let formIsValid = true;
 
-    if(!fields['firstName']){
-      formIsValid = false;
-      formErrors['firstName'] = 'должно быть заполнено';
-    }
+    const orderType = fields[activeTab];
+    const orderTypeErrors = formErrors[activeTab];
 
-    if(typeof fields['firstName'] !== 'undefined'){
-      if(!fields['firstName'].match(/^[a-zA-Zа-яА-Я]+$/)){
-        formIsValid = false;
-        formErrors['firstName'] = 'только буквы';
-      }
-    }
-
-    if(!fields['lastName']){
-      formIsValid = false;
-      formErrors['lastName'] = 'должно быть заполнено';
-    }
-
-    if(typeof fields['lastName'] !== 'undefined'){
-      if(!fields['lastName'].match(/^[a-zA-Zа-яА-Я]+$/)){
-        formIsValid = false;
-        formErrors['lastName'] = 'только буквы';
-      }
-    }
-
-    if(!fields['email']){
-      formIsValid = false;
-      formErrors['email'] = 'должно быть заполнено';
-    }
-
-    if(typeof fields['email'] !== 'undefined'){
-      if(!this.emailRegex.test(fields.email)){
-        formIsValid = false;
-        formErrors['email'] = 'email не валиден';
-      }
-    }
-
-    if(!fields['phone']){
-      formIsValid = false;
-      formErrors['phone'] = 'должно быть заполнено';
-    }
-
-    if(typeof fields['phone'] !== 'undefined'){
-      formIsValid = false;
-      formErrors['phone'] = this.phoneRegex.test(fields.phone) ? '' : 'телефон не валиден';
-    }
-
-    if (activeTab === 'Доставка по адресу') {
-      if(!fields['street']){
-        formIsValid = false;
-        formErrors['street'] = 'должно быть заполнено';
-      }
-
-      if(!fields['apartment']){
-        formIsValid = false;
-        formErrors['apartment'] = 'должно быть заполнено';
-      }
-
-      if(!fields['house']){
-        formIsValid = false;
-        formErrors['house'] = 'должно быть заполнено';
+    for (const prop in orderType) {
+      if (orderType.hasOwnProperty(prop)) {
+        if (!orderType[prop]) {
+          formIsValid = false;
+          orderTypeErrors[prop] = 'должно быть заполнено';
+        } else {
+          switch (prop) {
+            case 'firstName':
+            case 'lastName':
+             if (!orderType[prop].match(/^[a-zA-Zа-яА-Я]+$/)) {
+               formIsValid = false;
+               orderTypeErrors[prop] = 'только буквы';
+             }
+             break;
+            case 'email':
+              if(!this.emailRegex.test(orderType.email)){
+                formIsValid = false;
+                orderTypeErrors[prop] = 'email не валиден';
+              }
+              break;
+            case 'phone':
+              if(!this.phoneRegex.test(orderType.phone)){
+                formIsValid = false;
+                orderTypeErrors[prop] = 'телефон не валиден';
+              }
+              break;
+            default:
+              break;
+          }
+        }
       }
     }
 
     this.setState({
-      formErrors: formErrors,
+      formErrors: {...this.state.formErrors, [activeTab]: orderTypeErrors},
     });
     return formIsValid;
   };
 
   submitForm = (e) => {
-    const { fields } = this.state;
     e.preventDefault();
+    const { fields } = this.state;
     if(this.handleValidation()){
-      console.log(`
-        --SUBMITTING--
-        First Name: ${fields.firstName}
-        Last Name: ${fields.lastName}
-        Email: ${fields.email}
-        phone: ${fields.phone}
-        street: ${fields.street}
-        apartment: ${fields.apartment}
-        house: ${fields.house}
-      `);
+      this.props.order(fields, this.props.cart);
     }
   };
 
-  handleChange = (field, e) => {
+  handlePersonData (field, e) {
     this.setState({
-      fields: {...this.state, [field]: e.target.value},
+      fields: {...this.state.fields, person: {...this.state.fields.person, [field]: e.target.value}},
+      formErrors: {...this.state.formErrors, person: {...this.state.formErrors.person, [field]: ''}},
     });
-  };
+  }
+
+  handleDeliveryData(field, e) {
+    this.setState({
+      fields: {...this.state.fields, delivery: {...this.state.fields.delivery, [field]: e.target.value}},
+      formErrors: {...this.state.formErrors, delivery: {...this.state.formErrors.delivery, [field]: ''}},
+    });
+  }
+
+  handleLoadPersonData(field) {
+    this.setState(prevState => ({
+      fields: {...prevState.fields, person: {...prevState.fields.person, [field]: prevState.fields.person[field] || ''}},
+    }));
+  }
+
+  handleLoadDeliveryData(field) {
+    this.setState(prevState=> ({
+      fields: {...prevState.fields, delivery: {...prevState.fields.delivery, [field]:  prevState.fields.delivery[field] || ''}},
+    }));
+  }
 
   onClickTabItem = (activeTab) => {
     this.setState({
       activeTab: activeTab,
+      formErrors: activeTab !== 'person' ? {...this.state.formErrors, delivery: {}} : this.state.formErrors
     });
   };
 
@@ -174,7 +174,7 @@ class Cart extends Component{
 
     console.log('RENDER <Cart>');
 
-    const { cart, fetching, totalQuantity, totalPrice } = this.props;
+    const { cart, fetching, totalQuantity, totalPrice, isDone } = this.props;
     const { formErrors, fields } = this.state;
 
     return (
@@ -186,12 +186,15 @@ class Cart extends Component{
               fetching && <Loader />
             }
             {
-              !fetching && (!cart || R.isEmpty(cart)) && (
+              !fetching && isDone && <Done/>
+            }
+            {
+              !fetching && !isDone && (!cart || R.isEmpty(cart)) && (
                 <div className="cart-no-product">В вашей корзине пока нет товаров</div>
               )
             }
             {
-              !fetching && cart.length > 0 && (
+              !fetching && !isDone && cart.length > 0 && (
                 <Fragment>
                   <div className="cart-content">
                     <div className="cart-content-products">
@@ -215,12 +218,12 @@ class Cart extends Component{
                           <div className="order-type">
                             <div className="order-type-title">Выберите, как хотите получить заказ</div>
                             <Tabs onClick={this.onClickTabItem} activeTab={this.state.activeTab} >
-                              <div label="Самовывоз">
-                                <PersonalData errors={formErrors} values={fields} onChange={this.handleChange}/>
+                              <div label="Самовывоз" id="person">
+                                <PersonalData errors={formErrors.person} values={fields.person} onChange={this.handlePersonData} onLoad={this.handleLoadPersonData}/>
                               </div>
-                              <div label="Доставка по адресу">
-                                <PersonalData errors={formErrors} values={fields} onChange={this.handleChange}/>
-                                <DeliveryData errors={formErrors} values={fields} onChange={this.handleChange}/>
+                              <div label="Доставка по адресу" id="delivery">
+                                <PersonalData errors={formErrors.person} values={fields.person} onChange={this.handlePersonData} onLoad={this.handleLoadPersonData}/>
+                                <DeliveryData errors={formErrors.delivery} values={fields.delivery} onChange={this.handleDeliveryData} onLoad={this.handleLoadDeliveryData}/>
                               </div>
                             </Tabs>
                           </div>
@@ -245,9 +248,12 @@ class Cart extends Component{
 
 Cart.propTypes = {
   cart: PropTypes.array.isRequired,
+  isDone: PropTypes.bool.isRequired,
+  resetIsDone: PropTypes.func.isRequired,
   user: PropTypes.object.isRequired,
   fetching: PropTypes.bool.isRequired,
   fetchCart: PropTypes.func.isRequired,
+  order: PropTypes.func.isRequired,
   totalQuantity: PropTypes.number.isRequired,
   totalPrice: PropTypes.number.isRequired,
   removeCartProduct: PropTypes.func.isRequired,
@@ -260,10 +266,13 @@ const mapDispatchToProps = {
   removeCartProduct,
   increaseCartProductQty,
   decreaseCartProductQty,
+  order,
+  resetIsDone,
 };
 
 const mapStateToProps = (state, ownProps) => ({
   cart: state.cart.data,
+  isDone: state.cart.isDone,
   user: state.user.data,
   fetching: state.cart.fetching,
   errors: state.cart.errors,

@@ -10,14 +10,12 @@ class Tabs extends Component {
 
 		return (
 			<div className="tabs-wrapper">
-
 				<div className="tabs">
 					{
 						children.map((child) => {
-							const { label } = child.props;
-
+							const { label, id } = child.props;
 							return (
-								<Tab activeTab={activeTab} key={label} label={label} onClick={onClick} />
+								<Tab id={id} activeTab={activeTab} key={id} label={label} onClick={onClick} />
 							);
 						})}
 				</div>
@@ -25,7 +23,7 @@ class Tabs extends Component {
 				<div className="tab-content">
 					{
 						children.map((child) => {
-							if (child.props.label !== activeTab) return undefined;
+							if (child.props.id !== activeTab) return undefined;
 							return child.props.children;
 						})
 					}

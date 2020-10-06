@@ -4,16 +4,14 @@ import PropTypes from 'prop-types';
 class Tab extends Component{
 
 	onClick = () => {
-		const { label, onClick } = this.props;
-		onClick(label);
+		const { id, onClick } = this.props;
+		onClick(id);
 	};
 
 	render() {
-		const { onClick, props: { activeTab, label } } = this;
-
+		const { onClick, props: { activeTab, label, id } } = this;
 		let className = 'tab';
-
-		if (activeTab === label) {
+		if (activeTab === id) {
 			className += ' tab-active';
 		}
 		return (
@@ -27,6 +25,7 @@ class Tab extends Component{
 Tab.propTypes = {
 	activeTab: PropTypes.string.isRequired,
 	label: PropTypes.string.isRequired,
+	id: PropTypes.string.isRequired,
 	onClick: PropTypes.func.isRequired,
 };
 

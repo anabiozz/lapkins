@@ -44,3 +44,9 @@ export const RESET_CART = 'RESET_CART';
 export const ADD_TO_CART_START = 'ADD_TO_CART_START';
 export const ADD_TO_CART_SUCCESS = 'ADD_TO_CART_SUCCESS';
 export const ADD_TO_CART_FAILURE = 'ADD_TO_CART_FAILURE';
+
+export const ORDER_START = 'ORDER_START';
+export const ORDER_SUCCESS = 'ORDER_SUCCESS';
+export const ORDER_FAILURE = 'ORDER_FAILURE';
+
+export const RESET_IS_DONE = 'RESET_IS_DONE';

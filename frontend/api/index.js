@@ -1,8 +1,6 @@
 import * as R from 'ramda';
 import fetch from 'isomorphic-fetch';
 
-// import {products} from './mockProducts';
-// import {variations} from './mockVariations';
 import {categories} from './mockCategories';
 import { cart } from './mockCart';
 import { user } from './mockUser';
@@ -64,7 +62,6 @@ export const registration = (subject, password) => {
 export const addToCart = (product) => {
   return new Promise(((resolve, reject) => {
     let cartProduct = R.find(R.propEq('id', product.variation.id), cart);
-    console.log(product);
     if (cartProduct) {
       cartProduct.quantity += 1;
     } else {
@@ -105,4 +102,11 @@ export const removeCartProduct = (product) => {
   }));
 };
 
+export const order = (personInfo, cart) => {
+  return new Promise(((resolve, reject) => {
+    console.log('personInfo', personInfo);
+    console.log('cart', cart);
+    resolve(true);
+  }));
+};
 
