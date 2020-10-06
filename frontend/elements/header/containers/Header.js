@@ -8,7 +8,7 @@ import * as R from 'ramda';
 
 import CartInfo from '../components/CartInfo';
 import AuthNav from '../components/AuthNav';
-import { fetchProducts, fetchVariations, resetCart, logout } from '../../../actions';
+import { fetchProducts, resetCart, logout } from '../../../actions';
 import { getTotalCartProductPrice, getTotalCartProductQty } from '../../../selectors';
 
 class Header extends Component {
@@ -69,7 +69,6 @@ Header.propTypes = {
 
 const mapDispatchToProps = {
   fetchProducts,
-  fetchVariations,
   logout,
   resetCart,
 };

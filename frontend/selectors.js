@@ -12,25 +12,34 @@ export const getProducts = (state, ownProps) => {
   const category = getCurrentCategory(ownProps);
   const subcategory = getCurrentSubCategory(ownProps);
 
-  const filteredProducts = R.filter(R.propEq('category', category), state.products.data);
+  // const notEmpty = R.compose(R.not, R.isEmpty);
+  // const notEmpty = R.complement(R.isEmpty);
 
-  filteredProducts.forEach((product) => {
+  let filteredProducts = R.filter(R.propEq('category', category), state.products.data);
 
-      let variation = R.filter(R.allPass([
-        R.propEq('default', true),
-        R.propEq('productId', product.id),
-        subcategory ? R.propEq('name', subcategory) : function () {return true;}
-      ]), state.variations.data)[0];
+  if (filteredProducts.length > 0) {
+    filteredProducts.forEach((product) => {
 
-      if(variation) {
-        info = {};
-        info.id = variation.id;
-        info.name = product.name;
-        info.thumbnail = variation.thumbnail;
-        info.price = variation.price;
-        result.push(info);
+      if (product.variations.length > 0) {
+
+        let variation = R.find(
+          R.allPass([
+            R.propEq('default', true),
+            subcategory ? R.propEq('name', subcategory) : function () {return true;}
+          ]), product.variations);
+
+        if(variation) {
+          info = {};
+          info.id = variation.id;
+          info.name = product.name;
+          info.thumbnail = variation.thumbnail;
+          info.price = variation.price;
+          result.push(info);
+        }
       }
-  });
+    });
+  }
+
   return result;
 };
 

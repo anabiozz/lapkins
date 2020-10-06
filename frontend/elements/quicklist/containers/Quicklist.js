@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import Loader from '../../common/Loader';
-import {getCategories} from '../../../api';
 import PropTypes from 'prop-types';
 import { fetchCategories } from '../../../actions';
 
@@ -25,7 +24,9 @@ class Quicklist extends Component{
 		this.setState({
 			hidden: true,
 		});
-		setTimeout(function() {this.setState({hidden: false});}.bind(this), 100);
+		// TODO: React state update on an unmounted component. This is a no-op, but it indicates a memory leak in your application.
+		// To fix, cancel all subscriptions and asynchronous tasks in the componentWillUnmount method.
+		// setTimeout(function() {this.setState({hidden: false});}.bind(this), 100);
 	}
 
 	render() {

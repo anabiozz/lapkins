@@ -21,22 +21,22 @@ class Product extends Component {
     this.props.fetchProduct(this.props.match.params.sku);
   }
 
-  handleSelect (e, sku, newAttr) {
+  handleSelect (e, currentAttrs, sku, newAttr) {
     const { product, history } = this.props;
 
-    let currentAttrs = R.find(R.propEq('sku', sku), product.data.attrs);
-    let newAttrs =  JSON.parse(JSON.stringify(currentAttrs));
-    let attrToChange = R.find(R.propEq('name', newAttr.name), newAttrs.value);
+    let newAttributes =  R.clone(currentAttrs);
+    let newSKU = sku;
+    let attrToChange = R.find(R.propEq('name', newAttr.name), newAttributes);
     attrToChange.value = newAttr.value;
 
-    product.data.attrs.forEach(attr => {
-      if (R.equals(newAttrs.value, attr.value)) {
-        newAttrs.sku = attr.sku;
+    product.data.variations.forEach(variation => {
+      if (R.equals(newAttributes, variation.attributes)) {
+        newSKU = variation.sku;
       }
     });
 
-    this.props.fetchProduct(newAttrs.sku);
-    history.push('/product/' + newAttrs.sku);
+    this.props.fetchProduct(newSKU);
+    history.push('/product/' + newSKU);
   }
 
   addToCart(product) {
@@ -57,12 +57,12 @@ class Product extends Component {
               product.fetching && <Loader />
             }
             {
-              !product.fetching && R.isEmpty(product.data) && (
+              !product.fetching && (!product.data || R.isEmpty(product.data)) && (
                 <span>Данный товар отсутствует</span>
               )
             }
             {
-              !product.fetching && !R.isEmpty(product.data) && (
+              !product.fetching && product.data && !R.isEmpty(product.data) && (
                 <Fragment>
                   <div className="product-description-image">
                     <Carousel axis="horizontal">
@@ -87,12 +87,12 @@ class Product extends Component {
                       </div>
 
                       <div className="description">
-                        { product.data.info.description }
+                        { product.data.description }
                       </div>
 
                       <div className="variations">
                         {
-                          product.data.info.attributes && product.data.info.attributes.map((attribute, i) => (
+                          product.data.attributes && product.data.attributes.map((attribute, i) => (
                             <form key={i}>
                               <div className='radio-group-title'>{attribute.name}</div>
                               <div className="radio-group">
@@ -103,7 +103,12 @@ class Product extends Component {
                                         value={attr}
                                         type="radio"
                                         id={`option-${i}-${j}`}
-                                        onChange={(e) => this.handleSelect(e, product.data.variation.sku, {name: attribute.name, value: attr})}
+                                        onChange={(e) => this.handleSelect(
+                                          e,
+                                          product.data.variation.attributes,
+                                          product.data.variation.sku,
+                                          {name: attribute.name, value: attr},
+                                        )}
                                         name={attribute.name}
                                         checked={product.data.variation.attributes[i].value === attr}
                                       />

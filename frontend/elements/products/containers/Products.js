@@ -3,8 +3,7 @@ import { connect } from 'react-redux';
 
 import Product from '../components/Product.js';
 import Loader from '../../common/Loader';
-import Breadcrumbs from '../../common/Breadcrumbs';
-import { fetchProducts, fetchVariations } from '../../../actions';
+import { fetchProducts } from '../../../actions';
 import {getProducts} from '../../../selectors';
 import PropTypes from 'prop-types';
 import Layout from '../../layout/containers/Layout';
@@ -12,7 +11,6 @@ import Layout from '../../layout/containers/Layout';
 class Products extends Component {
   componentDidMount() {
     this.props.fetchProducts();
-    this.props.fetchVariations();
   }
 
   render() {
@@ -52,12 +50,10 @@ Products.propTypes = {
   products: PropTypes.array.isRequired,
   fetching: PropTypes.bool.isRequired,
   fetchProducts: PropTypes.func.isRequired,
-  fetchVariations: PropTypes.func.isRequired,
 };
 
 const mapDispatchToProps = {
   fetchProducts,
-  fetchVariations,
 };
 
 const mapStateToProps = (state, ownProps) => ({

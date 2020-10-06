@@ -7,8 +7,65 @@ export const products = [
       {name: 'Рамка', value: ['Без рамки', 'Деревянная']},
     ],
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ante lorem, varius sit amet scelerisque et, tincidunt nec ante. Etiam quis orci ex. Donec sem metus, sodales eu dignissim vitae, semper et ipsum. Nullam risus est, fermentum vel mauris eu, sagittis rhoncus magna. Proin in dui gravida ante vestibulum congue. Vestibulum a nulla sit amet felis laoreet ullamcorper a et tellus. Duis sollicitudin eget nulla in scelerisque..',
-    category_id: 1,
     category: 'wallart',
+    variations: [
+      {
+        id: 1,
+        productId: 1,
+        sku: 1,
+        name: 'wood-framed-posters',
+        default: true,
+        attributes: [
+          {name: 'Размер', value: '300x400'},
+          {name: 'Рамка', value: 'Деревянная'},
+        ],
+        price: '50',
+        thumbnail: 'https://picsum.photos/id/1/200/300',
+        images: [{src: 'https://picsum.photos/id/1/200/300'},{src: 'https://picsum.photos/id/5/200/300'}],
+      },
+      {
+        id: 2,
+        productId: 1,
+        sku: 2,
+        name: 'wood-framed-posters',
+        default: false,
+        attributes: [
+          {name: 'Размер', value: '500x600'},
+          {name: 'Рамка', value: 'Деревянная'},
+        ],
+        price: '80',
+        thumbnail: 'https://picsum.photos/id/2/200/300',
+        images: [{src: 'https://picsum.photos/id/2/200/300'},{src: 'https://picsum.photos/id/6/200/300'}],
+      },
+      {
+        id: 3,
+        productId: 1,
+        sku: 3,
+        name: 'posters',
+        default: true,
+        attributes: [
+          {name: 'Размер', value: '300x400'},
+          {name: 'Рамка', value: 'Без рамки'},
+        ],
+        price: '57',
+        thumbnail: 'https://picsum.photos/id/3/200/300',
+        images: [{src: 'https://picsum.photos/id/3/200/300'},{src: 'https://picsum.photos/id/7/200/300'}],
+      },
+      {
+        id: 4,
+        productId: 1,
+        sku: 4,
+        default: false,
+        name: 'posters',
+        attributes: [
+          {name: 'Размер', value: '500x600'},
+          {name: 'Рамка', value: 'Без рамки'},
+        ],
+        price: '79',
+        thumbnail: 'https://picsum.photos/id/4/200/300',
+        images: [{src: 'https://picsum.photos/id/4/200/300'},{src: 'https://picsum.photos/id/8/200/300'}],
+      },
+    ],
   },
   {
     id: 2,
@@ -18,24 +75,24 @@ export const products = [
       {name: 'Рамка', value: ['Без рамки', 'Деревянная']},
     ],
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam viverra.',
-    category_id: 1,
     category: 'wallart',
+    variations: []
   },
   {
     id: 3,
     name: 'Канцелярия 1',
     attributes: [],
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam viverra.',
-    category_id: 2,
     category: 'stationery',
+    variations: []
   },
   {
     id: 4,
     name: 'Канцелярия 2',
     attributes: [],
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam viverra.',
-    category_id: 2,
     category: 'stationery',
+    variations: []
   },
   {
     id: 5,
@@ -44,8 +101,22 @@ export const products = [
       {name: 'Размер', value: ['50x60']},
     ],
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam viverra.',
-    category_id: 3,
     category: 'stationery',
+    variations: [
+      {
+        id: 6,
+        productId: 5,
+        sku: 6,
+        default: true,
+        name: 'postcards',
+        attributes: [
+          {name: 'Размер', value: '50x60'},
+        ],
+        price: '20',
+        thumbnail: 'https://picsum.photos/id/6/200/300',
+        images: [{src: 'https://picsum.photos/id/11/200/300'},{src: 'https://picsum.photos/id/12/200/300'}],
+      },
+    ]
   },
   {
     id: 6,
@@ -54,8 +125,8 @@ export const products = [
       {name: 'Размер', value: ['50x60', '60x60']},
     ],
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam viverra.',
-    category_id: 3,
     category: 'stationery',
+    variations: []
   },
   {
     id: 7,
@@ -64,8 +135,22 @@ export const products = [
       {name: 'Цвет', value: ['Белый', 'Красный']},
     ],
     description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam viverra.',
-    category_id: 3,
     category: 'stationery',
+    variations: [
+      {
+        id: 5,
+        productId: 7,
+        sku: 5,
+        name: 'lamps',
+        default: true,
+        attributes: [
+          {name: 'Цвет', value: 'Белый'},
+        ],
+        price: '700',
+        thumbnail: 'https://picsum.photos/id/5/200/300',
+        images: [{src: 'https://picsum.photos/id/9/200/300'},{src: 'https://picsum.photos/id/10/200/300'}],
+      },
+    ]
   }
 ];
 

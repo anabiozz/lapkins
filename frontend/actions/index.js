@@ -8,9 +8,6 @@ import {
   FETCH_CATEGORIES_START,
   FETCH_CATEGORIES_FAILURE,
   FETCH_CATEGORIES_SUCCESS,
-  FETCH_VARIATIONS_START,
-  FETCH_VARIATIONS_SUCCESS,
-  FETCH_VARIATIONS_FAILURE,
   FETCH_CART_START,
   FETCH_CART_SUCCESS,
   FETCH_CART_FAILURE,
@@ -36,7 +33,6 @@ import {
 import {fetchProducts as fetchProductsAPI} from '../api';
 import {fetchProduct as fetchProductAPI} from '../api';
 import {fetchCategories as fetchCategoriesAPI} from '../api';
-import {fetchVariations as fetchVariationsAPI} from '../api';
 import {fetchCart as fetchCartAPI} from '../api';
 import {login as loginAPI} from '../api';
 import {registration as registrationAPI} from '../api';
@@ -66,26 +62,6 @@ export const fetchProducts = () => async dispatch => {
   }
 };
 
-export const fetchVariations = () => async dispatch => {
-  dispatch({
-    type: FETCH_VARIATIONS_START
-  });
-
-  try {
-    const variations = await fetchVariationsAPI();
-    dispatch({
-      type: FETCH_VARIATIONS_SUCCESS,
-      payload: {data: variations},
-    });
-  } catch (err) {
-    dispatch({
-      type: FETCH_VARIATIONS_FAILURE,
-      payload: err,
-      error: true,
-    });
-  }
-};
-
 export const fetchProduct = (sku) => async dispatch => {
   dispatch({
     type: FETCH_PRODUCT_START
@@ -95,7 +71,7 @@ export const fetchProduct = (sku) => async dispatch => {
     const product = await fetchProductAPI(sku);
     dispatch({
       type: FETCH_PRODUCT_SUCCESS,
-      payload: {data: product},
+      payload: {data: product ? product : {}},
     });
   } catch (err) {
     dispatch({
