@@ -54,11 +54,11 @@ class Quicklist extends Component{
 									<li className='wrapper'>
 										<ul className='inner_ul'>
 											{
-												category.ancestors.map((ancestor, i) => (
+												category.superordinate.map((superordinate, i) => (
 													<li key={i} className='inner_li'>
-														{ancestor.name}
+														{superordinate.name}
 														{
-															ancestor.items.map((item, j) => (
+															superordinate.items.map((item, j) => (
 																<Link key={j} onClick={this.handleChange} to={'/catalog/' + category.url + '?q=' + item.name} >
 																	{item.name}
 																</Link>

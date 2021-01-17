@@ -3,14 +3,20 @@ import { connect } from 'react-redux';
 
 import Product from '../components/Product.js';
 import Loader from '../../common/Loader';
-import { fetchProducts } from '../../../actions';
-import {getProducts} from '../../../selectors';
+import { fetchProductsByCategory } from '../../../actions';
 import PropTypes from 'prop-types';
 import Layout from '../../layout/containers/Layout';
 
 class Products extends Component {
   componentDidMount() {
-    this.props.fetchProducts();
+    this.props.fetchProductsByCategory(this.props.match.params.basic);
+  }
+
+  componentDidUpdate(prevProps) {
+    let basicCategory = this.props.match.params.basic;
+    if (prevProps.match.params.basic !== basicCategory) {
+      this.props.fetchProductsByCategory(this.props.match.params.basic);
+    }
   }
 
   render() {
@@ -49,17 +55,18 @@ class Products extends Component {
 Products.propTypes = {
   products: PropTypes.array.isRequired,
   fetching: PropTypes.bool.isRequired,
-  fetchProducts: PropTypes.func.isRequired,
+  fetchProductsByCategory: PropTypes.func.isRequired,
+  match: PropTypes.any,
 };
 
 const mapDispatchToProps = {
-  fetchProducts,
+  fetchProductsByCategory,
 };
 
 const mapStateToProps = (state, ownProps) => ({
   fetching: state.products.fetching,
   errors: state.products.errors,
-  products: getProducts(state, ownProps),
+  products: state.products.data,
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Products);

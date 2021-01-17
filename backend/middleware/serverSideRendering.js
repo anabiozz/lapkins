@@ -3,7 +3,7 @@ import { renderToString } from 'react-dom/server';
 import match from 'react-router/lib/match';
 import RouterContext from 'react-router/lib/RouterContext';
 import configureStore from '../../frontend/_flux/store';
-import Provider from 'react-redux/lib/components/Provider'
+import Provider from 'react-redux/lib/components/Provider';
 import routesFull from '../../frontend/routes';
 import routesEx from '../../frontend/routesEx';
 import config from '../configs/config';
@@ -18,9 +18,9 @@ function* generateInitialSettings(props, response, user) {
       initialState.user.name = user.uuid;
     }
     let settingsData = yield settings.get();
-    if(settingsData.length == 0 )
+    if(settingsData.length === 0 )
       settingsData = yield settings.initSettings();
-    else if( settingsData[0].version != initialState.settings.version) {
+    else if( settingsData[0].version !== initialState.settings.version) {
       settingsData = yield settings.initSettings();
     }
 
@@ -63,7 +63,7 @@ module.exports = function (request, response, next) {
   console.log('Middleware Url is: ' + request.url);
   console.log('CORE_URL: ' + process.env.CORE_URL);
   response.setHeader('Last-Modified', (new Date()).toUTCString());
-  let routes = process.env.NODE_MODE == 'executive' ? routesEx : routesFull;
+  let routes = process.env.NODE_MODE === 'executive' ? routesEx : routesFull;
 
   match({ routes: routes(request.user), location: request.url }, (err, redirect, props) => {
     if (err) {
@@ -86,7 +86,7 @@ module.exports = function (request, response, next) {
 function renderPage(appHtml, store) {
   const finalState = store.getState();
 
-  const ex = process.env.NODE_MODE == 'executive' ? '.ex' : ''
+  const ex = process.env.NODE_MODE === 'executive' ? '.ex' : '';
   const jsBundle = process.env.NODE_ENV === 'production' ? 'bundle-prod'+ex+'.js' : 'bundle-dev.js';
   return `<!DOCTYPE html>
     <html>

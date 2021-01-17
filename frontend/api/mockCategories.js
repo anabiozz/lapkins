@@ -1,9 +1,9 @@
 export const categories = [
   {
     id: 1,
-    display: 'Постеры',
-    url: 'wallart/posters',
-    ancestors: [
+    display: 'Wallart',
+    url: 'wallart',
+    superordinate: [
       {
         name: 'Размеры',
         items: [
@@ -34,29 +34,9 @@ export const categories = [
   },
   {
     id: 2,
-    display: 'Открытки',
-    url: 'stationery/postcards',
-    ancestors: [
-      {
-        name: 'Размеры',
-        items: [
-          {
-            id: 1,
-            name: '50x60',
-          },
-          {
-            id: 2,
-            name: '40x40',
-          }
-        ]
-      }
-    ],
-  },
-  {
-    id: 3,
     display: 'Канцелярия',
     url: 'stationery',
-    ancestors: [
+    superordinate: [
       {
         name: 'Размеры',
         items: [

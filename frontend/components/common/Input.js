@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 class Input extends Component {
     constructor(props) {
         super(props);
-        this.props.onLoad(this.props.name);
+        // this.props.onLoad(this.props.name);
     }
 
     render() {

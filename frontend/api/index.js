@@ -4,6 +4,10 @@ import fetch from 'isomorphic-fetch';
 import {categories} from './mockCategories';
 import { cart } from './mockCart';
 import { user } from './mockUser';
+import { products } from './mockProducts';
+import { product } from './mockProduct';
+import { variations } from './mockVariations';
+import { superordinates } from './mockSuperordinateCategories';
 import config from '../config';
 
 
@@ -13,28 +17,46 @@ export const fetchCategories = () => {
   }));
 };
 
-export const fetchProducts = () => {
-  return fetch(`${config.apiDomain}/api/v1/products`)
-  .then((response) => {
-    if (!response.ok) {
-      throw new Error('Could not fetch product product');
-    }
-    return response;
-  })
-  .then(response => response.json())
-  .catch(error => error);
+export const fetchSuperordinateCategories = (superordinate) => {
+  return new Promise(((resolve, reject) => {
+    resolve(R.filter(R.propEq('category', superordinate))(superordinates));
+  }));
+};
+
+export const fetchProductsByCategory = (basicCategory) => {
+  console.log(basicCategory);
+  return new Promise(((resolve, reject) => {
+    let prod = R.filter(R.propEq('basicCategory', basicCategory))(products);
+    resolve(prod);
+  }));
+  // return fetch(`${config.apiDomain}/api/v1/products`)
+  // .then((response) => {
+  //   if (!response.ok) {
+  //     throw new Error('Could not fetch product product');
+  //   }
+  //   return response;
+  // })
+  // .then(response => response.json())
+  // .catch(error => error);
 };
 
 export const fetchProduct = async (sku) => {
-  return fetch(`${config.apiDomain}/api/v1/product?sku=${sku}`)
-    .then((response) => {
-      if (!response.ok) {
-        throw new Error('Could not fetch product product');
-      }
-      return response;
-    })
-    .then(response => response.json())
-    .catch(error => error);
+  return new Promise(((resolve, reject) => {
+    resolve({
+      variation: R.find(R.propEq('sku', Number(sku)))(variations),
+      variations: variations,
+      product: product,
+    });
+  }));
+  // return fetch(`${config.apiDomain}/api/v1/product?sku=${sku}`)
+  //   .then((response) => {
+  //     if (!response.ok) {
+  //       throw new Error('Could not fetch product product');
+  //     }
+  //     return response;
+  //   })
+  //   .then(response => response.json())
+  //   .catch(error => error);
 };
 
 export const fetchCart = () => {

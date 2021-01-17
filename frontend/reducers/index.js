@@ -6,6 +6,7 @@ import product from './product';
 import categories from './categories';
 import cart from './cart';
 import user from './user';
+import superordinates from './superordinates';
 
 export default history => combineReducers({
   products,
@@ -13,5 +14,6 @@ export default history => combineReducers({
   categories,
   user,
   cart,
+  superordinates,
   router: connectRouter(history),
 });

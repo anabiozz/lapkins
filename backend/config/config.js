@@ -1,7 +1,7 @@
 import state from './config.state';
 
 // const host = process.env.SERVER;
-const port = 8080; //
+const port = 8085; //
 
 const config = {
     server: {

@@ -1,5 +1,13 @@
 import * as R from 'ramda';
 
+
+export const getProduct = (state, ownProps) => {
+  const result = [];
+  console.log(state)
+
+  return result;
+};
+
 export const getProducts = (state, ownProps) => {
   const result = [];
   let info = {

@@ -8,6 +8,7 @@ import Loader from '../../common/Loader';
 import Button from '../../common/Button';
 import { fetchProduct, addToCart } from '../../../actions';
 import Layout from '../../layout/containers/Layout';
+import { getProduct } from '../../../selectors';
 
 class Product extends Component {
   constructor(props) {
@@ -21,22 +22,23 @@ class Product extends Component {
     this.props.fetchProduct(this.props.match.params.sku);
   }
 
-  handleSelect (e, currentAttrs, sku, newAttr) {
+  handleSelect (e, bit, attrId) {
     const { product, history } = this.props;
-
-    let newAttributes =  R.clone(currentAttrs);
-    let newSKU = sku;
-    let attrToChange = R.find(R.propEq('name', newAttr.name), newAttributes);
-    attrToChange.value = newAttr.value;
-
-    product.data.variations.forEach(variation => {
-      if (R.equals(newAttributes, variation.attributes)) {
-        newSKU = variation.sku;
+    let bits = 0;
+    product.data.variation.attributes.forEach(attr => {
+      if (attr.attrId !== attrId) {
+        bits |= attr.bit;
       }
     });
 
-    this.props.fetchProduct(newSKU);
-    history.push('/product/' + newSKU);
+    bits |= bit;
+
+    product.data.variations.forEach(variation => {
+      if (variation.bits === bits) {
+        this.props.fetchProduct(variation.sku);
+        history.push('/product/' + variation.sku);
+      }
+    });
   }
 
   addToCart(product) {
@@ -47,6 +49,8 @@ class Product extends Component {
     console.log('RENDER <Product>');
 
     const { product } = this.props;
+
+    console.log(product);
 
     return (
       <Layout>
@@ -80,39 +84,34 @@ class Product extends Component {
                   <div className="product-description-block">
                     <div className="information">
 
-                      <div className="name">{product.data.name}</div>
+                      <div className="name">{product.data.variation.title}</div>
 
                       <div className="price">
                         { product.data.variation.price + ' руб.' }
                       </div>
 
                       <div className="description">
-                        { product.data.description }
+                        { product.data.variation.description }
                       </div>
 
                       <div className="variations">
                         {
-                          product.data.attributes && product.data.attributes.map((attribute, i) => (
+                          product.data.product.attributes && product.data.product.attributes.map((attribute, i) => (
                             <form key={i}>
                               <div className='radio-group-title'>{attribute.name}</div>
                               <div className="radio-group">
                                 {
-                                  attribute.value && attribute.value.map((attr, j) => (
+                                  attribute.value && attribute.value.map((attrValue, j) => (
                                     <Fragment key={j}>
                                       <input
-                                        value={attr}
+                                        value={attrValue.bit}
                                         type="radio"
                                         id={`option-${i}-${j}`}
-                                        onChange={(e) => this.handleSelect(
-                                          e,
-                                          product.data.variation.attributes,
-                                          product.data.variation.sku,
-                                          {name: attribute.name, value: attr},
-                                        )}
+                                        onChange={e => this.handleSelect(e, attrValue.bit, attrValue.attrId)}
                                         name={attribute.name}
-                                        checked={product.data.variation.attributes[i].value === attr}
+                                        checked={product.data.variation.attributes[i].value === attrValue.value}
                                       />
-                                      <label htmlFor={`option-${i}-${j}`}>{attr}</label>
+                                      <label htmlFor={`option-${i}-${j}`}>{attrValue.value}</label>
                                     </Fragment>
                                   ))
                                 }

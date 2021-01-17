@@ -7,7 +7,7 @@ import { connect } from 'react-redux';
 
 import CartInfo from '../components/CartInfo';
 import AuthNav from '../components/AuthNav';
-import { fetchProducts, resetCart, logout } from '../../../actions';
+import { fetchProductsByCategory, resetCart, logout } from '../../../actions';
 import { getTotalCartProductPrice, getTotalCartProductQty } from '../../../selectors';
 
 class Header extends Component {
@@ -67,7 +67,7 @@ Header.propTypes = {
 };
 
 const mapDispatchToProps = {
-  fetchProducts,
+  fetchProductsByCategory,
   logout,
   resetCart,
 };

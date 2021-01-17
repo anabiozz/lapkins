@@ -34,10 +34,10 @@ import {
   ORDER_START,
   ORDER_FAILURE,
   ORDER_SUCCESS,
-  RESET_IS_DONE,
+  RESET_IS_DONE, FETCH_SUBCATEGORIES_START, FETCH_SUBCATEGORIES_SUCCESS, FETCH_SUBCATEGORIES_FAILURE,
 } from '../actionTypes';
 
-import {fetchProducts as fetchProductsAPI} from '../api';
+import {fetchProductsByCategory as fetchProductsByCategoryAPI} from '../api';
 import {fetchProduct as fetchProductAPI} from '../api';
 import {fetchCategories as fetchCategoriesAPI} from '../api';
 import {fetchCart as fetchCartAPI} from '../api';
@@ -48,14 +48,16 @@ import {order as orderAPI} from '../api';
 import {increaseCartProductQty as increaseCartProductQtyAPI} from '../api';
 import {decreaseCartProductQty as decreaseCartProductQtyAPI} from '../api';
 import {removeCartProduct as removeCartProductAPI} from '../api';
+import {fetchSuperordinateCategories as fetchSuperordinateCategoriesAPI} from '../api';
 
-export const fetchProducts = () => async dispatch => {
+
+export const fetchProductsByCategory = (category) => async dispatch => {
   dispatch({
     type: FETCH_PRODUCTS_START
   });
 
   try {
-    const products = await fetchProductsAPI();
+    const products = await fetchProductsByCategoryAPI(category);
     dispatch({
       type: FETCH_PRODUCTS_SUCCESS,
       payload: {data: products},
@@ -63,6 +65,26 @@ export const fetchProducts = () => async dispatch => {
   } catch (err) {
     dispatch({
       type: FETCH_PRODUCTS_FAILURE,
+      payload: err,
+      error: true,
+    });
+  }
+};
+
+export const fetchSuperordinateCategories = (superordinate) => async dispatch => {
+  dispatch({
+    type: FETCH_SUBCATEGORIES_START
+  });
+
+  try {
+    const categories = await fetchSuperordinateCategoriesAPI(superordinate);
+    dispatch({
+      type: FETCH_SUBCATEGORIES_SUCCESS,
+      payload: {data: categories},
+    });
+  } catch (err) {
+    dispatch({
+      type: FETCH_SUBCATEGORIES_FAILURE,
       payload: err,
       error: true,
     });
